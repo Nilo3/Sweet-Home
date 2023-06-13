@@ -1,21 +1,24 @@
 const express = require("express");
 const router = express.Router();
-const fs = require("fs")
+const fs = require("fs");
 
 const PATH_ROUTES = __dirname;
 
 const removeExtension = (fileName) => {
-    return fileName.split('.').shift()
-}
+  return fileName.split(".").shift();
+};
 
 fs.readdirSync(PATH_ROUTES).filter((file) => {
-    const name = removeExtension(file)
-    if (name !== 'index') {
+  const name = removeExtension(file);
+  if (name !== "index") {
     console.log(`Cargando ruta: ${name}`);
-    router.use(`/${name}`, require(`./${file}`))
-}
-})
+    const middleware = require(`./${file}`);
+    if (typeof middleware === "function") {
+      router.use(`/${name}`, middleware);
+    } else {
+      console.log(`Error: ${file} no es un módulo de middleware válido.`);
+    }
+  }
+});
 
-
-
-module.exports = router
+module.exports = router;
