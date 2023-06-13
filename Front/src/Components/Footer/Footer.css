@@ -1,0 +1,90 @@
+.containerFooter{
+    background-color: #D5BDAF;
+    width: 100vw;
+    height:11vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.logo{
+ width: 10vw;
+ height:10vw;
+margin-right: auto;
+margin-top: 1.5%;
+margin-left: 4vw;
+}
+
+
+.separator {
+    width: 60%;
+    height: 1px;
+    background-color: #000000;
+    margin: 10px 0;
+    border: .05vw solid #000000;
+    transform: rotate(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    margin-top: -1vw;
+  }
+  .footerDescription{
+    
+    margin-top: -5vw;
+    font-size: .75vw;
+    width: 65vmax;
+   
+}
+  .footerText2{
+
+    margin-top: 9.5vw;
+    font-size: .6vw;
+    font-style: normal;
+    font-weight: 400;
+    width: 65vmax;
+  
+  }
+
+  .followUs{
+    margin-top: 1vw;
+    width: 65vmax;
+  }
+  .facebooklogo{
+    height:1.2vw;
+    width: .8vw;
+
+    margin-top: 3vw;
+    margin-right: 7vw;
+  }
+
+  .instagramlogo{
+
+    height:1.3vw;
+    width: 1.3vw;
+    margin-top: 3.3vw;
+  }
+    .whatsapplogo{
+        height:1.3vw;
+        width: 1.3vw;
+        margin-top: 3.3vw;
+        margin-left: 7vw;
+
+}
+  
+
+  .footerText2, .footerDescription, .followUs, .facebooklogo, .instagramlogo,.whatsapplogo {
+    font-family: 'Goudy Bookletter 1911';
+    font-style: normal;
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+  }
