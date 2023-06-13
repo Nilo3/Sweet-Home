@@ -1,15 +1,21 @@
-// import { useState } from 'react'
 
-import './App.css'
+import 'tailwindcss/tailwind.css';
+import Home from './views/Home/Home';
+
+
 
 function App() {
-  
-
   return (
     <>
-      Hola
+      <Home/>  
+    <div className="flex items-center justify-center h-screen bg-orange-200">
+     
+    
+    </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
+
