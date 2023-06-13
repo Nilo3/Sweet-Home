@@ -1,11 +1,11 @@
 import Container from "../container";
 import Logo from "./Logo"
-import ShopNow from "../../views/ShopNow/ShopNow";
-import About from "../../views/About/About";
-import Recomendations from "../../views/Recomendations/Recomendations";
-import NewProducts from "../../views/NewProducts/NewProducts";
-import Top from "../../views/Top/Top";
-import MostValued from "../../views/MostValued/MostValued";
+import ShopNowNav from "../../views/ShopNow/ShopNowNav";
+import AboutNav from "../../views/About/AboutNav";
+import RecomendationsNav from "../../views/Recomendations/RecomendationsNav";
+import NewProductsNav from "../../views/NewProducts/NewProductsNav";
+import TopNav from "../../views/Top/TopNav";
+import MostValuedNav from "../../views/MostValued/MostValuedNav";
 import UserMenu from "../../views/UserMenu";
 import ShoppingCart from "../../views/ShoppingCart/ShoppingCart";
 
@@ -30,12 +30,12 @@ const Navbar = () => {
               "
             >
              <Logo />
-             <ShopNow/>
-             <About/>
-             <Recomendations/>
-             <NewProducts/>
-             <Top/>
-             <MostValued/>
+             <ShopNowNav/>
+             <AboutNav/>
+             <RecomendationsNav/>
+             <NewProductsNav/>
+             <TopNav/>
+             <MostValuedNav/>
              <UserMenu/>
              <ShoppingCart/>
             </div>

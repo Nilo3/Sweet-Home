@@ -1,20 +1,14 @@
 
 import { BsMegaphone } from 'react-icons/bs';
-import React, { useState } from 'react';
 
-const NewProducts: React.FC = () => {
- const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-  };
+const NewProductsNav: React.FC = () => {
   
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
-          onClick={toggleOpen}
-          className="
+           className="
             p-4
             md:py-1
             md:px-2
@@ -36,26 +30,9 @@ const NewProducts: React.FC = () => {
           </div>
         </div>
       </div>
-      {isOpen && (
-        <div
-          className="
-            absolute
-            rounded-xl
-            shadow-md
-            bg-white
-            overflow-hidden
-            right-0
-            top-12
-            text-sm
-            z-10
-          "
-        >
-       
-        </div>
-      )}
     </div>
   );
 };
 
 
-export default NewProducts;
+export default NewProductsNav;
