@@ -28,7 +28,7 @@ const Recomendations: React.FC = () => {
             transition
           "
         >
-          <BsFillChatSquareHeartFill />
+          <BsFillChatSquareHeartFill className="text-2xl" />
           <div className="hidden md:block">
            Recomendations
             

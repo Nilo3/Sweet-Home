@@ -28,7 +28,7 @@ const Top: React.FC = () => {
             transition
           "
         >
-          <BsFillTrophyFill />
+          <BsFillTrophyFill className="text-2xl" />
           <div className="hidden md:block">
            Top Of Weekend
           </div>

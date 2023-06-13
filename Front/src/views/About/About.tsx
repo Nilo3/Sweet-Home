@@ -30,7 +30,7 @@ const About: React.FC = () => {
             transition
           "
         >
-          <AiOutlineTeam />
+          <AiOutlineTeam className="text-2xl" />
           <div className="hidden md:block">
             About
           </div>

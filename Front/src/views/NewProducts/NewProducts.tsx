@@ -29,7 +29,7 @@ const NewProducts: React.FC = () => {
             transition
           "
         >
-          <BsMegaphone />
+          <BsMegaphone className="text-2xl" />
           <div className="hidden md:block">
            New Products
             

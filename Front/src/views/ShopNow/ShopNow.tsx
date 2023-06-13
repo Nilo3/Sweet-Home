@@ -29,7 +29,7 @@ const ShopNow: React.FC = () => {
             transition
           "
         >
-          <BsShop />
+          <BsShop className="text-2xl"  />
           <div className="hidden md:block">
            Shop Now
             

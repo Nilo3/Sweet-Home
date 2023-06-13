@@ -28,7 +28,7 @@ const MostValued: React.FC = () => {
             transition
           "
         >
-          <BsAwardFill />
+          <BsAwardFill className="text-2xl" />
           <div className="hidden md:block">
            Most Valued
             
