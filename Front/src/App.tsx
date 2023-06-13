@@ -1,7 +1,9 @@
 // import { useState } from 'react'
 
 import './App.css'
-import Footer from "../src/Components/Footer/Footer"
+import Recommendations from './Components/Recommendations/Recommendations'
+import Footer from './Components/Footer/Footer'
+
 
 function App() {
   
