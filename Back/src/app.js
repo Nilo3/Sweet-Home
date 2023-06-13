@@ -1,17 +1,18 @@
 const express = require("express")
 const morgan = require("morgan")
+const cors = require("cors")
 const server = express();
+const routes = require("./routes/index")
 
-//? Prueba de base de datos
-const connectToDatabase = require("./db/db");
-connectToDatabase();
 
 server.use(express.json());
 server.use(morgan("dev"));
+server.use(cors());
 
 server.get("/prueba", (req,res) => {
     res.send("holi")
 })
 
+server.use("/", routes);
 
 module.exports = server;
