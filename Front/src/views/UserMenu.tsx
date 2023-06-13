@@ -17,8 +17,8 @@ const UserMenu: React.FC = () => {
         <div
           onClick={toggleOpen}
           className="
-            p4
-            md:py-2
+            p-4
+            md:py-1
             md:px-6
             border-[1px]
             border-neutral-200
@@ -32,7 +32,7 @@ const UserMenu: React.FC = () => {
             transition
           "
         >
-          <AiOutlineMenu />
+          <AiOutlineMenu size={18}/>
           <div className="hidden md:block">
             <Avatar src={avatarSrc} />
           </div>
@@ -49,7 +49,7 @@ const UserMenu: React.FC = () => {
             right-0
             top-12
             text-sm
-            z-10
+           
           "
         >
           <div className="flex flex-col">
