@@ -13,7 +13,7 @@ function App() {
     <>
     <Navbar />
       <Home/>  
-    <div className="flex items-center justify-center h-screen bg-orange-200">
+    <div className="flex items-center justify-center h-screen " style={{ backgroundColor: "#EDEDE9", height:"100vh"}}>
    
     
     </div>
