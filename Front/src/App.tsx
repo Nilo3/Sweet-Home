@@ -12,18 +12,14 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
 
   return (
-      <div>
-        <Navbar/>
-        <main>
-          <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          </Routes>
-        </main>
-      <Footer/>
-
-      </div>
-
+    <>
+    <Navbar />
+      <Home/>  
+    <div className="flex items-center justify-center h-screen " style={{ backgroundColor: "#EDEDE9", height:"100vh"}}>
+   
+    
+    </div>
+    </>
   );
 }
 
