@@ -1,0 +1,31 @@
+.mostValued{
+    width: 100vw;
+    height: 100vh;
+    background-color: #EDEDE9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.mostValuedContainer{
+    background-color: #D5BDAF;
+    width: 95vw;
+    height: 40vh;
+    margin-top: -60%;
+}
+.valuedTitle{
+    font-family: 'Goudy Bookletter 1911';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 5vw;
+    color: black;
+    left:28%;
+    top:7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+}
