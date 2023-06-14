@@ -1,9 +1,11 @@
+const bcrypt = require("bcryptjs")
+
 const users = [
   {
     id: "1",
     name: "John Doe",
     email: "johndoe@example.com",
-    password: "password123",
+    password: bcrypt.hashSync("123456", 10),
     isAdmin: false,
     cart: [],
     bought: null,
@@ -15,7 +17,7 @@ const users = [
     id: "2",
     name: "Jane Smith",
     email: "janesmith@example.com",
-    password: "password456",
+    password: bcrypt.hashSync("123456", 10),
     isAdmin: false,
     cart: [],
     bought: null,
@@ -27,7 +29,7 @@ const users = [
     id: "3",
     name: "Admin User",
     email: "admin@example.com",
-    password: "admin123",
+    password: bcrypt.hashSync("123456", 10),
     isAdmin: true,
     cart: [],
     bought: null,
@@ -39,7 +41,7 @@ const users = [
     id: "4",
     name: "Alice Johnson",
     email: "alicejohnson@example.com",
-    password: "password789",
+    password: bcrypt.hashSync("123456", 10),
     isAdmin: false,
     cart: [],
     bought: null,
@@ -51,7 +53,7 @@ const users = [
     id: "5",
     name: "Bob Williams",
     email: "bobwilliams@example.com",
-    password: "passwordABC",
+    password: bcrypt.hashSync("123456", 10),
     isAdmin: false,
     cart: [],
     bought: null,

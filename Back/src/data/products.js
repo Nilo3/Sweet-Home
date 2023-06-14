@@ -1,104 +1,82 @@
 const products = [
     {
-        id: "1",
-        name: "Set de utensilios de cocina",
-        price: 29.99,
-        image: "https://example.com/utensilios.jpg",
-        description: "Un set completo de utensilios de cocina de acero inoxidable.",
-        stock: 50,
-        category: "Cocina",
-        review: "¡Los mejores utensilios que he usado! Muy duraderos y fáciles de limpiar."
+      name: "iPhone 12",
+      price: 999,
+      image: "iphone12.jpg",
+      description: "The latest iPhone model with advanced features.",
+      stock: 50,
+      category: []
     },
     {
-        id: "2",
-        name: "Alfombra de área de felpa",
-        price: 59.99,
-        image: "https://example.com/alfombra.jpg",
-        description: "Una hermosa alfombra de área suave y esponjosa para tu sala de estar.",
-        stock: 20,
-        category: "Decoración",
-        review: "La alfombra es muy cómoda y le da un toque acogedor a mi sala. ¡Me encanta!"
+      name: "Samsung Galaxy S21",
+      price: 899,
+      image: "galaxys21.jpg",
+      description: "A powerful Android smartphone with a stunning display.",
+      stock: 30,
+      category: []
     },
     {
-        id: "3",
-        name: "Juego de sábanas de algodón",
-        price: 39.99,
-        image: "https://example.com/sabanas.jpg",
-        description: "Un juego de sábanas de algodón de alta calidad para una cama tamaño queen.",
-        stock: 30,
-        category: "Dormitorio",
-        review: "Las sábanas son suaves y cómodas. Me encanta la sensación de dormir en ellas."
+      name: "MacBook Pro",
+      price: 1999,
+      image: "macbookpro.jpg",
+      description: "A high-performance laptop for professional use.",
+      stock: 20,
+      category: []
     },
     {
-        id: "4",
-        name: "Set de organizadores de armario",
-        price: 19.99,
-        image: "https://example.com/organizadores.jpg",
-        description: "Un set de organizadores de armario para mantener tu ropa y accesorios ordenados.",
-        stock: 40,
-        category: "Organización",
-        review: "Estos organizadores han transformado mi armario. Ahora todo está en su lugar."
+      name: "Sony PlayStation 5",
+      price: 499,
+      image: "ps5.jpg",
+      description: "The latest gaming console with impressive graphics.",
+      stock: 10,
+      category: []
     },
     {
-        id: "5",
-        name: "Cafetera de goteo programable",
-        price: 69.99,
-        image: "https://example.com/cafetera.jpg",
-        description: "Una cafetera de goteo con temporizador para disfrutar de un café recién hecho todas las mañanas.",
-        stock: 15,
-        category: "Cocina",
-        review: "La cafetera hace un café delicioso y el temporizador es muy conveniente."
+      name: "Samsung QLED TV",
+      price: 1499,
+      image: "samsungtv.jpg",
+      description: "A premium 4K TV with vibrant colors and sharp details.",
+      stock: 15,
+      category: []
     },
     {
-        id: "6",
-        name: "Juego de cuchillos de chef",
-        price: 49.99,
-        image: "https://example.com/cuchillos.jpg",
-        description: "Un juego de cuchillos de chef de alta calidad para cortar y picar tus ingredientes.",
-        stock: 25,
-        category: "Cocina",
-        review: "Estos cuchillos son increíbles. Son afilados y fáciles de manejar. ¡Muy recomendados!"
+      name: "DJI Mavic Air 2",
+      price: 799,
+      image: "djimavic.jpg",
+      description: "A compact drone with excellent camera capabilities.",
+      stock: 5,
+      category: []
     },
     {
-        id: "7",
-        name: "Lámpara de mesa moderna",
-        price: 39.99,
-        image: "https://example.com/lampara.jpg",
-        description: "Una lámpara de mesa elegante y moderna para iluminar tu espacio de trabajo o dormitorio.",
-        stock: 12,
-        category: "Iluminación",
-        review: "La lámpara se ve genial en mi escritorio. La luz es suave y perfecta para trabajar."
+      name: "Bose QuietComfort 35 II",
+      price: 349,
+      image: "boseqc35.jpg",
+      description: "Wireless noise-cancelling headphones for immersive audio.",
+      stock: 25,
+      category: []
     },
     {
-        id: "8",
-        name: "Set de toallas de baño",
-        price: 24.99,
-        image: "https://example.com/toallas.jpg",
-        description: "Un set de toallas de baño suaves y absorbentes en colores variados.",
-        stock: 35,
-        category: "Baño",
-        review: "Estas toallas son de gran calidad. Son suaves y secan muy bien. ¡Recomendadas!"
+      name: "Fitbit Charge 4",
+      price: 149,
+      image: "fitbitcharge.jpg",
+      description: "A fitness tracker with built-in GPS and heart rate monitor.",
+      stock: 40,
+      category: []
     },
     {
-        id: "9",
-        name: "Juego de ollas y sartenes antiadherentes",
-        price: 79.99,
-        image: "https://example.com/ollas.jpg",
-        description: "Un juego completo de ollas y sartenes antiadherentes para todas tus necesidades de cocina.",
-        stock: 10,
-        category: "Cocina",
-        review: "Estas ollas y sartenes son excelentes. Los alimentos no se pegan y son fáciles de limpiar."
+      name: "Canon EOS Rebel T7i",
+      price: 799,
+      image: "canonrebel.jpg",
+      description: "A versatile DSLR camera for capturing stunning photos.",
+      stock: 8,
+      category: []
     },
     {
-        id: "10",
-        name: "Mesa de centro de madera maciza",
-        price: 149.99,
-        image: "https://example.com/mesa.jpg",
-        description: "Una mesa de centro robusta y elegante hecha de madera maciza de alta calidad.",
-        stock: 8,
-        category: "Muebles",
-        review: "La mesa es hermosa y resistente. Complementa perfectamente mi sala de estar."
+      name: "Amazon Echo Dot",
+      price: 49,
+      image: "echodot.jpg",
+      description: "A smart speaker with Alexa voice assistant for hands-free control.",
+      stock: 60,
+      category: []
     }
-];
-
-module.exports = products;
+  ];
