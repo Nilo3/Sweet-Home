@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 
 import 'tailwindcss/tailwind.css';
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../Components/Navbar/Navbar';
 
 
 function Home() {
