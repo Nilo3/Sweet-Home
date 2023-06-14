@@ -1,5 +1,6 @@
-const mongoose = require('mongoose')
-require('dotenv').config();
+import mongoose from 'mongoose'
+import dotenv from 'dotenv';
+dotenv.config();
 const { DB_HOST } = process.env;
 
 //? Prueba de base de datos
@@ -12,4 +13,4 @@ const connection = async () => {
     }
 }
 
-module.exports = connection;
+export default connection

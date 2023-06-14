@@ -1,22 +1,19 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+import mongoose from "mongoose";
+const { Schema } = mongoose
 
-const User = new Schema({
+const user = new Schema({
     //? googleId: { type: String, default:"" }
-    id: { type: mongoose.Types.ObjectId, },
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false },
     cart: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
-    bought: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
-    userReviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
-    userOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Orders" }],
+    bought: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+    favorites: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+    userReviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
+    userOrders: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
 });
 
-module.exports = {
-    User: mongoose.model('User', User),
-}
+const User = mongoose.model('User', user)
 
-
+export default User
