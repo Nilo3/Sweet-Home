@@ -1,130 +1,108 @@
 
   @media (max-width: 600px) {
       /* CSS rules specific to small screens */
-    .pageContainer{
-      width: 100vw;
-      height: 100vh;
-      background-color: #EDEDE9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      left: 0;
-      bottom: 0;
-    
-    }
-    .containerFooter{
-        background-color: #D5BDAF;
-        width: 100vw;
-        height:11vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        left: 0;
-        bottom: 0;
-    }
-    
-    .logo{
-     width: 10vw;
-     height:10vw;
-    margin-right: auto;
-    margin-top: 1.5%;
-    margin-left: 4vw;
-    }
-    
-    
-    .separator {
+   
+      .containerFooter{
+          background-color: #D5BDAF;
+          width: 100vw;
+          height:8vw;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: fixed;
+          left: 0;
+      }
+      
+      .logo{
+       width: 6vw;
+       height:6vw;
+      margin-right: auto;
+      margin-top: 1.5%;
+      margin-left: 4vw;
+      }
+      
+      
+      .separator {
         width: 60%;
-    
+        height: 1px;
         background-color: #000000;
         margin: 10px 0;
-        border: .001px solid #000000;
+        border: .01px solid #000000;
         transform: rotate(180deg);
         display: flex;
         justify-content: center;
         align-items: center;
         position: fixed;
-        margin-top: 0vw;
+        margin-top: 1vw;
+        }
+        .footerDescription{
+          
+          
+        margin-top: -4.5vw;
+        font-size: .7vw;
+        width: 60vw;;
       }
-      .footerDescription{
-        
-        margin-top: -6vw;
-        font-size: .75vw;
-        width: 28vmax;
-       
-    }
-      .footerText2{
-    
-        margin-top: 9.5vw;
-        font-size: .6vw;
-        font-style: normal;
-        font-weight: 400;
-        width: 65vmax;
+        .footerText2{
       
-      }
-    
-      .followUs{
-        margin-top: 2vw;
-        width: 65vmax;
-        font-size: 1vw;
+          margin-top: 6.3vw;
+          font-size: .55vw;
+          font-style: normal;
+          font-weight: 400;
+          width: 65vmax;
         
-      }
-      .facebooklogo{
-        height:1.2vw;
-        width: .8vw;
-    
-        margin-top: 4.5vw;
-        margin-right: 7vw;
-      }
-    
-      .instagramlogo{
-    
-        height:1.3vw;
-        width: 1.3vw;
-        margin-top: 4.5vw;
-      }
-        .whatsapplogo{
+        }
+      
+        .followUs{
+          margin-top: .6vw;
+          width: 65vw;
+          font-size: .8vw;
+          left:17.8%;
+          
+        }
+        .facebooklogo{
+          height:1.2vw;
+          width: .8vw;
+      
+          margin-top: 3.3vw;
+          margin-right: 7vw;
+        }
+      
+        .instagramlogo{
+      
+          height:1.3vw;
+          width: 1.3vw;
+          margin-top:3.3vw;
+        }
+          .whatsapplogo{
             height:1.3vw;
             width: 1.3vw;
-            margin-top: 4.5vw;
+            margin-top: 3.3vw;
             margin-left: 7vw;
-    
-    }
       
-    
-      .footerText2, .footerDescription, .followUs, .facebooklogo, .instagramlogo,.whatsapplogo {
-        font-family: 'Goudy Bookletter 1911';
-        font-style: normal;
-        text-align: center;
-        font-style: normal;
-        font-weight: 400;
-        color:black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
       }
-  }
+        
+      
+        .footerText2, .footerDescription, .followUs, .facebooklogo, .instagramlogo,.whatsapplogo {
+          font-family: 'Goudy Bookletter 1911';
+          font-style: normal;
+          text-align: center;
+          font-style: normal;
+          font-weight: 400;
+          color:black;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: fixed;
+        }
+    }
 
   @media (min-width: 601px) and (max-width: 1024px) {
     /* CSS rules specific to medium screens */
-    .pageContainer{
-      width: 100vw;
-      height: 100vh;
-      background-color: #EDEDE9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      left: 0;
-      bottom: 0;
     
-    }
     .containerFooter{
         background-color: #D5BDAF;
         width: 100vw;
-        height:11vw;
+        height:8vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -134,8 +112,8 @@
     }
     
     .logo{
-     width: 10vw;
-     height:10vw;
+     width: 6vw;
+     height:6vw;
     margin-right: auto;
     margin-top: 1.5%;
     margin-left: 4vw;
@@ -143,29 +121,29 @@
     
     
     .separator {
-        width: 60%;
-    
-        background-color: #000000;
-        margin: 10px 0;
-        border: .05vw solid #000000;
-        transform: rotate(180deg);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        margin-top: -1vw;
+      width: 60%;
+      height: 1px;
+      background-color: #000000;
+      margin: 10px 0;
+      border: .01px solid #000000;
+      transform: rotate(180deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      margin-top: -.5vw;
       }
       .footerDescription{
         
-        margin-top: -6vw;
-        font-size: .85vw;
-        width: 53vmax;
-       
+        
+      margin-top: -4.5vw;
+      font-size: .7vw;
+      width: 60vw;;
     }
       .footerText2{
     
-        margin-top: 9.5vw;
-        font-size: .6vw;
+        margin-top: 6.3vw;
+        font-size: .55vw;
         font-style: normal;
         font-weight: 400;
         width: 65vmax;
@@ -173,17 +151,17 @@
       }
     
       .followUs{
-        margin-top: 2vw;
-        width: 65vmax;
-        font-size: 1.2vw;
-        left:6.7%;
+        margin-top: .6vw;
+        width: 65vw;
+        font-size: .8vw;
+        left:17.8%;
         
       }
       .facebooklogo{
         height:1.2vw;
         width: .8vw;
     
-        margin-top: 4.5vw;
+        margin-top: 3.3vw;
         margin-right: 7vw;
       }
     
@@ -191,13 +169,13 @@
     
         height:1.3vw;
         width: 1.3vw;
-        margin-top: 4.5vw;
+        margin-top:3.3vw;
       }
         .whatsapplogo{
-            height:1.3vw;
-            width: 1.3vw;
-            margin-top: 4.5vw;
-            margin-left: 7vw;
+          height:1.3vw;
+          width: 1.3vw;
+          margin-top: 3.3vw;
+          margin-left: 7vw;
     
     }
       
@@ -221,7 +199,6 @@
   
   .pageContainer{
     width: 100vw;
-    height: 100vh;
     background-color: #EDEDE9;
     display: flex;
     justify-content: center;
@@ -234,20 +211,21 @@
   .containerFooter{
       background-color: #D5BDAF;
       width: 100vw;
-      height:11vw;
+      height:8vw;
       display: flex;
       justify-content: center;
       align-items: center;
       position: fixed;
       left: 0;
       bottom: 0;
+      margin-top: 70vh;
   }
   
   .logo{
-   width: 10vw;
-   height:10vw;
+   width: 6vw;
+   height:6vw;
   margin-right: auto;
-  margin-top: 1.5%;
+  margin-top: 1%;
   margin-left: 4vw;
   }
   
@@ -263,19 +241,19 @@
       justify-content: center;
       align-items: center;
       position: fixed;
-      margin-top: -1vw;
+      margin-top: -.5vw;
     }
     .footerDescription{
       
-      margin-top: -6vw;
-      font-size: .85vw;
-      width: 75vmax;
+      margin-top: -4.5vw;
+      font-size: .7vw;
+      width: 60vw;;
      
   }
     .footerText2{
   
-      margin-top: 9.5vw;
-      font-size: .6vw;
+      margin-top: 6.3vw;
+      font-size: .55vw;
       font-style: normal;
       font-weight: 400;
       width: 65vmax;
@@ -283,16 +261,16 @@
     }
   
     .followUs{
-      margin-top: 2vw;
+      margin-top: .6vw;
       width: 65vmax;
-      font-size: 1.2vw;
+      font-size: .8vw;
       left:17.8%;
     }
     .facebooklogo{
       height:1.2vw;
       width: .8vw;
   
-      margin-top: 4.5vw;
+      margin-top: 3.3vw;
       margin-right: 7vw;
     }
   
@@ -300,12 +278,12 @@
   
       height:1.3vw;
       width: 1.3vw;
-      margin-top: 4.5vw;
+      margin-top:3.3vw;
     }
       .whatsapplogo{
           height:1.3vw;
           width: 1.3vw;
-          margin-top: 4.5vw;
+          margin-top: 3.3vw;
           margin-left: 7vw;
   
   }
