@@ -8,11 +8,14 @@ const routes = require("./routes/index")
 server.use(express.json());
 server.use(morgan("dev"));
 server.use(cors());
+server.use("/", routes);
 
 server.get("/prueba", (req,res) => {
     res.send("holi")
 })
 
-server.use("/", routes);
+
+  
+
 
 module.exports = server;
