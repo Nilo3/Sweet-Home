@@ -1,4 +1,7 @@
 import User from "../../models/schemas/user.js";
+import Category from "../../models/schemas/category.js";
+import Review from "../../models/schemas/reviews.js";
+import Product from "../../models/schemas/product.js";
 
 export default async (req, res) => {
   try {
@@ -8,16 +11,13 @@ export default async (req, res) => {
         populate: [
           {
             path: "category",
-            model: "Category",
+            model: Category,
           },
           {
             path: "review",
-            model: "Review",
+            model: Review,
           },
-          {
-            path: "createdAt",
-            model: "CreatedAt",
-          },
+         
         ],
       })
       .populate({
@@ -25,23 +25,11 @@ export default async (req, res) => {
         populate: [
           {
             path: "product",
-            model: "Product",
+            model: Product,
           },
 
         ],
       })
-      /*
-      .populate({
-        path: "userOrders",
-        populate: [
-          {
-            path: "product",
-            model: "Products",
-          },
-          
-        ],
-      })
-      */
       .populate("favorites");
     return res.status(200).json(users);
   } catch (error) {
