@@ -1,3 +1,4 @@
+import React from 'react';
 import Container from "../container";
 import Logo from "./Logo"
 import ShopNowNav from "../../views/ShopNow/ShopNowNav";
@@ -9,42 +10,40 @@ import MostValuedNav from "../../views/MostValued/MostValuedNav";
 import UserMenu from "../../views/UserMenu";
 import ShoppingCart from "../../views/ShoppingCart/ShoppingCart";
 
-const Navbar = () => {
-    return ( 
-        <div className="fixed w-full bg-white z-10 shadow-sm">
-          <div
+const Navbar: React.FC = () => {
+  return ( 
+    <div className="fixed w-full bg-white z-10 shadow-sm">
+      <div
+        className="
+          py-1 
+          border-b-[1px]
+        "
+      >
+        <Container>
+          <div 
             className="
-              py-1 
-              border-b-[1px]
+              flex 
+              flex-row 
+              items-center 
+              justify-between
+              gap-3
+              md:gap-0
             "
           >
-          <Container>
-            <div 
-              className="
-                flex 
-                flex-row 
-                items-center 
-                justify-between
-                gap-3
-                md:gap-0
-              "
-            >
-             <Logo />
-             <ShopNowNav/>
-             <AboutNav/>
-             <RecomendationsNav/>
-             <NewProductsNav/>
-             <TopNav/>
-             <MostValuedNav/>
-             <UserMenu/>
-             <ShoppingCart/>
-            </div>
-          </Container>
-        </div>
-       
+            <Logo />
+            <ShopNowNav />
+            <AboutNav />
+            <RecomendationsNav />
+            <NewProductsNav />
+            <TopNav />
+            <MostValuedNav />
+            <UserMenu />
+            <ShoppingCart />
+          </div>
+        </Container>
       </div>
-      );
-    }
-    
+    </div>
+  );
+};
 
-export default Navbar
+export default Navbar;
