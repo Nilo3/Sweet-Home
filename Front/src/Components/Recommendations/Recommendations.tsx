@@ -1,5 +1,5 @@
 import "./Recommendations.css"
-import Footer from "../Footer/Footer"
+//import Footer from "../Footer/Footer"
 import livingroomRecommendations from "./images/recomm1.jpg.webp"
 import recomm2 from "./images/recomm2.jpeg"
 
