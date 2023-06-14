@@ -1,11 +1,10 @@
-const mongoose = require("mongoose");
 const Product = require("../../models/schemas/product");
+const mongoose = require('mongoose');
 
 const postProduct = async (req, res) => {
   try {
     const product = new Product({
       name: req.body.name,
-      id: new mongoose.Types.ObjectId(),
       price: req.body.price,
       image: req.body.image,
       description: req.body.description,
