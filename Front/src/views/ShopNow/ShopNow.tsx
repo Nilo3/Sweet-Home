@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { BsShop } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 const ShopNow: React.FC = () => {
-   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
 
+  const navigateToProducts = () => {
+    navigate('/products');
+  };
 
   return (
     <div className="relative">
@@ -17,8 +22,7 @@ const ShopNow: React.FC = () => {
           className="
             p-4
             md:py-1
-            md:px-2
-          
+            md:px-2          
             flex
             flex-row
             items-center
@@ -30,10 +34,9 @@ const ShopNow: React.FC = () => {
           "
         >
           <BsShop />
-          <div className="hidden md:block">
-           Shop Now
-            
-          </div>
+          <button className="hidden md:block" onClick={navigateToProducts}>
+            Shop Now
+          </button>
         </div>
       </div>
       {isOpen && (
@@ -49,13 +52,10 @@ const ShopNow: React.FC = () => {
             text-sm
             z-10
           "
-        >
-       
-        </div>
+        ></div>
       )}
     </div>
   );
 };
-
 
 export default ShopNow;
