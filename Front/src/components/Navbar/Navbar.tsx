@@ -1,4 +1,4 @@
-import Container from "../container";
+import Container from "../container"
 import Logo from "./Logo"
 import ShopNowNav from "../../views/ShopNow/ShopNowNav";
 import AboutNav from "../../views/About/AboutNav";

@@ -1,28 +1,36 @@
 
   @media (max-width: 600px) {
       /* CSS rules specific to small screens */
+      .pageContainer{
+        width: 100%;
+        height: 100%;
+        background-color: #EDEDE9;
+      }
    
       .containerFooter{
-          background-color: #D5BDAF;
-          width: 100vw;
-          height:8vw;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: fixed;
-          left: 0;
-      }
+        background-color: #D5BDAF;
+        width: 100%;
+        height:8vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+       margin-bottom: -100vh;
+     
       
-      .logo{
-       width: 6vw;
-       height:6vw;
-      margin-right: auto;
-      margin-top: 1.5%;
-      margin-left: 4vw;
-      }
-      
-      
-      .separator {
+     
+    }
+    
+    .logo{
+     width: 6vw;
+     height:6vw;
+    margin-right: auto;
+    margin-top: 1%;
+    margin-left: 4vw;
+    }
+    
+    
+    .separator {
         width: 60%;
         height: 1px;
         background-color: #000000;
@@ -32,113 +40,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        position: fixed;
-        margin-top: 1vw;
-        }
-        .footerDescription{
-          
-          
-        margin-top: -4.5vw;
-        font-size: .7vw;
-        width: 60vw;;
-      }
-        .footerText2{
-      
-          margin-top: 6.3vw;
-          font-size: .55vw;
-          font-style: normal;
-          font-weight: 400;
-          width: 65vmax;
-        
-        }
-      
-        .followUs{
-          margin-top: .6vw;
-          width: 65vw;
-          font-size: .8vw;
-          left:17.8%;
-          
-        }
-        .facebooklogo{
-          height:1.2vw;
-          width: .8vw;
-      
-          margin-top: 3.3vw;
-          margin-right: 7vw;
-        }
-      
-        .instagramlogo{
-      
-          height:1.3vw;
-          width: 1.3vw;
-          margin-top:3.3vw;
-        }
-          .whatsapplogo{
-            height:1.3vw;
-            width: 1.3vw;
-            margin-top: 3.3vw;
-            margin-left: 7vw;
-      
-      }
-        
-      
-        .footerText2, .footerDescription, .followUs, .facebooklogo, .instagramlogo,.whatsapplogo {
-          font-family: 'Goudy Bookletter 1911';
-          font-style: normal;
-          text-align: center;
-          font-style: normal;
-          font-weight: 400;
-          color:black;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: fixed;
-        }
-    }
-
-  @media (min-width: 601px) and (max-width: 1024px) {
-    /* CSS rules specific to medium screens */
-    
-    .containerFooter{
-        background-color: #D5BDAF;
-        width: 100vw;
-        height:8vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        left: 0;
-        bottom: 0;
-    }
-    
-    .logo{
-     width: 6vw;
-     height:6vw;
-    margin-right: auto;
-    margin-top: 1.5%;
-    margin-left: 4vw;
-    }
-    
-    
-    .separator {
-      width: 60%;
-      height: 1px;
-      background-color: #000000;
-      margin: 10px 0;
-      border: .01px solid #000000;
-      transform: rotate(180deg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      margin-top: -.5vw;
+        position: absolute;
+        margin-top: -.5vw;
       }
       .footerDescription{
         
-        
-      margin-top: -4.5vw;
-      font-size: .7vw;
-      width: 60vw;;
+        margin-top: -4.5vw;
+        font-size: .7vw;
+        width: 60vw;;
+       
     }
       .footerText2{
     
@@ -155,7 +65,6 @@
         width: 65vw;
         font-size: .8vw;
         left:17.8%;
-        
       }
       .facebooklogo{
         height:1.2vw;
@@ -172,13 +81,12 @@
         margin-top:3.3vw;
       }
         .whatsapplogo{
-          height:1.3vw;
-          width: 1.3vw;
-          margin-top: 3.3vw;
-          margin-left: 7vw;
+            height:1.3vw;
+            width: 1.3vw;
+            margin-top: 3.3vw;
+            margin-left: 7vw;
     
     }
-      
     
       .footerText2, .footerDescription, .followUs, .facebooklogo, .instagramlogo,.whatsapplogo {
         font-family: 'Goudy Bookletter 1911';
@@ -190,35 +98,30 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        position: fixed;
+        position: absolute;
       }
-  }
+    }
 
-  @media (min-width: 1025px) {
-    /* CSS rules specific to large screens */
-  
-  .pageContainer{
-    width: 100vw;
-    background-color: #EDEDE9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-  
-  }
-  .containerFooter{
+  @media (min-width: 601px) and (max-width: 1024px) {
+    /* CSS rules specific to medium screens */
+    
+    .pageContainer{
+      width: 100%;
+      height: 100%;
+      background-color: #EDEDE9;
+    }
+    .containerFooter{
       background-color: #D5BDAF;
       width: 100vw;
       height:8vw;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      margin-top: 70vh;
+      position: absolute;
+     margin-bottom: -100vh;
+   
+    
+   
   }
   
   .logo{
@@ -240,7 +143,110 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      position: fixed;
+      position: absolute;
+      margin-top: -.5vw;
+    }
+    .footerDescription{
+      
+      margin-top: -4.5vw;
+      font-size: .7vw;
+      width: 60vw;;
+     
+  }
+    .footerText2{
+  
+      margin-top: 6.3vw;
+      font-size: .55vw;
+      font-style: normal;
+      font-weight: 400;
+      width: 65vmax;
+    
+    }
+  
+    .followUs{
+      margin-top: .6vw;
+      width: 65vw;
+      font-size: .8vw;
+      left:17.8%;
+    }
+    .facebooklogo{
+      height:1.2vw;
+      width: .8vw;
+  
+      margin-top: 3.3vw;
+      margin-right: 7vw;
+    }
+  
+    .instagramlogo{
+  
+      height:1.3vw;
+      width: 1.3vw;
+      margin-top:3.3vw;
+    }
+      .whatsapplogo{
+          height:1.3vw;
+          width: 1.3vw;
+          margin-top: 3.3vw;
+          margin-left: 7vw;
+  
+  }
+  
+    .footerText2, .footerDescription, .followUs, .facebooklogo, .instagramlogo,.whatsapplogo {
+      font-family: 'Goudy Bookletter 1911';
+      font-style: normal;
+      text-align: center;
+      font-style: normal;
+      font-weight: 400;
+      color:black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    /* CSS rules specific to large screens */
+  
+    .pageContainer{
+      width: 100%;
+      height: 100%;
+      background-color: #EDEDE9;
+    }
+  .containerFooter{
+      background-color: #D5BDAF;
+      width: 100vw;
+      height:8vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+ 
+   
+    
+   
+  }
+  
+  .logo{
+   width: 6vw;
+   height:6vw;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-left: 4vw;
+  }
+  
+  
+  .separator {
+      width: 60%;
+      height: 1px;
+      background-color: #000000;
+      margin: 10px 0;
+      border: .01px solid #000000;
+      transform: rotate(180deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
       margin-top: -.5vw;
     }
     .footerDescription{
@@ -298,6 +304,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      position: fixed;
+      position: absolute;
     }
   }

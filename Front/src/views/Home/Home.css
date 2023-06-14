@@ -1,13 +1,29 @@
-* {
-    margin: 0;
+/* .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
-  html, body {
-    height: 100%;
+  
+  .content {
+    flex: 1;
+    padding-bottom: 4rem;
   }
-  .wrapper {
-    min-height: calc(100% - 4rem);
-  }
+  
   .footer {
     height: 4rem;
-    background-color: #e2e2e2
+    background-color: #e2e2e2;
+    position: fixed;
+ margin-top: 50%;
+  } */
+  @media (max-width: 600px) {
+    .prueba{
+    width:100vw;
+    }
   }
+
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .prueba{
+        width:120vw;
+    }
+  }
+  

@@ -7,7 +7,7 @@ import {NavLink} from "react-router-dom";
 
 export default function Footer () {
     return (
-       
+       <div className="pageContainer">
     <div className="containerFooter">
     <img className="logo" src={shlogo} alt="logo"></img>
     <p className="footerDescription">Sweet Home is your destination for exceptional furniture and home decor that will transform your living spaces into stunning showcases of style and comfort. We offer an extensive collection of high-design pieces, ranging from contemporary marvels to rediscovered vintage icons. Each item is meticulously crafted with premium materials, ensuring exceptional quality that will stand the test of time.</p>
@@ -18,6 +18,7 @@ export default function Footer () {
     <img className="whatsapplogo" src={whatsapp} alt="whatsappLogo"></img>
     <p className="footerText2">© 2023 Sweet Home. All Rights Reserved. No part of this website, including texts, images, designs, or any other element, may be reproduced or transmitted in any form or by any means without prior written permission from Sweet Home. </p>
     
+    </div>
     </div>
     )
 }
