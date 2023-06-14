@@ -10,7 +10,7 @@ export default async (req, res) => {
   }
 
   try {
-    const categoryPromises = category.map((categoryId) => Category.findById(categoryId));
+     const categoryPromises = category.map((categoryId) => Category.findById(categoryId));
     const reviewPromises = review.map((reviewId) => Review.findById(reviewId));
 
     const [categories, reviews] = await Promise.all([Promise.all(categoryPromises), Promise.all(reviewPromises)]);
@@ -24,7 +24,6 @@ export default async (req, res) => {
       category: categories.map((category) => category._id),
       review: reviews.map((review) => review._id),
     });
-    
     return res.json(newProduct);
   } catch (error) {
     console.log(error.message);

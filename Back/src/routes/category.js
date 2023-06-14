@@ -3,13 +3,15 @@ import { Router } from "express";
 // ? Controllers 
 
 import postCategory from "../controllers/category/postCategory.js";
+import getAllCategories from "../controllers/category/getAllCategories.js";
+import getCategoryById from "../controllers/category/getCategoryById.js";
 
 const router = Router();
 
 //? Rutas .get
 
-router.get("/category");
-router.get("/category/:categoryId");
+router.get("/category", getAllCategories);
+router.get("/category/:categoryId", getCategoryById);
 
 //? Ruta .post
 
