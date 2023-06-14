@@ -1,19 +1,18 @@
-const { Product } = require("../../models/schemas/product");
-const { Category } = require("../../models/schemas/category");
-const { Review } = require("../../models/schemas/reviews");
-const { User } = require("../../models/schemas/user")
+import Product from "../../models/schemas/product.js";
+import Category from "../../models/schemas/category.js";
+import Review from "../../models/schemas/reviews.js";
+import User from "../../models/schemas/user.js";
 
-module.exports = async (req, res) => {
-
-  //? Configuración de paginado
+export default async (req, res) => {
+  // Configuración de paginado
   const page = req.query.page || 1;
   const limit = req.query.limit || 15;
 
-  //? Seteo de parámetros para filtros
+  // Seteo de parámetros para filtros
   const { name, priceAmount, relevance, searchFilter } = req.query;
   const categories = req.headers.category ? req.headers.category.split(",") : [""];
 
-  //? Configuración de ordenación
+  // Configuración de ordenación
   let sortBy = {};
   if (name) {
     sortBy.name = name;
@@ -25,7 +24,7 @@ module.exports = async (req, res) => {
     sortBy.relevance = relevance;
   }
 
-  //? Función de filtros de precio
+  // Función de filtros de precio
   const getMinMaxFilters = ({ minPrice, maxPrice }) => {
     const filters = {};
     if (minPrice) {
@@ -37,7 +36,7 @@ module.exports = async (req, res) => {
     return filters;
   };
 
-  //? Obtener los filtros de precio
+  // Obtener los filtros de precio
   const minMaxFilters = getMinMaxFilters(req.query);
 
   try {

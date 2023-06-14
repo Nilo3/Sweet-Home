@@ -1,22 +1,18 @@
-const { Router } = require("express");
+import { Router } from "express";
+
+// ? Controllers 
+
+import postProduct from "../controllers/product/postProduct.js";
+import getProduct from "../controllers/product/getProducts.js";
+import getProductById from "../controllers/product/getProductById.js";
+
 const router = Router();
 
-
-//? Controllers
-
-const postProduct = require("../controllers/product/postProduct");
-const getProduct = require("../controllers/product/getProducts")
-const getProductById = require("../controllers/product/getProductById")
-
-
 //? Rutas .get
-
 router.get("/product", getProduct);
 router.get("/product/:productId", getProductById);
 
 //? Ruta .post
-
 router.post("/product", postProduct);
 
-
-module.exports = router;
+export default router;

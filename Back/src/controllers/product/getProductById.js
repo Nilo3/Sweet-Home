@@ -1,9 +1,9 @@
-const { Product } = require("../../models/schemas/product");
-const { Category } = require("../../models/schemas/category");
-const { Review } = require("../../models/schemas/reviews");
-const { User } = require("../../models/schemas/user");
+import Product from "../../models/schemas/product.js";
+import Category from "../../models/schemas/category.js";
+import Review from "../../models/schemas/reviews.js";
+import User from "../../models/schemas/user.js";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
     try {
         const { productId } = req.params;
         const product = await Product.findById(productId)

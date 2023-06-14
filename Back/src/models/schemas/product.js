@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const product = new Schema({
@@ -12,6 +12,6 @@ const product = new Schema({
     review: [{ type: Schema.Types.ObjectId, ref: 'Review' }]
 });
 
-module.exports = {
-    Product: mongoose.model('Product', product)
-};
+const Product = mongoose.model("Product", product)
+
+export default Product

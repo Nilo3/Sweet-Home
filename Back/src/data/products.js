@@ -5,7 +5,8 @@ const products = [
       image: "iphone12.jpg",
       description: "The latest iPhone model with advanced features.",
       stock: 50,
-      category: []
+      category: [],
+      review: []
     },
     {
       name: "Samsung Galaxy S21",
@@ -13,7 +14,8 @@ const products = [
       image: "galaxys21.jpg",
       description: "A powerful Android smartphone with a stunning display.",
       stock: 30,
-      category: []
+      category: [],
+      review: []
     },
     {
       name: "MacBook Pro",
@@ -21,7 +23,8 @@ const products = [
       image: "macbookpro.jpg",
       description: "A high-performance laptop for professional use.",
       stock: 20,
-      category: []
+      category: [],
+      review: []
     },
     {
       name: "Sony PlayStation 5",
@@ -29,7 +32,8 @@ const products = [
       image: "ps5.jpg",
       description: "The latest gaming console with impressive graphics.",
       stock: 10,
-      category: []
+      category: [],
+      review: []
     },
     {
       name: "Samsung QLED TV",
@@ -37,7 +41,8 @@ const products = [
       image: "samsungtv.jpg",
       description: "A premium 4K TV with vibrant colors and sharp details.",
       stock: 15,
-      category: []
+      category: [],
+      review: []
     },
     {
       name: "DJI Mavic Air 2",
@@ -45,7 +50,8 @@ const products = [
       image: "djimavic.jpg",
       description: "A compact drone with excellent camera capabilities.",
       stock: 5,
-      category: []
+      category: [],
+      review: []
     },
     {
       name: "Bose QuietComfort 35 II",
@@ -53,7 +59,8 @@ const products = [
       image: "boseqc35.jpg",
       description: "Wireless noise-cancelling headphones for immersive audio.",
       stock: 25,
-      category: []
+      category: [],
+      review: []
     },
     {
       name: "Fitbit Charge 4",
@@ -61,7 +68,8 @@ const products = [
       image: "fitbitcharge.jpg",
       description: "A fitness tracker with built-in GPS and heart rate monitor.",
       stock: 40,
-      category: []
+      category: [],
+      review: []
     },
     {
       name: "Canon EOS Rebel T7i",
@@ -69,7 +77,8 @@ const products = [
       image: "canonrebel.jpg",
       description: "A versatile DSLR camera for capturing stunning photos.",
       stock: 8,
-      category: []
+      category: [],
+      review: []
     },
     {
       name: "Amazon Echo Dot",
@@ -77,6 +86,7 @@ const products = [
       image: "echodot.jpg",
       description: "A smart speaker with Alexa voice assistant for hands-free control.",
       stock: 60,
-      category: []
+      category: [],
+      review: []
     }
   ];

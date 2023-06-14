@@ -1,10 +1,8 @@
-const { Product } = require("../../models/schemas/product");
-const { Category } = require("../../models/schemas/category");
-const { Review } = require("../../models/schemas/reviews");
+import Product from "../../models/schemas/product.js";
+import Category from "../../models/schemas/category.js";
+import Review from "../../models/schemas/reviews.js";
 
-
-module.exports = async (req, res) => {
-
+export default async (req, res) => {
   const { name, price, image, description, stock, category, review } = req.body;
 
   if (!name || !price || !image || !stock || !category) {
@@ -12,17 +10,22 @@ module.exports = async (req, res) => {
   }
 
   try {
+    const categoryPromises = category.map((categoryId) => Category.findById(categoryId));
+    const reviewPromises = review.map((reviewId) => Review.findById(reviewId));
+
+    const [categories, reviews] = await Promise.all([Promise.all(categoryPromises), Promise.all(reviewPromises)]);
+
     const newProduct = await Product.create({
       name,
       price: Number(price),
       image,
       description,
       stock: Number(stock),
-      category: category.map((categoryId) => Category.findById(categoryId)),
-      review: review.map((reviewId) => Review.findById(reviewId)),
+      category: categories.map((category) => category._id),
+      review: reviews.map((review) => review._id),
     });
+    
     return res.json(newProduct);
-
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ message: error.message });
