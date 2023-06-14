@@ -1,50 +1,49 @@
-import Container from "../container";
+import Container from "../container"
+import React from 'react';
 import Logo from "./Logo"
-import ShopNow from "../../views/ShopNow/ShopNow";
-import About from "../../views/About/About";
-import Recomendations from "../../views/Recomendations/Recomendations";
-import NewProducts from "../../views/NewProducts/NewProducts";
-import Top from "../../views/Top/Top";
-import MostValued from "../../views/MostValued/MostValued";
+import ShopNowNav from "../../views/ShopNow/ShopNowNav";
+import AboutNav from "../../views/About/AboutNav";
+import RecomendationsNav from "../../views/Recomendations/RecomendationsNav";
+import NewProductsNav from "../../views/NewProducts/NewProductsNav";
+import TopNav from "../../views/Top/TopNav";
+import MostValuedNav from "../../views/MostValued/MostValuedNav";
 import UserMenu from "../../views/UserMenu";
 import ShoppingCart from "../../views/ShoppingCart/ShoppingCart";
 
-const Navbar = () => {
-    return ( 
-        <div className="fixed w-full bg-white z-10 shadow-sm">
-          <div
+const Navbar: React.FC = () => {
+  return ( 
+    <div className="fixed w-full bg-white z-10 shadow-sm">
+      <div
+        className="
+          py-1 
+          border-b-[1px]
+        "
+      >
+        <Container>
+          <div 
             className="
-              py-1 
-              border-b-[1px]
+              flex 
+              flex-row 
+              items-center 
+              justify-between
+              gap-3
+              md:gap-0
             "
           >
-          <Container>
-            <div 
-              className="
-                flex 
-                flex-row 
-                items-center 
-                justify-between
-                gap-3
-                md:gap-0
-              "
-            >
-             <Logo />
-             <ShopNow/>
-             <About/>
-             <Recomendations/>
-             <NewProducts/>
-             <Top/>
-             <MostValued/>
-             <UserMenu/>
-             <ShoppingCart/>
-            </div>
-          </Container>
-        </div>
-       
+            <Logo />
+            <ShopNowNav />
+            <AboutNav />
+            <RecomendationsNav />
+            <NewProductsNav />
+            <TopNav />
+            <MostValuedNav />
+            <UserMenu />
+            <ShoppingCart />
+          </div>
+        </Container>
       </div>
-      );
-    }
-    
+    </div>
+  );
+};
 
-export default Navbar
+export default Navbar;
