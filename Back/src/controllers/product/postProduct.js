@@ -1,26 +1,30 @@
-const mongoose = require("mongoose");
-const Product = require("../../models/schemas/product");
+const { Product } = require("../../models/schemas/product");
+const { Category } = require("../../models/schemas/category");
+const { Review } = require("../../models/schemas/reviews");
 
-const postProduct = async (req, res) => {
+
+module.exports = async (req, res) => {
+
+  const { name, price, image, description, stock, category, review } = req.body;
+
+  if (!name || !price || !image || !stock || !category) {
+    return res.status(400).json({ message: "Faltan datos" });
+  }
+
   try {
-    const product = new Product({
-      name: req.body.name,
-      id: new mongoose.Types.ObjectId(),
-      price: req.body.price,
-      image: req.body.image,
-      description: req.body.description,
-      createdAt: new Date(),
-      stock: req.body.stock,
-      category: null,
-      review: null
+    const newProduct = await Product.create({
+      name,
+      price: Number(price),
+      image,
+      description,
+      stock: Number(stock),
+      category: category.map((categoryId) => Category.findById(categoryId)),
+      review: review.map((reviewId) => Review.findById(reviewId)),
     });
+    return res.json(newProduct);
 
-    await product.save();
-
-    res.status(201).json({ message: "Product created successfully"});
   } catch (error) {
-    res.status(400).json({ error: error.message});
+    console.log(error.message);
+    return res.status(500).json({ message: error.message });
   }
 };
-
-module.exports = postProduct;

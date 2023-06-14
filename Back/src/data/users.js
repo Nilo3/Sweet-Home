@@ -19,44 +19,8 @@ const users = [
     isAdmin: false,
     cart: [],
     bought: null,
-    favorites: [
-      {
-        id: "3",
-        name: "Juego de sábanas de algodón",
-        price: 39.99,
-        image: "https://example.com/sabanas.jpg",
-        description: "Un juego de sábanas de algodón de alta calidad para una cama tamaño queen.",
-        createdAt: new Date(),
-        stock: 30,
-        category: "Dormitorio",
-        review: null
-      },
-      {
-        id: "4",
-        name: "Set de organizadores de armario",
-        price: 19.99,
-        image: "https://example.com/organizadores.jpg",
-        description: "Un set de organizadores de armario para mantener tu ropa y accesorios ordenados.",
-        createdAt: new Date(),
-        stock: 40,
-        category: "Organización",
-        review: null
-      }
-    ],
-    userReviews: [
-      {
-        id: "1",
-        rating: 4,
-        createdBy: "1",
-        product: "1"
-      },
-      {
-        id: "2",
-        rating: 5,
-        createdBy: "2",
-        product: "2"
-      }
-    ],
+    favorites: [],
+    userReviews: [],
     userOrders: []
   },
   {
@@ -65,20 +29,7 @@ const users = [
     email: "admin@example.com",
     password: "admin123",
     isAdmin: true,
-    cart: [
-      {
-        id: "3",
-        user: "3",
-        products: [{ product: "3", quantity: 1 }],
-        totalAmount: 39.99
-      },
-      {
-        id: "4",
-        user: "4",
-        products: [{ product: "4", quantity: 3 }],
-        totalAmount: 59.97
-      }
-    ],
+    cart: [],
     bought: null,
     favorites: [],
     userReviews: [],

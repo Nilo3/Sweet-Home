@@ -1,24 +1,9 @@
-const express = require("express");
-const router = express.Router();
-const fs = require("fs");
+const { Router } = require('express');
 
-const PATH_ROUTES = __dirname;
+const productRoutes = require('./product');
 
-const removeExtension = (fileName) => {
-  return fileName.split(".").shift();
-};
+const router = Router();
 
-fs.readdirSync(PATH_ROUTES).filter((file) => {
-  const name = removeExtension(file);
-  if (name !== "index") {
-    console.log(`Cargando ruta: ${name}`);
-    const middleware = require(`./${file}`);
-    if (typeof middleware === "function") {
-      router.use(`/${name}`, middleware);
-    } else {
-      console.log(`Error: ${file} no es un módulo de middleware válido.`);
-    }
-  }
-});
+router.use('/api', productRoutes);
 
 module.exports = router;
