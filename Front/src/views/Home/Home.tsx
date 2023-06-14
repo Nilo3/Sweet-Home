@@ -1,8 +1,13 @@
 import 'tailwindcss/tailwind.css';
+<<<<<<< HEAD
 import Navbar from "../../Components/Navbar/Navbar"
 import Footer from '../../Components/Footer/Footer';
 import Recommendations from '../../Components/Recommendations/Recommendations';
 import "./Home.css"
+=======
+import Navbar from '../../Components/Navbar/Navbar';
+
+>>>>>>> Dev-Front
 
 function Home() {
   return (
