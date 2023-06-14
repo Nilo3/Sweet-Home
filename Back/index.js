@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv"
 import connectDatabase from "./config/MongoDb.js";
 import ImportData from "./Dataimport.js";
-import productRoute from "./Routes/ProductRoutes.js";
+import productRoute from "./Routes/Products/ProductRoutes.js";
 
 
 
