@@ -10,9 +10,7 @@ server.use(morgan("dev"));
 server.use(cors());
 server.use("/", routes);
 
-server.get("/prueba", (req,res) => {
-    res.send("holi")
-})
+
 
 
   
