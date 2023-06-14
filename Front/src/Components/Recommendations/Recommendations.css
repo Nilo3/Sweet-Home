@@ -1,0 +1,344 @@
+@media (max-width: 600px) {
+  /* CSS rules specific to small screens */
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  
+  .Recommendations {
+    width: 100vw;
+    height: 100vh;
+    background-color: #EDEDE9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+  }
+  
+  .recomContainer {
+    background-color: #D5BDAF;
+    width: 95vw;
+    height: 90vh;
+    
+  }
+  
+  .titleRecommendations1 {
+    font-family: 'Goudy Bookletter 1911';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.5vw;
+    color: black;
+    left:15%;
+    top:37%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+  }
+  
+  .recommendationstext1 {
+    font-family: 'Goudy Bookletter 1911';
+    font-style: italic;
+    font-weight: 200;
+    font-size: 2.5vw;
+    color: black;
+    left:15%;
+    top:40%;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+  }
+
+  .livingroom {
+ 
+    width: 70vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    top: 15%;
+    transform: translateX(-23%);
+  }
+
+  .recommSeparation{
+    width: 60%;
+    height: 1px;
+    background-color: #000000;
+    border: .05vw solid #000000; 
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+    top: 53%;
+    left: 20%
+
+  }
+
+  .recommendationstext2{
+    font-family: 'Goudy Bookletter 1911';
+    font-style: italic;
+    font-weight: 200;
+    font-size: 2.5vw;
+    color: black;
+    left:15%;
+    top:80%;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+  }
+  .recomm2{
+    
+    left:15%;
+    top:58%;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+  }
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+  /* CSS rules specific to medium screens */
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  
+  .Recommendations {
+    width: 100vw;
+    height: 100vh;
+    background-color: #EDEDE9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+  }
+  
+  .recomContainer {
+    background-color: #D5BDAF;
+    width: 95vw;
+    height: 90vh;
+    
+  }
+  
+  .titleRecommendations1 {
+    font-family: 'Goudy Bookletter 1911';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.5vw;
+    color: black;
+    left:15%;
+    top:38%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+  }
+  
+  .recommendationstext1 {
+    font-family: 'Goudy Bookletter 1911';
+    font-style: italic;
+    font-weight: 200;
+    font-size: 2vw;
+    color: black;
+    left:15%;
+    top:43%;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+  }
+
+  .livingroom {
+ 
+    width: 70vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    top: 10%;
+    left:36%;
+    transform: translateX(-30%);
+  }
+
+  .recommSeparation{
+    width: 60%;
+    height: 1px;
+    background-color: #000000;
+    border: .05vw solid #000000; 
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+    top: 53%;
+    left: 20%
+
+  }
+
+  .recommendationstext2{
+    font-family: 'Goudy Bookletter 1911';
+    font-style: italic;
+    font-weight: 200;
+    font-size: 2vw;
+    color: black;
+    left:15%;
+     top:85%;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+  }
+  .recomm2{
+    
+    left:13%;
+    top:58%;
+    width: 73vw;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+  }
+}
+@media (min-width: 1025px) {
+  /* CSS rules specific to large screens */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  
+  .Recommendations {
+    width: 100vw;
+    height: 100vh;
+    background-color: #EDEDE9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+  }
+  
+  .recomContainer {
+    background-color: #D5BDAF;
+    width: 95vw;
+    height: 90vh;
+    
+  }
+  
+  .titleRecommendations1 {
+    font-family: 'Goudy Bookletter 1911';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2vw;
+    color: black;
+   margin-left: 10vw;
+   margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+  }
+  
+  .recommendationstext1 {
+    font-family: 'Goudy Bookletter 1911';
+    font-style: italic;
+    font-weight: 200;
+    font-size: 1.5vw;
+    color: black;
+    left:12%;
+    margin-top: 25vh;
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+  }
+
+  .livingroom {
+ 
+    width: 35vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    top: 15%;
+    transform: translateX(-30%);
+  }
+
+  .recommSeparation{
+    width: 60%;
+    height: 1px;
+    background-color: #000000;
+    border: .05vw solid #000000; 
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+    top: 53%;
+    left: 20%
+
+  }
+
+  .recommendationstext2{
+    font-family: 'Goudy Bookletter 1911';
+    font-style: italic;
+    font-weight: 200;
+    font-size: 1.5vw;
+    color: black;
+    left:50%;
+     top:65%;
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+  }
+  .recomm2{
+    
+    left:8%;
+    top:58%;
+    width: 37vw;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    position: fixed;
+  }
+}
+ 
