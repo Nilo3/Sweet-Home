@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 const { Schema } = mongoose;
 
 const product = new Schema({
@@ -12,6 +13,7 @@ const product = new Schema({
     review: [{ type: Schema.Types.ObjectId, ref: 'Review' }]
 });
 
+product.plugin(mongoosePaginate);
 const Product = mongoose.model("Product", product)
 
 export default Product
