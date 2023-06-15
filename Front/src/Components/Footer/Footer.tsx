@@ -3,7 +3,7 @@ import shlogo from "../Footer/images/Logo Footer.png"
 import facebook from "../Footer/images/facebook-logo.png"
 import instagram from "../Footer/images/instagram.png"
 import whatsapp from "../Footer/images/whatsapplogo.svg"
-import {NavLink} from "react-router-dom";
+// import {NavLink} from "react-router-dom";
 
 export default function Footer () {
     return (

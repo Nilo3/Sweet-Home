@@ -14,8 +14,8 @@ function App() {
     <Navbar />
       <Home/>  
     <div className="flex items-center justify-center h-screen " style={{ backgroundColor: "#EDEDE9", height:"100vh"}}>
-   
-    
+    <Recommendations/>
+    <Footer/>
     </div>
     </>
   );
