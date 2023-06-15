@@ -4,7 +4,7 @@ export default async (req, res) => {
     const { reviewId } = req.params
     try {
         const reviews = await Review
-            .find({ _id : reviewId })
+            .find({ product : reviewId })
             .populate("createdBy")
             .populate("product")
         if (reviews.length === 0) {
