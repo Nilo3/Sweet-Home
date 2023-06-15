@@ -12,5 +12,4 @@ export const getCategoryId = async (id) => {
     } catch (error) {
         console.log(error);
     }
-}
-
+};

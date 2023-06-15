@@ -1,4 +1,4 @@
-import { getAllCategories } from "./getCategories.js";
+import { getAllCategories } from "./categoryController.js";
 
 export default async (req, res) => {
     try {
@@ -7,4 +7,4 @@ export default async (req, res) => {
     } catch (error) {
         return res.status(400).json({ message: error.message })
     }
-}
+};

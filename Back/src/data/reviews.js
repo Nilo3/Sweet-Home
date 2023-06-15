@@ -1,35 +1,9 @@
- // Reseñas de ejemplo
-  const reviews = [
-    {
-      id: "1",
-      rating: 4,
-      createdBy: "1",
-      product: "1"
-    },
-    {
-      id: "2",
-      rating: 5,
-      createdBy: "2",
-      product: "2"
-    },
-    {
-      id: "3",
-      rating: 3,
-      createdBy: "3",
-      product: "3"
-    },
-    {
-      id: "4",
-      rating: 4,
-      createdBy: "4",
-      product: "4"
-    },
-    {
-      id: "5",
-      rating: 5,
-      createdBy: "5",
-      product: "5"
-    }
-  ];
-  
-  module.exports = reviews
+const reviews = [{
+  "rating": 4,
+  "createdBy": "648a2c3a59056bfa074393e9",
+  "product": "648a16ef62f8d80b27bce870"
+}];
+
+
+//? USUARIO NILO
+//? Sweet® Aroma Diffuser
