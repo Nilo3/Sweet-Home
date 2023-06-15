@@ -1,13 +1,42 @@
-import "./MostValued.css"
+//import "./MostValued.css"
 
-export default function Footer () {
+export default function Footer() {
     return (
-
-        <>
-        <div className="mostValued">
-        <div className="mostValuedContainer"></div>
-        <p className="valuedTitle">Most Valued Products</p>
+<div className="flex flex-wrap justify-center">
+    <h1 className="text-center">MAQUETADO EJEMPLO</h1>
+        <div className="max-w-sm rounded overflow-hidden shadow-lg m-4">
+          <img className="w-full" src="..." alt="Card image cap" />
+          <div className="px-6 py-4">
+            <h5 className="font-bold text-xl mb-2">Card title</h5>
+            <p className="text-gray-700 text-base">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div className="px-6 py-4">
+            <small className="text-gray-500">Last updated 3 mins ago</small>
+          </div>
         </div>
-       
-        </>
-    )}
+
+        <div className="max-w-sm rounded overflow-hidden shadow-lg m-4">
+          <img className="w-full" src="..." alt="Card image cap" />
+          <div className="px-6 py-4">
+            <h5 className="font-bold text-xl mb-2">Card title</h5>
+            <p className="text-gray-700 text-base">This card has supporting text below as a natural lead-in to additional content.</p>
+          </div>
+          <div className="px-6 py-4">
+            <small className="text-gray-500">Last updated 3 mins ago</small>
+          </div>
+        </div>
+
+        <div className="max-w-sm rounded overflow-hidden shadow-lg m-4">
+          <img className="w-full" src="..." alt="Card image cap" />
+          <div className="px-6 py-4">
+            <h5 className="font-bold text-xl mb-2">Card title</h5>
+            <p className="text-gray-700 text-base">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          </div>
+          <div className="px-6 py-4">
+            <small className="text-gray-500">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
