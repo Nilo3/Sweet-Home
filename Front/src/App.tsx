@@ -1,9 +1,9 @@
 
 import 'tailwindcss/tailwind.css';
 import Home from './views/Home/Home';
-import Footer from './Components/Footer/Footer';
-import Navbar from './Components/Navbar/Navbar';
-import Recommendations from './Components/Recommendations/Recommendations';
+import Footer from './components/Footer/Footer';
+import Navbar from './components/Navbar/Navbar';
+import Recommendations from './components/Recommendations/Recommendations';
 
 
 
