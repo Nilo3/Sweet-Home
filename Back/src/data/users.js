@@ -1,66 +1,45 @@
-const bcrypt = require("bcryptjs")
-
 const users = [
-  {
-    id: "1",
-    name: "John Doe",
-    email: "johndoe@example.com",
-    password: bcrypt.hashSync("123456", 10),
-    isAdmin: false,
-    cart: [],
-    bought: null,
-    favorites: [],
-    userReviews: [],
-    userOrders: []
-  },
-  {
-    id: "2",
-    name: "Jane Smith",
-    email: "janesmith@example.com",
-    password: bcrypt.hashSync("123456", 10),
-    isAdmin: false,
-    cart: [],
-    bought: null,
-    favorites: [],
-    userReviews: [],
-    userOrders: []
-  },
-  {
-    id: "3",
-    name: "Admin User",
-    email: "admin@example.com",
-    password: bcrypt.hashSync("123456", 10),
-    isAdmin: true,
-    cart: [],
-    bought: null,
-    favorites: [],
-    userReviews: [],
-    userOrders: []
-  },
-  {
-    id: "4",
-    name: "Alice Johnson",
-    email: "alicejohnson@example.com",
-    password: bcrypt.hashSync("123456", 10),
-    isAdmin: false,
-    cart: [],
-    bought: null,
-    favorites: [],
-    userReviews: [],
-    userOrders: []
-  },
-  {
-    id: "5",
-    name: "Bob Williams",
-    email: "bobwilliams@example.com",
-    password: bcrypt.hashSync("123456", 10),
-    isAdmin: false,
-    cart: [],
-    bought: null,
-    favorites: [],
-    userReviews: [],
-    userOrders: []
-  }
+  [
+    {
+      "_id": "648a2c3a59056bfa074393e9",
+      "name": "nilo",
+      "email": "admin@example.com",
+      "password": "123456",
+      "isAdmin": false,
+      "cart": [],
+      "bought": [],
+      "favorites": [],
+      "userReviews": [],
+      "userOrders": [],
+      "__v": 0
+    },
+    {
+      "_id": "648a31f6915a7b94bb636c71",
+      "name": "fran",
+      "email": "franpor@example.com",
+      "password": "123456",
+      "isAdmin": false,
+      "cart": [],
+      "bought": [],
+      "favorites": [],
+      "userReviews": [],
+      "userOrders": [],
+      "__v": 0
+    },
+    {
+      "_id": "648a33d7c87102e8b9b681e6",
+      "name": "tito",
+      "email": "tito@example.com",
+      "password": "123456",
+      "isAdmin": false,
+      "cart": [],
+      "bought": [],
+      "favorites": [],
+      "userReviews": [],
+      "userOrders": [],
+      "__v": 0
+    }
+  ]
 ];
 
 module.exports = users

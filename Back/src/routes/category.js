@@ -9,7 +9,6 @@ import getCategoryById from "../controllers/category/getCategoryById.js";
 const router = Router();
 
 //? Rutas .get
-
 router.get("/category", getAllCategories);
 router.get("/category/:categoryId", getCategoryById);
 

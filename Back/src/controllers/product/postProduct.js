@@ -6,11 +6,11 @@ export default async (req, res) => {
   const { name, price, image, description, stock, category, review } = req.body;
 
   if (!name || !price || !image || !stock || !category) {
-    return res.status(400).json({ message: "Faltan datos" });
+    return res.status(400).json({ message: "There's missing data" });
   }
 
   try {
-     const categoryPromises = category.map((categoryId) => Category.findById(categoryId));
+    const categoryPromises = category.map((categoryId) => Category.findById(categoryId));
     const reviewPromises = review.map((reviewId) => Review.findById(reviewId));
 
     const [categories, reviews] = await Promise.all([Promise.all(categoryPromises), Promise.all(reviewPromises)]);

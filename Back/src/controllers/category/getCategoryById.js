@@ -1,4 +1,4 @@
-import { getCategoryId } from "./getCategories.js";
+import { getCategoryId } from "./categoryController.js";
 
 export default async (req, res) => {
   const { categoryId } = req.params;

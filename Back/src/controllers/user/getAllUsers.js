@@ -17,7 +17,7 @@ export default async (req, res) => {
             path: "review",
             model: Review,
           },
-         
+
         ],
       })
       .populate({
