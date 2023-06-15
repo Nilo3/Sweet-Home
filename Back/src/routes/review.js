@@ -5,7 +5,7 @@ import { Router } from "express";
 import postReview from "../controllers/review/postReview.js";
 import getReview from "../controllers/review/getAllReviews.js"
 import getReviewById from "../controllers/review/getReviewById.js"
-import putReviewById from "../controllers/review/putReviewById.js"
+import putReview from "../controllers/review/putReview.js"
 
 const router = Router();
 
@@ -15,7 +15,7 @@ router.get("/review", getReview)
 router.get("/review/:reviewId", getReviewById)
 
 //? Ruta .put
-router.put("/review/:reviewId", putReviewById)
+router.put("/review/:reviewId", putReview)
 
 //? Ruta .post
 router.post("/review", postReview)
