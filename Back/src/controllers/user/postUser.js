@@ -7,7 +7,7 @@ import bcrypt from "bcryptjs"
 export default async (req, res) => {
   const { name, email, password, isAdmin, cart, bought, favorites, userReviews, userOrders } = req.body;
 
-  if (!name || !email || !password ) {
+  if (!name || !email || !password) {
     return res.status(400).json({ message: "Faltan datos" });
   }
 
@@ -32,7 +32,7 @@ export default async (req, res) => {
       userOrders: userOrders.map((userOrder) => userOrder._id),
       */
     });
-    
+
     return res.json(newUser);
   } catch (error) {
     return res.status(500).json({ message: error.message });
