@@ -7,7 +7,7 @@ import image3 from '../../assets/image/carousel3.jpg'
  
 const Carousel: React.FC = () => {
     return (         
-    <div id="default-carousel" className="relative w-full" data-carousel="slide">
+    <div id="/default-carousel" className="relative w-full" data-carousel="slide">
             {/* <!-- Carousel wrapper --> */}
         <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
             {/* <!-- Item 1 --> */}
