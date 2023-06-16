@@ -1,17 +1,25 @@
-import { GET_PRODUCTS } from "../../action-types/action-types";
+import { GET_PRODUCTS, PRODUCTS_PAGINATION } from "../../action-types/action-types";
 
 const initialState = {
 	products: [],
 	loading: false,
 	error: null,
+	pageIndex: 1,
+	pages: {
+		next: null,
+		prev: null,
+		current: 1,
+		limit: null,
+	},
+	activeProductDetail: null,
 };
 
-const productReducer = (state = initialState, action) => {
-	switch (action.type) {
+const productReducer = (state = initialState, { type, payload }) => {
+	switch (type) {
 		case GET_PRODUCTS:
 			return {
 				...state,
-				products: action.payload,
+				products: payload,
 				loading: false,
 			};
 		case 'GET_PRODUCTS_LOADING':
@@ -22,8 +30,13 @@ const productReducer = (state = initialState, action) => {
 		case 'GET_PRODUCTS_ERROR':
 			return {
 				...state,
-				error: action.payload,
+				error: payload,
 				loading: false,
+			};
+		case PRODUCTS_PAGINATION:
+			return {
+				...state,
+				products: payload,
 			};
 		default:
 			return state;

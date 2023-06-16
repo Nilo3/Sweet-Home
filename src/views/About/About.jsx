@@ -4,13 +4,13 @@ const About = ()=>{
 
     return(
         <>
-        <div> // Fernanda
+        <div> 
             <img width="500" src={pocoyo} alt="pocoyo" />
         </div>
-        <div> // Francisco
+        <div> 
             <img width="500" src={pocoyo} alt="pocoyo" />
         </div>
-        <div> // Hector
+        <div> 
             <img width="500" src={pocoyo} alt="pocoyo" />
         </div>
         </>
