@@ -1,4 +1,4 @@
-const Cart = require("../../models/schemas/cart")
+import Cart from "../../models/schemas/cart.js"
 
 const getCart = async (req, res) => {
     const cart = await Cart.find();
@@ -9,4 +9,4 @@ const getCart = async (req, res) => {
     }
 };
 
-module.exports = getCart;
+export default getCart
