@@ -60,7 +60,7 @@ const LoginModal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
       <div className="bg-white p-6 rounded-lg mx-auto">
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+        <h2 className="text-2xl font-serif font-bold mb-4 text-center">Login</h2>
         <div className="my-4">
           <label htmlFor="email" className="text-sm font-medium">
             Email
@@ -89,7 +89,7 @@ const LoginModal = ({ onClose }) => {
         <button onClick={handleEmailSignIn} className="bg-slate-400 text-white px-4 py-2 rounded-lg mb-4 w-full">
           Login
         </button>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-around items-center">
           <div className="flex flex-col items-center">
             <button onClick={handleGoogleSignIn} className="bg-white text-gray-500 px-2 py-2 rounded-full mb-2">
               <FcGoogle size={20} />
@@ -102,13 +102,12 @@ const LoginModal = ({ onClose }) => {
                 <FaGithub size={20} />
               </button>
                <span className="text-sm">GitHub</span>
-  </div>
-</div>
-<br/>
-<button onClick={onClose} className="text-red-700 mt-2 block mx-auto">
-  Close
-</button>
-
+            </div>
+          </div>
+          <br/>
+          <button onClick={onClose} className="text-red-700 mt-2 block mx-auto">
+            Close
+          </button>
       </div>
     </div>
   );

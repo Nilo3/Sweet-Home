@@ -1,5 +1,5 @@
 import { signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider, githubProvider, facebookProvider } from './FireBase'
+import { auth, googleProvider, githubProvider} from './FireBase'
 
 const AuthenticationComponent = () => {
   const handleSignInWithGoogle = async () => {
@@ -18,19 +18,11 @@ const AuthenticationComponent = () => {
     }
   };
 
-  const handleSignInWithFacebook = async () => {
-    try {
-      await signInWithPopup(auth, facebookProvider);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
 
   return (
     <div>
       <button onClick={handleSignInWithGoogle}>Iniciar sesión con Google</button>
       <button onClick={handleSignInWithGitHub}>Iniciar sesión con GitHub</button>
-      <button onClick={handleSignInWithFacebook}>Iniciar sesión con Facebook</button>
     </div>
   );
 };

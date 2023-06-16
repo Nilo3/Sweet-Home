@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { BiLogInCircle } from 'react-icons/bi';
+import { CgUserlane } from 'react-icons/cg';
+import Modal from 'react-modal';
 
-import LoginModal from './Auth/LoginModal';
+import SignUpForm from './Auth/SignUpForm';
 
-const UserMenu = () => {
+const SingMenu = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -31,13 +32,19 @@ const UserMenu = () => {
             transition
           "
         >
-          <BiLogInCircle className="text-2xl" />
-          <div className="hidden md:block">Login</div>
+          <CgUserlane className="text-2xl" />
+          <div className="hidden md:block">Sign Up</div>
         </div>
       </div>
-      {isModalOpen && <LoginModal onClose={toggleModal} />}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={toggleModal}
+        contentLabel="Sign Up Modal"
+      >
+        <SignUpForm onClose={toggleModal} />
+      </Modal>
     </div>
   );
 };
 
-export default UserMenu;
+export default SingMenu;
