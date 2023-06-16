@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PRODUCTS } from "./action-types";
+import { GET_PRODUCTS } from "../../action-types/action-types";
 const productEndpoint = "http://localhost:3001/api/product"
 
 export function getProducts() {
