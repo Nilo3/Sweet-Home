@@ -1,7 +1,6 @@
 
 export default function MostValue() {
 
-   
 
     return (
       <div>

@@ -1,4 +1,4 @@
-
+import React from "react";
 import Cards from "../../components/Card/Cards";
 import { useNavigate } from 'react-router-dom';
 import {useEffect} from "react"; 
@@ -10,6 +10,8 @@ const Products = () => {
 
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
+
+  console.log(allProducts)
 
   useEffect(() => {
       dispatch(getProducts());
@@ -23,10 +25,11 @@ const Products = () => {
 
   return (
     <div >
+  
      <div className="allCards">
-          {allProducts?.map((product) => (
-            <div key={product.id} className="card-home">
-              <NavLink className="navLink" to={"/products/" + product.id}>
+          {allProducts.docs?.map((product) => (
+            <div key={product.id}>
+              <NavLink to={"/products/" + product.id}>
                 <Cards key={product.id} name={product.name} price={product.price} image={product.image} />
               </NavLink>
             </div>
