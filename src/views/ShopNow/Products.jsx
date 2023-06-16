@@ -1,4 +1,3 @@
-import React from "react";
 import Cards from "../../components/Card/Cards";
 import { useNavigate } from 'react-router-dom';
 import {useEffect} from "react"; 
@@ -11,7 +10,6 @@ const Products = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
 
-  console.log(allProducts)
 
   useEffect(() => {
       dispatch(getProducts());

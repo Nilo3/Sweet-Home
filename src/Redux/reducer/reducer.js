@@ -1,22 +1,33 @@
-
 import { GET_PRODUCTS } from "../actions/action-types";
 
-
 const initialState = {
-    products: [],	
+	products: [],
+	loading: false,
+	error: null,
 };
 
-
-
-function reducer(state = initialState, action) { //current state and input(action to be taken to modify the state)
+const productReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_PRODUCTS:
 			return {
-				...state, // a copy of the current state
-                products:action.payload, //updating the corresponding variables. 
-				
-               
+				...state,
+				products: action.payload,
+				loading: false,
 			};
-}
-}
-export default reducer;
+		case 'GET_PRODUCTS_LOADING':
+			return {
+				...state,
+				loading: true,
+			};
+		case 'GET_PRODUCTS_ERROR':
+			return {
+				...state,
+				error: action.payload,
+				loading: false,
+			};
+		default:
+			return state;
+	}
+};
+
+export default productReducer;

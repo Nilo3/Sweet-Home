@@ -1,4 +1,3 @@
-import React from "react"
 const Cards = ({key, name,image,price}) => {
     return(
         <div>
