@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, PRODUCTS_PAGINATION } from "../../action-types/action-types";
+import { GET_PRODUCTS, PRODUCTS_PAGINATION,GET_PRODUCT_DETAIL } from "../../action-types/action-types";
 
 const initialState = {
 	products: [],
@@ -38,6 +38,14 @@ const productReducer = (state = initialState, { type, payload }) => {
 				...state,
 				products: payload,
 			};
+
+			case GET_PRODUCT_DETAIL:
+            return{
+                ...state,
+                detail: payload
+            }
+
+
 		default:
 			return state;
 	}
