@@ -1,17 +1,23 @@
 import Review from "../../models/schemas/reviews.js";
 
 export default async (req, res) => {
-    const { reviewId } = req.params
+    const { reviewId } = req.params;
     try {
-        const reviews = await Review
-            .find({ product : reviewId })
-            .populate("createdBy")
-            .populate("product")
-        if (reviews.length === 0) {
-            return res.status(500).json({ message: "There's no reviews for this product" })
+        let review;
+        review = await Review.findOne({ product: reviewId }, {
+            rating: 1,
+            createdBy: 1,
+            product: 1,
+        })
+            .populate("createdBy", "_id")
+            .populate("product", "_id");
+
+        if (!review) {
+            return res.status(404).json({ message: "Review not found" });
         }
-        return res.status(200).json(reviews)
+
+        return res.status(200).json(review);
     } catch (error) {
-        return res.status(500).json({ message: error.message })
+        return res.status(500).json({ message: error.message });
     }
-}
+};
