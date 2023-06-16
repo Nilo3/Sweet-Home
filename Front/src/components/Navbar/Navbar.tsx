@@ -3,10 +3,10 @@ import React from 'react';
 import Logo from "./Logo"
 import ShopNowNav from "../../views/ShopNow/ShopNowNav";
 import AboutNav from "../../views/About/AboutNav";
-import RecomendationsNav from "../../views/Recomendations/RecomendationsNav";
+import RecomendationsNav from "../../Components/Recommendations/RecomendationsNav";
 import NewProductsNav from "../../views/NewProducts/NewProductsNav";
 import TopNav from "../../views/Top/TopNav";
-import MostValuedNav from "../../views/MostValued/MostValuedNav";
+import MostValuedNav from "../../Components/MostValued/MostValuedNav";
 import UserMenu from "../../views/UserMenu";
 import ShoppingCart from "../../views/ShoppingCart/ShoppingCart";
 

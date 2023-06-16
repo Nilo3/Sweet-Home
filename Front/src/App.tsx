@@ -1,27 +1,30 @@
-
 import 'tailwindcss/tailwind.css';
 import Home from './views/Home/Home';
-import Footer from './Components/Footer/Footer';
-import Navbar from './Components/Navbar/Navbar';
-import Recommendations from './Components/Recommendations/Recommendations';
+import Footer from './components/Footer/Footer';
+import Navbar from './components/Navbar/Navbar'
 
 
+import Products from './views/ShopNow/Products';
+import { Routes, Route } from 'react-router-dom';
 
 
 function App() {
+
   return (
-    <>
-    <Navbar />
-      <Home/>  
-    <div className="flex items-center justify-center h-screen " style={{ backgroundColor: "#EDEDE9", height:"100vh"}}>
-    <Recommendations/>
-    <Footer/>
-    </div>
-    </>
+    <div>
+        <Navbar/>
+        <main>
+          <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          </Routes>
+        </main>
+      <Footer/>
+
+      </div>
   );
 }
 
 export default App;
-
 
 
