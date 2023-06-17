@@ -9,7 +9,8 @@ import Login from './views/Login/Login'
 import Register from './views/Login/Register'
 import {Route, Routes} from 'react-router-dom'
 import { AuthProvider } from './context/authContex'
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -33,12 +34,13 @@ function App() {
             <About />
             <Footer />
           </>} />
-          <Route path='/detail/:id' element={<>
+          <Route path='/products/:id' element={<>
             <Navbar />
             <Detail />
             <Footer />
           </>} />
         </Routes>
+        <ToastContainer />
       </AuthProvider>
     </div>
   )
