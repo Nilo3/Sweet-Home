@@ -1,7 +1,9 @@
 import logo from '../../../assets/image/logo.svg'
+import { Link } from 'react-router-dom';
 
 function Logo  () {
   return (
+    <Link to="/">
     <img
       className="hidden md:block cursor-pointer"
       src={logo}
@@ -9,6 +11,7 @@ function Logo  () {
       width={75}
       alt="Logo"
     />
+    </Link>
   );
 };
 

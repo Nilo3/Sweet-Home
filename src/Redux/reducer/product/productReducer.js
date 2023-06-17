@@ -79,7 +79,7 @@ const productReducer = (state = initialState, action) => {
 		case GET_PRODUCT_DETAIL:
 			return {
 				...state,
-				detail: action.payload
+				details: action.payload
 			}
 		default: return state;
 	}
