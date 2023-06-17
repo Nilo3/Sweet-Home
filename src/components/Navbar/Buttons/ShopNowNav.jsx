@@ -1,8 +1,6 @@
 import { BsShop } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 
-
-
 function ShopNow () {
 
   const navigate = useNavigate();
