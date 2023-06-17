@@ -36,6 +36,10 @@ const handleSubmit = async (event) => {
     if(error.code === "auth/email-already-in-use")
       setError("This email is already in use")
       toast.error(error.message);
+      
+      setTimeout(() => {
+      setError('');
+    }, 5000); 
   }
 }
 const backToHome = () => {

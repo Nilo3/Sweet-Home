@@ -36,8 +36,13 @@ const handleSubmit = async (event) => {
     if (error.code === "auth/weak-password")
       setError("Invalid password. Please enter your password again");
     toast.error(error.message);
+    
+    setTimeout(() => {
+      setError('');
+    }, 5000); 
   }
 };
+
 
 const handleGoogleSignIn = async () => {
   try{
