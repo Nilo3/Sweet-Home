@@ -1,54 +1,87 @@
-import { GET_PRODUCTS, PRODUCTS_PAGINATION,GET_PRODUCT_DETAIL } from "../../action-types/action-types";
+//? REDUCER WORK IN PROGRESS
+
+// import { GET_PRODUCTS, PRODUCTS_PAGINATION,GET_PRODUCT_DETAIL } from "../../action-types/action-types";
+
+// const initialState = {
+// 	products: [],
+// 	loading: false,
+// 	error: null,
+// 	pageIndex: 1,
+// 	pages: {
+// 		next: null,
+// 		prev: null,
+// 		current: 1,
+// 		limit: null,
+// 	},
+// 	activeProductDetail: null,
+// 	detail:{}
+// };
+
+// const productReducer = (state = initialState, { type, payload }) => {
+// 	switch (type) {
+// 		case GET_PRODUCTS:
+// 			return {
+// 				...state,
+// 				products: payload,
+// 				loading: false,
+// 			};
+// 		case 'GET_PRODUCTS_LOADING':
+// 			return {
+// 				...state,
+// 				loading: true,
+// 			};
+// 		case 'GET_PRODUCTS_ERROR':
+// 			return {
+// 				...state,
+// 				error: payload,
+// 				loading: false,
+// 			};
+// 		case PRODUCTS_PAGINATION:
+// 			return {
+// 				...state,
+// 				products: payload,
+// 			};
+
+// 			case GET_PRODUCT_DETAIL:
+//             return{
+//                 ...state,
+//                 detail: payload
+//             }
+
+
+// 		default:
+// 			return state;
+// 	}
+// };
+
+// export default productReducer;
+
+
+//? REDUCER PARA MOSTRAR PRODUCTS
+
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL } from "../../action-types/action-types";
 
 const initialState = {
 	products: [],
+	details: [],
 	loading: false,
 	error: null,
-	pageIndex: 1,
-	pages: {
-		next: null,
-		prev: null,
-		current: 1,
-		limit: null,
-	},
-	activeProductDetail: null,
-	detail:{}
 };
 
-const productReducer = (state = initialState, { type, payload }) => {
-	switch (type) {
+const productReducer = (state = initialState, action) => {
+	switch (action.type) {
 		case GET_PRODUCTS:
 			return {
 				...state,
-				products: payload,
+				products: action.payload,
 				loading: false,
 			};
-		case 'GET_PRODUCTS_LOADING':
+		case GET_PRODUCT_DETAIL:
 			return {
 				...state,
-				loading: true,
-			};
-		case 'GET_PRODUCTS_ERROR':
-			return {
-				...state,
-				error: payload,
-				loading: false,
-			};
-		case PRODUCTS_PAGINATION:
-			return {
-				...state,
-				products: payload,
-			};
-
-			case GET_PRODUCT_DETAIL:
-            return{
-                ...state,
-                detail: payload
-            }
-
-
-		default:
-			return state;
+				detail: action.payload
+			}
+		default: return state;
 	}
 };
 

@@ -14,17 +14,15 @@ export function getProducts() {
     };
 }
 
-export function getProductDetail(id){
-    return async function (dispatch){
-        try{
-
-            let response = await axios.get(`${HOST}/api/product/` + id)
+export function getProductDetail(id) {
+    return async function (dispatch) {
+        try {
+            let response = await axios.get(`${HOST}/api/product/${id}`)
             return dispatch({
                 type: GET_PRODUCT_DETAIL,
                 payload: response.data
             })
-
-        } catch(error) {
+        } catch (error) {
             console.log(error)
         }
     }
