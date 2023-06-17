@@ -29,6 +29,7 @@ function RegisterNav () {
             cursor-pointer
             hover:shadow-md
             transition
+            bg-white
           "
         >
           <BiLogInCircle />
