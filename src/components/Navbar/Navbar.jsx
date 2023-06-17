@@ -10,6 +10,9 @@ import ShoppingCart from './Buttons/ShoppingCart';
 import {useAuth} from '../../context/authContex'
 import {useNavigate} from 'react-router-dom';
 import {BiLogOutCircle} from 'react-icons/bi'
+import LoginNav from './Buttons/LoginNav';
+import RegisterNav from './Buttons/RegisterNav';
+import Logo from  './Logo/Logo'
 
 function Navbar() {
   const scrollToSection = (sectionId) => {
@@ -36,6 +39,7 @@ function Navbar() {
       <div className="py-1 border-b-[1px]">
         <Container>
           <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
+          <Logo className="order-first" />
             <ShopNowNav />
             <AboutNav />
             <button onClick={() => scrollToSection('recommendationsSection')}>
@@ -51,7 +55,9 @@ function Navbar() {
               <MostValuedNav />
             </button>
             <ShoppingCart />
-            <div className="relative">
+            <LoginNav/>
+            <RegisterNav/>
+              <div className="relative">
                 <div className="flex flex-row items-center gap-3">
                   <div
                     className="
@@ -69,7 +75,7 @@ function Navbar() {
                       transition
                     "
                   >
-                  <BiLogOutCircle className="text-2xl" />
+                  <BiLogOutCircle  />
                   <div className="hidden md:block">
                     <button onClick={handleLogout}>
                     Logout
