@@ -17,7 +17,6 @@ const ShoppingCart = () => {
             p-4
             md:py-1
             md:px-2
-            border-[1px] 
             border-neutral-200 
             flex 
             flex-row 
