@@ -12,6 +12,7 @@ const initialState = {
 		limit: null,
 	},
 	activeProductDetail: null,
+	detail:{}
 };
 
 const productReducer = (state = initialState, { type, payload }) => {
