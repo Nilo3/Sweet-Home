@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../Redux/actions/product/productActions";
-import { NavLink } from "react-router-dom";
+
+//import Pagination from "../../components/Pagination/Pagination";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -22,19 +23,24 @@ const Products = () => {
   return (
     <div>
       <div className="allCards">
-        {allProducts.docs?.map((product) => (
-          <div key={product.id}>
-            <NavLink to={"/products/" + product.id}>
+
+
+        {/* <Pagination/> */}
+
+        {allProducts.docs?.map((product) => {
+          return (
+            <div key={product._id}>
               <Cards
-                key={product.id}
+                id={product.id}
                 name={product.name}
                 price={product.price}
                 image={product.image}
                 description={product.description}
               />
-            </NavLink>
-          </div>
-        ))}
+            </div>
+          )
+        }
+        )}
       </div>
       <br />
       <button

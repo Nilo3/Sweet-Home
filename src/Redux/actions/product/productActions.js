@@ -1,6 +1,7 @@
 import axios from "axios";
 import { GET_PRODUCTS, PRODUCTS_PAGINATION } from "../../action-types/action-types";
 
+
 const HOST = "http://localhost:3001"
 
 export function getProducts() {

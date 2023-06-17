@@ -25,9 +25,9 @@ function Navbar() {
           <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             <ShopNowNav />
             <AboutNav />
-            <button onClick={() => scrollToSection('recommendationsSection')} >
-            <RecomendationsNav />
-            </button>
+            <div onClick={() => scrollToSection('recommendationsSection')} > 
+            <RecomendationsNav onClick={() => scrollToSection('recommendationsSection')}/>
+            </div> 
             <button onClick={() => scrollToSection('newProductsSection')}>
             <NewProductsNav />
             </button>
