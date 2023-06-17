@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useAuth } from "../../context/authContex";
 import {useNavigate, Link} from 'react-router-dom'
 import {Alert} from './Alert'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Register () {
 
@@ -22,6 +24,7 @@ const handleSubmit = async (event) => {
   setError('')
   try{
     await singup(user.email, user.password)
+    toast.success('Successful registration');
     navigate('/')
   }catch (error){
     if (error.code === "auth/weak-password")
@@ -32,6 +35,7 @@ const handleSubmit = async (event) => {
 
     if(error.code === "auth/email-already-in-use")
       setError("This email is already in use")
+      toast.error(error.message);
   }
 }
 const backToHome = () => {
