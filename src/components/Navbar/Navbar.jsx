@@ -1,59 +1,62 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { BiLogOutCircle } from 'react-icons/bi';
-import Container from './Container';
-import ShopNowNav from './Buttons/ShopNowNav';
-import AboutNav from './Buttons/AboutNav';
-import RecomendationsNav from './Buttons/RecommendationsNav';
-import NewProductsNav from './Buttons/NewProductsNav';
-import TopWeekNav from './Buttons/TopWeekNav';
-import MostValuedNav from './Buttons/MostValueNav';
-import ShoppingCart from './Buttons/ShoppingCart';
-import LoginNav from './Buttons/LoginNav';
-import RegisterNav from './Buttons/RegisterNav';
-import Logo from './Logo/Logo';
-import { CgMenuRound } from 'react-icons/cg';
+import { useState } from "react";
+import { useAuth } from "../../context/authContex";
+import { useNavigate } from "react-router-dom";
+import { BiLogOutCircle } from "react-icons/bi";
+import Container from "./Container";
+import ShopNowNav from "./Buttons/ShopNowNav";
+import AboutNav from "./Buttons/AboutNav";
+import RecomendationsNav from "./Buttons/RecommendationsNav";
+import NewProductsNav from "./Buttons/NewProductsNav";
+import TopWeekNav from "./Buttons/TopWeekNav";
+import MostValuedNav from "./Buttons/MostValueNav";
+import ShoppingCart from "./Buttons/ShoppingCart";
+import LoginNav from "./Buttons/LoginNav";
+import RegisterNav from "./Buttons/RegisterNav";
+import Logo from "./Logo/Logo";
+import { CgMenuRound } from "react-icons/cg";
 
 function Navbar() {
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const navigate = useNavigate();
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navigate = useNavigate();
+  const { logout } = useAuth();
   const handleLogout = async () => {
     try {
       await logout();
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div className="py-1 border-b-[1px]">
         <Container>
-        <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
+          <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             <Logo className="order-first" />
             <div className="hidden md:flex md:flex-row md:items-center md:gap-3">
               <ShopNowNav />
               <AboutNav />
-              <button onClick={() => scrollToSection('recommendationsSection')}>
+              <button onClick={() => scrollToSection("recommendationsSection")}>
                 <RecomendationsNav />
               </button>
-              <button onClick={() => scrollToSection('newProductsSection')}>
+              <button onClick={() => scrollToSection("newProductsSection")}>
                 <NewProductsNav />
               </button>
-              <button onClick={() => scrollToSection('topWeekSection')}>
+              <button onClick={() => scrollToSection("topWeekSection")}>
                 <TopWeekNav />
               </button>
-              <button onClick={() => scrollToSection('mostValuedSection')} className="text-black">
+              <button
+                onClick={() => scrollToSection("mostValuedSection")}
+                className="text-black"
+              >
                 <MostValuedNav />
               </button>
               <ShoppingCart />
@@ -75,7 +78,10 @@ function Navbar() {
                       transition
                     "
                   >
-                    <BiLogOutCircle className="text-2xl"/>
+                    <BiLogOutCircle
+                      onClick={handleLogout}
+                      className="text-2xl"
+                    />
                     <div className="hidden md:block">
                       <button onClick={handleLogout}>Logout</button>
                     </div>
@@ -84,14 +90,14 @@ function Navbar() {
               </div>
             </div>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              <CgMenuRound className="text-2xl"  />
+              <CgMenuRound className="text-2xl" />
             </button>
           </div>
         </Container>
       </div>
       {isMenuOpen && (
-        <div className="menu-hamburguesa absolute top-[100%] right-0 py-2 px-4 shadow-md">
-          <LoginNav/>
+        <div className="menu-hamburguesa absolute top-[100%] right-0 mt-2 py-2 px-4 shadow-md">
+          <LoginNav />
           <br />
           <RegisterNav />
         </div>
@@ -101,9 +107,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-
-
-
-              
-  
