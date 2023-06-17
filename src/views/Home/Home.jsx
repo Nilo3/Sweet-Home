@@ -1,10 +1,9 @@
 // Home.js
 import 'tailwindcss/tailwind.css';
-import React from 'react';
 import Recommendations from '../../components/Recommendations/Recomendations';
 import MostValued from '../../components/MostValue/MostValue';
-import NewProducts from '../../components/NewProducts/NewProducts';
 import TopWeek from '../../components/TopWeek/TopWeek';
+import Carousel from '../../components/NewProducts/NewProducts';
 
 function Home() {
   const scrollToSection = (sectionId) => {
@@ -28,10 +27,11 @@ function Home() {
       </section>
       <br />
       <section id="newProductsSection">
-        <NewProducts />
+  
       </section>
       <div className="flex-grow">
         <section id="mostValuedSection">
+          <Carousel/>
           <MostValued />
         </section>
       </div>
