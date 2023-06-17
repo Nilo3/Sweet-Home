@@ -22,7 +22,9 @@ const Products = () => {
   useEffect(() => {
     dispatch(getProducts());
     const card = allProducts && allProducts;
-    if (card.length === 0)
+    if (card.length === 0){
+      
+    }
 
     
 
