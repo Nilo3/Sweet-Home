@@ -29,6 +29,7 @@ function LoginNav () {
             cursor-pointer
             hover:shadow-md
             transition
+            bg-white
           "
         >
           <BiLogInCircle />
