@@ -1,16 +1,33 @@
+// Products.js
 import Cards from "../../components/Card/Cards";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../Redux/actions/product/productActions";
-import { NavLink } from "react-router-dom";
+import Pagination from "../../components/Pagination/Pagination";
 
 const Products = () => {
   const dispatch = useDispatch();
-  const allProducts = useSelector((state) => state.products);
+  const allProducts = useSelector((state) => state.products.products);
+
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [cardPerPage] = useState(12)
+
+  const indexOfLastCard = currentPage * cardPerPage;
+  const indexOfFirstCard = indexOfLastCard - cardPerPage;
+  const [current, setCurrent] = useState([])
+
 
   useEffect(() => {
     dispatch(getProducts());
+    const card = allProducts && allProducts;
+    if (card.length === 0){
+      
+    }
+
+    
+
   }, [dispatch]);
 
   const navigate = useNavigate();
@@ -22,17 +39,16 @@ const Products = () => {
   return (
     <div>
       <div className="allCards">
-        {allProducts.docs?.map((product) => (
-          <div key={product.id}>
-            <NavLink to={"/products/" + product.id}>
-              <Cards
-                key={product.id}
-                name={product.name}
-                price={product.price}
-                image={product.image}
-                description={product.description}
-              />
-            </NavLink>
+        <Pagination />
+        {allProducts.map((product) => (
+          <div key={product._id}>
+            <Cards
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              image={product.image}
+              description={product.description}
+            />
           </div>
         ))}
       </div>

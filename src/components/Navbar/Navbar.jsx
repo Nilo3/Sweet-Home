@@ -42,8 +42,6 @@ function Navbar() {
         <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             <Logo className="order-first" />
             <div className="hidden md:flex md:flex-row md:items-center md:gap-3">
-              
-              
               <ShopNowNav />
               <AboutNav />
               <button onClick={() => scrollToSection('recommendationsSection')}>
