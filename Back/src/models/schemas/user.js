@@ -7,6 +7,7 @@ const user = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false },
+    accessToken: {type: String, default: ""},
     cart: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
     bought: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
     favorites: [{ type: Schema.Types.ObjectId, ref: 'Product' }],

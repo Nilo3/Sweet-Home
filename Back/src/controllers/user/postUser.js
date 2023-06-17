@@ -3,9 +3,10 @@ import Order from "../../models/schemas/order.js"
 import Review from "../../models/schemas/reviews.js";
 import Cart from "../../models/schemas/cart.js";
 import bcrypt from "bcryptjs"
+import { generateToken } from "../../utils/jwt.js";
 
 export default async (req, res) => {
-  const { name, email, password, isAdmin, cart, bought, favorites, userReviews, userOrders } = req.body;
+  const { name, email, password, isAdmin,accessToken, cart, bought, favorites, userReviews, userOrders } = req.body;
 
   if (!name || !email || !password) {
     return res.status(400).json({ message: "Faltan datos" });
@@ -25,8 +26,9 @@ export default async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      /*
       isAdmin,
+      accessToken: generateToken({ name: name, email: email }),
+      /*
       cart: cart.map((car)=> car._id),
       userReviews: userReviews.map((userReview) => userReview._id),
       userOrders: userOrders.map((userOrder) => userOrder._id),

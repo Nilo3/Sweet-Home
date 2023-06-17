@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import adminMiddleware from "../middleware/adminMiddleware.js";
 // ? Controllers 
 
 import postProduct from "../controllers/product/postProduct.js";
@@ -11,16 +12,16 @@ import putProduct from "../controllers/product/putProduct.js";
 const router = Router();
 
 //? Rutas .get
-router.get("/product", getProduct);
-router.get("/product/:productId", getProductById);
+router.get("/product",adminMiddleware, getProduct);
+router.get("/product/:productId",adminMiddleware, getProductById);
 
 //? Ruta .post
-router.post("/product", postProduct);
+router.post("/product",adminMiddleware, postProduct);
 
 //? Ruta .delete
-router.delete("/product/:productId", deleteProduct);
+router.delete("/product/:productId",adminMiddleware, deleteProduct);
 
 //? Ruta .put
-router.put("/product/:productId", putProduct);
+router.put("/product/:productId",adminMiddleware, putProduct);
 
 export default router;
