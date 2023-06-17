@@ -6,13 +6,16 @@ import MostValued from '../../components/MostValue/MostValue';
 import NewProducts from '../../components/NewProducts/NewProducts';
 import TopWeek from '../../components/TopWeek/TopWeek';
 
+
 function Home() {
+  
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -40,3 +43,4 @@ function Home() {
 }
 
 export default Home;
+
