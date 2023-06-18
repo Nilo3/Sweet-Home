@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "./MostValue.css"
 
 const MostValueCards = ({ id, name, image, price, rating }) => {
   const renderRatingStars = () => {
