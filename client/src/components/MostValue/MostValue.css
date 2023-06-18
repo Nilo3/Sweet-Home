@@ -1,5 +1,8 @@
 .star-icon {
-    color: gold;
+    color: black;
     font-size: 1.2rem; 
   }
   
+  .rating-stars {
+    display: flex;
+  }
