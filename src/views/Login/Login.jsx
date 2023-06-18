@@ -4,11 +4,13 @@ import {Link, useNavigate} from 'react-router-dom'
 import {Alert} from './Alert'
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export function Login () {
 
-  const [user, setUser] = useState({
+const [user, setUser] = useState({
   email:'',
   password:'',
 });
@@ -21,18 +23,26 @@ const handleChange = ({target: {name, value}})  => {
 }
 
 const handleSubmit = async (event) => {
-  event.preventDefault ()
-  setError('')
-  try{
-    await login(user.email, user.password)
-    navigate('/')
-  }catch (error){
+  event.preventDefault();
+  setError('');
+
+  try {
+    await login(user.email, user.password);
+    toast.success('Logged in');
+    navigate('/');
+  } catch (error) {
     if (error.code === "auth/user-not-found")
-      setError("User not Found")
+      setError("User not Found");
     if (error.code === "auth/weak-password")
-      setError("Invalid password. Please enter your password again")
-   }
-}
+      setError("Invalid password. Please enter your password again");
+    toast.error(error.message);
+    
+    setTimeout(() => {
+      setError('');
+    }, 5000); 
+  }
+};
+
 
 const handleGoogleSignIn = async () => {
   try{
