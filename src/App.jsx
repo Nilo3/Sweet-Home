@@ -26,16 +26,19 @@ function App() {
           </>} />
           <Route path='/products' element={<>
             <Navbar />
+            <br /><br /><br />
             <Products />
             <Footer />
           </>} />
           <Route path='/about' element={<>
             <Navbar />
+            <br /><br /><br />
             <About />
             <Footer />
           </>} />
           <Route path='/products/:id' element={<>
             <Navbar />
+            <br /><br /><br />
             <Detail />
             <Footer />
           </>} />
