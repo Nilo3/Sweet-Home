@@ -1,6 +1,6 @@
 # Sweet Home
 
-Sweet Home is a web application that allows you to manage real estate listings easily and efficiently.
+Welcome to Sweet Home, a web application for purchasing a wide range of home products. From beds, mattresses, and pillows to lamps, rugs, bathroom essentials, garden accessories, and lighting items, Sweet Home offers an extensive selection to help you create a cozy and stylish living environment.
 
 ## Installation
 
@@ -39,32 +39,32 @@ Once the server is running, you can access the API endpoints from the frontend a
 For detailed documentation on the API endpoints and their usage, please refer to the API Documentation.
 
 ### Categories
-- GET /api/categories: Get all property categories.
-- GET /api/categories/:id: Get a specific property category by ID.
-- POST /api/categories: Create a new property category.
-- PUT /api/categories/:id: Update an existing property category by ID.
+- GET /api/category: Get all property categories.
+- GET /api/category/:id Get a specific property category by ID.
+- POST /api/category: Create a new property category.
+- PUT /api/category/:id Update an existing property category by ID.
 ### Orders
-- GET /api/orders: Get all orders.
-- GET /api/orders/:id: Get a specific order by ID.
-- POST /api/orders: Create a new order.
-- PUT /api/orders/:id: Update an existing order by ID.
-- DELETE /api/orders/:id: Delete an existing order by ID.
+- GET /api/order: Get all orders.
+- GET /api/order/:id Get a specific order by ID.
+- POST /api/order: Create a new order.
+- PUT /api/order/:id Update an existing order by ID.
+- DELETE /api/order/:id Delete an existing order by ID.
 ### Products
-- GET /api/products: Get all products.
-- GET /api/products/:id: Get a specific product by ID.
-- POST /api/products: Create a new product.
-- PUT /api/products/:id: Update an existing product by ID.
-- DELETE /api/products/:id: Delete an existing product by ID.
+- GET /api/product: Get all products.
+- GET /api/product/:id Get a specific product by ID.
+- POST /api/product: Create a new product.
+- PUT /api/product/:id Update an existing product by ID.
+- DELETE /api/product/:id Delete an existing product by ID.
 ### Reviews
-- GET /api/reviews: Get all reviews.
-- GET /api/reviews/:id: Get a specific review by ID.
-- POST /api/reviews: Create a new review.
-- PUT /api/reviews/:id: Update an existing review by ID.
+- GET /api/review: Get all reviews.
+- GET /api/review/:id Get a specific review by ID.
+- POST /api/review: Create a new review.
+- PUT /api/review/:id Update an existing review by ID.
 ### Users
 - GET /api/users: Get all users.
-- GET /api/users/:id: Get a specific user by ID.
+- GET /api/users/:id Get a specific user by ID.
 - POST /api/users: Create a new user.
-- DELETE /api/users/:id: Delete an existing user by ID.
+- DELETE /api/users/:id Delete an existing user by ID.
 
 
 ## Contributing
