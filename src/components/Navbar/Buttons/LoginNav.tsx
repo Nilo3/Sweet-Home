@@ -14,7 +14,7 @@ function LoginNav () {
 
   return (
     <div className="relative">
-      <div className="flex flex-row items-center gap-3">
+      <div className="flex flex-row items-center gap-3 select-none">
         <div
             className="
             p-4
