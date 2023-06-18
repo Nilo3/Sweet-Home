@@ -88,7 +88,7 @@ const Products = () => {
   return (
     <div>
       <div className="grid grid-cols-3 gap-4">
-        {allProducts.docs?.map((product) => (
+        {allProducts?.map((product) => ( //? Cambio debido a que la respuesta desde el back ahora son todos los productos
           <div key={product._id} className="flex justify-center">
             <Cards
               id={product._id}
