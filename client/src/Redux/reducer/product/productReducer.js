@@ -88,7 +88,8 @@ const productReducer = (state = initialState, action) => {
 		case MOST_VALUED_FILTER:
 			return {
 				...state,
-				reviews: productAVG(state.reviews)
+				reviews: productAVG(action.payload)
+		
 			}
 		default: return state;
 	}
