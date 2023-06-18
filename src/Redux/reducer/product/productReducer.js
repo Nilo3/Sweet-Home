@@ -1,4 +1,5 @@
-import { GET_PRODUCTS, PRODUCTS_PAGINATION,GET_PRODUCT_DETAIL } from "../../action-types/action-types";
+import { GET_PRODUCTS, PRODUCTS_PAGINATION,GET_PRODUCT_DETAIL,MOST_VALUED_FILTER } from "../../action-types/action-types";
+import { productAVG } from "./logic-ratings";
 
 const initialState = {
 	products: [],
@@ -12,7 +13,8 @@ const initialState = {
 		limit: null,
 	},
 	activeProductDetail: null,
-	detail:{}
+	detail:{},
+	reviews:[]
 };
 
 const productReducer = (state = initialState, { type, payload }) => {
@@ -45,7 +47,13 @@ const productReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 detail: payload
             }
-
+			
+	
+		case MOST_VALUED_FILTER:
+			return {
+				...state,
+				reviews:  productAVG(state.reviews)
+			}
 
 		default:
 			return state;
