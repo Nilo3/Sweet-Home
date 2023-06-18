@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getReviews } from "../../Redux/actions/product/productActions";
-import MostValueCards from "./mostValueCards";
+import MostValueCards from "./MostValueCards";
 
 export default function MostValue() {
       const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export default function MostValue() {
         <br/>
         <h1 className="text-4xl font-bold text-center">Most Valued Products</h1>
         <br />
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-4 gap-2 justify-items-center">
           {currentReviews.map((product) => (
             <div key={product._id} >
             <MostValueCards
