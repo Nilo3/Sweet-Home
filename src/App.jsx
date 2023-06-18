@@ -1,4 +1,3 @@
-
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import Products from './views/ShopNow/Products'
@@ -7,14 +6,14 @@ import Detail from './views/Detail/Detail'
 import Home from './views/Home/Home'
 import Login from './views/Login/Login'
 import Register from './views/Login/Register'
-import {Route, Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { AuthProvider } from './context/authContex'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <AuthProvider>
         <Routes>
           <Route path='/login' element={<Login />} />
@@ -26,17 +25,23 @@ function App() {
           </>} />
           <Route path='/products' element={<>
             <Navbar />
-            <Products />
+            <div className="my-20">
+              <Products />
+            </div>
             <Footer />
           </>} />
           <Route path='/about' element={<>
             <Navbar />
-            <About />
+            <div className="my-20">
+              <About />
+            </div>
             <Footer />
           </>} />
           <Route path='/products/:id' element={<>
             <Navbar />
-            <Detail />
+            <div className="my-20">
+              <Detail />
+            </div>
             <Footer />
           </>} />
         </Routes>
@@ -47,6 +52,7 @@ function App() {
 }
 
 export default App;
+
 
 
 //las rutas que quiero que esten protegidas, las envuelvo en <ProtectedRoute><ejemploHome/></ProtectedRoute> previo importarlo
