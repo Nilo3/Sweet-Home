@@ -42,6 +42,7 @@
     z-index: 10;
     transition: .2s;
     font-size: .9em;
+    user-select: none;
 }
 
 .img_content:hover > .img > .info{
