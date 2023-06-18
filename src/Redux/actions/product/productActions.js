@@ -38,7 +38,7 @@ export function getPagination(id) {
     };
 }
 
-export function mostValued(){
+export function getReviews(){
     return async function (dispatch) {
         let response = await axios.get(`${HOST}/api/review`); // exactly where back end and front end connect
         return dispatch({
