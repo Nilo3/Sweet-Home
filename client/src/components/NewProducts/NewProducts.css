@@ -1,0 +1,42 @@
+/* Personaliza los estilos de los puntos (dots) del carrusel */
+.slick-dots {
+    bottom: 10px;
+  }
+  
+  .slick-dots li {
+    margin: 0 4px;
+    display: inline-block;
+    size:10%
+  }
+  
+  .slick-dots li button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #000;
+    opacity: 0.5;
+  }
+  
+  .slick-dots li.slick-active button {
+    background-color: #000;
+    opacity: 1;
+  }
+  
+  /* Personaliza los estilos de las flechas del carrusel */
+  .slick-prev,
+  .slick-next {
+    font-size: 24px;
+    color: #000;
+    opacity: 0.5;
+  }
+  
+  .slick-prev:hover,
+  .slick-next:hover {
+    opacity: 1;
+  }
+  
+  /* Agrega estilos personalizados para las imágenes del carrusel */
+  .slick-slide img {
+    width: 100%;
+    height: auto;
+  }
