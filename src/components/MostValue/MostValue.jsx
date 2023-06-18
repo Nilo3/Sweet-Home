@@ -1,5 +1,23 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts, getReviews } from "../../Redux/actions/product/productActions";
 
 export default function MostValue() {
+      const dispatch = useDispatch();
+    const allProducts = useSelector((state) => state.products);
+    const allReviews = useSelector((state) =>state.reviews)
+
+    console.log(allReviews)
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getReviews());
+  }, [dispatch]);
+
     return (
       <div>
         <br/>

@@ -1,6 +1,7 @@
 //? REDUCER WORK IN PROGRESS
-
-// import { GET_PRODUCTS, PRODUCTS_PAGINATION,GET_PRODUCT_DETAIL } from "../../action-types/action-types";
+// 
+import { GET_PRODUCTS, PRODUCTS_PAGINATION,GET_PRODUCT_DETAIL,MOST_VALUED_FILTER } from "../../action-types/action-types";
+import { productAVG } from "./logic-ratings";
 
 // const initialState = {
 // 	products: [],
@@ -59,13 +60,15 @@
 
 //? REDUCER PARA MOSTRAR PRODUCTS
 
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL } from "../../action-types/action-types";
+// import { GET_PRODUCTS, GET_PRODUCT_DETAIL } from "../../action-types/action-types";
 
 const initialState = {
 	products: [],
 	details: [],
 	loading: false,
 	error: null,
+	reviews:[]
+	
 };
 
 const productReducer = (state = initialState, action) => {
@@ -81,6 +84,12 @@ const productReducer = (state = initialState, action) => {
 				...state,
 				details: action.payload
 			}
+
+			case MOST_VALUED_FILTER:
+				return {
+					...state,
+					reviews:  productAVG(state.reviews)
+				}
 		default: return state;
 	}
 };
