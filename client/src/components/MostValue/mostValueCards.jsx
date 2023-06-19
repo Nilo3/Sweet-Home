@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "./MostValue.css";
-import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
+import "./MostValue.css"
 
 const MostValueCards = ({ id, name, image, price, rating }) => {
   const renderRatingStars = () => {
@@ -12,15 +11,15 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
 
     const stars = [];
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<FaStar key={i} className="star-icon" />);
+      stars.push(<span key={i} className="star-icon">&#9733;</span>);
     }
 
     if (hasHalfStar) {
-      stars.push(<FaStarHalfAlt key="half" className="star-icon" />);
+      stars.push(<span key="half" className="star-icon">&#9733;</span>);
     }
 
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<FaRegStar key={`empty-${i}`} className="star-icon" />);
+      stars.push(<span key={`empty-${i}`} className="star-icon">&#9734;</span>);
     }
 
     return stars;
@@ -34,17 +33,15 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
             {name}
           </h5>
         </Link>
-        <div className="image-container">
-          <img src={image} alt={name} className="object-cover w-full h-full" />
-        </div>
+        <img src={image} alt={name} className="h-48 object-cover mx-auto" />
         <div className="flex items-center">
-          <div className="rating-stars flex">{renderRatingStars()}</div>
-          <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto mt-2">
+          <div className="rating-stars">{renderRatingStars()}</div>
+          <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto ">
             {rating}
           </span>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-4">
+      <div className="flex items-center justify-between">
         <span className="text-3xl font-bold text-gray-900 dark:text-white">
           ${price}
         </span>
