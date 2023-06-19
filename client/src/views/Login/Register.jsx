@@ -19,6 +19,8 @@ const handleChange = ({target: {name, value}})  => {
   setUser ({...user,[name]: value})
 }
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const handleSubmit = async (event) => {
   event.preventDefault ()
   setError('')
@@ -35,8 +37,20 @@ const handleSubmit = async (event) => {
 
     if(error.code === "auth/email-already-in-use")
       setError("This email is already in use")
-      toast.error(error.message);
-      
+
+    if (user.password.length < 8) 
+        setError("Invalid Form, Password must contain greater than or equal to 8 characters.")
+
+    if (!user.email)
+    setError("Please enter your email")
+        
+    if (!user.password)
+    setError("Please enter your password")
+
+    if (!emailRegex.test(user.email)) {
+    setError("Please enter a valid email address");
+}
+                 
       setTimeout(() => {
       setError('');
     }, 5000); 
