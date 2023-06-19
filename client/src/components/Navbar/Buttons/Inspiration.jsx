@@ -1,6 +1,6 @@
 import { FcIdea } from "react-icons/fc";
 
-const NewProductsNav = () => {
+const Inspiration = () => {
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3 select-none">
@@ -13,4 +13,4 @@ const NewProductsNav = () => {
   );
 };
 
-export default NewProductsNav;
+export default Inspiration;

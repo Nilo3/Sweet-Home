@@ -1,24 +1,19 @@
-// Pagination.js
+const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts }) => {
+  const pageNumbers = [];
 
-const Pagination = ({productPerPage, currentPage, setCurrentPage, totalProducts}) => {
-
-  const pageNumbers = []
-
-  for (let i = 1; i <= Math.ceil(totalProducts / productPerPage) ; i++) {
-   pageNumbers.push(i)
-  
-    
+  for (let i = 1; i <= Math.ceil(totalProducts / productPerPage); i++) {
+    pageNumbers.push(i);
   }
 
   const onPreviusPage = () => {
-    setCurrentPage(currentPage - 1)
-  }
+    setCurrentPage(currentPage - 1);
+  };
+
   const onNextPage = () => {
-    setCurrentPage(currentPage + 1)
-  }
+    setCurrentPage(currentPage + 1);
+  };
 
   return (
-    
 <nav aria-label="Page navigation example ">
   <ul className="inline-flex -space-x-px">
     <li>
@@ -39,7 +34,6 @@ const Pagination = ({productPerPage, currentPage, setCurrentPage, totalProducts}
     </li>
   </ul>
 </nav>
-
   );
 };
 

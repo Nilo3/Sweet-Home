@@ -7,6 +7,7 @@ import stellcomi from "./stellcomi.jpg"
 import valenzal from "./valenzal.png";
 import stefbrav from "./stefbrav.png";
 import titoxd from "./titoxd.webp";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -118,6 +119,14 @@ const About = () => {
           </div>
         </div>
       </div>
+      <div className="text-center mt-4">
+  <Link
+    to="/"
+    className="text-black font-bold text-sm px-5 py-2.5 mx-auto  flex justify-center"
+  >
+    Back to Home
+  </Link>
+</div>
     </div>
   );
 };
