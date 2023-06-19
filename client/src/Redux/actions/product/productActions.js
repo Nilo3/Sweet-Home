@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PRODUCTS, PRODUCTS_PAGINATION, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY } from "../../action-types/action-types";
+import {GET_CATEGORY, GET_PRODUCTS, PRODUCTS_PAGINATION, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY } from "../../action-types/action-types";
 
 
 const HOST = "http://localhost:3001"
@@ -62,13 +62,13 @@ export const filterByPrice = (payload) => {
     }
 }
 
-export const filterByCategory = (payload) => {
+export const getCategory = (payload) => {
     return async function (dispatch) {
         try {
             let response = await axios(`${HOST}/api/category`)
 
             return dispatch({
-                type: FILTER_BY_CATEGORY,
+                type: GET_CATEGORY,
                 payload: response.data
             })
 
@@ -79,5 +79,13 @@ export const filterByCategory = (payload) => {
             }
 
         }
+    }
+}
+
+
+export const filterByCategory = (payload) => {
+    return {
+        type: FILTER_BY_CATEGORY,
+        payload
     }
 }

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Cards = ({ id, name, image, price, description }) => {
+const Cards = ({ id, name, image, price, description, category }) => {
   return (
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-full flex flex-col justify-between">
       <div>
@@ -13,6 +13,7 @@ const Cards = ({ id, name, image, price, description }) => {
         <p className="mb-3 font-normal text-gray-500 text-justify dark:text-gray-400 mt-4">
           {description}
         </p>
+        <h2>{category}</h2>
       </div>
       <div className="flex items-center justify-between mt-4">
         <span className="text-3xl font-bold text-gray-900 dark:text-white">
