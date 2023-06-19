@@ -54,7 +54,7 @@ import image1 from '../../assets/image/carousel1.jpg';
 import image2 from '../../assets/image/carousel2.jpg';
 import image3 from '../../assets/image/carousel3.jpg';
 
-const Carousel = () => {
+const Inspiration = () => {
     const settings = {
       dots: true,
       infinite: true,
@@ -77,4 +77,4 @@ const Carousel = () => {
       </Slider>
     );
   };
-export default Carousel;
+export default Inspiration;
