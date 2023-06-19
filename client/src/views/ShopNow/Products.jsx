@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterByPrice, getProducts } from "../../Redux/actions/product/productActions";
 import { filterByName } from "../../Redux/actions/product/productActions";
 
+import SearchBar from "./searchBar";
 
 
 const Products = () => {
@@ -61,6 +62,9 @@ const Products = () => {
   
   return (
     <div>
+      
+        {/* <SearchBar /> */}
+      
       <div className="flex justify-center h-16 items-center">
 
       <select onChange={(event) => handleOrderName(event)}>
