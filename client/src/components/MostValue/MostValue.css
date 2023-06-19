@@ -1,8 +1,18 @@
 .star-icon {
-    color: black;
+    color: rgb(0, 0, 0);
     font-size: 1.2rem; 
   }
   
   .rating-stars {
     display: flex;
   }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  
+  .image-container {
+    height: 12rem; 
+  }
+  
