@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../Redux/actions/product/productActions";
+import SearchBar from "./searchBar";
 
 
 const Products = () => {
@@ -38,6 +39,9 @@ const Products = () => {
   const products = allProducts.slice(indexOfFirstProduct, indexOfLastProduct);
   return (
     <div>
+      
+        {/* <SearchBar /> */}
+      
       <div className="flex justify-center h-16 items-center">
        <Pagination
        productPerPage ={productPerPage}
