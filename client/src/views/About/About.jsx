@@ -3,7 +3,7 @@ import frannpor from "./frannpor.png";
 import ferron from "./ferron.jpeg";
 import nachoman from "./nachoman.jpeg";
 import niloeche from "./niloeche.jpg";
-import stellcomi from "./stellcomi.jpg";
+import stellcomi from "./stellcomi.jpg"
 import valenzal from "./valenzal.png";
 import stefbrav from "./stefbrav.png";
 import titoxd from "./titoxd.webp";
@@ -15,8 +15,8 @@ const About = () => {
         <div className={style.img_content}>
           <div className={style.img} style={{ backgroundImage: `url(${ferron})` }}>
             <div className={style.info}>
-              <h4>Fernanda Ron</h4>
-              <p>
+              <h4 className="font-bold">Fernanda Ron</h4>
+              <p className="p-8 -m-8 mx-2 text-xs">
                 Fernanda is a talented Full Stack Developer with expertise in
                 both front-end and back-end development. She has contributed to
                 the project by working on design elements and implementing logic.
@@ -27,8 +27,8 @@ const About = () => {
         <div className={style.img_content}>
           <div className={style.img} style={{ backgroundImage: `url(${frannpor})` }}>
             <div className={style.info}>
-              <h4>Francisco Porciel</h4>
-              <p>
+              <h4 className="font-bold">Francisco Porciel</h4>
+              <p className="p-8 -m-8 mx-2 text-xs">
                 Francisco, also known as Fran, is one of the back-end developers
                 in the team. He has been a strong leader throughout the project,
                 showcasing excellent problem-solving skills and logical
@@ -40,8 +40,8 @@ const About = () => {
         <div className={style.img_content}>
           <div className={style.img} style={{ backgroundImage: `url(${titoxd})` }}>
             <div className={style.info}>
-              <h4>Hector Granucci</h4>
-              <p>
+              <h4 className="font-bold">Hector Granucci</h4>
+              <p className="p-8 -m-8 mx-2 text-xs">
                 Hector, commonly known as Tito, is a dedicated back-end developer
                 who brings valuable insights and contributes to the project with
                 his logical approach. He plays a key role in developing robust
@@ -53,8 +53,8 @@ const About = () => {
         <div className={style.img_content}>
           <div className={style.img} style={{ backgroundImage: `url(${nachoman})` }}>
             <div className={style.info}>
-              <h4>Ignacio Mander</h4>
-              <p>
+              <h4 className="font-bold">Ignacio Mander</h4>
+              <p className="p-8 -m-8 mx-2 text-xs">
                 Ignacio, also known as Nacho, has been involved in various
                 design aspects of the project. He has a keen eye for aesthetics
                 and has contributed significantly to creating visually appealing
@@ -68,8 +68,8 @@ const About = () => {
         <div className={style.img_content}>
           <div className={style.img} style={{ backgroundImage: `url(${niloeche})` }}>
             <div className={style.info}>
-              <h4>Nilo Echezarreta</h4>
-              <p>
+              <h4 className="font-bold">Nilo Echezarreta</h4>
+              <p className="p-8 -m-8 mx-2 text-xs">
                 Nilo is one of the back-end developers who brings strong
                 leadership to the team. He is highly skilled in problem-solving
                 and plays a crucial role in developing the projects core
@@ -81,8 +81,8 @@ const About = () => {
         <div className={style.img_content}>
           <div className={style.img} style={{ backgroundImage: `url(${stefbrav})` }}>
             <div className={style.info}>
-              <h4>Stefano Bravi</h4>
-              <p>
+              <h4 className="font-bold">Stefano Bravi</h4>
+              <p className="p-8 -m-8 mx-2 text-xs">
                 Stefano is a passionate Full Stack Developer with a particular
                 interest in design. He has contributed extensively to creating
                 visually appealing interfaces and ensuring a seamless user
@@ -94,8 +94,8 @@ const About = () => {
         <div className={style.img_content}>
           <div className={style.img} style={{ backgroundImage: `url(${stellcomi})` }}>
             <div className={style.info}>
-              <h4>Stella Cominotti</h4>
-              <p>
+              <h4 className="font-bold">Stella Cominotti</h4>
+              <p className="p-8 -m-8 mx-2 text-xs">
                 Stella, with her strong background in design, has played a key
                 role in creating beautiful and intuitive interfaces. She
                 combines her design skills with development expertise to deliver
@@ -107,8 +107,8 @@ const About = () => {
         <div className={style.img_content}>
           <div className={style.img} style={{ backgroundImage: `url(${valenzal})` }}>
             <div className={style.info}>
-              <h4>Valentin Zalazar</h4>
-              <p>
+              <h4 className="font-bold">Valentin Zalazar</h4>
+              <p className="p-8 -m-8 mx-2 text-xs">
                 Valentin is a skilled Full Stack Developer who brings valuable
                 contributions to the project. With expertise in both front-end
                 and back-end development, he has been instrumental in
