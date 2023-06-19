@@ -77,12 +77,14 @@ const Products = () => {
                     <option value="high">High to Low</option>
                     <option value="low">Low to High</option>
                 </select>
-       <Pagination
-       productPerPage ={productPerPage}
-       currentPage ={currentPage}
-      setCurrentPage={setCurrentPage}
-      totalProducts={allProducts.length}
-       /> 
+      <div className="flex justify-center">
+        <Pagination
+          productPerPage={productPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalProducts={allProducts.length}
+        />
+      </div>
        </div> 
       <div className="grid grid-cols-3 gap-4">
         {
@@ -104,13 +106,15 @@ const Products = () => {
         ): undefined}
       </div>
       <br />
-      <Pagination
-       productPerPage ={productPerPage}
-       currentPage ={currentPage}
-      setCurrentPage={setCurrentPage}
-      totalProducts={allProducts.length}
-       /> 
-      <div className="text-center">
+      <div className="flex justify-center">
+        <Pagination
+          productPerPage={productPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalProducts={allProducts.length}
+        />
+      </div>
+      <div className="text-center mt-6">
         <button
           type="button"
           className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 mx-auto block"
