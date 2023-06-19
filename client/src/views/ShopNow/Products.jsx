@@ -57,6 +57,7 @@ const Products = () => {
     setCurrentPage(1);
   }
 
+  
   return (
     <div>
       <div className="flex justify-center h-16 items-center">
