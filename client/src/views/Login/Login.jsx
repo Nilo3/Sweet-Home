@@ -33,9 +33,10 @@ const handleSubmit = async (event) => {
   } catch (error) {
     if (error.code === "auth/user-not-found")
       setError("User not Found");
-    if (error.code === "auth/weak-password")
-      setError("Invalid password. Please enter your password again");
-    toast.error(error.message);
+     
+      if (error.code === "auth/weak-password")
+      setError("Invalid password. Please enter your password again")
+    toast.error("Invalid password. Please enter your password again");
     
     setTimeout(() => {
       setError('');
