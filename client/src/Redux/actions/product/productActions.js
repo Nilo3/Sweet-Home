@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PRODUCTS, PRODUCTS_PAGINATION, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER } from "../../action-types/action-types";
+import { GET_PRODUCTS, PRODUCTS_PAGINATION, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY } from "../../action-types/action-types";
 
 
 const HOST = "http://localhost:3001"
@@ -46,4 +46,38 @@ export function getReviews() {
             payload: response.data
         });
     };
+}
+
+export const filterByName = (payload) => {
+    return {
+        type: FILTER_BY_NAME,
+        payload
+    }
+}
+
+export const filterByPrice = (payload) => {
+    return {
+        type: FILTER_BY_PRICE,
+        payload
+    }
+}
+
+export const filterByCategory = (payload) => {
+    return async function (dispatch) {
+        try {
+            let response = await axios(`${HOST}/api/category`)
+
+            return dispatch({
+                type: FILTER_BY_CATEGORY,
+                payload: response.data
+            })
+
+        } catch (error) {
+            return {
+                error: "No category found",
+                originalError: error,
+            }
+
+        }
+    }
 }
