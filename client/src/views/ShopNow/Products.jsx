@@ -11,6 +11,9 @@ import {
 } from "../../Redux/actions/product/productActions";
 import { filterByName } from "../../Redux/actions/product/productActions";
 
+import SearchBar from "./searchBar";
+
+
 const Products = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
@@ -60,6 +63,9 @@ const Products = () => {
   
   return (
     <div>
+      
+        {/* <SearchBar /> */}
+      
       <div className="flex justify-center h-16 items-center">
         <select onChange={(event) => handleOrderName(event)}>
           <option>Order by Name</option>
@@ -84,6 +90,9 @@ const Products = () => {
             </option>
           ))}
         </select>
+        
+
+      <div className="flex justify-center">
         <Pagination
           productPerPage={productPerPage}
           currentPage={currentPage}
@@ -91,6 +100,7 @@ const Products = () => {
           totalProducts={allProducts.length}
         />
       </div>
+       </div> 
       <div className="grid grid-cols-3 gap-4">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
@@ -112,13 +122,15 @@ const Products = () => {
         )}
       </div>
       <br />
-      <Pagination
-        productPerPage={productPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalProducts={allProducts.length}
-      />
-      <div className="text-center">
+      <div className="flex justify-center">
+        <Pagination
+          productPerPage={productPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalProducts={allProducts.length}
+        />
+      </div>
+      <div className="text-center mt-6">
         <button
           type="button"
           className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 mx-auto block"
