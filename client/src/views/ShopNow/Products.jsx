@@ -5,7 +5,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../Redux/actions/product/productActions";
+import { filterByPrice, getProducts } from "../../Redux/actions/product/productActions";
 import { filterByName } from "../../Redux/actions/product/productActions";
 
 
@@ -50,7 +50,11 @@ const Products = () => {
     // )
    }
   
-  
+  function handleOrderPrice (event) {
+    event.preventDefault()
+    dispatch(filterByPrice(event.target.value))
+    setCurrentPage(1)
+  }
   
   
   
@@ -63,6 +67,11 @@ const Products = () => {
                     <option>Order by Name</option>
                     <option value="asc">A - Z</option>
                     <option value="desc">Z - A</option>
+                </select>
+                <select onChange={(event) => handleOrderPrice(event)}>
+                   <option>Price</option>
+                    <option value="high">High to Low</option>
+                    <option value="low">Low to High</option>
                 </select>
        <Pagination
        productPerPage ={productPerPage}
