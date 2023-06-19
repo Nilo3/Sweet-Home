@@ -28,7 +28,7 @@ const handleSubmit = async (event) => {
 
   try {
     await login(user.email, user.password);
-    toast.success('Logged in');
+    toast.success('WELCOME TO SWEET HOME');
     navigate('/');
   } catch (error) {
     if (error.code === "auth/user-not-found")
@@ -37,7 +37,10 @@ const handleSubmit = async (event) => {
       if (error.code === "auth/weak-password")
       setError("Invalid password. Please enter your password again")
     toast.error("Invalid password. Please enter your password again");
-    
+
+    if (error.code === "auth/account-exists-with-different-credential")
+      setError("Sorry, your account already exists with a different credential (GitHub or Google). Try again")
+        
     setTimeout(() => {
       setError('');
     }, 5000); 
@@ -48,6 +51,7 @@ const handleSubmit = async (event) => {
 const handleGoogleSignIn = async () => {
   try{
   await loginWithGoogle()
+  toast.success('WELCOME TO SWEET HOME');
   navigate('/')
   } catch(error){
     setError(error.message);
@@ -57,6 +61,7 @@ const handleGoogleSignIn = async () => {
 const handleGitHubSignIn = async () => {
   try{ 
   await loginWithGitHub()
+  toast.success('WELCOME TO SWEET HOME');
   navigate('/')
 } catch(error){
   setError(error.message);
