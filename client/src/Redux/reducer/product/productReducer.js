@@ -75,16 +75,16 @@ const initialState = {
 const productReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_PRODUCTS:
-			if(state.products.length > 0){
-				return{
+			if (state.products.length > 0) {
+				return {
 					products: state.products,
-					getAllProducts:state.getAllProducts
+					getAllProducts: state.getAllProducts
 				}
 			}
 			return {
 				...state,
 				products: action.payload,
-				getAllProducts:action.payload,
+				getAllProducts: action.payload,
 				loading: false,
 			};
 		case GET_PRODUCT_DETAIL:
@@ -97,65 +97,55 @@ const productReducer = (state = initialState, action) => {
 			return {
 				...state,
 				reviews: productAVG(action.payload)
-		
+
 			};
-			
-			case FILTER_BY_NAME:
-				const sortedProducts = [...state.products];
-            const sortOrder = action.payload === 'asc' ? 1 : -1;
-            sortedProducts.sort((productsA, productsB) => {
-                if (productsA.name > productsB.name) {
-                    return 1 * sortOrder;
-                }
-                if (productsB.name > productsA.name) {
-                    return -1 * sortOrder;
-                }
-                return 0;
-            });
-            return {
-                ...state,
-                products: sortedProducts,
-				getAllProducts: sortedProducts
-            };
 
-			case FILTER_BY_PRICE:
-				const priceFiltered = action.payload === "high"
-				? state.products.sort ((a, b) => {
-					if(a.price < b.price){
-						return 1;
-					}
-					if(b.price < a.price){
-						return -1
-					} else {
-						return 0
-					}
-				}):
-				state.products.sort((a, b) => {
-					if(a.price < b.price){
-						return -1;
-					}
-					if(b.price < a.price){
-						return 1
-					} else {
-						return 0
-					}
-				})
-				return {
-					...state,
-					getAllProducts: priceFiltered,
-					products: priceFiltered,
+		case FILTER_BY_NAME:
+			const sortedProducts = [...state.products];
+			const sortOrder = action.payload === 'asc' ? 1 : -1;
+			sortedProducts.sort((productsA, productsB) => {
+				if (productsA.name > productsB.name) {
+					return 1 * sortOrder;
 				}
+				if (productsB.name > productsA.name) {
+					return -1 * sortOrder;
+				}
+				return 0;
+			});
+			return {
+				...state,
+				products: sortedProducts,
+				getAllProducts: sortedProducts
+			};
 
-				case FILTER_BY_CATEGORY:
-					const getAllProducts = state.getAllProducts;
-					const filteredCategory = getAllProducts.filter((element) => {
-						element.category.includes(action.payload)
-					});
-					return {
-						...state,
-						getAllProducts: state.getAllProducts,
-						products: filteredCategory
-					}
+		case FILTER_BY_PRICE:
+			const filterProducts = [...state.products];
+			const filterOrder = action.payload === 'high' ? 1 : -1;
+			filterProducts.sort((productsA, productsB) => {
+				if (productsA.price > productsB.price) {
+					return 1 * filterOrder;
+				}
+				if (productsB.price > productsA.price) {
+					return -1 * filterOrder;
+				}
+				return 0;
+			});
+			return {
+				...state,
+				products: filterProducts,
+				getAllProducts: filterProducts,
+			}
+
+		case FILTER_BY_CATEGORY:
+			const getAllProducts = state.getAllProducts;
+			const filteredCategory = getAllProducts.filter((element) => {
+				element.category.includes(action.payload)
+			});
+			return {
+				...state,
+				getAllProducts: state.getAllProducts,
+				products: filteredCategory
+			}
 		default: return state;
 	}
 };
