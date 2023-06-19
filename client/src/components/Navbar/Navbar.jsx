@@ -6,7 +6,7 @@ import Container from "./Container";
 import ShopNowNav from "./Buttons/ShopNowNav";
 import AboutNav from "./Buttons/AboutNav";
 import RecomendationsNav from "./Buttons/RecommendationsNav";
-import NewProductsNav from "./Buttons/NewProductsNav";
+import Inspiration from "./Buttons/inspiration";
 import TopWeekNav from "./Buttons/TopWeekNav";
 import MostValuedNav from "./Buttons/MostValueNav";
 import ShoppingCart from "./Buttons/ShoppingCart";
@@ -35,6 +35,49 @@ function Navbar() {
       console.log(error);
     }
   };
+  const handleRecommendationsClick = () => {
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        scrollToSection("recommendationsSection");
+      }, 500);
+    } else {
+      scrollToSection("recommendationsSection");
+    }
+  };
+
+  const handleInspirationClick = () => {
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        scrollToSection("inspirationSection");
+      }, 500);
+    } else {
+      scrollToSection("inspirationSection");
+    }
+  };
+
+  const handleTopWeekClick = () => {
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        scrollToSection("topWeekSection");
+      }, 500);
+    } else {
+      scrollToSection("topWeekSection");
+    }
+  };
+  const handleMostValuedClick = () => {
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        scrollToSection("mostValuedSection");
+      }, 500);
+    } else {
+      scrollToSection("mostValuedSection");
+    }
+  };
+
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm ">
       <div className="py-1 border-b-[1px]">
@@ -44,19 +87,16 @@ function Navbar() {
             <div className="hidden md:flex md:flex-row md:items-center md:gap-3">
               <ShopNowNav />
               <AboutNav />
-              <button onClick={() => scrollToSection("recommendationsSection")}>
+              <button onClick={handleRecommendationsClick}>
                 <RecomendationsNav />
               </button>
-              <button onClick={() => scrollToSection("newProductsSection")}>
-                <NewProductsNav />
+              <button onClick={handleInspirationClick}>
+                <Inspiration />
               </button>
-              <button onClick={() => scrollToSection("topWeekSection")}>
+              <button onClick={handleTopWeekClick}>
                 <TopWeekNav />
               </button>
-              <button
-                onClick={() => scrollToSection("mostValuedSection")}
-                className="text-black"
-              >
+              <button onClick={handleMostValuedClick}>
                 <MostValuedNav />
               </button>
               <ShoppingCart />

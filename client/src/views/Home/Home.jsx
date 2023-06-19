@@ -3,7 +3,7 @@ import "tailwindcss/tailwind.css";
 import Recommendations from "../../components/Recommendations/Recomendations";
 import MostValued from "../../components/MostValue/MostValue";
 import TopWeek from "../../components/TopWeek/TopWeek";
-import Carousel from "../../components/NewProducts/NewProducts";
+import Inspiration from "../../components/Inspiration/Inspiration";
 import homeimage from "../../assets/image/home-page.webp";
 
 function Home() {
@@ -26,11 +26,12 @@ function Home() {
         <TopWeek />
       </section>
       <br />
-      <section id="newProductsSection"></section>
+      <section id="inspirationSection">
+      <Inspiration />
+      </section>
       <div className="flex-grow">
         <section id="mostValuedSection">
-          <Carousel />
-          <MostValued />
+      <MostValued />
         </section>
       </div>
     </div>
