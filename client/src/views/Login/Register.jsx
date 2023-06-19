@@ -92,6 +92,7 @@ const backToHome = () => {
      <div className="w-full max-w-xs m-auto">
         {error && <Alert message={error}/>}
         <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h1 className="font-bold text-xl text-center mb-4">Registration Form</h1>
           <div className="mb-4">
             <label htmlFor="email"className="block text-gray-700 text-sm font-bold mb-2"> Email </label>
             <input 
@@ -116,9 +117,9 @@ const backToHome = () => {
               <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full flex items-center justify-center">
               Register
               </button>
-              <p className="my-4 text-sm flex justify-between px-3">
+              <p className="my-4 text-sm flex justify-between font-bold px-3">
               Alredy have an Account? 
-              <Link to='/login'>Login</Link>
+              <Link className="text-blue-500" to='/login'>Login</Link>
               </p>
           </form>
         
