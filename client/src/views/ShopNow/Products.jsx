@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../Redux/actions/product/productActions";
+import { filterByName } from "../../Redux/actions/product/productActions";
+
 
 
 const Products = () => {
@@ -33,12 +35,35 @@ const Products = () => {
   const backToHome = () => {
     navigate("/");
   };
+
+
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
   const products = allProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  
+  function handleOrderName (event) {
+    event.preventDefault();
+    dispatch(filterByName(event.target.value));
+    setCurrentPage(1);
+    // setProducts(
+    //   products
+    // )
+   }
+  
+  
+  
+  
+  
+  
   return (
     <div>
       <div className="flex justify-center h-16 items-center">
+
+      <select onChange={(event) => handleOrderName(event)}>
+                    <option>Order by Name</option>
+                    <option value="asc">A - Z</option>
+                    <option value="desc">Z - A</option>
+                </select>
        <Pagination
        productPerPage ={productPerPage}
        currentPage ={currentPage}
@@ -66,6 +91,12 @@ const Products = () => {
         ): undefined}
       </div>
       <br />
+      <Pagination
+       productPerPage ={productPerPage}
+       currentPage ={currentPage}
+      setCurrentPage={setCurrentPage}
+      totalProducts={allProducts.length}
+       /> 
       <div className="text-center">
         <button
           type="button"
