@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "./MostValue.css"
+import "./MostValue.css";
+import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 
 const MostValueCards = ({ id, name, image, price, rating }) => {
   const renderRatingStars = () => {
@@ -11,15 +12,15 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
 
     const stars = [];
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<span key={i} className="star-icon">&#9733;</span>);
+      stars.push(<FaStar key={i} className="star-icon" />);
     }
 
     if (hasHalfStar) {
-      stars.push(<span key="half" className="star-icon">&#9733;</span>);
+      stars.push(<FaStarHalfAlt key="half" className="star-icon" />);
     }
 
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<span key={`empty-${i}`} className="star-icon">&#9734;</span>);
+      stars.push(<FaRegStar key={`empty-${i}`} className="star-icon" />);
     }
 
     return stars;
@@ -35,7 +36,7 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
         </Link>
         <img src={image} alt={name} className="h-48 object-cover mx-auto" />
         <div className="flex items-center">
-          <div className="rating-stars">{renderRatingStars()}</div>
+          <div className="rating-stars flex">{renderRatingStars()}</div>
           <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto ">
             {rating}
           </span>
