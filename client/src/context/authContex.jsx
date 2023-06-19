@@ -42,6 +42,16 @@ export function AuthProvider({ children }) {
     return signInWithPopup(auth, githubProvider);
   };
 
+  const registerWithGoogle = () => {
+    const googleProvider = new GoogleAuthProvider();
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  const registerWithGitHub = () => {
+    const githubProvider = new GithubAuthProvider();
+    return signInWithPopup(auth, githubProvider);
+  };
+
   const logout = () => signOut(auth);
 
   const resetPassword = (email) => {
@@ -58,6 +68,6 @@ export function AuthProvider({ children }) {
 
   return (
     <authContext.Provider
-      value={{singup,login,user,logout,loading,loginWithGoogle,loginWithGitHub,resetPassword}}>{children}</authContext.Provider>
+      value={{singup,login,user,logout,loading,loginWithGoogle,loginWithGitHub,resetPassword, registerWithGitHub, registerWithGoogle}}>{children}</authContext.Provider>
   );
 }
