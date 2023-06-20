@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_CATEGORY, GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY } from "../../action-types/action-types";
+import { GET_CATEGORY, GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY } from "../../action-types/action-types";
 
 
 const HOST = "http://localhost:3001"

@@ -1,6 +1,6 @@
 //? REDUCER WORK IN PROGRESS
 // 
-import { GET_PRODUCTS, PRODUCTS_PAGINATION, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY } from "../../action-types/action-types";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY } from "../../action-types/action-types";
 import { productAVG } from "./logic-ratings";
 
 // const initialState = {
