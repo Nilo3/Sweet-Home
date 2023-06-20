@@ -133,13 +133,15 @@ const backToHome = () => {
            </button>
           </div>
 
-      <button
-        type="button"
-        className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-        onClick={backToHome}
-      >
-        Back to Home
-      </button>
+        <div className="text-center mt-6">
+        <button
+          type="button"
+          className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+          onClick={backToHome}
+        >
+          Back to Home
+        </button>
+      </div>
     </div>
   )
 }

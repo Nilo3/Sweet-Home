@@ -59,9 +59,16 @@ const Products = () => {
   }
 
   
+  function handleClick(event) {
+    event.preventDefault();
+    setCurrentPage(1);
+    dispatch(getProducts());
+    window.location.reload();
+  }
+  
   return (
     <div>
-      <div className="flex justify-center h-16 items-center">
+      <div className="flex cursor-pointer select-none justify-center h-16 items-center">
         <select onChange={(event) => handleOrderName(event)}>
           <option>Order by Name</option>
           <option value="asc">A - Z</option>
@@ -85,6 +92,7 @@ const Products = () => {
             </option>
           ))}
         </select>
+          <button className="text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2" onClick={ (event) => handleClick (event)}>Reload filter</button>
         <div className="flex justify-center">
       <Pagination
         productPerPage={productPerPage}
@@ -104,7 +112,7 @@ const Products = () => {
                 name={product.name}
                 price={product.price}
                 image={product.image}
-                description={product.description}
+                // description={product.description}
                 category= {product.category.map((el) => el.name)}
               />
               
@@ -126,7 +134,7 @@ const Products = () => {
       <div className="text-center mt-6">
         <button
           type="button"
-          className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 mx-auto block"
+          className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
           onClick={backToHome}
         >
           Back to Home
