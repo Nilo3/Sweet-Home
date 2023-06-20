@@ -1,6 +1,6 @@
 //? REDUCER WORK IN PROGRESS
 // 
-import { GET_PRODUCTS, PRODUCTS_PAGINATION, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE } from "../../action-types/action-types";
+import { GET_PRODUCTS, PRODUCTS_PAGINATION, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY } from "../../action-types/action-types";
 import { productAVG } from "./logic-ratings";
 
 // const initialState = {
@@ -68,7 +68,8 @@ const initialState = {
 	details: [],
 	loading: false,
 	error: null,
-	reviews: []
+	reviews: [],
+	category: []
 
 };
 
@@ -138,14 +139,25 @@ const productReducer = (state = initialState, action) => {
 
 		case FILTER_BY_CATEGORY:
 			const getAllProducts = state.getAllProducts;
+		
 			const filteredCategory = getAllProducts.filter((element) => {
-				element.category.includes(action.payload)
+				
+				return element.category[0].name.includes(action.payload)
 			});
+		
 			return {
 				...state,
 				getAllProducts: state.getAllProducts,
 				products: filteredCategory
 			}
+
+		case GET_CATEGORY:
+			return {
+				...state,
+				category: action.payload
+			}
+
+		
 		default: return state;
 	}
 };
