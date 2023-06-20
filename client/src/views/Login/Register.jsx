@@ -4,6 +4,8 @@ import {useNavigate, Link} from 'react-router-dom'
 import {Alert} from './Alert'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaGithub } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
 
 export function Register () {
 
@@ -11,9 +13,10 @@ export function Register () {
   email:'',
   password:'',
 });
-const {singup} = useAuth ()
+
 const navigate = useNavigate()
 const [error, setError] = useState();
+const {singup, registerWithGoogle, registerWithGitHub} = useAuth ()
 
 const handleChange = ({target: {name, value}})  => {
   setUser ({...user,[name]: value})
@@ -41,6 +44,9 @@ const handleSubmit = async (event) => {
     if (user.password.length < 8) 
         setError("Invalid Form, Password must contain greater than or equal to 8 characters.")
 
+    if (error.code === "auth/account-exists-with-different-credential")
+        setError("Sorry, your account already exists with a different credential (GitHub or Google). Try again")
+
     if (!user.email)
     setError("Please enter your email")
         
@@ -56,15 +62,37 @@ const handleSubmit = async (event) => {
     }, 5000); 
   }
 }
+
+const handleGoogleSignIn = async () => {
+  try{
+  await registerWithGoogle()
+  toast.success('WELCOME TO SWEET HOME');
+  navigate('/')
+  } catch(error){
+    setError(error.message);
+  }
+};
+
+const handleGitHubSignIn = async () => {
+  try{ 
+  await registerWithGitHub()
+  toast.success('WELCOME TO SWEET HOME');
+  navigate('/')
+} catch(error){
+  setError(error.message);
+}
+};
+
 const backToHome = () => {
   navigate("/");
 };
 
   return (
    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-xs m-auto">
+     <div className="w-full max-w-xs m-auto">
         {error && <Alert message={error}/>}
         <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h1 className="font-bold text-xl text-center mb-4">Registration Form</h1>
           <div className="mb-4">
             <label htmlFor="email"className="block text-gray-700 text-sm font-bold mb-2"> Email </label>
             <input 
@@ -89,19 +117,31 @@ const backToHome = () => {
               <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full flex items-center justify-center">
               Register
               </button>
-              <p className="my-4 text-sm flex justify-between px-3">
+              <p className="my-4 text-sm flex justify-between font-bold px-3">
               Alredy have an Account? 
-              <Link to='/login'>Login</Link>
-          </p>
-        </form>
+              <Link className="text-blue-500" to='/login'>Login</Link>
+              </p>
+          </form>
+        
+        <button onClick={handleGoogleSignIn} className="bg-slate-50 hover:bg-slate-200 text-black shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full flex items-center mb-4">
+              <FcGoogle size={25} />
+              <span className="ml-2" style={{ margin: '0 auto' }}>Register with Google</span>
+            </button>
+            <button onClick={handleGitHubSignIn} className="bg-slate-50 hover:bg-slate-200 text-black shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full flex items-center">
+            <FaGithub size={25} />
+            <span className="ml-2" style={{ margin: '0 auto' }}>Register with GitHub</span>
+           </button>
+          </div>
+
+        <div className="text-center mt-6">
+        <button
+          type="button"
+          className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+          onClick={backToHome}
+        >
+          Back to Home
+        </button>
       </div>
-      <button
-        type="button"
-        className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-        onClick={backToHome}
-      >
-        Back to Home
-      </button>
     </div>
   )
 }

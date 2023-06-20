@@ -27,3 +27,4 @@ const AuthenticationComponent = () => {
 };
 
 export default AuthenticationComponent;
+

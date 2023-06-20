@@ -107,7 +107,7 @@ function Navbar() {
                       onClick={handleLogout}
                       className="text-2xl"
                     />
-                    <div className="hidden md:block">
+                    <div className="hidden md:block cursor-pointer select-none">
                       <button onClick={handleLogout}>Logout</button>
                     </div>
                   </div>

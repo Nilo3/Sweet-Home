@@ -14,11 +14,11 @@ const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts
   };
 
   return (
-    <nav aria-label="Page navigation example ">
+    <nav aria-label="Page navigation example">
       <ul className="inline-flex -space-x-px">
         <li>
           <a
-            className="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="px-3 py-2 ml-0 leading-tight cursor-pointer select-none text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             onClick={onPreviusPage}
           >
             Previous
@@ -27,9 +27,9 @@ const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts
         {pageNumbers.map((noPage) => (
           <li key={noPage}>
             <a
-              className={`px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
-                currentPage === noPage ? 'bg-gray-300' : '' // Aplica el fondo gris si es la página actual
-              }`}
+              className={`px-3 py-2 leading-tight text-gray-500 cursor-pointer select-none bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+                currentPage === noPage ? 'bg-gray-200' : ''}`
+              }
               onClick={() => setCurrentPage(noPage)}
             >
               {noPage}
@@ -38,7 +38,7 @@ const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts
         ))}
         <li>
           <a
-            className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="px-3 py-2 leading-tight cursor-pointer select-none text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             onClick={onNextPage}
           >
             Next
@@ -50,5 +50,3 @@ const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts
 };
 
 export default Pagination;
-
-

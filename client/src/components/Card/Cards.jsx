@@ -1,30 +1,43 @@
 import { Link } from "react-router-dom";
 
-const Cards = ({ id, name, image, price, description }) => {
+const Cards = ({ id, name, image, price, category }) => {
   return (
-    <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-full flex flex-col justify-between">
-      <div>
+    <div>
+    <div className="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="aspect-w-3 aspect-h-4 mb-4">
         <Link to={`/products/${id}`}>
-          <h5 className="mb-2 text-2xl font-semibold text-center tracking-tight text-gray-900 dark:text-white">
-            {name}
-          </h5>
+          <div className="bg-gray-200 rounded-lg overflow-hidden">
+            <img
+              src={image}
+              alt={name}
+              className="object-cover object-center w-full h-full"
+              style={{ aspectRatio: "3/4" }}
+            />
+          </div>
         </Link>
-        <img src={image} alt={name} className="h-48 object-cover mx-auto mt-4" />
-        <p className="mb-3 font-normal text-gray-500 text-justify dark:text-gray-400 mt-4">
-          {description}
-        </p>
       </div>
-      <div className="flex items-center justify-between mt-4">
-        <span className="text-3xl font-bold text-gray-900 dark:text-white">
-          ${price}
-        </span>
-        <a
-          href="#"
-          className="text-white bg-black hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-        >
-          Add to cart
-        </a>
+      <div className="flex flex-col justify-between h-full">
+        <div>
+          <Link to={`/products/${id}`}>
+            <h5 className="text-2xl font-semibold text-gray-900 dark:text-white">
+              {name}
+            </h5>
+          </Link>
+          <p className="text-gray-500 dark:text-gray-400">{category}</p>
+        </div>
+        <div className="flex items-center justify-between mt-4">
+          <span className="text-3xl font-bold text-gray-900 dark:text-white">
+            ${price}
+          </span>
+          <a
+            href="#"
+            className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer select-none text-center"
+          >
+            Add to cart
+          </a>
+        </div>
       </div>
+    </div>
     </div>
   );
 };

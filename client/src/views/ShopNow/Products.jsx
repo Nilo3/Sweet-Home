@@ -1,31 +1,30 @@
-//? Products para mostrar produtos en /products:
-
 import Cards from "../../components/Card/Cards";
 import Pagination from "../../components/Pagination/Pagination";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../Redux/actions/product/productActions";
-
+import {
+  filterByCategory,
+  filterByPrice,
+  getCategory,
+  getProducts,
+} from "../../Redux/actions/product/productActions";
+import { filterByName } from "../../Redux/actions/product/productActions";
 
 const Products = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
+  const category = useSelector((state) => state.category);
+  console.log(category);
+  const [products, setProducts] = useState([]);
 
-  const [setProducts] = useState([]);
-
-
-
-  const [productPerPage, setProductsPerPage] = useState(6)
-  const [currentPage, setCurrentPage] = useState(1)
-
-  
+  const [productPerPage, setProductsPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(getProducts());
-    
-    console.log(allProducts)
-    
+    dispatch(getCategory());
+   dispatch(filterByCategory())
   }, [dispatch]);
 
   const navigate = useNavigate();
@@ -33,43 +32,109 @@ const Products = () => {
   const backToHome = () => {
     navigate("/");
   };
+
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
-  const products = allProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const productsToDisplay = allProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  function handleOrderName(event) {
+    event.preventDefault();
+    dispatch(filterByName(event.target.value));
+    setCurrentPage(1);
+  }
+
+  function handleOrderPrice(event) {
+    event.preventDefault();
+    dispatch(filterByPrice(event.target.value));
+    setCurrentPage(1);
+  }
+
+  function handleFilterCategory(event) {
+    event.preventDefault();
+    dispatch(filterByCategory(event.target.value));
+    setCurrentPage(1);
+  }
+
+  
+  function handleClick(event) {
+    event.preventDefault();
+    setCurrentPage(1);
+    dispatch(getProducts());
+    window.location.reload();
+  }
+  
   return (
     <div>
-      <div className="flex justify-center h-16 items-center">
-       <Pagination
-       productPerPage ={productPerPage}
-       currentPage ={currentPage}
-      setCurrentPage={setCurrentPage}
-      totalProducts={allProducts.length}
-       /> 
-       </div> 
+      <div className="flex cursor-pointer select-none justify-center h-16 items-center">
+        <select onChange={(event) => handleOrderName(event)}>
+          <option>Order by Name</option>
+          <option value="asc">A - Z</option>
+          <option value="desc">Z - A</option>
+        </select>
+        <select onChange={(event) => handleOrderPrice(event)}>
+          <option>Price</option>
+          <option value="high">High to Low</option>
+          <option value="low">Low to High</option>
+        </select>
+        <select
+          onChange={(event) => handleFilterCategory(event)}
+          defaultValue={"default"}
+        >
+          <option value="default" disabled>
+            Category
+          </option>
+          { category?.map((el) => (
+            <option key={el._id} value={el.name}>
+              {el.name}
+            </option>
+          ))}
+        </select>
+          <button className="text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2" onClick={ (event) => handleClick (event)}>Reload filter</button>
+        <div className="flex justify-center">
+      <Pagination
+        productPerPage={productPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalProducts={allProducts.length}
+      />
+      </div>
+      </div>
       <div className="grid grid-cols-3 gap-4">
-        {
-        products.length > 0
-        ? products.map(
-          (
-            product //? Cambio debido a que la respuesta desde el back ahora son todos los productos
-          ) => (
+        {productsToDisplay.length > 0 ? (
+          productsToDisplay.map((product) => (
+            
             <div key={product._id} className="flex justify-center">
               <Cards
                 id={product._id}
                 name={product.name}
                 price={product.price}
                 image={product.image}
-                description={product.description}
+                // description={product.description}
+                category= {product.category.map((el) => el.name)}
               />
+              
             </div>
-          )
-        ): undefined}
+          ))
+        ) : (
+          <div>No products found.</div>
+        )}
       </div>
       <br />
-      <div className="text-center">
+      <div className="flex justify-center">
+      <Pagination
+        productPerPage={productPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalProducts={allProducts.length}
+      />
+      </div>
+      <div className="text-center mt-6">
         <button
           type="button"
-          className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 mx-auto block"
+          className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
           onClick={backToHome}
         >
           Back to Home

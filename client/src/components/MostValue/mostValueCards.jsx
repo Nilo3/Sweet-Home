@@ -35,20 +35,20 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
           </h5>
         </Link>
         <img src={image} alt={name} className="h-48 object-cover mx-auto" />
-        <div className="flex items-center">
+        <div className="flex items-center mt-2">
           <div className="rating-stars flex">{renderRatingStars()}</div>
           <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto ">
             {rating}
           </span>
         </div>
       </div>
-      <div className="flex items-center justify-between">
-        <span className="text-3xl font-bold text-gray-900 dark:text-white">
+      <div className="flex items-center justify-between mt-4">
+        <span className="text-3xl font-bold text-gray-900 dark:text-white mt-4">
           ${price}
         </span>
         <a
           href="#"
-          className="text-white bg-black hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
         >
           Add to cart
         </a>
