@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_CATEGORY, GET_PRODUCTS, PRODUCTS_PAGINATION, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY } from "../../action-types/action-types";
+import {GET_CATEGORY, GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY } from "../../action-types/action-types";
 
 
 const HOST = "http://localhost:3001"
@@ -26,16 +26,6 @@ export function getProductDetail(id) {
             console.log(error)
         }
     }
-}
-
-export function getPagination(id) {
-    return async function (dispatch) {
-        let response = await axios.get(`${HOST}/api/product?page=${id}`); // exactly where back end and front end connect
-        return dispatch({
-            type: PRODUCTS_PAGINATION,
-            payload: response.data
-        });
-    };
 }
 
 export function getReviews() {

@@ -11,9 +11,6 @@ import {
 } from "../../Redux/actions/product/productActions";
 import { filterByName } from "../../Redux/actions/product/productActions";
 
-import SearchBar from "./searchBar";
-
-
 const Products = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
@@ -27,6 +24,7 @@ const Products = () => {
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getCategory());
+   dispatch(filterByCategory())
   }, [dispatch]);
 
   const navigate = useNavigate();
@@ -63,9 +61,6 @@ const Products = () => {
   
   return (
     <div>
-      
-        {/* <SearchBar /> */}
-      
       <div className="flex justify-center h-16 items-center">
         <select onChange={(event) => handleOrderName(event)}>
           <option>Order by Name</option>
@@ -84,23 +79,21 @@ const Products = () => {
           <option value="default" disabled>
             Category
           </option>
-          {category?.map((el) => (
+          { category?.map((el) => (
             <option key={el._id} value={el.name}>
               {el.name}
             </option>
           ))}
         </select>
-        
-
-      <div className="flex justify-center">
-        <Pagination
-          productPerPage={productPerPage}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          totalProducts={allProducts.length}
-        />
+        <div className="flex justify-center">
+      <Pagination
+        productPerPage={productPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalProducts={allProducts.length}
+      />
       </div>
-       </div> 
+      </div>
       <div className="grid grid-cols-3 gap-4">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
@@ -123,12 +116,12 @@ const Products = () => {
       </div>
       <br />
       <div className="flex justify-center">
-        <Pagination
-          productPerPage={productPerPage}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          totalProducts={allProducts.length}
-        />
+      <Pagination
+        productPerPage={productPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalProducts={allProducts.length}
+      />
       </div>
       <div className="text-center mt-6">
         <button
