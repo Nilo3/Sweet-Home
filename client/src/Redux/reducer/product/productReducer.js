@@ -1,66 +1,8 @@
 //? REDUCER WORK IN PROGRESS
 // 
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY } from "../../action-types/action-types";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY, ADD_TO_CART, DELETE_FROM_CART} from "../../action-types/action-types";
 import { productAVG } from "./logic-ratings";
 
-// const initialState = {
-// 	products: [],
-// 	loading: false,
-// 	error: null,
-// 	pageIndex: 1,
-// 	pages: {
-// 		next: null,
-// 		prev: null,
-// 		current: 1,
-// 		limit: null,
-// 	},
-// 	activeProductDetail: null,
-// 	detail:{}
-// };
-
-// const productReducer = (state = initialState, { type, payload }) => {
-// 	switch (type) {
-// 		case GET_PRODUCTS:
-// 			return {
-// 				...state,
-// 				products: payload,
-// 				loading: false,
-// 			};
-// 		case 'GET_PRODUCTS_LOADING':
-// 			return {
-// 				...state,
-// 				loading: true,
-// 			};
-// 		case 'GET_PRODUCTS_ERROR':
-// 			return {
-// 				...state,
-// 				error: payload,
-// 				loading: false,
-// 			};
-// 		case PRODUCTS_PAGINATION:
-// 			return {
-// 				...state,
-// 				products: payload,
-// 			};
-
-// 			case GET_PRODUCT_DETAIL:
-//             return{
-//                 ...state,
-//                 detail: payload
-//             }
-
-
-// 		default:
-// 			return state;
-// 	}
-// };
-
-// export default productReducer;
-
-
-//? REDUCER PARA MOSTRAR PRODUCTS
-
-// import { GET_PRODUCTS, GET_PRODUCT_DETAIL } from "../../action-types/action-types";
 
 const initialState = {
 	products: [], // Estado que se ejecuta, inicialmente en Shop Now
@@ -69,7 +11,8 @@ const initialState = {
 	loading: false,
 	error: null,
 	reviews: [],
-	category: []
+	category: [],
+	shoppingCart:[],
 
 };
 
@@ -157,6 +100,17 @@ const productReducer = (state = initialState, action) => {
 				category: action.payload
 			}
 
+		case ADD_TO_CART:
+			return {
+				...state,
+				shoppingCart:[...state.shoppingCart, action.payload]
+			}
+		
+		case DELETE_FROM_CART:
+			return{
+				...state,
+				shoppingCart:state.shoppingCart.filter(product => product._id !== action.payload)
+			}
 		
 		default: return state;
 	}
