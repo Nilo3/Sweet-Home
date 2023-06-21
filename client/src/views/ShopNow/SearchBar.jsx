@@ -1,13 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { filterByName } from "../../Redux/actions/product/productActions";
+import { searchProducts } from "../../Redux/actions/product/productActions";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
 
   const handleSearch = () => {
-    dispatch(filterByName(searchTerm));
+    dispatch(searchProducts(searchTerm));
+    console.log(searchTerm)
   };
 
   return (
@@ -15,9 +16,9 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Search products"
-        className="py-2 px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        className="py-2 px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <button
         className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
