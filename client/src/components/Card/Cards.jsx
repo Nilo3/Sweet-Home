@@ -5,33 +5,24 @@ import { Link } from "react-router-dom";
 
 const Cards = ({ id, name, image, price, category }) => {
   const dispatch = useDispatch();
-  const allShoppingCart = useSelector((state) => state.shoppingCart);
   const [inCart, setInCart] = useState(false);
 
-  
+  const allShoppingCart = useSelector((state) => state.shoppingCart);
+  const isProductInCart = allShoppingCart.some((product) => product.id === id);
 
   useEffect(() => {
-    dispatch(removefromCart(id));
-  }, [dispatch, id]);
+    setInCart(isProductInCart);
+  }, [isProductInCart]);
 
-  useEffect(() => {
-    allShoppingCart.forEach((prod) => {
-       if (prod.id === id) {
-          setInCart(true);
-       }
-    });
- }, [allShoppingCart, id]);
-
- const handleShoppingCart = () => {
-  if (inCart) {
-    setInCart(false);
-    dispatch(removefromCart(id)); 
-  } else {
-    setInCart(true);
-    dispatch(addtoCart({ id, name, image, price })); 
-  }
-};
-
+  const handleShoppingCart = () => {
+    if (inCart) {
+      setInCart(false);
+      dispatch(removefromCart(id));
+    } else {
+      setInCart(true);
+      dispatch(addtoCart({ id, name, image, price }));
+    }
+  };
   return (
     <div>
     <div className="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

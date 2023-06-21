@@ -2,14 +2,38 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./MostValue.css";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
+import { addtoCart, removefromCart } from "../../Redux/actions/product/productActions";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const MostValueCards = ({ id, name, image, price, rating }) => {
+  const dispatch = useDispatch();
+  const [inCart, setInCart] = useState(false);
+
+  const allShoppingCart = useSelector((state) => state.shoppingCart);
+  const isProductInCart = allShoppingCart.some((product) => product.id === id);
+
+  useEffect(() => {
+    setInCart(isProductInCart);
+  }, [isProductInCart]);
+
+  const handleShoppingCart = () => {
+    if (inCart) {
+      setInCart(false);
+      dispatch(removefromCart(id));
+    } else {
+      setInCart(true);
+      dispatch(addtoCart({ id, name, image, price }));
+    }
+  };
+
   const renderRatingStars = () => {
     const maxRating = 5;
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
     const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
 
+    
     const stars = [];
     for (let i = 0; i < fullStars; i++) {
       stars.push(<FaStar key={i} className="star-icon" />);
@@ -46,12 +70,12 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
         <span className="text-3xl font-bold text-gray-900 dark:text-white mt-4">
           ${price}
         </span>
-        <a
+        <button onClick={handleShoppingCart}
           href="#"
           className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
         >
           Add to cart
-        </a>
+        </button>
       </div>
     </div>
   );

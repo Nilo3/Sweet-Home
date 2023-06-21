@@ -4,9 +4,11 @@ import { removefromCart } from "../../Redux/actions/product/productActions";
 import {getTotalPrice, calculateTotal} from "./totalprice"
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg"
 import dhlLogo from "../../assets/image/DHL-logo.png"
+import { useState } from "react";
 
 const Shopping = () => {
     const allShoppingCart = useSelector((state) => state.shoppingCart);
+    const [selectedMethod, setSelectedMethod] = useState("method1"); 
     console.log(allShoppingCart)
     const dispatch = useDispatch();
 
@@ -14,6 +16,9 @@ const Shopping = () => {
      console.log(productId)
       dispatch(removefromCart(productId));
     }
+    const handleMethodSelection = (method) => {
+      setSelectedMethod(method);
+    };
     const subTotal = getTotalPrice(allShoppingCart);
     const formattedSubTotal = subTotal.toFixed(2);
   console.log("Total Price:", subTotal);
@@ -133,28 +138,40 @@ const Shopping = () => {
    <p className="mt-8 text-lg font-medium">Shipping Methods</p>
   
               <form className="mt-5 grid gap-6">
-              <div className="relative">
+                <div className="relative">
+              <div className= {`shopping-method ${selectedMethod === "method1" ? "selected" : ""}`}
+        onClick={() => handleMethodSelection("method1")}>
                <input className="peer hidden" id="radio_1" type="radio" name="radio" checked />
-                <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" for="radio_1">
+               <span className={`method-label ${selectedMethod === "method1" ? "selected" : ""}`}>
+        </span>               
+        <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" for="radio_1">
                 <img className="w-14 object-contain" src={fedexLogo} alt="" />
                 <div className="ml-5">
               <span className="mt-2 font-semibold">Fedex Delivery</span>
               <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
-          </div>
+               </div>
                 </label>  
+                </div>
               </div>
+             
               <div className="relative">
-               <input className="peer hidden" id="radio_1" type="radio" name="radio" checked />
-                <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" for="radio_1">
+              <div className={`shopping-method ${selectedMethod === "method2" ? "selected" : ""}`}
+        onClick={() => handleMethodSelection("method2")}>
+               <input className="peer hidden" id="radio_2" type="radio" name="radio" checked />
+               <span className={`method-label ${selectedMethod === "method2" ? "selected" : ""}`}>
+        </span>               
+        <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" for="radio_2">
                 <img className="w-14 object-contain" src={dhlLogo} alt="" />
                 <div className="ml-5">
               <span className="mt-2 font-semibold">DHL Delivery</span>
               <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
-          </div>
+               </div>
                 </label>  
+                </div>
               </div>
+
                 </form>
 
                 <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
