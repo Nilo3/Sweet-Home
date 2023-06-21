@@ -91,6 +91,7 @@ export const searchProducts = (searchTerm) => {
         payload: searchTerm
     }
 }
+
 export const addtoCart = (product) => {
     return {
         type: ADD_TO_CART,
