@@ -108,11 +108,12 @@ const productReducer = (state = initialState, action) => {
 				shoppingCart:[...state.shoppingCart, action.payload]
 			}
 		
-		case DELETE_FROM_CART:
-			return{
-				...state,
-				shoppingCart:state.shoppingCart.filter(product => product._id !== action.payload)
-			}
+			case DELETE_FROM_CART:
+            return {
+                ...state,
+                shoppingCart: state.shoppingCart.filter((product) => product.id !== action.payload),
+				
+            };
 		
 		
 
