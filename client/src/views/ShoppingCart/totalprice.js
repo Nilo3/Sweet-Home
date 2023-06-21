@@ -9,3 +9,12 @@ export const getTotalPrice = (shoppingCart) => {
   
     return totalPrice;
   };
+
+  export const calculateTotal = (shippingRate, subTotal) => {
+    if (subTotal === 0) {
+      return 0;
+    } else {
+      return shippingRate + subTotal;
+    }
+  };
+  
