@@ -12,8 +12,25 @@ import {Route, Routes} from 'react-router-dom'
 import { AuthProvider } from './context/authContex'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react'
+import { auth } from './views/Login/Auth/FireBase'
+import {initialState} from './Redux/reducer/product/productReducer'
 
 function App() {
+
+  const [{user}, dispatch] = initialState()
+
+useEffect(()=>{
+  auth.onAuthStateChanged(authUser)
+  console.log(authUser)
+  if(authUser){
+    dispatch ({
+      type: actionTypes.SET_USER,
+      user: authUser,
+    })
+  }
+},[])
+
   return (
     <div>
       <AuthProvider>
