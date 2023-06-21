@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { BsCart4 } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+
 
 const ShoppingCart = () => {
-  const [cartCount, setCartCount] = useState(0);
 
-  const addToCart = () => {
-    setCartCount(cartCount + 1);
+  const allShoppingCart = useSelector((state) => state.shoppingCart);
+  const [cartCount, setCartCount] = useState(allShoppingCart.length)
+
+  useEffect(() => {
+    setCartCount(allShoppingCart.length);
+  }, [allShoppingCart]);
+
+  const navigate = useNavigate();
+  const navigateToshopping = () => {
+    navigate("/shopping");
   };
 
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3 select-none">
         <div
-          onClick={addToCart}
+          onClick={navigateToshopping}
           className="p-4 md:py-1 md:px-2 border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
         >
           <BsCart4 className="text-3xl" />
