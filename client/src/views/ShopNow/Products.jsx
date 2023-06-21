@@ -68,11 +68,12 @@ const Products = () => {
   }
   
   return (
+    
     <div>
-      <div className="flex cursor-pointer select-none justify-center h-16 items-center">
-
-        <SearchBar />
-        
+      <div className="flex justify-center">
+          <SearchBar />
+       </div>
+      <div className="flex cursor-pointer select-none justify-center h-16 items-center">         
         <select onChange={(event) => handleOrderName(event)}>
           <option>Order by Name</option>
           <option value="asc">A - Z</option>

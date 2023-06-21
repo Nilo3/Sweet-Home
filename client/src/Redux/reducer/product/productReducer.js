@@ -108,18 +108,15 @@ const productReducer = (state = initialState, action) => {
 				shoppingCart:[...state.shoppingCart, action.payload]
 			}
 		
-			case DELETE_FROM_CART:
-            return {
-                ...state,
-                shoppingCart: state.shoppingCart.filter((product) => product.id !== action.payload),
+		case DELETE_FROM_CART:
+        return {
+            ...state,
+            shoppingCart: state.shoppingCart.filter((product) => product.id !== action.payload),
 				
-            };
-		
-		
+        };		
+	
 
-	//**************************************************************** */
-
-	case SEARCH_PRODUCTS:
+		case SEARCH_PRODUCTS:
 		const searchTerm = action.payload.toLowerCase();
 		const filteredProducts = state.getAllProducts.filter(product => product.name.toLowerCase().includes(searchTerm))
 

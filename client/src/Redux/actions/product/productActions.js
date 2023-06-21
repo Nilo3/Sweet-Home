@@ -82,9 +82,6 @@ export const filterByCategory = (payload) => {
 }
 
 
-
-//**************************************************************** */
-
 export const searchProducts = (searchTerm) => {
     return {
         type: SEARCH_PRODUCTS,
