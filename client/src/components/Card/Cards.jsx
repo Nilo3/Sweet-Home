@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Cards = ({ id, name, image, price, category }) => {
+const Cards = ({ id, name, image, price, category, showAddToCartButton }) => {
   const dispatch = useDispatch();
   const allShoppingCart = useSelector((state) => state.shoppingCart);
   const [inCart, setInCart] = useState(false);
@@ -11,7 +11,7 @@ const Cards = ({ id, name, image, price, category }) => {
   
 
   useEffect(() => {
-    dispatch(removefromCart(id)); // Pasar solo el ID del producto
+    dispatch(removefromCart(id)); 
   }, [dispatch, id]);
 
   useEffect(() => {
@@ -25,10 +25,10 @@ const Cards = ({ id, name, image, price, category }) => {
  const handleShoppingCart = () => {
   if (inCart) {
     setInCart(false);
-    dispatch(removefromCart(id)); // Pasar solo el ID del producto
+    dispatch(removefromCart(id)); 
   } else {
     setInCart(true);
-    dispatch(addtoCart({ id, name, image, price })); // Pasar los datos del producto como objeto payload
+    dispatch(addtoCart({ id, name, image, price })); 
   }
 };
 
@@ -60,11 +60,15 @@ const Cards = ({ id, name, image, price, category }) => {
           <span className="text-3xl font-bold text-gray-900 dark:text-white">
             ${price}
           </span>
-          <button onClick={handleShoppingCart}
-            href="#"
-            className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer select-none text-center"
-          >Add to cart
-          </button>
+          {showAddToCartButton && (
+            <button
+              onClick={handleShoppingCart}
+              href="#"
+              className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer select-none text-center"
+            >
+              Add to cart
+            </button>
+          )}
         </div>
       </div>
     </div>

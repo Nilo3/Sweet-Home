@@ -52,6 +52,7 @@ const Shopping = () => {
             name={prod.name}
             price={prod.price}
             image={prod.image}
+            showAddToCartButton={false}
           />
           </div>
         ))}
