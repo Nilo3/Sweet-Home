@@ -25,6 +25,15 @@ const Shopping = () => {
 
     const shippingRate = 8
     const total = calculateTotal(shippingRate, subTotal);
+
+    const productCounts = allShoppingCart.reduce((counts, product) => {
+      if (counts[product.id]) {
+        counts[product.id] += 1;
+      } else {
+        counts[product.id] = 1;
+      }
+      return counts;
+    }, {});
     
     return (
       <>
@@ -64,21 +73,28 @@ const Shopping = () => {
             <p className="text-xl font-medium">Order Summary</p>
             <p className="text-gray-400">Check your items. And select a suitable shipping method.</p>
              <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
-              {allShoppingCart?.length === 0 ? (
-              <p className="text-gray-400 flex items-center justify-center">Your shopping Cart is empty.</p>
-              ) : (
-              allShoppingCart.map((prod) => (
-              <div key={prod.id} className="flex flex-col rounded-lg bg-white sm:flex-row">
-             <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={prod.image} alt="" />
+             {allShoppingCart?.length === 0 ? (
+        <p className="text-gray-400 flex items-center justify-center">Your shopping Cart is empty.</p>
+      ) : (
+        Object.entries(productCounts).map(([productId, count]) => {
+          const product = allShoppingCart.find((prod) => prod.id === productId);
+          const totalPrice = product.price * count;
+
+          return (
+            <div key={product.id} className="flex flex-col rounded-lg bg-white sm:flex-row">
+              <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={product.image} alt="" />
               <div className="flex w-full flex-col px-4 py-4">
-              <div className="flex items-center justify-between">
-               <span className="font-semibold">{prod.name}</span>
-               <button className="ml-auto" onClick={() => handleDeleteFromCart(prod.id)}>X</button>
-               </div>
-               <p className="text-lg font-bold">${prod.price}</p>
-               </div>
-               </div>
-      )))}
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">{product.name}</span>
+                  <button className="ml-auto" onClick={() => handleDeleteFromCart(product.id)}>X</button>
+                </div>
+                <p className="text-lg font-bold">${product.price}</p>
+                <p className="text-sm text-gray-500">Quantity: {count}</p>
+                <p className="text-sm text-gray-500">Total Price: ${totalPrice}</p>
+              </div>
+            </div>
+          );
+        }))}
               </div>
             </div>
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto">
