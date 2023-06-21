@@ -4,6 +4,7 @@ import Footer from './components/Footer/Footer'
 import Products from './views/ShopNow/Products'
 import About from './views/About/About'
 import Detail from './views/Detail/Detail'
+import Shopping from "./views/ShoppingCart/ShoppingCart"
 import Home from './views/Home/Home'
 import Login from './views/Login/Login'
 import Register from './views/Login/Register'
@@ -34,6 +35,12 @@ function App() {
             <Navbar />
             <br /><br /><br />
             <About />
+            <Footer />
+          </>} />
+          <Route path='/shopping' element={<>
+            <Navbar />
+            <br /><br /><br />
+            <Shopping />
             <Footer />
           </>} />
           <Route path='/products/:id' element={<>
