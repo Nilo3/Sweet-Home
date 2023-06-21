@@ -1,11 +1,18 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import ShoppingCards from "./ShoppingCards"
-import Cards from "../../components/Card/Cards"
+import { removefromCart } from "../../Redux/actions/product/productActions";
 
 
 const Shopping = () => {
     const allShoppingCart = useSelector((state) => state.shoppingCart);
+    console.log(allShoppingCart)
+    const dispatch = useDispatch();
+
+    const handleDeleteFromCart = (productId) => {
+     console.log(productId)
+      dispatch(removefromCart(productId));
+    
+    };
   
     return (
       <>
@@ -46,15 +53,18 @@ const Shopping = () => {
         <p className="text-gray-400">Check your items. And select a suitable shipping method.</p>
         <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
         {allShoppingCart?.map((prod) => (
-        <div key={prod._id} className="flex flex-col rounded-lg bg-white sm:flex-row">
-          <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={prod.image} alt="" />
-          <div className="flex w-full flex-col px-4 py-4">
-            <span className="font-semibold">{prod.name}</span>
-            <p className="text-lg font-bold">{prod.price}</p>
-          </div>
-        </div>
+            <div key={prod.id} className="flex flex-col rounded-lg bg-white sm:flex-row">
+             <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={prod.image} alt="" />
+            <div className="flex w-full flex-col px-4 py-4">
+           <div className="flex items-center justify-between">
+           <span className="font-semibold">{prod.name}</span>
+           <button className="ml-auto" onClick={() => handleDeleteFromCart(prod.id)}>X</button>
+           </div>
+           <p className="text-lg font-bold">{prod.price}</p>
+            </div>
+            </div>
       ))}
-        </div>
+              </div>
 
             </div>
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto">
