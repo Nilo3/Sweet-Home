@@ -21,7 +21,7 @@ export default function MostValue() {
       <br />
       <h1 className="text-4xl font-bold text-center">Most Valued Products</h1>
       <br />
-      <div className="grid-container ml-4">
+      <div className="grid-container ml-4 flex justify-center">
         {currentReviews.map((product) => (
           <div key={product._id}>
             <MostValueCards
@@ -37,5 +37,3 @@ export default function MostValue() {
     </div>
   );
 }
-
-
