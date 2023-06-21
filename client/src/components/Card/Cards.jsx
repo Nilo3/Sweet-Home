@@ -11,7 +11,7 @@ const Cards = ({ id, name, image, price, category }) => {
   
 
   useEffect(() => {
-    dispatch(removefromCart(id)); // Pasar solo el ID del producto
+    dispatch(removefromCart(id));
   }, [dispatch, id]);
 
   useEffect(() => {
@@ -25,10 +25,10 @@ const Cards = ({ id, name, image, price, category }) => {
  const handleShoppingCart = () => {
   if (inCart) {
     setInCart(false);
-    dispatch(removefromCart(id)); // Pasar solo el ID del producto
+    dispatch(removefromCart(id)); 
   } else {
     setInCart(true);
-    dispatch(addtoCart({ id, name, image, price })); // Pasar los datos del producto como objeto payload
+    dispatch(addtoCart({ id, name, image, price })); 
   }
 };
 

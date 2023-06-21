@@ -46,19 +46,15 @@ const Shopping = () => {
         <p className="text-gray-400">Check your items. And select a suitable shipping method.</p>
         <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
         {allShoppingCart?.map((prod) => (
-             <div key={prod._id}>
-          <Cards
-            id={prod.id}
-            name={prod.name}
-            price={prod.price}
-            image={prod.image}
-          />
+        <div key={prod._id} className="flex flex-col rounded-lg bg-white sm:flex-row">
+          <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={prod.image} alt="" />
+          <div className="flex w-full flex-col px-4 py-4">
+            <span className="font-semibold">{prod.name}</span>
+            <p className="text-lg font-bold">{prod.price}</p>
           </div>
-        ))}
         </div>
-
-
-
+      ))}
+        </div>
 
             </div>
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto">
