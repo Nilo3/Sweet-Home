@@ -1,6 +1,6 @@
 import axios from "axios";
-import { GET_CATEGORY, GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY, ADD_TO_CART, DELETE_FROM_CART} from "../../action-types/action-types";
-import { GET_CATEGORY, GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY, SEARCH_PRODUCTS} from "../../action-types/action-types";
+import { GET_CATEGORY, GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY, SEARCH_PRODUCTS, ADD_TO_CART, DELETE_FROM_CART} from "../../action-types/action-types";
+
 
 
 const HOST = "http://localhost:3001"
@@ -80,3 +80,29 @@ export const filterByCategory = (payload) => {
         payload
     }
 }
+
+
+
+//**************************************************************** */
+
+export const searchProducts = (searchTerm) => {
+    return {
+        type: SEARCH_PRODUCTS,
+        payload: searchTerm
+    }
+}
+export const addtoCart = (product) => {
+    return {
+        type: ADD_TO_CART,
+        payload:product
+    }
+}
+
+export const removefromCart = (id) => {
+    return {
+        type: DELETE_FROM_CART,
+        payload:id
+    }
+}
+
+
