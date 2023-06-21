@@ -1,7 +1,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { removefromCart } from "../../Redux/actions/product/productActions";
-import {getTotalPrice} from "./totalprice"
+import {getTotalPrice, calculateTotal} from "./totalprice"
 
 const Shopping = () => {
     const allShoppingCart = useSelector((state) => state.shoppingCart);
@@ -13,10 +13,11 @@ const Shopping = () => {
       dispatch(removefromCart(productId));
     }
     const subTotal = getTotalPrice(allShoppingCart);
+    const formattedSubTotal = subTotal.toFixed(2);
   console.log("Total Price:", subTotal);
 
     const shippingRate = 8
-    const total = shippingRate + subTotal
+    const total = calculateTotal(shippingRate, subTotal);
     
     return (
       <>
@@ -117,7 +118,7 @@ const Shopping = () => {
 <div className="mt-6 border-t border-b py-2">
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Subtotal</p>
-          <p className="font-semibold text-gray-900">${subTotal}</p>
+          <p className="font-semibold text-gray-900">${formattedSubTotal}</p>
         </div>
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Shipping</p>
