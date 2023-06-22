@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useAuth } from "../../context/authContex";
-import {useNavigate, Link, useHistory} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 import {Alert} from './Alert'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,11 +19,11 @@ export function Register () {
 // const [email, setEmail] = useState("")
 // const [password, setPassword] = useState("")
 // const [confirmPassword, setConfirmPassword] = useState("")
- const history = useHistory()
+
 
 const navigate = useNavigate()
 const [error, setError] = useState();
-const {singup, registerWithGoogle, registerWithGitHub} = useAuth ()
+const {singup, registerWithGoogle, registerWithGitHub,idUser} = useAuth ()
 
 const handleChange = ({ target: { name, value } }) => {
   setUser({ ...user, [name]: value });
@@ -34,9 +34,9 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const handleSubmit = async (event) => {
   event.preventDefault();
   setError('');
- if(user){
-  history.push("/");
- }
+//  if(user){
+//   navigate("/");
+ 
 
 
   if (user.password !== user.confirmPassword) {
@@ -46,7 +46,7 @@ const handleSubmit = async (event) => {
 
   try {
     await singup(user.email, user.password);
-    console.log(user)
+   
     toast.success('Successful registration');
     navigate('/');
   } catch (error) {
@@ -147,6 +147,7 @@ const backToHome = () => {
                 onChange={handleChange}
               />
           </div>
+          {/* <div>{user}</div> */}
           <div className="mb-4">
             <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
               Password

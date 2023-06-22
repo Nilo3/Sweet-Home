@@ -1,7 +1,8 @@
-import { SET_USER } from "../../action-types/action-types";
+import { SET_USER, EMPTY_CART } from "../../action-types/action-types";
 
 const initialState = {
   user: null,
+  shoppingCart:[]
 };
 
 const userReducer = (state = initialState, action) => {
@@ -11,6 +12,12 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: action.user,
       };
+
+     case EMPTY_CART:
+        return {
+            ...state,
+            shoppingCart: action.shoppingCart,
+        } 
     default:
       return state;
   }
