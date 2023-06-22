@@ -87,9 +87,9 @@ function Navbar() {
             <div className="hidden md:flex md:flex-row md:items-center md:gap-3">
               <ShopNowNav />
               <AboutNav />
-              <button onClick={handleRecommendationsClick}>
+              <div onClick={handleRecommendationsClick}>
                 <RecomendationsNav />
-              </button>
+              </div>
               <button onClick={handleInspirationClick}>
                 <Inspiration />
               </button>
