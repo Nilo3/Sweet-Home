@@ -96,7 +96,7 @@ const Detail = () => {
               <span className="mt-1 block text-center text-xs">$80/mo</span>
             </label>
             <label className="">
-              <input type="radio" name="subscription" value="8 Months" className="peer sr-only" checked />
+              <input type="radio" name="subscription" value="8 Months" className="peer sr-only" defaultChecked />
               <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">8 Months</p>
               <span className="mt-1 block text-center text-xs">${product.price}</span>
             </label>
