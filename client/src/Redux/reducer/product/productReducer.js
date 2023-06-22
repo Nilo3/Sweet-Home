@@ -1,6 +1,6 @@
 //? REDUCER WORK IN PROGRESS
 // 
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY, ADD_TO_CART, DELETE_FROM_CART,  SEARCH_PRODUCTS } from "../../action-types/action-types";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY, ADD_TO_CART, DELETE_FROM_CART,  SEARCH_PRODUCTS, POST_USER } from "../../action-types/action-types";
 import { productAVG } from "./logic-ratings";
 
 
@@ -124,6 +124,11 @@ const productReducer = (state = initialState, action) => {
 			...state,
 			products: filteredProducts
 		}
+
+		case POST_USER:
+			return {
+				...state
+			}
 		default: return state;
 	}
 };

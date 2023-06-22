@@ -103,4 +103,11 @@ export const removefromCart = (id) => {
     }
 }
 
+export function postUser (payload) {
+    return async function(dispatch) {
+        const response = await axios.post("http://localhost:3001/api/users" , payload)
+        return response
+       
+    }
+}
 

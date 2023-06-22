@@ -6,14 +6,18 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+import { postUser } from "../../Redux/actions/product/productActions";
+import {useDispatch} from "react-redux"
 
 export function Register () {
-
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
+  name: "",
   email:'',
   password:'',
-  confirmPassword: '',
 });
+
+console.log(user);
 
 const navigate = useNavigate()
 const [error, setError] = useState();
@@ -27,12 +31,11 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const handleSubmit = async (event) => {
   event.preventDefault();
-  setError('');
+  dispatch(postUser(user))
 
-  if (user.password !== user.confirmPassword) {
-    setError('Las contraseñas no coinciden');
-    return;
-  }
+
+
+
 
   try {
     await singup(user.email, user.password);
@@ -114,16 +117,7 @@ const backToHome = () => {
                 onChange={handleChange}
               />
           </div>
-          <div className="mb-4">
-            <label htmlFor="lastName"className="block text-gray-700 text-sm font-bold mb-2"> Last Name </label>
-            <input 
-                type="lastName" 
-                name="lastName" 
-                placeholder="Please, enter you email" 
-                className="shadow appearance-none border text-xs rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                onChange={handleChange}
-              />
-          </div>
+         
           <div className="mb-4">
             <label htmlFor="email"className="block text-gray-700 text-sm font-bold mb-2"> Email </label>
             <input 
@@ -147,23 +141,8 @@ const backToHome = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-4">
-          <label
-              htmlFor="confirmPassword"
-              className="block text-gray-700 text-sm font-bold mb-2"
-            >
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              placeholder="********"
-              className="shadow appearance-none border rounded text-xs w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              onChange={handleChange}
-            />
-          </div>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full flex items-center justify-center">
+          
+              <button onSubmit={handleSubmit} className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full flex items-center justify-center">
               Register
               </button>
               <p className="my-4 text-xs flex justify-between font-bold px-3">
