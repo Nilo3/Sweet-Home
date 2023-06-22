@@ -1,6 +1,6 @@
 //? REDUCER WORK IN PROGRESS
 // 
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY, ADD_TO_CART, DELETE_FROM_CART,  SEARCH_PRODUCTS } from "../../action-types/action-types";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY, ADD_TO_CART, DELETE_FROM_CART,  SEARCH_PRODUCTS, DELETE_ONE_FROM_CART } from "../../action-types/action-types";
 import { productAVG } from "./logic-ratings";
 
 
@@ -124,6 +124,19 @@ const productReducer = (state = initialState, action) => {
 			...state,
 			products: filteredProducts
 		}
+
+		case DELETE_ONE_FROM_CART:
+			const filterCart = state.shoppingCart.filter((product) => product.id !== action.payload) 
+			
+			const toBeDeleted = state.shoppingCart.filter((product) => product.id === action.payload) 
+			
+			const filterDeleted = [...toBeDeleted.slice(0, toBeDeleted.length - 1)];
+
+			
+			return {
+				...state,
+				shoppingCart : [...filterCart, ...filterDeleted]
+			}
 		default: return state;
 	}
 };

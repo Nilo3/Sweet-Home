@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_CATEGORY, GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY, SEARCH_PRODUCTS, ADD_TO_CART, DELETE_FROM_CART} from "../../action-types/action-types";
+import { GET_CATEGORY, GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY, SEARCH_PRODUCTS, ADD_TO_CART, DELETE_FROM_CART, DELETE_ONE_FROM_CART} from "../../action-types/action-types";
 
 
 
@@ -99,6 +99,13 @@ export const addtoCart = (product) => {
 export const removefromCart = (id) => {
     return {
         type: DELETE_FROM_CART,
+        payload:id
+    }
+}
+
+export const removeOneFromCart = (id) => {
+    return {
+        type: DELETE_ONE_FROM_CART,
         payload:id
     }
 }
