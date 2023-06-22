@@ -136,12 +136,12 @@ const Shipping = ({ id, name, image, price }) => {
       </div>
       <p className="text-black-400 mt-2 text-m text-left"> <a className="text-blue-600" href="#" onClick={navigateToCheckout}> &lt; Return to information</a></p>
             </div>
-        <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto">
-    
-
-   <p className="mt-8 text-lg font-medium">Shipping Methods</p>
-  
-              <form className="mt-5 grid gap-6">
+        
+              <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
+            <div>
+          <p className="mt-8 text-lg font-medium">Shipping Methods</p>
+          <form className="mt-5 grid gap-6">
+              
                 <div className="relative">
               <div className= {`shopping-method ${selectedMethod === "method1" ? "selected" : ""}`}
         onClick={() => handleMethodSelection("method1")}>
@@ -178,7 +178,10 @@ const Shipping = ({ id, name, image, price }) => {
 
                 </form>
 
-                <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Continue to payment</button>
+                </div>
+  <button className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+    Continue to payment
+  </button>
     </div>
     
     </div>

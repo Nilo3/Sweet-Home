@@ -1,7 +1,8 @@
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getProductDetail } from "../../Redux/actions/product/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,12 @@ const Detail = () => {
   useEffect(() => {
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
+  
+  const navigate = useNavigate();
 
+  const backToHome = () => {
+    navigate("/");
+  };
   
   return (
    
@@ -37,7 +43,7 @@ const Detail = () => {
             <div className="flex items-center">
               <span className="mx-2 text-gray-400">/</span>
               <div className="-m-1">
-                <a href="#" className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800" aria-current="page"> Coffee </a>
+                {/* <a href="#" className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800" aria-current="page">{product.category.map((el) => el.name)} </a> */}
               </div>
             </div>
           </li>
@@ -54,17 +60,7 @@ const Detail = () => {
             </div>
   
             <div className="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0">
-              <div className="flex flex-row items-start lg:flex-col">
-                <button type="button" className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center">
-                  <img className="h-full w-full object-cover" src="/images/JHxMnVrtPMdcNU1s_7g7f.png" alt="" />
-                </button>
-                <button type="button" className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center">
-                  <img className="h-full w-full object-cover" src="/images/JHxMnVrtPMdcNU1s_7g7f.png" alt="" />
-                </button>
-                <button type="button" className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center">
-                  <img className="h-full w-full object-cover" src="/images/JHxMnVrtPMdcNU1s_7g7f.png" alt="" />
-                </button>
-              </div>
+  
             </div>
           </div>
         </div>
@@ -92,23 +88,6 @@ const Detail = () => {
             </div>
             <p className="ml-2 text-sm font-medium text-gray-500">1,209 Reviews</p>
           </div>
-  
-          <h2 className="mt-8 text-base text-gray-900">Coffee Type</h2>
-          <div className="mt-3 flex select-none flex-wrap items-center gap-1">
-            <label className="">
-              <input type="radio" name="type" value="Powder" className="peer sr-only" checked />
-              <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">Powder</p>
-            </label>
-            <label className="">
-              <input type="radio" name="type" value="Whole Bean" className="peer sr-only" />
-              <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">Whole Bean</p>
-            </label>
-            <label className="">
-              <input type="radio" name="type" value="Groud" className="peer sr-only" />
-              <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">Groud</p>
-            </label>
-          </div>
-  
           <h2 className="mt-8 text-base text-gray-900">Choose subscription</h2>
           <div className="mt-3 flex select-none flex-wrap items-center gap-1">
             <label className="">
@@ -133,14 +112,15 @@ const Detail = () => {
               <h1 className="text-3xl font-bold">${product.price}</h1>
               
             </div>
-  
+   
             <button type="button" className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
               <svg xmlns="http://www.w3.org/2000/svg" className="shrink-0 mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
               Add to cart
             </button>
-          </div>
+            
+           </div>
   
           <ul className="mt-8 space-y-2">
             <li className="flex items-center text-left text-sm font-medium text-gray-600">
@@ -175,10 +155,19 @@ const Detail = () => {
             <h1 className="text-3xl font-bold">Produt Description</h1>
             <p className="mt-4">{product.description}.</p>
             <h1 className="mt-8 text-3xl font-bold">Deliver to Your Door</h1>
-            <p className="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio numquam enim facere.</p>
-            <p className="mt-4">Amet consectetur adipisicing elit. Optio numquam enim facere. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore rerum nostrum eius facere, ad neque.</p>
+            <p className="mt-4">Discover the convenience of doorstep delivery with our exceptional ecommerce service.</p>
+            
           </div>
         </div>
+      </div>
+      <div className="text-center mt-6">
+        <button
+          type="button"
+          className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+          onClick={backToHome}
+        >
+          Back to Home
+        </button>
       </div>
     </div>
   </section>
