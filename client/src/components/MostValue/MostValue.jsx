@@ -23,8 +23,9 @@ export default function MostValue() {
       <br />
       <div className="grid-container ml-4 flex justify-center">
         {currentReviews.map((product) => (
-          <div key={product._id}>
-            <MostValueCards
+          <div >
+          <MostValueCards
+            key={product._id}
               id={product.product}
               name={product.name}
               price={product.price}
