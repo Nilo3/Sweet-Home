@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { postUser } from "../../Redux/actions/actions";
+import { getAllUsers, postUser } from "../../Redux/actions/actions";
 import { useAuth } from "../../context/authContex";
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -9,7 +9,6 @@ import { Alert } from "../Login/Alert.jsx";
 
 export function Register() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -66,7 +65,7 @@ export function Register() {
       }, 5000);
     }
   };
-
+  const dbUsers = useSelector((state) => state.users);
   const handleGoogleSignIn = async () => {
     try {
       const response = await registerWithGoogle();
@@ -75,22 +74,23 @@ export function Register() {
         email: response.user.email,
         password: response.user.accessToken,
       };
-      if (!users || users.length === 0) {
-        dispatch(postUser(userGoogle));
-        toast.success("Welcome to Sweet Home");
-        navigate("/");
-      } else {
-        const existingUser = users.find(
-          (user) => user.email === userGoogle.email
-        );
-        if (existingUser) {
-          toast.error("This email is already in use");
-        } else {
-          dispatch(postUser(userGoogle));
-          toast.success("Welcome to Sweet Home");
-          navigate("/");
-        }
+
+      console.log(dbUsers);
+      const existingUser = dbUsers.find(
+        (user) => user.email === userGoogle.email
+      );
+
+      console.log(existingUser);
+
+      if (existingUser) {
+        toast.error("This email is already in use");
+        return;
       }
+      console.log(userGoogle);
+      dispatch(postUser(userGoogle));
+
+      toast.success("Welcome to Sweet Home");
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }

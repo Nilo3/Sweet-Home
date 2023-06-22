@@ -1,4 +1,17 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY, ADD_TO_CART, DELETE_FROM_CART, SEARCH_PRODUCTS, POST_USER, GET_USERS } from "../action-types/action-types";
+import {
+	GET_PRODUCTS,
+	GET_PRODUCT_DETAIL,
+	MOST_VALUED_FILTER,
+	FILTER_BY_CATEGORY,
+	FILTER_BY_NAME,
+	FILTER_BY_PRICE,
+	GET_CATEGORY,
+	ADD_TO_CART,
+	DELETE_FROM_CART,
+	SEARCH_PRODUCTS,
+	GET_USERS,
+	POST_USER
+} from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
 const initialState = {
@@ -121,12 +134,6 @@ const reducer = (state = initialState, action) => {
 
 
 		//--//--//--//--//--//  User actions  //--//--//--//--//--//
-
-		case POST_USER:
-			return {
-				...state,
-				users: [...state.users, action.payload],
-			};
 
 		case GET_USERS:
 			return {
