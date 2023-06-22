@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   signOut,
@@ -11,6 +9,7 @@ import {
   signInWithPopup,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import axios from "axios";
 
 import { auth } from "../views/Login/Auth/FireBase";
 
@@ -18,7 +17,7 @@ export const authContext = createContext();
 
 export const useAuth = () => {
   const context = useContext(authContext);
-  if (!context) throw new Error("There ir not auth provider");
+  if (!context) throw new Error("There is no auth provider");
   return context;
 };
 
@@ -26,16 +25,26 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const singup = (email, password) =>
-    createUserWithEmailAndPassword(auth, email, password);
-
-  const login = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password);
-
-  const loginWithGoogle = () => {
-    const googleProvider = new GoogleAuthProvider();
-    return signInWithPopup(auth, googleProvider);
+  const singup = async (email, password) => {
+    const credential = await createUserWithEmailAndPassword(auth, email, password);
+    const userEmail = credential.user.email;
+    console.log("User registered:", credential.user);
+    sendUserDataToBackend({ email: userEmail });
   };
+  
+
+  const login = async (email, password) => {
+    const credential = await signInWithEmailAndPassword(auth, email, password);
+    console.log("User logged in:", credential.user);
+    sendUserDataToBackend({ email: credential.user.email });
+  };
+  
+
+  const loginWithGoogle = async () => {
+    const googleProvider = new GoogleAuthProvider();
+    await signInWithPopup(auth, googleProvider);
+  };
+
 
   const loginWithGitHub = () => {
     const githubProvider = new GithubAuthProvider();
@@ -58,16 +67,55 @@ export function AuthProvider({ children }) {
     sendPasswordResetEmail(auth, email);
   };
 
+
   useEffect(() => {
-    const unSuscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+      if (currentUser) {
+        console.log("User logged in:", currentUser);
+        sendUserDataToBackend({ email: currentUser.email });
+      }
     });
-    return () => unSuscribe(auth);
+
+    return () => unsubscribe();
   }, []);
+
+ const getUserData = () => {
+    return user;
+  };
+
+
+  const sendUserDataToBackend = (userData) => {
+    axios
+      .post("http://localhost:3001/api/users", userData) // Enviar todos los datos del usuario
+      .then((response) => {
+        console.log("User data sent to Backend");
+        // El Backend ha procesado los datos del usuario
+      })
+      .catch((error) => {
+        console.error("Error sending user data to Backend:", error);
+      });
+  };
+  
 
   return (
     <authContext.Provider
-      value={{singup,login,user,logout,loading,loginWithGoogle,loginWithGitHub,resetPassword, registerWithGitHub, registerWithGoogle}}>{children}</authContext.Provider>
+      value={{
+        singup,
+        login,
+        user,
+        logout,
+        loading,
+        loginWithGoogle,
+        loginWithGitHub,
+        resetPassword,
+        registerWithGitHub,
+        registerWithGoogle,
+        getUserData,
+      }}
+    >
+      {children}
+    </authContext.Provider>
   );
 }

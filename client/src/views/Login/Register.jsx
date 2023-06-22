@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 
+
 export function Register () {
 
   const [user, setUser] = useState({
@@ -15,9 +16,14 @@ export function Register () {
   confirmPassword: '',
 });
 
+// const [email, setEmail] = useState("")
+// const [password, setPassword] = useState("")
+// const [confirmPassword, setConfirmPassword] = useState("")
+
+
 const navigate = useNavigate()
 const [error, setError] = useState();
-const {singup, registerWithGoogle, registerWithGitHub} = useAuth ()
+const {singup, registerWithGoogle, registerWithGitHub,idUser} = useAuth ()
 
 const handleChange = ({ target: { name, value } }) => {
   setUser({ ...user, [name]: value });
@@ -28,6 +34,10 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const handleSubmit = async (event) => {
   event.preventDefault();
   setError('');
+//  if(user){
+//   navigate("/");
+ 
+
 
   if (user.password !== user.confirmPassword) {
     setError('Las contraseñas no coinciden');
@@ -36,6 +46,7 @@ const handleSubmit = async (event) => {
 
   try {
     await singup(user.email, user.password);
+   
     toast.success('Successful registration');
     navigate('/');
   } catch (error) {
@@ -127,6 +138,8 @@ const backToHome = () => {
           <div className="mb-4">
             <label htmlFor="email"className="block text-gray-700 text-sm font-bold mb-2"> Email </label>
             <input 
+                value= {user.email}
+                // onChange={event=>setEmail(event.target.value)}
                 type="email" 
                 name="email" 
                 placeholder="Please, enter you email" 
@@ -134,11 +147,14 @@ const backToHome = () => {
                 onChange={handleChange}
               />
           </div>
+          {/* <div>{user}</div> */}
           <div className="mb-4">
             <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
               Password
             </label>
             <input
+              value= {user.password}
+              // onChange={event=>setPassword(event.target.value)}
               type="password"
               name="password"
               id="password"
@@ -163,7 +179,7 @@ const backToHome = () => {
               onChange={handleChange}
             />
           </div>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full flex items-center justify-center">
+              <button type="submit" onClick={handleChange} className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full flex items-center justify-center">
               Register
               </button>
               <p className="my-4 text-xs flex justify-between font-bold px-3">
