@@ -14,6 +14,7 @@ const SearchBar = () => {
       alert('Please enter a valid search term') // Mostrar mensaje de alerta si el campo de búsqueda está vacío
     }else{
       dispatch(searchProducts(searchTerm))
+      setSearchTerm('');
   }  
 };
 
@@ -49,3 +50,6 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
+
+
