@@ -1,16 +1,20 @@
 import User from "../../models/schemas/user.js";
-import Order from "../../models/schemas/order.js"
-import Review from "../../models/schemas/reviews.js";
-import Cart from "../../models/schemas/cart.js";
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs";
 import { generateToken } from "../../utils/jwt.js";
-
 
 export default async (req, res) => {
   const { name, email, password, isAdmin, accessToken, cart, bought, favorites, userReviews, userOrders } = req.body;
   try {
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Missing data" });
+    }
+    console.log(email);
+
+    // Verificar si el email ya está registrado en la base de datos
+    const existingUser = await User.findOne({ email });
+    console.log(existingUser);
+    if (existingUser) {
+      return res.status(409).json({ message: "This email is already registered" });
     }
 
     const hashedPassword = bcrypt.hashSync(password, 10);

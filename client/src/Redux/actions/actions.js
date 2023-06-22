@@ -102,7 +102,7 @@ export const removefromCart = (id) => {
 
 export function postUser(payload) {
     return async function () {
-        const response = await axios.post(`${HOST}api/users`, payload)
+        const response = await axios.post(`${HOST}/api/users`, payload)
         return response
 
     }
