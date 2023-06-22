@@ -39,6 +39,9 @@ const Shopping = ({ id, name, image, price }) => {
     navigate("/login");
   };
   
+  const navigateToShipping = () => {
+    navigate("/checkout/shipping");
+  };
 
   const formattedSubTotal = subTotal.toFixed(2);
   const productCounts = allShoppingCart.reduce((counts, product) => {
@@ -54,7 +57,7 @@ const Shopping = ({ id, name, image, price }) => {
     return (
       <>
        
-        <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+        <div className="pt-20 flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
         <a href="#" className="text-2xl font-bold text-gray-800">Checkout</a>
         <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
         <div className="relative">
@@ -87,7 +90,7 @@ const Shopping = ({ id, name, image, price }) => {
              <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
             <div className="px-4 pt-8">
             <p className="text-xl font-medium">Order Summary</p>
-            <p className="text-gray-400">Check your items. And select a suitable shipping method.</p>
+            <p className="text-gray-400">Check your items.</p>
             <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
         {allShoppingCart?.length === 0 ? (
           <p className="text-gray-400 flex items-center justify-center">Your shopping Cart is empty.</p>
@@ -254,7 +257,7 @@ const Shopping = ({ id, name, image, price }) => {
 
                 </form>
 
-                <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
+                <button onClick={navigateToShipping}className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
     </div>
     
     </div>

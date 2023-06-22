@@ -16,7 +16,7 @@ const ShoppingCart = () => {
 
   const navigate = useNavigate();
   const navigateToshopping = () => {
-    navigate("/shopping");
+    navigate("/checkout");
   };
 
   return (
