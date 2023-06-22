@@ -11,7 +11,6 @@ export default async (req, res) => {
       return res.status(404).json({ error: "Cart not found" });
     }
 
-    // Eliminar la referencia al carrito en el usuario
     await User.findOneAndUpdate(
       { cart: cartId },
       { $pull: { cart: cartId } },

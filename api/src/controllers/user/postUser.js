@@ -8,10 +8,7 @@ export default async (req, res) => {
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Missing data" });
     }
-    console.log(email);
-
     const existingUser = await User.findOne({ email });
-    console.log(existingUser);
     if (existingUser) {
       return res.status(409).json({ message: "This email is already registered" });
     }
