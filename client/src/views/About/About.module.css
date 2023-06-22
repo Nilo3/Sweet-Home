@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 65vh;
+    flex-wrap: wrap;
+    /*height: 65vh;*/
 }
 
 .img_content{
@@ -21,7 +22,6 @@
     position: absolute;
     top: 0;
     left: -15px;
-    background: url('./frannpor.png');
     background-size: cover;
     transition: .2s;
 }
@@ -47,4 +47,10 @@
 
 .img_content:hover > .img > .info{
     bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .img_content {
+      width: calc(100% - 30px);
+    }
 }
