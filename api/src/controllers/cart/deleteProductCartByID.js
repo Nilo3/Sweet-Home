@@ -1,42 +1,25 @@
-import Cart from "../../models/schemas/cart";
-import Product from "../../models/schemas/product";
+import Cart from "../../models/schemas/cart.js";
+import User from "../../models/schemas/user.js";
 
 export default async (req, res) => {
+  const { cartId } = req.params;
+
   try {
-    const { cartId, productId } = req.params;
-    const cart = await Cart.findById(cartId);
+    const cart = await Cart.findByIdAndDelete(cartId);
+
     if (!cart) {
-      return res.status(404).json({ mensaje: "The cart does not exist" });
+      return res.status(404).json({ error: "Cart not found" });
     }
 
-    const productToDelete = cart.products.find(
-      (product) => product._id.toString() === productId
+    // Eliminar la referencia al carrito en el usuario
+    await User.findOneAndUpdate(
+      { cart: cartId },
+      { $pull: { cart: cartId } },
+      { new: true }
     );
-    if (!productToDelete) {
-      return res
-        .status(404)
-        .json({ mensaje: "The product does not exist in this cart" });
-    }
-    const updatedProduct = cart.products.filter(
-      (product) => product._id.toString() !== productId
-    );
-    cart.products = updatedProduct;
-    await cart.save();
 
-    await Beats.findByIdAndUpdate(beatId, { inCart: false });
-
-    if (cart.beats.length === 0) {
-      await Cart.findByIdAndDelete(cartId);
-      return res.json({
-        mensaje: "The cart and the product were successfully deleted",
-      });
-    }
-
-    return res.json({
-      mensaje: `Product ${productToDelete.product.name} was removed from cart`,
-    });
+    res.status(200).send({ message: "Cart deleted successfully", cart });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ mensaje: "An error has occured" });
+    res.status(400).json({ error: error.message });
   }
-};
+}

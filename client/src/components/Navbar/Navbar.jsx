@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../../context/authContex";
 import { useNavigate } from "react-router-dom";
-import { BiLogOutCircle } from "react-icons/bi";
 import Container from "./Container";
 import ShopNowNav from "./Buttons/ShopNowNav";
 import AboutNav from "./Buttons/AboutNav";
@@ -10,6 +8,7 @@ import Inspiration from "./Buttons/inspiration";
 import TopWeekNav from "./Buttons/TopWeekNav";
 import MostValuedNav from "./Buttons/MostValueNav";
 import ShoppingCart from "./Buttons/ShoppingCart";
+import LogoutNav from "./Buttons/LogOutNav";
 import LoginNav from "./Buttons/LoginNav";
 import RegisterNav from "./Buttons/RegisterNav";
 import Logo from "./Logo/Logo";
@@ -26,15 +25,7 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigate = useNavigate();
-  const { logout } = useAuth();
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate("/login");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const handleRecommendationsClick = () => {
     if (window.location.pathname !== "/") {
       navigate("/");
@@ -87,44 +78,36 @@ function Navbar() {
             <div className="hidden md:flex md:flex-row md:items-center md:gap-3">
               <ShopNowNav />
               <AboutNav />
-              <button onClick={handleRecommendationsClick}>
+              <div onClick={handleRecommendationsClick}>
                 <RecomendationsNav />
-              </button>
-              <button onClick={handleInspirationClick}>
+              </div>
+              <div onClick={handleInspirationClick}>
                 <Inspiration />
-              </button>
-              <button onClick={handleTopWeekClick}>
+              </div>
+              <div onClick={handleTopWeekClick}>
                 <TopWeekNav />
-              </button>
-              <button onClick={handleMostValuedClick}>
+              </div>
+              <div onClick={handleMostValuedClick}>
                 <MostValuedNav />
-              </button>
+              </div>
               <ShoppingCart />
               <div className="relative">
-                <div className="flex flex-row items-center gap-3">
-                  <div className=" p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
-                    <BiLogOutCircle
-                      onClick={handleLogout}
-                      className="text-2xl"
-                    />
-                    <div className="hidden md:block cursor-pointer select-none">
-                      <button onClick={handleLogout}>Logout</button>
-                    </div>
-                  </div>
-                </div>
+                <div className="flex flex-row items-center gap-3"></div>
               </div>
             </div>
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              <CgMenuRound className="text-2xl" />
+            <button title="Menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              <CgMenuRound className="text-3xl" />
             </button>
           </div>
         </Container>
       </div>
       {isMenuOpen && (
-        <div className="menu-hamburguesa absolute top-[100%] right-0 mt-2 py-2 px-4 shadow-md">
+        <div className="menu-hamburguesa absolute top-[100%] right-0 mt-2 py-2 px-4 shadow-inherit">
           <LoginNav />
           <br />
           <RegisterNav />
+          <br />
+          <LogoutNav />
         </div>
       )}
     </div>

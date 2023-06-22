@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   signOut,
@@ -68,6 +66,20 @@ export function AuthProvider({ children }) {
 
   return (
     <authContext.Provider
-      value={{singup,login,user,logout,loading,loginWithGoogle,loginWithGitHub,resetPassword, registerWithGitHub, registerWithGoogle}}>{children}</authContext.Provider>
+      value={{
+        singup,
+        login,
+        user,
+        logout,
+        loading,
+        loginWithGoogle,
+        loginWithGitHub,
+        resetPassword,
+        registerWithGitHub,
+        registerWithGoogle,
+      }}
+    >
+      {children}
+    </authContext.Provider>
   );
 }

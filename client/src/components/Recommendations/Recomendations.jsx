@@ -23,7 +23,8 @@ export default function Recommendations() {
               Explore our curated collection of high-quality furniture and home
               accessories. Whether you prefer modern designs or timeless
               classics, we have something to suit every style and taste. Create
-              the perfect living space with our expertly selected recommendations.
+              the perfect living space with our expertly selected
+              recommendations.
             </p>
           </div>
         </a>

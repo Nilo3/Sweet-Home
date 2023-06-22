@@ -7,8 +7,8 @@ import Detail from './views/Detail/Detail'
 import Shopping from "./views/ShoppingCart/ShoppingCart"
 import Home from './views/Home/Home'
 import Login from './views/Login/Login'
-import Register from './views/Login/Register'
-import {Route, Routes} from 'react-router-dom'
+import Register from './views/Register/Register'
+import { Route, Routes } from 'react-router-dom'
 import { AuthProvider } from './context/authContex'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -57,6 +57,3 @@ function App() {
 }
 
 export default App;
-
-
-//las rutas que quiero que esten protegidas, las envuelvo en <ProtectedRoute><ejemploHome/></ProtectedRoute> previo importarlo

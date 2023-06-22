@@ -11,7 +11,7 @@ export default async (req, res) => {
         "Bedding",
         "Cushions and Pillows",
         "Home Decor",
-        "Kitchenware",
+        "Organization",
         "Bathroom Accessories",
         "Wall Art",
         "Garden and Outdoor",

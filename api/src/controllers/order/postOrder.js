@@ -1,21 +1,34 @@
 import Order from "../../models/schemas/order.js";
 import Product from "../../models/schemas/product.js";
-import User from "../../models/schemas/user.js"
+import User from "../../models/schemas/user.js";
 
 export default async (req, res) => {
-  const { user, product, totalPrice, isPaid, padAt } = req.body;
-
   try {
-    const products = await Product.find({ _id: { $in: product } });
-    const users = await User.find({ _id: { $in: user } });
+    const { user, product } = req.body;
+
+    const foundUser = await User.findOne({ _id: user });
+    const foundProducts = await Product.find({ _id: { $in: product } });
+
+    if (!foundUser) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    if (!foundProducts || foundProducts.length !== product.length) {
+      return res.status(400).json({ message: "One or more products not found" });
+    }
+
+    let totalPrice = 0;
+    for (const foundProduct of foundProducts) {
+      totalPrice += foundProduct.price;
+    }
 
     const newOrder = await Order.create({
-      user: users.map((user) => user._id),
-      product: products.map((product) => product._id),
+      user: foundUser._id,
+      product: foundProducts.map((foundProduct) => foundProduct._id),
       totalPrice,
-      isPaid,
-      padAt,
     });
+
+    foundUser.userOrders.push(newOrder);
+    await foundUser.save();
 
     return res.json(newOrder);
   } catch (error) {

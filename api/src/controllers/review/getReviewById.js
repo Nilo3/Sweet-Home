@@ -4,13 +4,13 @@ export default async (req, res) => {
     const { reviewId } = req.params;
     try {
         let review;
-        review = await Review.findOne({ product: reviewId }, {
+        review = await Review.findOne({ _id: reviewId }, {
             rating: 1,
             createdBy: 1,
             product: 1,
         })
             .populate("createdBy", "_id")
-            .populate("product", "_id");
+            .populate("product");
 
         if (!review) {
             return res.status(404).json({ message: "Review not found" });
