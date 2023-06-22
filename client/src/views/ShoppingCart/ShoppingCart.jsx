@@ -6,6 +6,7 @@ import dhlLogo from "../../assets/image/DHL-logo.png";
 import { useState } from "react";
 import {AiOutlineUser} from "react-icons/ai"
 import {BsTelephone, BsHouse} from "react-icons/bs"
+import { useNavigate } from "react-router-dom";
 
 
 const Shopping = ({ id, name, image, price }) => {
@@ -31,10 +32,14 @@ const Shopping = ({ id, name, image, price }) => {
   }
 
   const subTotal = getTotalPrice(allShoppingCart);
+
+  const navigate = useNavigate();
+
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
   
-  // const shippingRate = 8;
-  // const total = calculateTotal(shippingRate, subTotal);
-  // const formattedTotal = total.toFixed(2);
+
   const formattedSubTotal = subTotal.toFixed(2);
   const productCounts = allShoppingCart.reduce((counts, product) => {
     if (counts[product.id]) {
@@ -115,8 +120,11 @@ const Shopping = ({ id, name, image, price }) => {
       </div>
             </div>
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto">
+        
     <p className="text-xl font-medium">How would you like to complete your purchase?</p>
+    <p className="text-gray-400 mt-2 text-m text-right">Already have an account? <a className="text-blue-600" href="#" onClick={navigateToLogin}>Login</a></p>
     <p className="text-gray-400 mt-2 text-lg">Contact</p>
+    
         <label htmlFor="email" className="mt-4 mb-2 block text-sm font-medium">Email</label>
         <div className="relative">
      <input type="text" id="email" name="email" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="your.email@gmail.com" />
