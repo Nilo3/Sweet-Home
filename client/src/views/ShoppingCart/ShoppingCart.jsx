@@ -6,7 +6,7 @@ import dhlLogo from "../../assets/image/DHL-logo.png";
 import { useState } from "react";
 
 const Shopping = ({ id, name, image, price }) => {
-  const allShoppingCart = useSelector((state) => state.shoppingCart);
+  const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
   const [selectedMethod, setSelectedMethod] = useState("method1");
 
   const dispatch = useDispatch();
@@ -25,7 +25,6 @@ const Shopping = ({ id, name, image, price }) => {
 
   const handleReduceFromCart = (product) =>{
     dispatch (removeOneFromCart(product.id))
-    console.log(product.id)
   }
 
   const subTotal = getTotalPrice(allShoppingCart);
