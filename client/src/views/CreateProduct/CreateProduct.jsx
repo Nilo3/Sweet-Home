@@ -1,8 +1,8 @@
-const CreatePruduct = () => {
+const CreateProduct = () => {
     return(
         <h1>Acá se crean los productos</h1>
     )
 }
 
 
-export default CreatePruduct
+export default CreateProduct
