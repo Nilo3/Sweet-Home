@@ -10,7 +10,6 @@ export default async (req, res) => {
     }
     console.log(email);
 
-    // Verificar si el email ya está registrado en la base de datos
     const existingUser = await User.findOne({ email });
     console.log(existingUser);
     if (existingUser) {
