@@ -1,52 +1,55 @@
-import React, { useState } from "react";
-import { useDispatch } from 'react-redux'
-import { getProducts } from "../../Redux/actions/product/productActions";
+import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { searchProducts } from "../../Redux/actions/product/productActions";
 
-export default function SearchBar({page}) {
-    const dispatch = useDispatch()
-    const [name, setName] = useState('')
+const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch();
+  const inputRef = useRef(null) // Referencia al campo de entrada (handleKeyDown)
 
-    function handleInputChange(event) { //funcion manejadora de eventos onChange
-        event.preventDefault() //evita que el formulario se envie y se recargue la pagina
-        setName(event.target.value) //obtengo el valor actualizado del campo de entrada y se actualiza el estado 'name' utilizando 'setName'
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    if(searchTerm.trim() === '') {
+      alert('Please enter a valid search term') // Mostrar mensaje de alerta si el campo de búsqueda está vacío
+    }else{
+      dispatch(searchProducts(searchTerm))
+      setSearchTerm('');
+  }  
+};
+
+  const handleKeyDown = (event) => { //Apretando boton enter de teclado se aprieta el search en la pantalla
+    if(event.key === "Enter"){
+      handleSubmit(event)
     }
+  }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        page(1)
-        if(name.trim() === '') { //verifica si el valor de 'name' es una cadena vacia
-            alert('Ingrese una búsqueda válida.'); //Mostrar mensaje de alerta si el campo esta vacío
-        } else {
-            dispatch(getProducts(name)) //si el campo del mueble no esta vacio se llama a la función dispatch
-                .then((response) => {
-                    if(response.payload.length === 0){ //si el payload tiene longitud 0, se muestra el mensjae de rechazo
-                        alert('No se encontraron resultados. Intente nuevamente'); //Mostar mensaje de alerta si no se encontraron recetas
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                    alert('Se produjo un error. Intente nuevamente.'); //Mostrar mensaje de alerta si hay un errro en la solicitud
-                })
-        }
-    }
+  const handleButtonClick = (event) => {
+    handleSubmit(event)
+  }
 
-    return (        
-            <div className=" mx-auto my-auto">
-            <input //se renderiza un elemento input
-                type="text" 
-                className="px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-blue-500"
-                placeholder="Ingrese su búsqueda..."
-                onChange={(event) => handleInputChange(event)} //este evento llama a la función handleInputChange CUANDO EL VALOR DE ENTRADA CAMBIA
-            />
-            <button
-                type="submit" //se indica que este boton es el que envia el formulario 
-                className="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-blue-500"
-                onClick={(event) => handleSubmit(event)} //esta configurado para llamar a la función 'handleSubmit' cuando se hace clic en el botón
-            >
-                Buscar
-            </button>
-        </div>
-       
-    )
-}
+  return (
+    <div className="flex items-center">
+      <input
+        type="text"
+        placeholder="Search products..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyDown={handleKeyDown}
+        className="py-2 px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300"
+        ref={inputRef}
+      />
+      <button
+        className="text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2"
+        onClick={handleButtonClick}
+      >
+        Search
+      </button>
+    </div>
+  );
+};
+
+export default SearchBar;
+
+
 
