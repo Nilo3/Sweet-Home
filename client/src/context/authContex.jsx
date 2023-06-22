@@ -27,15 +27,18 @@ export function AuthProvider({ children }) {
 
   const singup = async (email, password) => {
     const credential = await createUserWithEmailAndPassword(auth, email, password);
+    const userEmail = credential.user.email;
     console.log("User registered:", credential.user);
-    sendUserDataToBackend(credential.user);
+    sendUserDataToBackend({ email: userEmail });
   };
+  
 
   const login = async (email, password) => {
     const credential = await signInWithEmailAndPassword(auth, email, password);
     console.log("User logged in:", credential.user);
-    sendUserDataToBackend(credential.user);
+    sendUserDataToBackend({ email: credential.user.email });
   };
+  
 
   const loginWithGoogle = () => {
     const googleProvider = new GoogleAuthProvider();
@@ -77,17 +80,17 @@ export function AuthProvider({ children }) {
   };
 
   const sendUserDataToBackend = (userData) => {
-  const {uid, email, name} = userData;
-  const data = {uid, email};
-    axios.post("http://localhost:3001/api/users", data)
-      .then(response => {
+    axios
+      .post("http://localhost:3001/api/users", userData) // Enviar todos los datos del usuario
+      .then((response) => {
         console.log("User data sent to Backend");
         // El Backend ha procesado los datos del usuario
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error sending user data to Backend:", error);
       });
   };
+  
 
   return (
     <authContext.Provider

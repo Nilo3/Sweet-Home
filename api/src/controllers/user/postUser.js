@@ -1,22 +1,15 @@
 import User from "../../models/schemas/user.js";
-// import bcrypt from "bcryptjs";
-// import { generateToken } from "../../utils/jwt.js";
 
 export default async (req, res) => {
-  const { uid, email } = req.body;
+  const { email } = req.body;
 
-  if (!uid || !email) {
+  if (!email) {
     return res.status(400).json({ message: "Faltan datos" });
   }
 
   try {
-    // const hashedPassword = bcrypt.hashSync(uid, 10);
     const newUser = await User.create({
-      uid,
-     
-      email,
-      // password: hashedPassword,
-      // accessToken: generateToken({ uid, name, email }),
+       email,
     });
 
     return res.json(newUser);
@@ -24,6 +17,7 @@ export default async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
 
 
 
