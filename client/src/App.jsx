@@ -5,6 +5,7 @@ import Products from './views/ShopNow/Products'
 import About from './views/About/About'
 import Detail from './views/Detail/Detail'
 import Shopping from "./views/ShoppingCart/ShoppingCart"
+import Shipping from './views/ShoppingCart/Shipping'
 import Home from './views/Home/Home'
 import Login from './views/Login/Login'
 import Register from './views/Login/Register'
@@ -40,10 +41,11 @@ function App() {
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/products" element={<Layout><Products /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
-          <Route path="/shopping" element={<Layout><Shopping /></Layout>} />
+          <Route path="/checkout" element={<Layout><Shopping /></Layout>} />
           <Route path="/products/:id" element={<Layout><Detail /></Layout>} />
           <Route path="/adminDashboard" element={<Layout><Dashboard /></Layout>} />
           <Route path="/createProduct" element={<Layout><CreateProduct /></Layout>} />
+          <Route path="/checkout/shipping" element={<Layout><Shipping/></Layout>} />
         </Routes>
         <ToastContainer />
       </AuthProvider>
