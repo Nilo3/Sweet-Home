@@ -40,10 +40,11 @@ export function AuthProvider({ children }) {
   };
   
 
-  const loginWithGoogle = () => {
+  const loginWithGoogle = async () => {
     const googleProvider = new GoogleAuthProvider();
-    return signInWithPopup(auth, googleProvider);
+    await signInWithPopup(auth, googleProvider);
   };
+
 
   const loginWithGitHub = () => {
     const githubProvider = new GithubAuthProvider();
@@ -66,18 +67,24 @@ export function AuthProvider({ children }) {
     sendPasswordResetEmail(auth, email);
   };
 
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+      if (currentUser) {
+        console.log("User logged in:", currentUser);
+        sendUserDataToBackend({ email: currentUser.email });
+      }
     });
 
     return () => unsubscribe();
   }, []);
 
-  const getUserData = () => {
+ const getUserData = () => {
     return user;
   };
+
 
   const sendUserDataToBackend = (userData) => {
     axios
