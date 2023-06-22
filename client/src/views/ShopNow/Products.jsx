@@ -70,7 +70,7 @@ const Products = () => {
   
   return (
     
-    <div>
+    <div className="all">
       <div className="flex justify-center">
           <SearchBar />
        </div>
