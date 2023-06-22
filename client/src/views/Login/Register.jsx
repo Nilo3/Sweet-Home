@@ -4,7 +4,6 @@ import {useNavigate, Link} from 'react-router-dom'
 import {Alert} from './Alert'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { postUser } from "../../Redux/actions/product/productActions";
 import {useDispatch} from "react-redux"
@@ -17,7 +16,7 @@ export function Register () {
   password:'',
 });
 
-console.log(user);
+
 
 const navigate = useNavigate()
 const [error, setError] = useState();
@@ -78,7 +77,15 @@ const handleSubmit = async (event) => {
 
 const handleGoogleSignIn = async () => {
   try{
-  await registerWithGoogle()
+  const response= await registerWithGoogle()
+  console.log("este es el response", response);
+  const userGoogle = {
+    name : response.user.displayName,
+    email: response.user.email,
+    password: response.user.accessToken
+  }
+  dispatch(postUser(userGoogle))
+
   toast.success('WELCOME TO SWEET HOME');
   navigate('/')
   } catch(error){
@@ -86,15 +93,7 @@ const handleGoogleSignIn = async () => {
   }
 };
 
-const handleGitHubSignIn = async () => {
-  try{ 
-  await registerWithGitHub()
-  toast.success('WELCOME TO SWEET HOME');
-  navigate('/')
-} catch(error){
-  setError(error.message);
-}
-};
+
 
 const backToHome = () => {
   navigate("/");
@@ -155,10 +154,7 @@ const backToHome = () => {
               <FcGoogle size={25} />
               <span className="ml-2 text-sm" style={{ margin: '0 auto' }}>Register with Google</span>
             </button>
-            <button onClick={handleGitHubSignIn} className="bg-slate-50 hover:bg-slate-200 text-black shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full flex items-center">
-            <FaGithub size={25} />
-            <span className="ml-2 text-sm" style={{ margin: '0 auto' }}>Register with GitHub</span>
-           </button>
+           
           </div>
 
         <div className="text-center">

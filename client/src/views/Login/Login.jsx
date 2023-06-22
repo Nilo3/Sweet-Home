@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useAuth } from "../../context/authContex";
 import {Link, useNavigate} from 'react-router-dom'
 import {Alert} from './Alert'
-import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -126,10 +125,7 @@ const backToHome = () => {
               <FcGoogle size={25} />
               <span className="ml-2" style={{ margin: '0 auto' }}>Login with Google</span>
             </button>
-            <button onClick={handleGitHubSignIn} className="bg-slate-50 hover:bg-slate-200 text-black shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full flex items-center">
-            <FaGithub size={25} />
-            <span className="ml-2" style={{ margin: '0 auto' }}>Login with GitHub</span>
-           </button>
+          
           </div>
           <div className="text-center mt-6">
         <button
