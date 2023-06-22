@@ -5,6 +5,8 @@ import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-logo.png";
 import { useState } from "react";
 import {AiOutlineUser} from "react-icons/ai"
+import {BsTelephone, BsHouse} from "react-icons/bs"
+
 
 const Shopping = ({ id, name, image, price }) => {
   const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
@@ -30,9 +32,9 @@ const Shopping = ({ id, name, image, price }) => {
 
   const subTotal = getTotalPrice(allShoppingCart);
   
-  const shippingRate = 8;
-  const total = calculateTotal(shippingRate, subTotal);
-  const formattedTotal = total.toFixed(2);
+  // const shippingRate = 8;
+  // const total = calculateTotal(shippingRate, subTotal);
+  // const formattedTotal = total.toFixed(2);
   const formattedSubTotal = subTotal.toFixed(2);
   const productCounts = allShoppingCart.reduce((counts, product) => {
     if (counts[product.id]) {
@@ -113,8 +115,8 @@ const Shopping = ({ id, name, image, price }) => {
       </div>
             </div>
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto">
-    <p className="text-xl font-medium">Payment Details</p>
-    <p className="text-gray-400">Complete your order by providing your payment details.</p>
+    <p className="text-xl font-medium">How would you like to complete your purchase?</p>
+    <p className="text-gray-400 mt-2 text-lg">Contact</p>
         <label htmlFor="email" className="mt-4 mb-2 block text-sm font-medium">Email</label>
         <div className="relative">
      <input type="text" id="email" name="email" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="your.email@gmail.com" />
@@ -124,33 +126,72 @@ const Shopping = ({ id, name, image, price }) => {
           </svg>
         </div>
         </div>
-    <label htmlFor="card-no" className="mt-4 mb-2 block text-sm font-medium">Card Details</label>
+        <div className=" mt-3 flex items-center mb-4">
+      <input id="checkbox-2" type="checkbox" value="" className="  w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+      <label htmlFor="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I want to get promotional offers</label>
+       </div>
+    <label htmlFor="card-no" className="mt-4 mb-2 block text-sm font-medium">Personal Info</label>
       <div className="flex">
-        <div className="relative w-7/12 flex-shrink-0">
-          <input type="text" id="card-no" name="card-no" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="First name" />
+        <div className="relative w-6/12 flex-shrink-0">
+          <input type="text" id="card-no" name="card-no" className=" mr-3 w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="First name" />
           <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-            <svg className="h-4 w-4 text-gray-400" xmlns={"http://www.w3.org/2000/svg"} width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-             
+            <svg className="h-4 w-4 text-gray-400"  width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
               <AiOutlineUser/>
             </svg>
           </div>
         </div>
-        <input type="text" name="credit-expiry" className="w-full rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="MM/YY" />
-        <input type="text" name="credit-cvc" className="w-1/6 flex-shrink-0 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="CVC" />
+        <input type="text" name="credit-expiry" className="w-full ml-3 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Last Name" />
+        
       </div>
-      <label htmlFor="billing-address" className="mt-4 mb-2 block text-sm font-medium">Billing Address</label>
-      <div className="flex flex-col sm:flex-row">
-        <div className="relative flex-shrink-0 sm:w-7/12">
-          <input type="text" id="billing-address" name="billing-address" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Street Address" />
+      <div className="flex flex-col">
+ 
+
+  <label htmlFor="billing-address" className="mt-4 mb-2 block text-sm font-medium">Billing Address</label>
+  <select id="countries" className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-10">
+    <option className="hidden">Select your country</option>
+    <option>United States</option>
+    <option>Canada</option>
+    <option>France</option>
+    <option>Germany</option>
+  </select>
+</div>
+        <div className="relative">
+          <input type="text" id="billing-address" name="billing-address" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Street and house number" />
           <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
             <img className="h-4 w-4 object-contain" src="https://flagpack.xyz/_nuxt/4c829b6c0131de7162790d2f897a90fd.svg" alt="" />
           </div>
         </div>
-        <select type="text" name="billing-state" className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
-          <option value="State">State</option>
+     
+
+        <div className="relative">
+        <input type="text" name="billing-zip" className=" mt-3 w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Appartment, suite, etc.(optional)" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+        <svg className="mt-3 h-4 w-4 text-gray-400"  width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <BsHouse/>
+            </svg>
+            </div>
+        </div>
+        
+        <div className="mt-3 relative flex-shrink-0 flex">
+        <input type="text" name="billing-zip" className="mr-3 flex-shrink-0 rounded-md border border-gray-200 px-4 py-4 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="ZIP" />
+        <input type="text" name="billing-city" className="mr-3 flex-shrink-0 rounded-md border border-gray-200 px-4 py-4 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="City" />
+        <select id="states" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block sm:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option>Select your state</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>France</option>
+          <option>Germany</option>
         </select>
-        <input type="text" name="billing-zip" className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="ZIP" />
       </div>
+  
+      <div className="relative">
+          <input type="text" id="phone" name="phone" className="mt-3 w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Phone" />
+          <div className="mt-3 pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+          <svg className="h-4 w-4 text-gray-400"  width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <BsTelephone/>
+            </svg>
+          </div>
+        </div>
 
 <div className="mt-6 border-t border-b py-2">
         <div className="flex items-center justify-between">
@@ -159,12 +200,12 @@ const Shopping = ({ id, name, image, price }) => {
         </div>
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Shipping</p>
-          <p className="font-semibold text-gray-900">${shippingRate}</p>
+          <p className="font-semibold text-sm text-gray-400">Calculated at next step</p>
         </div>
       </div>
       <div className="mt-6 flex items-center justify-between">
         <p className="text-sm font-medium text-gray-900">Total</p>
-        <p className="text-2xl font-semibold text-gray-900">${formattedTotal}</p>
+        <p className="text-2xl font-semibold text-gray-900">${formattedSubTotal}</p>
       </div>
    <p className="mt-8 text-lg font-medium">Shipping Methods</p>
   
