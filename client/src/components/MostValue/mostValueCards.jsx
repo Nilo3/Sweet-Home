@@ -18,13 +18,9 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
   }, [isProductInCart]);
 
   const handleShoppingCart = () => {
-    if (inCart) {
-      setInCart(false);
-      dispatch(removefromCart(id));
-    } else {
       setInCart(true);
       dispatch(addtoCart({ id, name, image, price }));
-    }
+    
   };
 
   const renderRatingStars = () => {
