@@ -1,6 +1,6 @@
 //? REDUCER WORK IN PROGRESS
 // 
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY, ADD_TO_CART, DELETE_FROM_CART} from "../../action-types/action-types";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_CATEGORY, FILTER_BY_NAME, FILTER_BY_PRICE, GET_CATEGORY, ADD_TO_CART, DELETE_FROM_CART,  SEARCH_PRODUCTS } from "../../action-types/action-types";
 import { productAVG } from "./logic-ratings";
 
 
@@ -45,9 +45,11 @@ const productReducer = (state = initialState, action) => {
 			};
 
 		case FILTER_BY_NAME:
+			console.log('Search term:', action.payload); 
 			const sortedProducts = [...state.products];
 			const sortOrder = action.payload === 'asc' ? 1 : -1;
 			sortedProducts.sort((productsA, productsB) => {
+				console.log(productsA.name, productsB.name);
 				if (productsA.name > productsB.name) {
 					return 1 * sortOrder;
 				}
@@ -106,13 +108,22 @@ const productReducer = (state = initialState, action) => {
 				shoppingCart:[...state.shoppingCart, action.payload]
 			}
 		
-			case DELETE_FROM_CART:
-            return {
-                ...state,
-                shoppingCart: state.shoppingCart.filter((product) => product.id !== action.payload),
+		case DELETE_FROM_CART:
+        return {
+            ...state,
+            shoppingCart: state.shoppingCart.filter((product) => product.id !== action.payload),
 				
-            };
-		
+        };		
+	
+
+		case SEARCH_PRODUCTS:
+		const searchTerm = action.payload.toLowerCase();
+		const filteredProducts = state.getAllProducts.filter(product => product.name.toLowerCase().includes(searchTerm))
+
+		return{
+			...state,
+			products: filteredProducts
+		}
 		default: return state;
 	}
 };

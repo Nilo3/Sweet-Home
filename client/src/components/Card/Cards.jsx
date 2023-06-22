@@ -15,13 +15,9 @@ const Cards = ({ id, name, image, price, category }) => {
   }, [isProductInCart]);
 
   const handleShoppingCart = () => {
-    if (inCart) {
-      setInCart(false);
-      dispatch(removefromCart(id));
-    } else {
+    
       setInCart(true);
       dispatch(addtoCart({ id, name, image, price }));
-    }
   };
   return (
     <div>

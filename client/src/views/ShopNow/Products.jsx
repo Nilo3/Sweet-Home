@@ -10,12 +10,13 @@ import {
   getProducts,
 } from "../../Redux/actions/product/productActions";
 import { filterByName } from "../../Redux/actions/product/productActions";
+import SearchBar from "./SearchBar";
 
 const Products = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
+  // console.log(allProducts)
   const category = useSelector((state) => state.category);
-  console.log(category);
   const [products, setProducts] = useState([]);
 
   const [productPerPage, setProductsPerPage] = useState(6);
@@ -67,8 +68,12 @@ const Products = () => {
   }
   
   return (
+    
     <div>
-      <div className="flex cursor-pointer select-none justify-center h-16 items-center">
+      <div className="flex justify-center">
+          <SearchBar />
+       </div>
+      <div className="flex cursor-pointer select-none justify-center h-16 items-center">         
         <select onChange={(event) => handleOrderName(event)}>
           <option>Order by Name</option>
           <option value="asc">A - Z</option>
