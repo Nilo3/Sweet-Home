@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchProducts } from "../../Redux/actions/product/productActions";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef(null) // Referencia al campo de entrada (handleKeyDown)
+  const products = useSelector((state) => state.products)
+  const [suggestions, setSuggestions] = useState([])
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -21,6 +23,21 @@ const SearchBar = () => {
     if(event.key === "Enter"){
       handleSubmit(event)
     }
+  }
+
+  const handleInputchange = (event) => {
+    const value = event.target.value
+    setSearchTerm(value)
+  }
+
+  const filteredSuggestions = products.filter((product) =>
+    product.name.toLowerCase().includes(value.toLowerase())
+  )
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchTerm(suggestion.name);
+    dispatch(searchProducts(suggestion.name))
+    setSuggestions([])
   }
 
   const handleButtonClick = (event) => {
@@ -44,6 +61,19 @@ const SearchBar = () => {
       >
         Search
       </button>
+      {suggestions.length > 0 && (
+        <ul className="absolute bg-white border border-gray-300 mt-2 py-2 px-4 rounded-md shadow-lg">
+          {suggestions.map((suggestion) => (
+            <li
+              key={suggestion.id}
+              className="cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-md"
+              onClick={() => handleSuggestionClick(suggestion)}
+            >
+              {suggestion.name}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
