@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removefromCart, addtoCart } from "../../Redux/actions/product/productActions";
+import { removefromCart, addtoCart, removeOneFromCart } from "../../Redux/actions/product/productActions";
 import { getTotalPrice, calculateTotal } from "./totalprice";
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-logo.png";
 import { useState } from "react";
+import {AiOutlineUser} from "react-icons/ai"
 
 const Shopping = ({ id, name, image, price }) => {
-  const allShoppingCart = useSelector((state) => state.shoppingCart);
+  const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
   const [selectedMethod, setSelectedMethod] = useState("method1");
 
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ const Shopping = ({ id, name, image, price }) => {
   const handleMethodSelection = (method) => {
     setSelectedMethod(method);
   };
+
+  const handleReduceFromCart = (product) =>{
+    dispatch (removeOneFromCart(product.id))
+  }
 
   const subTotal = getTotalPrice(allShoppingCart);
   
@@ -94,8 +99,11 @@ const Shopping = ({ id, name, image, price }) => {
                     <button className="ml-auto" onClick={() => handleDeleteFromCart(product.id)}>X</button>
                   </div>
                   <p className="text-lg font-bold">${product.price}</p>
-                  <p className="text-sm text-gray-500">Quantity: {count}</p>
-                  <button onClick={() => handleAddToCart(product)}>+</button>
+                  <div className="flex">
+                    <p className="text-sm text-gray-500 mt-3">Quantity: {count}</p>
+                    <button className="mt-3 mb-5 ml-2 w-10 rounded-md bg-gray-900 px-0.5 py-.5 font-medium text-white" onClick={() => handleAddToCart(product)}>+</button>
+                    <button className="mt-3 mb-5 ml-2 w-10 rounded-md bg-gray-900 px-0.5 py-.5 font-medium text-white" onClick={() => handleReduceFromCart(product)}>-</button>
+                  </div>
                   <p className="text-sm text-gray-500">Total Price: ${formattedTotalPrice}</p>
                 </div>
               </div>
@@ -107,7 +115,7 @@ const Shopping = ({ id, name, image, price }) => {
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto">
     <p className="text-xl font-medium">Payment Details</p>
     <p className="text-gray-400">Complete your order by providing your payment details.</p>
-        <label for="email" className="mt-4 mb-2 block text-sm font-medium">Email</label>
+        <label htmlFor="email" className="mt-4 mb-2 block text-sm font-medium">Email</label>
         <div className="relative">
      <input type="text" id="email" name="email" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="your.email@gmail.com" />
      <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -116,21 +124,21 @@ const Shopping = ({ id, name, image, price }) => {
           </svg>
         </div>
         </div>
-    <label for="card-no" className="mt-4 mb-2 block text-sm font-medium">Card Details</label>
+    <label htmlFor="card-no" className="mt-4 mb-2 block text-sm font-medium">Card Details</label>
       <div className="flex">
         <div className="relative w-7/12 flex-shrink-0">
-          <input type="text" id="card-no" name="card-no" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="xxxx-xxxx-xxxx-xxxx" />
+          <input type="text" id="card-no" name="card-no" className="w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="First name" />
           <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-            <svg className="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z" />
-              <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z" />
+            <svg className="h-4 w-4 text-gray-400" xmlns={"http://www.w3.org/2000/svg"} width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+             
+              <AiOutlineUser/>
             </svg>
           </div>
         </div>
         <input type="text" name="credit-expiry" className="w-full rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="MM/YY" />
         <input type="text" name="credit-cvc" className="w-1/6 flex-shrink-0 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="CVC" />
       </div>
-      <label for="billing-address" className="mt-4 mb-2 block text-sm font-medium">Billing Address</label>
+      <label htmlFor="billing-address" className="mt-4 mb-2 block text-sm font-medium">Billing Address</label>
       <div className="flex flex-col sm:flex-row">
         <div className="relative flex-shrink-0 sm:w-7/12">
           <input type="text" id="billing-address" name="billing-address" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Street Address" />
@@ -164,11 +172,11 @@ const Shopping = ({ id, name, image, price }) => {
                 <div className="relative">
               <div className= {`shopping-method ${selectedMethod === "method1" ? "selected" : ""}`}
         onClick={() => handleMethodSelection("method1")}>
-               <input className="peer hidden" id="radio_1" type="radio" name="radio" checked />
+               <input className="peer hidden" id="radio_1" type="radio" name="radio"  />
                <span className={`method-label ${selectedMethod === "method1" ? "selected" : ""}`}>
         </span>               
         <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" for="radio_1">
+         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_1">
                 <img className="w-14 object-contain" src={fedexLogo} alt="" />
                 <div className="ml-5">
               <span className="mt-2 font-semibold">Fedex Delivery</span>
@@ -181,11 +189,11 @@ const Shopping = ({ id, name, image, price }) => {
               <div className="relative">
               <div className={`shopping-method ${selectedMethod === "method2" ? "selected" : ""}`}
         onClick={() => handleMethodSelection("method2")}>
-               <input className="peer hidden" id="radio_2" type="radio" name="radio" checked />
+               <input className="peer hidden" id="radio_2" type="radio" name="radio"  />
                <span className={`method-label ${selectedMethod === "method2" ? "selected" : ""}`}>
         </span>               
         <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" for="radio_2">
+         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_2">
                 <img className="w-14 object-contain" src={dhlLogo} alt="" />
                 <div className="ml-5">
               <span className="mt-2 font-semibold">DHL Delivery</span>

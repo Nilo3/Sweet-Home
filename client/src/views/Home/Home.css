@@ -5,8 +5,8 @@
   font-family: 'Sorts Mill Goudy';
   color: black;
   text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
- }
+}
 
- .text-shadow {
+.text-shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
