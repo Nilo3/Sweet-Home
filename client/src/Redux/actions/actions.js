@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_CATEGORY, GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY, SEARCH_PRODUCTS, ADD_TO_CART, DELETE_FROM_CART } from "../action-types/action-types";
+import { GET_CATEGORY, GET_USERS, POST_USER, GET_PRODUCTS, GET_PRODUCT_DETAIL, MOST_VALUED_FILTER, FILTER_BY_NAME, FILTER_BY_PRICE, FILTER_BY_CATEGORY, SEARCH_PRODUCTS, ADD_TO_CART, DELETE_FROM_CART } from "../action-types/action-types";
 
 const HOST = "http://localhost:3001"
 
@@ -101,20 +101,31 @@ export const removefromCart = (id) => {
 }
 
 export function postUser(payload) {
-    return async function () {
-        const response = await axios.post(`${HOST}/api/users`, payload)
-        return response
-
-    }
+    return async function (dispatch) {
+        try {
+            const response = await axios.post(`${HOST}/api/users`, payload);
+            dispatch({
+                type: POST_USER,
+                payload: response.data,
+            });
+            await dispatch(getAllUsers());
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
+    };
 }
 
 export function getAllUsers() {
-    return async function () {
+    return async function (dispatch) {
         try {
-            const response = await axios.get(`${HOST}api/users`)
-            return response.data;
+            const response = await axios.get(`${HOST}/api/users`);
+            dispatch({
+                type: GET_USERS,
+                payload: response.data,
+            });
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 }

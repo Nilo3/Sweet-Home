@@ -9,3 +9,4 @@ export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS'
 export const ADD_TO_CART = "ADD_TO_CART"
 export const DELETE_FROM_CART = "DELETE_FROM_CART"
 export const POST_USER = "POST_USER"
+export const GET_USERS = "GET_USERS"
