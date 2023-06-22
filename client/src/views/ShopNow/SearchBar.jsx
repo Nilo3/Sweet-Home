@@ -23,8 +23,8 @@ const SearchBar = () => {
     }
   }
 
-  const handleButtonClick = () => {
-    handleSubmit()
+  const handleButtonClick = (event) => {
+    handleSubmit(event)
   }
 
   return (
