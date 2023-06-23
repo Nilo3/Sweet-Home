@@ -1,6 +1,7 @@
 import "./MostValue.css";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
-import { addtoCart } from "../../redux/actions/actions";
+import { Link } from "react-router-dom";
+import { addtoCart } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
@@ -10,6 +11,7 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
   const [, setInCart] = useState(false);
 
   const allShoppingCart = useSelector((state) => state.shoppingCart);
+  console.log(allShoppingCart)
   const isProductInCart = allShoppingCart.some((product) => product.id === id);
 
   useEffect(() => {
@@ -18,7 +20,7 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
 
   const handleShoppingCart = () => {
     setInCart(true);
-    dispatch(addtoCart({ id, name, image, price }));
+    dispatch(addtoCart({id, name, image, price }));
   };
 
   const renderRatingStars = () => {
@@ -46,9 +48,11 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
     <div>
       <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="aspect-w-3 aspect-h-4 mb-4">
+          <Link to={`/products/${id}`}>
           <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
             {name}
           </h5>
+          </Link>
           <div className="bg-gray-200 rounded-lg overflow-hidden">
             <img
               src={image}

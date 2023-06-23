@@ -33,6 +33,8 @@ const Shipping = () => {
   const navigateToCheckout = () => {
     navigate("/checkout");
   };
+
+
   const subTotal = getTotalPrice(allShoppingCart);
   
   const shippingRate = 8;
