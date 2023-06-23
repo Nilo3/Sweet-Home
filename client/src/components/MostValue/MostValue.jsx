@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getReviews } from "../../redux/actions/actions";
-import MostValueCards from "./MostValueCards";
+import { getReviews } from "../../Redux/actions/actions.js";
+import MostValueCards from "./mostValueCards";
 import "./MostValue.css";
 
 const MostValue = () => {
@@ -26,7 +26,7 @@ const MostValue = () => {
         {currentReviews.map((product) => (
           <MostValueCards
             key={product._id}
-            id={product._id}
+            _id={product._id}
             name={product.name}
             price={product.price}
             image={product.image}

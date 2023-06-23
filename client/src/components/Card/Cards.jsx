@@ -1,15 +1,15 @@
-import { addtoCart } from "../../Redux/actions/actions";
+import { addtoCart } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Cards = ({ id, name, image, price, category }) => {
+const Cards = ({ _id, name, image, price, category }) => {
   const dispatch = useDispatch();
   const [, setInCart] = useState(false);
 
   const allShoppingCart = useSelector((state) => state.shoppingCart);
-  const isProductInCart = allShoppingCart.some((product) => product.id === id);
+  const isProductInCart = allShoppingCart.some((product) => product.id === _id);
 
   useEffect(() => {
     setInCart(isProductInCart);
@@ -17,13 +17,13 @@ const Cards = ({ id, name, image, price, category }) => {
 
   const handleShoppingCart = () => {
     setInCart(true);
-    dispatch(addtoCart({ id, name, image, price }));
+    dispatch(addtoCart({ _id, name, image, price }));
   };
   return (
     <div>
       <div className="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="aspect-w-3 aspect-h-4 mb-4">
-          <Link to={`/products/${id}`}>
+          <Link to={`/products/${_id}`}>
             <div className="bg-gray-200 rounded-lg overflow-hidden">
               <img
                 src={image}
@@ -36,7 +36,7 @@ const Cards = ({ id, name, image, price, category }) => {
         </div>
         <div className="flex flex-col justify-between h-full">
           <div>
-            <Link to={`/products/${id}`}>
+            <Link to={`/products/${_id}`}>
               <h5 className="text-2xl font-semibold text-gray-900 dark:text-white">
                 {name}
               </h5>
@@ -62,7 +62,7 @@ const Cards = ({ id, name, image, price, category }) => {
 };
 
 Cards.propTypes = {
-  id: PropTypes.any.isRequired,
+  _id: PropTypes.any.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
