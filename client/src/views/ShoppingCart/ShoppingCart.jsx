@@ -4,60 +4,17 @@ import { getTotalPrice } from "../../utils/totalprice"
 import {AiOutlineUser} from "react-icons/ai"
 import {BsTelephone, BsHouse} from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
-import { postShoppingCart } from "../../Redux/actions/actions";
-import { useState } from "react";
-import { useAuth } from "../../context/authContex";
-import { useEffect } from "react";
-import axios from "axios";
+
 
 
 const Shopping = () => {
-
-  const dispatch= useDispatch()
-  const {user} = useAuth()
-  console.log(user, "este es el user");
-  
-  useEffect(()=>{
-    if(user && user.email){
-      checkUserIdInDatabase(user.email)
-    }
-  },[user])
-
-
-  const checkUserIdInDatabase = async(userEmail)=>{
-    try {
-      const response = await axios(`http://localhost:3001/api/users/v1/${userEmail}`)
-      
-      // Este es el id del usuario logeado
-      
-
-      if(response.data._id){
-        console.log("Este es el id del usuario logeado", response.data._id);
-      }
-     
-    } catch (error) {
-      console.error(error.message);
-    }
-  }
- 
-  console.log(checkUserIdInDatabase);
-
-  
-  
-
-  
-
   const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
-  console.log(allShoppingCart);
 
 
- 
+  const dispatch = useDispatch();
 
   const handleDeleteFromCart = (productId) => {
     dispatch(removefromCart(productId));
-
-    // Aca tengo el Id de los productos
-    //console.log("este es el productID", productId); 
   };
 
   const handleAddToCart = (product) => {
