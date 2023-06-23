@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { getAllUsers, postUser } from "../../Redux/actions/actions";
+import { postUser } from "../../Redux/actions/actions";
 import { useAuth } from "../../context/authContex";
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -65,7 +65,6 @@ export function Register() {
       }, 5000);
     }
   };
-  const dbUsers = useSelector((state) => state.users);
   const handleGoogleSignIn = async () => {
     try {
       const response = await registerWithGoogle();
@@ -75,18 +74,6 @@ export function Register() {
         password: response.user.accessToken,
       };
 
-      const dbUsers = await dispatch(getAllUsers());
-      const existingUser = dbUsers.find(
-        (user) => user.email === userGoogle.email
-      );
-
-      console.log(existingUser);
-
-      if (existingUser) {
-        toast.error("This email is already in use");
-        return;
-      }
-      console.log(userGoogle);
       dispatch(postUser(userGoogle));
 
       toast.success("Welcome to Sweet Home");

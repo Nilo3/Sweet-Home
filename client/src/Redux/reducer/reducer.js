@@ -11,7 +11,7 @@ import {
 	SEARCH_PRODUCTS,
 	DELETE_ONE_FROM_CART,
 	GET_USERS,
-	POST_SHOPPING_CART
+	// POST_SHOPPING_CART
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
