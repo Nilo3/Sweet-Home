@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removefromCart, addtoCart, removeOneFromCart } from "../../Redux/actions/actions";
+import { removefromCart, addtoCart, removeOneFromCart, postShoppingCart, postOrder} from "../../Redux/actions/actions";
 import { getTotalPrice } from "../../utils/totalprice"
 import {AiOutlineUser} from "react-icons/ai"
 import {BsTelephone, BsHouse} from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
-import { postShoppingCart } from "../../Redux/actions/actions";
 import { useState } from "react";
 import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
@@ -16,6 +15,7 @@ const Shopping = () => {
   const dispatch= useDispatch()
   const {user} = useAuth()
   console.log(user, "este es el user");
+  const [userId, setUserId] = useState(null)
   
   useEffect(()=>{
     if(user && user.email){
@@ -28,19 +28,18 @@ const Shopping = () => {
     try {
       const response = await axios(`http://localhost:3001/api/users/v1/${userEmail}`)
       
-      // Este es el id del usuario logeado
-      
-
-      if(response.data._id){
-        console.log("Este es el id del usuario logeado", response.data._id);
+      if (response.data && response.data._id) {
+        const userIdnum = response.data._id;
+        setUserId(userIdnum);
       }
-     
+    
     } catch (error) {
       console.error(error.message);
     }
-  }
+  };
+  
  
-  console.log(checkUserIdInDatabase);
+  
 
   
   
@@ -64,11 +63,22 @@ const Shopping = () => {
     dispatch(addtoCart(product));
   };
 
-  
-
   const handleReduceFromCart = (product) =>{
     dispatch (removeOneFromCart(product._id))
   }
+  const handleSendOrder = () => {
+    const productIds = allShoppingCart.map((product) => product._id);
+  
+    const order = {
+      user: userId,
+      product: productIds,
+    };
+  
+console.log(order)
+    dispatch(postOrder(order));
+    navigateToShipping(); 
+  };
+
 
   const subTotal = getTotalPrice(allShoppingCart);
 
@@ -261,8 +271,8 @@ const Shopping = () => {
       </div>
   
 
-      <button onClick = {navigateToShipping} className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
-    Continue to payment
+      <button onClick = {handleSendOrder} className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+    Place Order
   </button>
 
     </div>
