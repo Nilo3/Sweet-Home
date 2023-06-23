@@ -58,5 +58,35 @@
     "createdBy": "5ff9ad8cc16a971824823e31",
     "rating": 4,
     "reviewText": "I'm pleased with this pendant light. It provides a warm and cozy atmosphere in my kitchen. The adjustable cord length is convenient. Good value for the price."
+  },
+  {
+    "product": "6495099cd919a31aae810386",
+    "createdBy": "5ff9ad8cc16a971824823e2f",
+    "rating": 5,
+    "reviewText": "This duvet cover is amazing! The quality is top-notch and the design is beautiful. It completely transformed the look of my bedroom."
+  },
+  {
+    "product": "6495099cd919a31aae81037f",
+    "createdBy": "5ff9ad8cc16a971824823e30",
+    "rating": 4.5,
+    "reviewText": "I'm really impressed with this velvet sofa. It's incredibly comfortable and the color adds a touch of elegance to my living room."
+  },
+  {
+    "product": "6495099cd919a31aae81038a",
+    "createdBy": "5ff9ad8cc16a971824823e31",
+    "rating": 4,
+    "reviewText": "I bought this pendant light for my dining area and I love it. It provides a warm and inviting atmosphere. Easy to install too!"
+  },
+  {
+    "product": "6495099cd919a31aae810386",
+    "createdBy": "5ff9ad8cc16a971824823e32",
+    "rating": 3.5,
+    "reviewText": "The quality of this duvet cover is good, but I expected the colors to be more vibrant. It's still a decent choice for the price."
+  },
+  {
+    "product": "6495099cd919a31aae810390",
+    "createdBy": "5ff9ad8cc16a971824823e33",
+    "rating": 5,
+    "reviewText": "I'm in love with this coffee table! It's stylish and functional, with plenty of storage space. A great addition to my living room."
   }
 ]
