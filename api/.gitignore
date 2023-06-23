@@ -1,0 +1,39 @@
+# Node.js
+node_modules/
+dist/
+
+# Environment variables
+# .env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
+
+# Dependency lock files
+package-lock.json
+yarn.lock
+
+# macOS specific files
+.DS_Store
+
+# Compiled binary files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Image thumbnails
+.thumb/
+
+# Testing artifacts
+coverage/
+
+# Miscellaneous
+*.tmp
+*.swp
+*.swo
