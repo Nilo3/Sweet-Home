@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const Shopping = () => {
   const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
 
-  console.log(allShoppingCart)
 
   const dispatch = useDispatch();
 
@@ -24,7 +23,7 @@ const Shopping = () => {
 
 
   const handleReduceFromCart = (product) =>{
-    dispatch (removeOneFromCart(product.id))
+    dispatch (removeOneFromCart(product._id))
   }
 
   const subTotal = getTotalPrice(allShoppingCart);
@@ -42,10 +41,10 @@ const Shopping = () => {
 
   const formattedSubTotal = subTotal.toFixed(2);
   const productCounts = allShoppingCart.reduce((counts, product) => {
-    if (counts[product.id]) {
-      counts[product.id] += 1;
+    if (counts[product._id]) {
+      counts[product._id] += 1;
     } else {
-      counts[product.id] = 1;
+      counts[product._id] = 1;
     }
     return counts;
   }, {});
@@ -93,17 +92,17 @@ const Shopping = () => {
           <p className="text-gray-400 flex items-center justify-center">Your shopping Cart is empty.</p>
         ) : (
           Object.entries(productCounts).map(([productId, count]) => {
-            const product = allShoppingCart.find((prod) => prod.id === productId);
+            const product = allShoppingCart.find((prod) => prod._id === productId);
             const totalPrice = product.price * count;
             const formattedTotalPrice = totalPrice.toFixed(2)
 
             return (
-              <div key={product.id} className="flex flex-col rounded-lg bg-white sm:flex-row">
+              <div key={product._id} className="flex flex-col rounded-lg bg-white sm:flex-row">
                 <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={product.image} alt="" />
                 <div className="flex w-full flex-col px-4 py-4">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold">{product.name}</span>
-                    <button className="ml-auto" onClick={() => handleDeleteFromCart(product.id)}>X</button>
+                    <button className="ml-auto" onClick={() => handleDeleteFromCart(product._id)}>X</button>
                   </div>
                   <p className="text-lg font-bold">${product.price}</p>
                   <div className="flex">
@@ -202,7 +201,7 @@ const Shopping = () => {
           </div>
         </div>
 
-<div className="mt-6 border-t border-b py-2">
+<div className="mb-3 mt-6 border-t border-b py-2">
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Subtotal</p>
           <p className="font-semibold text-gray-900">${formattedSubTotal}</p>

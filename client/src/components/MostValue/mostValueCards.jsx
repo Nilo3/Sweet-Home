@@ -6,13 +6,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-const MostValueCards = ({ id, name, image, price, rating }) => {
+const MostValueCards = ({ _id, name, image, price, rating }) => {
   const dispatch = useDispatch();
   const [, setInCart] = useState(false);
 
   const allShoppingCart = useSelector((state) => state.shoppingCart);
-  console.log(allShoppingCart)
-  const isProductInCart = allShoppingCart.some((product) => product.id === id);
+  const isProductInCart = allShoppingCart.some((product) => product.id === _id);
 
   useEffect(() => {
     setInCart(isProductInCart);
@@ -20,7 +19,7 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
 
   const handleShoppingCart = () => {
     setInCart(true);
-    dispatch(addtoCart({id, name, image, price }));
+    dispatch(addtoCart({_id, name, image, price }));
   };
 
   const renderRatingStars = () => {
@@ -48,7 +47,7 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
     <div>
       <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="aspect-w-3 aspect-h-4 mb-4">
-          <Link to={`/products/${id}`}>
+          <Link to={`/products/${_id}`}>
           <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
             {name}
           </h5>
@@ -86,7 +85,7 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
 };
 
 MostValueCards.propTypes = {
-  id: PropTypes.any.isRequired,
+  _id: PropTypes.any.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
