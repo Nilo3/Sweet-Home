@@ -10,8 +10,9 @@ import {
     SEARCH_PRODUCTS,
     ADD_TO_CART,
     DELETE_FROM_CART,
-    POST_USER
-} from "../action-types/action-types";
+    POST_USER,
+    DELETE_ONE_FROM_CART
+} from "../action-types/action-types"
 
 const HOST = "http://localhost:3001"
 
@@ -111,6 +112,14 @@ export const removefromCart = (id) => {
         payload: id
     }
 }
+
+export const removeOneFromCart = (id) => {
+    return {
+        type: DELETE_ONE_FROM_CART,
+        payload: id
+    }
+}
+
 
 export function postUser(payload) {
     return async function (dispatch) {

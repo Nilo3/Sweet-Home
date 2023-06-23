@@ -9,8 +9,8 @@ import {
 	ADD_TO_CART,
 	DELETE_FROM_CART,
 	SEARCH_PRODUCTS,
+	DELETE_ONE_FROM_CART,
 	GET_USERS,
-	POST_USER
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -75,6 +75,15 @@ const reducer = (state = initialState, action) => {
 				shoppingCart: state.shoppingCart.filter((product) => product._id !== action.payload)
 			};
 
+		case DELETE_ONE_FROM_CART: {
+			const filterCart = state.shoppingCart.filter((product) => product.id !== action.payload);
+			const toBeDeleted = state.shoppingCart.filter((product) => product.id === action.payload);
+			const filterDeleted = [...toBeDeleted.slice(0, toBeDeleted.length - 1)];
+			return {
+				...state,
+				shoppingCart: [...filterCart, ...filterDeleted]
+			};
+		}
 
 		//--//--//--//--//--//  Filter actions  //--//--//--//--//--//
 

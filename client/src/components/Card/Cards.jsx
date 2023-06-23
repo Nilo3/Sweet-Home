@@ -1,4 +1,4 @@
-import { addtoCart } from "../../redux/actions/actions";
+import { addtoCart } from "../../Redux/actions/actions";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -21,7 +21,7 @@ const Cards = ({ id, name, image, price, category }) => {
   };
   return (
     <div>
-      <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="aspect-w-3 aspect-h-4 mb-4">
           <Link to={`/products/${id}`}>
             <div className="bg-gray-200 rounded-lg overflow-hidden">

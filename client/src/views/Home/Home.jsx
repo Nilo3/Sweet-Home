@@ -9,8 +9,8 @@ import "./Home.css";
 
 function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <h1 className="font-serif tracking-wider text-5xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-60 dark:bg-[#000000] bg-opacity-75 dark:bg-opacity-50 rounded text-shadow  mt-[-20px]">
+    <div className="flex flex-col min-h-screen overflow-x-hidden">
+      <h1 className="font-serif tracking-wider text-5xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-60 dark:bg-[#000000] bg-opacity-75 dark:bg-opacity-50 rounded text-shadow  mt-[-100px]">
         Turn your house into a home
       </h1>
       <img
