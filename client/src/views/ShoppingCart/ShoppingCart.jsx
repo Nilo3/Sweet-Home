@@ -76,6 +76,7 @@ const Shopping = () => {
   
 console.log(order)
     dispatch(postOrder(order));
+    window.location.href = 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1405850896-d7e714cd-7416-436a-a6e3-d3285e3d24d9';
     navigateToShipping(); 
   };
 
