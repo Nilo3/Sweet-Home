@@ -152,7 +152,7 @@ export function getAllUsers() {
 export function postShoppingCart(payload){
     return async function(dispatch) {
         try {
-            const response = await axios.post(`${HOST}/api//cart`, payload);
+            const response = await axios.post(`${HOST}/api/cart`, payload);
             dispatch({
                 type: POST_SHOPPING_CART,
                 payload: response.data,
