@@ -25,8 +25,8 @@ export default async (req, res) => {
     const newOrder = new Order({
       user: foundUser._id,
       product: foundProducts.map((foundProduct) => foundProduct._id),
+      quantity: foundProducts.length,
       totalPrice,
-      isPaid: false,
       padAt: new Date()
     });
 
@@ -40,11 +40,16 @@ export default async (req, res) => {
       items: [
         {
           title: "Muebles",
-          quantity: 2,
+          unit_price: totalPrice,
           currency_id: "ARS",
-          unit_price: totalPrice
+          quantity: foundProducts.length,
         }
-      ]
+      ],
+      back_urls: {
+        success: "http://localhost:3001/api/success",
+        failure: "http://localhost:3001/api/failure",
+        pending: "http://localhost:3001/api/pending",
+      }
     };
 
     const result = await mercadopago.preferences.create(preference);
