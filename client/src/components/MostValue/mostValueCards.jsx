@@ -11,7 +11,6 @@ const MostValueCards = ({ id, name, image, price, rating }) => {
   const [, setInCart] = useState(false);
 
   const allShoppingCart = useSelector((state) => state.shoppingCart);
-  console.log(allShoppingCart)
   const isProductInCart = allShoppingCart.some((product) => product.id === id);
 
   useEffect(() => {

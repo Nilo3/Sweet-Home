@@ -82,8 +82,8 @@ const Products = () => {
         </select>
         <select className="ordAndFil2" onChange={(event) => handleOrderPrice(event)}>
           <option>Price</option>
-          <option value="high">High to Low</option>
-          <option value="low">Low to High</option>
+          <option value="high">Low to high</option>
+          <option value="low">High to low</option>
         </select>
         <select className="ordAndFil3"
           onChange={(event) => handleFilterCategory(event)}
@@ -119,7 +119,6 @@ const Products = () => {
                 name={product.name}
                 price={product.price}
                 image={product.image}
-                // description={product.description}
                 category= {product.category.map((el) => el.name)}
               />
               

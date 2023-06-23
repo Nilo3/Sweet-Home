@@ -75,7 +75,7 @@ export function Register() {
         password: response.user.accessToken,
       };
 
-      console.log(dbUsers);
+      const dbUsers = await dispatch(getAllUsers());
       const existingUser = dbUsers.find(
         (user) => user.email === userGoogle.email
       );
