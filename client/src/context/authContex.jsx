@@ -112,7 +112,6 @@ export function AuthProvider({ children }) {
         resetPassword,
         registerWithGitHub,
         registerWithGoogle,
-        getUserData,
       }}
     >
       {children}

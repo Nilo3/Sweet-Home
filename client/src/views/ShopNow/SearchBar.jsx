@@ -1,32 +1,31 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { searchProducts } from "../../Redux/actions/product/productActions";
+import { searchProducts } from "../../redux/actions/actions";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
-  const inputRef = useRef(null) // Referencia al campo de entrada (handleKeyDown)
+  const inputRef = useRef(null);
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    if(searchTerm.trim() === '') {
-      alert('Please enter a valid search term') // Mostrar mensaje de alerta si el campo de búsqueda está vacío
-    }else{
-      dispatch(searchProducts(searchTerm))
-      setSearchTerm('');
-  }  
-};
-
-  const handleKeyDown = (event) => { //Apretando boton enter de teclado se aprieta el search en la pantalla
-    if(event.key === "Enter"){
-      handleSubmit(event)
+    if (searchTerm.trim() === "") {
+      alert("Please enter a valid search term");
+    } else {
+      dispatch(searchProducts(searchTerm));
     }
-  }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit(event);
+    }
+  };
 
   const handleButtonClick = (event) => {
-    handleSubmit(event)
-  }
+    handleSubmit(event);
+  };
 
   return (
     <div className="flex items-center">

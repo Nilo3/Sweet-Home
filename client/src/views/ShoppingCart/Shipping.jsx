@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removefromCart, addtoCart, removeOneFromCart } from "../../Redux/actions/product/productActions";
-import { getTotalPrice, calculateTotal } from "./totalprice";
+import { removefromCart, addtoCart, removeOneFromCart } from "../../Redux/actions/actions";
+import { getTotalPrice, calculateTotal } from "../../utils/totalprice"
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-logo.png";
 import { useState } from "react";
-import {AiOutlineUser} from "react-icons/ai"
 import { useNavigate } from "react-router-dom";
 
 
-const Shipping = ({ id, name, image, price }) => {
+const Shipping = () => {
   const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
   const [selectedMethod, setSelectedMethod] = useState("method1");
 
@@ -28,7 +27,7 @@ const Shipping = ({ id, name, image, price }) => {
   };
 
   const handleReduceFromCart = (product) =>{
-    dispatch (removeOneFromCart(product.id))
+    dispatch (removeOneFromCart(product._id))
   }
 
   const navigateToCheckout = () => {
@@ -41,10 +40,10 @@ const Shipping = ({ id, name, image, price }) => {
   const formattedTotal = total.toFixed(2);
   const formattedSubTotal = subTotal.toFixed(2);
   const productCounts = allShoppingCart.reduce((counts, product) => {
-    if (counts[product.id]) {
-      counts[product.id] += 1;
+    if (counts[product._id]) {
+      counts[product._id] += 1;
     } else {
-      counts[product.id] = 1;
+      counts[product._id] = 1;
     }
     return counts;
   }, {});
@@ -95,7 +94,7 @@ const Shipping = ({ id, name, image, price }) => {
           <p className="text-gray-400 flex items-center justify-center">Your shopping Cart is empty.</p>
         ) : (
           Object.entries(productCounts).map(([productId, count]) => {
-            const product = allShoppingCart.find((prod) => prod.id === productId);
+            const product = allShoppingCart.find((prod) => prod._id === productId);
             const totalPrice = product.price * count;
             const formattedTotalPrice = totalPrice.toFixed(2)
 
@@ -105,7 +104,7 @@ const Shipping = ({ id, name, image, price }) => {
                 <div className="flex w-full flex-col px-4 py-4">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold">{product.name}</span>
-                    <button className="ml-auto" onClick={() => handleDeleteFromCart(product.id)}>X</button>
+                    <button className="ml-auto" onClick={() => handleDeleteFromCart(product._id)}>X</button>
                   </div>
                   <p className="text-lg font-bold">${product.price}</p>
                   <div className="flex">
@@ -137,10 +136,10 @@ const Shipping = ({ id, name, image, price }) => {
       <p className="text-black-400 mt-2 text-m text-left"> <a className="text-blue-600" href="#" onClick={navigateToCheckout}> &lt; Return to information</a></p>
             </div>
         
-              <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
-            <div>
-          <p className="mt-8 text-lg font-medium">Shipping Methods</p>
-          <form className="mt-5 grid gap-6">
+            <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
+  <div>
+  <p className="mt-8 text-lg font-medium">Shipping Methods</p>
+    <form className="mt-5 grid gap-6">
               
                 <div className="relative">
               <div className= {`shopping-method ${selectedMethod === "method1" ? "selected" : ""}`}
@@ -159,7 +158,7 @@ const Shipping = ({ id, name, image, price }) => {
                 </div>
               </div>
              
-              <div className="relative">
+              <div className=" mb-3 relative">
               <div className={`shopping-method ${selectedMethod === "method2" ? "selected" : ""}`}
         onClick={() => handleMethodSelection("method2")}>
                <input className="peer hidden" id="radio_2" type="radio" name="radio"  />
@@ -177,12 +176,11 @@ const Shipping = ({ id, name, image, price }) => {
               </div>
 
                 </form>
-
-                </div>
+  </div>
   <button className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
     Continue to payment
   </button>
-    </div>
+</div>
     
     </div>
         </>

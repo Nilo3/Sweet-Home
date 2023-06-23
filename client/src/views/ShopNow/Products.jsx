@@ -6,21 +6,20 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterByCategory,
   filterByPrice,
+  filterByName,
   getCategory,
   getProducts,
-} from "../../Redux/actions/product/productActions";
-import { filterByName } from "../../Redux/actions/product/productActions";
+
+} from "../../Redux/actions/actions.js"
 import SearchBar from "./SearchBar";
 import './Products.css'
 
 const Products = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
-  // console.log(allProducts)
   const category = useSelector((state) => state.category);
-  const [products, setProducts] = useState([]);
 
-  const [productPerPage, setProductsPerPage] = useState(6);
+  const [productPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -83,8 +82,8 @@ const Products = () => {
         </select>
         <select className="ordAndFil2" onChange={(event) => handleOrderPrice(event)}>
           <option>Price</option>
-          <option value="high">High to Low</option>
-          <option value="low">Low to High</option>
+          <option value="high">Low to high</option>
+          <option value="low">High to low</option>
         </select>
         <select className="ordAndFil3"
           onChange={(event) => handleFilterCategory(event)}
@@ -110,17 +109,16 @@ const Products = () => {
       />
       </div>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 gap-12">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
             
             <div key={product._id} className="flex justify-center">
               <Cards
-                id={product._id}
+                _id={product._id}
                 name={product.name}
                 price={product.price}
                 image={product.image}
-                // description={product.description}
                 category= {product.category.map((el) => el.name)}
               />
               

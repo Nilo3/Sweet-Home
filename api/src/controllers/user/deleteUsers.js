@@ -15,7 +15,6 @@ export default async (req, res) => {
     try {
       await Review.deleteMany({ createdBy: id });
 
-      // Elimino el usuario
       await User.findByIdAndDelete(id);
 
       res.json({ message: "User deleted successfully" });

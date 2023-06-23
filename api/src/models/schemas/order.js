@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 const orderSchema = new Schema({
   user: { type: Schema.Types.ObjectId, require: true, ref: "User" },
   product: [{ type: Schema.Types.ObjectId, required: true, ref: "Product" }],
+  quantity:{ type: Number },
   totalPrice: { type: Number, required: true, default: 0.0 },
-  isPaid: { type: Boolean, required: true, default: false },
   padAt: { type: Date }
 });
 

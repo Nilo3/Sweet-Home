@@ -1,20 +1,21 @@
-
-import Navbar from './components/Navbar/Navbar'
-import Footer from './components/Footer/Footer'
-import Products from './views/ShopNow/Products'
-import About from './views/About/About'
-import Detail from './views/Detail/Detail'
-import Shopping from "./views/ShoppingCart/ShoppingCart"
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import Products from "./views/ShopNow/Products";
+import About from "./views/About/About";
+import Detail from "./views/Detail/Detail";
+import Shopping from "./views/ShoppingCart/ShoppingCart";
 import Shipping from './views/ShoppingCart/Shipping'
-import Home from './views/Home/Home'
-import Login from './views/Login/Login'
-import Register from './views/Login/Register'
-import {Route, Routes} from 'react-router-dom'
-import { AuthProvider } from './context/authContex'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Home from "./views/Home/Home";
+import Login from "./views/Login/Login";
+import Register from "./views/Register/Register";
+import { Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./context/authContex";
+import { ToastContainer } from "react-toastify";
 import Dashboard from './views/Dashboard Admin/Dashboard'
 import CreateProduct from './views/CreateProduct/CreateProduct'
+import "react-toastify/dist/ReactToastify.css";
+
+import PropTypes from "prop-types";
 
 const Layout = ({ children }) => {
   return (
@@ -26,9 +27,6 @@ const Layout = ({ children }) => {
   );
 };
 
-
-
-
 function App() {
 
   return (
@@ -37,7 +35,6 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/products" element={<Layout><Products /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
@@ -53,7 +50,8 @@ function App() {
   );
 }
 
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 export default App;
-
-
-//las rutas que quiero que esten protegidas, las envuelvo en <ProtectedRoute><ejemploHome/></ProtectedRoute> previo importarlo

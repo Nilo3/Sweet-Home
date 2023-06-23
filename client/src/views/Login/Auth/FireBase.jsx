@@ -18,4 +18,3 @@ const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 export { auth, googleProvider, githubProvider };
-

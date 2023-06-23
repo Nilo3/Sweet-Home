@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../../context/authContex"
+import { useAuth } from "../../context/authContex";
 import { useNavigate } from "react-router-dom";
 import Container from "./Container";
 import ShopNowNav from "./Buttons/ShopNowNav";
@@ -13,8 +13,7 @@ import LoginNav from "./Buttons/LoginNav";
 import RegisterNav from "./Buttons/RegisterNav";
 import Logo from "./Logo/Logo";
 import { CgMenuRound } from "react-icons/cg";
-import userPlaceholder from '../../assets/image/person-placeholder-400x400.png';
-
+import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
 
 function Navbar() {
   const { user, logout } = useAuth();
@@ -105,40 +104,38 @@ function Navbar() {
               <ShoppingCart />
             </div>
             <div className="relative">
-  <div className="flex flex-row items-center gap-3">
-    <div className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
-      {user ? (
-        <>
-          {user.photoURL ? (
-            <img
-              src={user.photoURL}
-              alt="User Profile"
-              className="rounded-full w-8 h-8"
-            />
-          ) : (
-            <img
-              src={userPlaceholder}
-              alt="User Placeholder"
-              className="rounded-full w-8 h-8"
-            />
-          )}
-          <h1>Hi {user.displayName || user.email}</h1>
-        </>
-      ) : (
-        <LoginNav />
-      )}
-      <div className="hidden md:block cursor-pointer select-none">
-        {user ? (
-          <button onClick={handleLogout}>Logout</button>
-        ) : (
-          <RegisterNav />
-        )}
-      </div>
-    </div>
-  </div>
-</div>
-
-            
+              <div className="flex flex-row items-center gap-3">
+                <div className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
+                  {user ? (
+                    <>
+                      {user.photoURL ? (
+                        <img
+                          src={user.photoURL}
+                          alt="User Profile"
+                          className="rounded-full w-8 h-8"
+                        />
+                      ) : (
+                        <img
+                          src={userPlaceholder}
+                          alt="User Placeholder"
+                          className="rounded-full w-8 h-8"
+                        />
+                      )}
+                      <h1>Hi {user.displayName || user.email}</h1>
+                    </>
+                  ) : (
+                    <LoginNav />
+                  )}
+                  <div className="hidden md:block cursor-pointer select-none">
+                    {user ? (
+                      <button onClick={handleLogout}>Logout</button>
+                    ) : (
+                      <RegisterNav />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="md:hidden flex items-center">
             <CgMenuRound
@@ -152,8 +149,14 @@ function Navbar() {
         <div className="bg-white py-2">
           <Container>
             <div className="flex flex-col items-center gap-2">
-              <ShopNowNav mobileMenu={true} onClick={() => setIsMenuOpen(false)} />
-              <AboutNav mobileMenu={true} onClick={() => setIsMenuOpen(false)} />
+              <ShopNowNav
+                mobileMenu={true}
+                onClick={() => setIsMenuOpen(false)}
+              />
+              <AboutNav
+                mobileMenu={true}
+                onClick={() => setIsMenuOpen(false)}
+              />
               <RecomendationsNav
                 mobileMenu={true}
                 onClick={() => {
@@ -184,14 +187,23 @@ function Navbar() {
               />
               {user ? (
                 <>
-                  <button className="font-medium text-gray-600" onClick={handleLogout}>
+                  <button
+                    className="font-medium text-gray-600"
+                    onClick={handleLogout}
+                  >
                     Logout
                   </button>
                 </>
               ) : (
                 <>
-                  <LoginNav mobileMenu={true} onClick={() => setIsMenuOpen(false)} />
-                  <RegisterNav mobileMenu={true} onClick={() => setIsMenuOpen(false)} />
+                  <LoginNav
+                    mobileMenu={true}
+                    onClick={() => setIsMenuOpen(false)}
+                  />
+                  <RegisterNav
+                    mobileMenu={true}
+                    onClick={() => setIsMenuOpen(false)}
+                  />
                 </>
               )}
             </div>
@@ -203,6 +215,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-
-              

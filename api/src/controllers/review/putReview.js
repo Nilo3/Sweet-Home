@@ -17,12 +17,6 @@ export default async (req, res) => {
             return res.status(400).json({ message: "That review doesn't exist" });
         }
 
-        // const verify = await User.findById(userId);
-        // if (verify._id.toString() !== reviewToModify.createdBy._id.toString()) {
-
-        //     return res.status(400).json({ message: "You can't modify this review" });
-        // }
-
         const updatedReview = await Review.updateOne(
             { _id: reviewId },
             { $set: { rating } },

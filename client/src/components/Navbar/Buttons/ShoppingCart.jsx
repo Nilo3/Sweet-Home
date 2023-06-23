@@ -1,14 +1,11 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BsCart4 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
-
 const ShoppingCart = () => {
-
   const allShoppingCart = useSelector((state) => state.shoppingCart);
-  const [cartCount, setCartCount] = useState(allShoppingCart.length)
+  const [cartCount, setCartCount] = useState(allShoppingCart.length);
 
   useEffect(() => {
     setCartCount(allShoppingCart.length);

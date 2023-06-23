@@ -1,0 +1,17 @@
+[
+    {
+        "Vendedor-usuario": "TESTUSER84836704",
+        "password": "jqssRrGgxe"
+    },
+    {
+        "Comprador-usuario": "TESTUSER1598244099",
+        "password": "jqssRrGgxe"
+    },
+    {
+        "Tarjeta-Nro()visa": "4509 9535 6623 3704",
+        "cvv": "123",
+        "vencimiento":"11/25",
+        "nombre de usuraio":"APRO",
+        "DNI":"12345678"
+    }
+]

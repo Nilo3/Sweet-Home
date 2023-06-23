@@ -1,4 +1,11 @@
-const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts }) => {
+import PropTypes from "prop-types";
+
+const Pagination = ({
+  productPerPage,
+  currentPage,
+  setCurrentPage,
+  totalProducts,
+}) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalProducts / productPerPage); i++) {
@@ -28,8 +35,8 @@ const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts
           <li key={noPage}>
             <a
               className={`px-3 py-2 leading-tight text-gray-500 cursor-pointer select-none bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
-                currentPage === noPage ? 'bg-gray-200' : ''}`
-              }
+                currentPage === noPage ? "bg-gray-200" : ""
+              }`}
               onClick={() => setCurrentPage(noPage)}
             >
               {noPage}
@@ -47,6 +54,13 @@ const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts
       </ul>
     </nav>
   );
+};
+
+Pagination.propTypes = {
+  productPerPage: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
+  totalProducts: PropTypes.number.isRequired,
 };
 
 export default Pagination;
