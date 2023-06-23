@@ -11,6 +11,7 @@ import {
 	SEARCH_PRODUCTS,
 	DELETE_ONE_FROM_CART,
 	GET_USERS,
+	POST_SHOPPING_CART
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -72,7 +73,7 @@ const reducer = (state = initialState, action) => {
 		case DELETE_FROM_CART:
 			return {
 				...state,
-				shoppingCart: state.shoppingCart.filter((product) => product._id !== action.payload)
+				shoppingCart: state.shoppingCart.filter((product) => product.id !== action.payload)
 			};
 
 		case DELETE_ONE_FROM_CART: {
@@ -84,6 +85,8 @@ const reducer = (state = initialState, action) => {
 				shoppingCart: [...filterCart, ...filterDeleted]
 			};
 		}
+
+		
 
 		//--//--//--//--//--//  Filter actions  //--//--//--//--//--//
 

@@ -1,18 +1,26 @@
 import { useParams } from "react-router-dom";
-import { getProductDetail } from "../../Redux/actions/actions";
+import { getProductDetail,addtoCart } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Detail = () => {
   const dispatch = useDispatch();
+  const allShoppingCart = useSelector((state) => state.shoppingCart);
   const product = useSelector((state) => state.details);
   const { id } = useParams();
+
+  const isProductInCart = allShoppingCart.some((product) => product.id === id);
+
   useEffect(() => {
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
-  
+
   const navigate = useNavigate();
+
+  const handleShoppingCart = () => {
+    dispatch(addtoCart(product));
+  };
 
   const backToHome = () => {
     navigate("/");
@@ -113,7 +121,7 @@ const Detail = () => {
               
             </div>
    
-            <button type="button" className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+            <button onClick={handleShoppingCart} type="button" className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
               <svg xmlns="http://www.w3.org/2000/svg" className="shrink-0 mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>

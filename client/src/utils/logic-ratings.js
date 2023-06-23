@@ -28,7 +28,7 @@ export const productAVG = (reviews) => {
       const { name, price, image } = product;
 
       productAVGArray.push({
-        product: productId,
+        _id: productId,
         name: name,
         price: price,
         image: image,
@@ -41,3 +41,4 @@ export const productAVG = (reviews) => {
 
   return productAVGArray;
 };
+

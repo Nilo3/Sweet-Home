@@ -1,9 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removefromCart, addtoCart, removeOneFromCart } from "../../Redux/actions/actions";
 import { getTotalPrice } from "../../utils/totalprice"
-import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
-import dhlLogo from "../../assets/image/DHL-logo.png";
-import { useState } from "react";
 import {AiOutlineUser} from "react-icons/ai"
 import {BsTelephone, BsHouse} from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
@@ -11,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const Shopping = () => {
   const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
-  const [selectedMethod, setSelectedMethod] = useState("method1");
+
+  console.log(allShoppingCart)
 
   const dispatch = useDispatch();
 
@@ -23,9 +21,7 @@ const Shopping = () => {
     dispatch(addtoCart(product));
   };
 
-  const handleMethodSelection = (method) => {
-    setSelectedMethod(method);
-  };
+
 
   const handleReduceFromCart = (product) =>{
     dispatch (removeOneFromCart(product.id))
@@ -40,6 +36,7 @@ const Shopping = () => {
   };
   
   const navigateToShipping = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     navigate("/checkout/shipping");
   };
 
@@ -122,8 +119,9 @@ const Shopping = () => {
         )}
       </div>
             </div>
-        <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto">
-        
+            
+
+        <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
     <p className="text-xl font-medium">How would you like to complete your purchase?</p>
     <p className="text-gray-400 mt-2 text-m text-right">Already have an account? <a className="text-blue-600" href="#" onClick={navigateToLogin}>Login</a></p>
     <p className="text-gray-400 mt-2 text-lg">Contact</p>
@@ -218,46 +216,12 @@ const Shopping = () => {
         <p className="text-sm font-medium text-gray-900">Total</p>
         <p className="text-2xl font-semibold text-gray-900">${formattedSubTotal}</p>
       </div>
-   <p className="mt-8 text-lg font-medium">Shipping Methods</p>
   
-              <form className="mt-5 grid gap-6">
-                <div className="relative">
-              <div className= {`shopping-method ${selectedMethod === "method1" ? "selected" : ""}`}
-        onClick={() => handleMethodSelection("method1")}>
-               <input className="peer hidden" id="radio_1" type="radio" name="radio"  />
-               <span className={`method-label ${selectedMethod === "method1" ? "selected" : ""}`}>
-        </span>               
-        <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_1">
-                <img className="w-14 object-contain" src={fedexLogo} alt="" />
-                <div className="ml-5">
-              <span className="mt-2 font-semibold">Fedex Delivery</span>
-              <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
-               </div>
-                </label>  
-                </div>
-              </div>
-             
-              <div className="relative">
-              <div className={`shopping-method ${selectedMethod === "method2" ? "selected" : ""}`}
-        onClick={() => handleMethodSelection("method2")}>
-               <input className="peer hidden" id="radio_2" type="radio" name="radio"  />
-               <span className={`method-label ${selectedMethod === "method2" ? "selected" : ""}`}>
-        </span>               
-        <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_2">
-                <img className="w-14 object-contain" src={dhlLogo} alt="" />
-                <div className="ml-5">
-              <span className="mt-2 font-semibold">DHL Delivery</span>
-              <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
-               </div>
-                </label>  
-                </div>
-              </div>
 
-                </form>
+      <button onClick = {navigateToShipping} className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+    Continue to payment
+  </button>
 
-                <button onClick={navigateToShipping}className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
     </div>
     
     </div>
