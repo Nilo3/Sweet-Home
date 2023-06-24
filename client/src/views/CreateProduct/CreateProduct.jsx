@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postProduct, getCategory } from "../../redux/actions/actions";
+import { postProduct, getCategory } from "../../Redux/actions/actions";
 import { validate } from "../../utils/validate";
 
 const CreateProduct = () => {
