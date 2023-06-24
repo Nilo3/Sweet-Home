@@ -38,6 +38,9 @@ export function Login() {
         setError(
           "Sorry, your account already exists with a different credential (GitHub or Google). Try again"
         );
+        if (!user.email) setError("Please enter your email");
+
+        if (!user.password) setError("Please enter your password");
 
       setTimeout(() => {
         setError("");

@@ -14,21 +14,21 @@ const Shipping = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleDeleteFromCart = (productId) => {
-    dispatch(removefromCart(productId));
-  };
+  // const handleDeleteFromCart = (productId) => {
+  //   dispatch(removefromCart(productId));
+  // };
 
-  const handleAddToCart = (product) => {
-    dispatch(addtoCart(product));
-  };
+  // const handleAddToCart = (product) => {
+  //   dispatch(addtoCart(product));
+  // };
 
   const handleMethodSelection = (method) => {
     setSelectedMethod(method);
   };
 
-  const handleReduceFromCart = (product) =>{
-    dispatch (removeOneFromCart(product._id))
-  }
+  // const handleReduceFromCart = (product) =>{
+  //   dispatch (removeOneFromCart(product._id))
+  // }
 
   const navigateToCheckout = () => {
     navigate("/checkout");
@@ -104,13 +104,12 @@ const Shipping = () => {
                 <div className="flex w-full flex-col px-4 py-4">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold">{product.name}</span>
-                    <button className="ml-auto" onClick={() => handleDeleteFromCart(product._id)}>X</button>
+      
                   </div>
                   <p className="text-lg font-bold">${product.price}</p>
                   <div className="flex">
                     <p className="text-sm text-gray-500 mt-3">Quantity: {count}</p>
-                    <button className="mt-3 mb-5 ml-2 w-10 rounded-md bg-gray-900 px-0.5 py-.5 font-medium text-white" onClick={() => handleAddToCart(product)}>+</button>
-                    <button className="mt-3 mb-5 ml-2 w-10 rounded-md bg-gray-900 px-0.5 py-.5 font-medium text-white" onClick={() => handleReduceFromCart(product)}>-</button>
+                  
                   </div>
                   <p className="text-sm text-gray-500">Total Price: ${formattedTotalPrice}</p>
                 </div>
