@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removefromCart, addtoCart, removeOneFromCart, postOrder} from "../../Redux/actions/actions";
-import { getTotalPrice } from "../../utils/totalprice"
+import { getTotalPrice, calculateTotal } from "../../utils/totalprice"
 import {AiOutlineUser} from "react-icons/ai"
 import {BsTelephone, BsHouse} from "react-icons/bs"
 import { useAuth } from "../../context/authContex";
@@ -8,14 +8,22 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
+import dhlLogo from "../../assets/image/DHL-logo.png";
 
 
 const Shopping = () => {
-
+  const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
   const dispatch= useDispatch()
   const {user} = useAuth()
-  console.log(user, "este es el user");
   const [userId, setUserId] = useState(null)
+  const [selectedMethod, setSelectedMethod] = useState("method1");
+
+  const subTotal = getTotalPrice(allShoppingCart);
+  const shippingRate = 8;
+  const total = calculateTotal(shippingRate, subTotal);
+  const formattedTotal = total.toFixed(2);
+  const formattedSubTotal = subTotal.toFixed(2);
   
   useEffect(()=>{
     if(user && user.email){
@@ -23,7 +31,9 @@ const Shopping = () => {
     }
   },[user])
 
-
+  const handleMethodSelection = (method) => {
+    setSelectedMethod(method);
+  };
   const checkUserIdInDatabase = async(userEmail)=>{
     try {
       const response = await axios(`http://localhost:3001/api/users/v1/${userEmail}`)
@@ -37,19 +47,6 @@ const Shopping = () => {
       console.error(error.message);
     }
   };
-  
- 
-  
-
-  
-  
-
-  
-
-  const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
-
-
- 
 
   const handleDeleteFromCart = (productId) => {
     dispatch(removefromCart(productId));
@@ -67,6 +64,12 @@ const Shopping = () => {
     event.preventDefault();
     if(!user){
         alert("Please sign in before you continue"); 
+        return;
+
+       
+      }
+      else if (allShoppingCart.length == 0) {
+        alert("Your shopping cart is empty."); 
         return;
       }
     else {
@@ -88,13 +91,11 @@ const Shopping = () => {
       };
      console.log(order)
       dispatch(postOrder(order));
-    
-      navigateToShipping();
+  
     }
 }
 
 
-  const subTotal = getTotalPrice(allShoppingCart);
 
   const navigate = useNavigate();
 
@@ -102,12 +103,7 @@ const Shopping = () => {
     navigate("/register");
   };
   
-  const navigateToShipping = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    navigate("/checkout/shipping");
-  };
 
-  const formattedSubTotal = subTotal.toFixed(2);
   const productCounts = allShoppingCart.reduce((counts, product) => {
     if (counts[product._id]) {
       counts[product._id] += 1;
@@ -125,29 +121,7 @@ const Shopping = () => {
         <a href="#" className="text-2xl font-bold text-gray-800">Checkout</a>
         <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
         <div className="relative">
-        <ul className="relative flex w-full items-center justify-between space-x-2 sm:space-x-4">
-        <li className="flex items-center space-x-3 text-left sm:space-x-4">
-        <a className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-200 text-xs font-semibold  text-blue-700" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg></a>
-             <span className="font-semibold text-gray-900">Shop</span>
-            </li>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-        <li className="flex items-center space-x-3 text-left sm:space-x-4">
-          <a className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-600 text-xs font-semibold text-white ring ring-gray-600 ring-offset-2" href="#">2</a>
-          <span className="font-semibold text-gray-900">Shipping</span>
-        </li>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-        <li className="flex items-center space-x-3 text-left sm:space-x-4">
-          <a className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-400 text-xs font-semibold text-white" href="#">3</a>
-          <span className="font-semibold text-gray-500">Payment</span>
-        </li>
-            </ul>
+        
            </div>
            </div>
             </div>
@@ -157,7 +131,7 @@ const Shopping = () => {
             <p className="text-gray-400">Check your items.</p>
             <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
         {allShoppingCart?.length === 0 ? (
-          <p className="text-gray-400 flex items-center justify-center">Your shopping Cart is empty.</p>
+          <p className="text-gray-400 flex items-center justify-center">Your shopping cart is empty.</p>
         ) : (
           Object.entries(productCounts).map(([productId, count]) => {
             const product = allShoppingCart.find((prod) => prod._id === productId);
@@ -263,22 +237,61 @@ const Shopping = () => {
           </div>
         </div>
 
-<div className="mb-3 mt-6 border-t border-b py-2">
+        <div className="mb-3 mt-6 border-t border-b py-2">
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Subtotal</p>
           <p className="font-semibold text-gray-900">${formattedSubTotal}</p>
         </div>
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Shipping</p>
-          <p className="font-semibold text-sm text-gray-400">Calculated at next step</p>
+          <p className="font-semibold text-sm text-gray-400">${shippingRate}.00</p>
         </div>
       </div>
 
-     
+      <div>
+  <p className="mt-8 text-lg font-medium">Shipping Methods</p>
+    <form className="mt-5 grid gap-6">
+              
+                <div className="relative">
+              <div className= {`shopping-method ${selectedMethod === "method1" ? "selected" : ""}`}
+        onClick={() => handleMethodSelection("method1")}>
+               <input className="peer hidden" id="radio_1" type="radio" name="radio"  />
+               <span className={`method-label ${selectedMethod === "method1" ? "selected" : ""}`}>
+        </span>               
+        <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_1">
+                <img className="w-14 object-contain" src={fedexLogo} alt="" />
+                <div className="ml-5">
+              <span className="mt-2 font-semibold">Fedex Delivery</span>
+              <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
+               </div>
+                </label>  
+                </div>
+              </div>
+             
+              <div className=" mb-3 relative">
+              <div className={`shopping-method ${selectedMethod === "method2" ? "selected" : ""}`}
+        onClick={() => handleMethodSelection("method2")}>
+               <input className="peer hidden" id="radio_2" type="radio" name="radio"  />
+               <span className={`method-label ${selectedMethod === "method2" ? "selected" : ""}`}>
+        </span>               
+        <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_2">
+                <img className="w-14 object-contain" src={dhlLogo} alt="" />
+                <div className="ml-5">
+              <span className="mt-2 font-semibold">DHL Delivery</span>
+              <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
+               </div>
+                </label>  
+                </div>
+              </div>
+
+                </form>
+  </div>
               
       <div className="mt-6 flex items-center justify-between">
         <p className="text-sm font-medium text-gray-900">Total</p>
-        <p className="text-2xl font-semibold text-gray-900">${formattedSubTotal}</p>
+        <p className="text-2xl font-semibold text-gray-900">${formattedTotal}</p>
       </div>
   
 
