@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postProduct, getCategory } from "../../Redux/actions/actions";
 import { validate } from "../../utils/validate";
-console.log()
+
 const CreateProduct = () => {
   const [input, setInput] = useState({
     name: "",
