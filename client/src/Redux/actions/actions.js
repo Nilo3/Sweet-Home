@@ -182,6 +182,22 @@ export function postOrder(payload) {
     };
 }
 
+export function postOrder(payload) {
+    return async function (dispatch) {
+      try {
+        const response = await axios.post(`${HOST}/api/order`, payload);
+        const initPoint = response.data.init_point;
+        window.location.href = initPoint;
+        dispatch({
+          type: POST_ORDER,
+          payload: initPoint, // Corregido: response.initPoint -> initPoint
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }
+
 export const postProduct = (product) => {
     return async (dispatch) => {
         try {
