@@ -1,16 +1,55 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removefromCart, addtoCart, removeOneFromCart } from "../../Redux/actions/actions";
+import { removefromCart, addtoCart, removeOneFromCart, postShoppingCart, postOrder} from "../../Redux/actions/actions";
 import { getTotalPrice } from "../../utils/totalprice"
 import {AiOutlineUser} from "react-icons/ai"
 import {BsTelephone, BsHouse} from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../../context/authContex";
+import { useEffect } from "react";
+import axios from "axios";
 
 
 const Shopping = () => {
+
+  const dispatch= useDispatch()
+  const {user} = useAuth()
+  console.log(user, "este es el user");
+  const [userId, setUserId] = useState(null)
+  
+  useEffect(()=>{
+    if(user && user.email){
+      checkUserIdInDatabase(user.email)
+    }
+  },[user])
+
+
+  const checkUserIdInDatabase = async(userEmail)=>{
+    try {
+      const response = await axios(`http://localhost:3001/api/users/v1/${userEmail}`)
+      
+      if (response.data && response.data._id) {
+        const userIdnum = response.data._id;
+        setUserId(userIdnum);
+      }
+    
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+  
+ 
+  
+
+  
+  
+
+  
+
   const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
 
 
-  const dispatch = useDispatch();
+ 
 
   const handleDeleteFromCart = (productId) => {
     dispatch(removefromCart(productId));
@@ -20,11 +59,23 @@ const Shopping = () => {
     dispatch(addtoCart(product));
   };
 
-
-
   const handleReduceFromCart = (product) =>{
     dispatch (removeOneFromCart(product._id))
   }
+  const handleSendOrder = () => {
+    const productIds = allShoppingCart.map((product) => product._id);
+
+    const order = {
+        user: userId,
+        product: productIds,
+    };
+
+    dispatch(postOrder(order));
+
+    navigateToShipping();
+};
+
+
 
   const subTotal = getTotalPrice(allShoppingCart);
 
@@ -217,8 +268,8 @@ const Shopping = () => {
       </div>
   
 
-      <button onClick = {navigateToShipping} className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
-    Continue to payment
+      <button onClick = {handleSendOrder} className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+    Place Order
   </button>
 
     </div>
