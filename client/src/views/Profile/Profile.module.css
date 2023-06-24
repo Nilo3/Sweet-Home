@@ -1,0 +1,11 @@
+.all{
+    padding-top: 70px;
+  }
+  
+  .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    /*height: 65vh;*/
+  }
