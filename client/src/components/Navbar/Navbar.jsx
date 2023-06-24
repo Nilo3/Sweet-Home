@@ -14,6 +14,7 @@ import RegisterNav from "./Buttons/RegisterNav";
 import Logo from "./Logo/Logo";
 import { CgMenuRound } from "react-icons/cg";
 import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { user, logout } = useAuth();
@@ -121,7 +122,11 @@ function Navbar() {
                           className="rounded-full w-8 h-8"
                         />
                       )}
-                      <h1>Hi {user.displayName || user.email}</h1>
+                      <Link to="/profile">
+                      <div className="p-4 md:py-1 md:px-2 flex flex-row items-center gap-3 cursor-pointer ">
+                        <h1>Hi {user.displayName || user.email}</h1>
+                      </div>
+                    </Link>                   
                     </>
                   ) : (
                     <LoginNav />

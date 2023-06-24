@@ -13,6 +13,7 @@ export function Register() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const navigate = useNavigate();
@@ -28,6 +29,12 @@ export function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     dispatch(postUser(user));
+
+    if (user.password !== user.confirmPassword) {
+      setError('Las contraseñas no coinciden');
+      return;
+    }
+  
 
     try {
       await singup(user.email, user.password);
@@ -115,6 +122,21 @@ export function Register() {
               onChange={handleChange}
             />
           </div>
+          <div className="mb-4">
+            <label
+              htmlFor="lastName"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+             Last Name
+            </label>
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Please enter your Last Name"
+              className="shadow appearance-none border rounded text-xs w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={handleChange}
+            />
+          </div>
 
           <div className="mb-4">
             <label
@@ -148,6 +170,23 @@ export function Register() {
               onChange={handleChange}
             />
           </div>
+          <div className="mb-4">
+          <label
+              htmlFor="confirmPassword"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="********"
+              className="shadow appearance-none border rounded text-xs w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={handleChange}
+            />
+          </div>
+
 
           <button
             type="submit"
