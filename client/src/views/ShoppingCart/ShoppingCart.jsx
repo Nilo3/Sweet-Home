@@ -6,6 +6,7 @@ import {BsTelephone, BsHouse} from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
 
 
+
 const Shopping = () => {
   const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
 
@@ -20,7 +21,7 @@ const Shopping = () => {
     dispatch(addtoCart(product));
   };
 
-
+  
 
   const handleReduceFromCart = (product) =>{
     dispatch (removeOneFromCart(product._id))
