@@ -358,5 +358,396 @@
     "stock": 11,
     "category": ["649270b7742e76341ed9d0d5"],
     "review": []
+  },
+  {
+    "name": "Sweet® Wooden Coffee Table",
+    "price": 149.99,
+    "image": "https://cdn.shopify.com/s/files/1/0308/7948/1991/products/white-oak-round-coffee-table-1_1200x1200.jpg?v=1659562052",
+    "description": "Add a touch of rustic charm to your living room with the Sweet® Wooden Coffee Table. This sturdy coffee table features a natural wood finish and a spacious surface for holding drinks, magazines, or decorative items.",
+    "stock": 60,
+    "category": ["649270b7742e76341ed9d0d5"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Modern Floor Lamp",
+    "price": 129.99,
+    "image": "https://cdn.shopify.com/s/files/1/0192/5276/products/LMP_13451_28423-1_B_LIGHT-ON_2048x.jpg?v=1618065480",
+    "description": "Illuminate your space with the sleek and stylish Sweet® Modern Floor Lamp. This floor lamp features a slim profile, a metal base, and an adjustable shade, allowing you to direct light where you need it most.",
+    "stock": 70,
+    "category": ["649270c0742e76341ed9d0d7"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Patterned Throw Blanket",
+    "price": 59.99,
+    "image": "https://i5.walmartimages.com/asr/e1c85de5-1861-4db8-baaa-dbaf41e52e94.cb44f6d819bd871b4e032a3175545847.jpeg",
+    "description": "Stay cozy and stylish with the Sweet® Patterned Throw Blanket. This soft and warm blanket features a beautiful pattern and is perfect for snuggling up on the couch or adding a decorative touch to your bed.",
+    "stock": 45,
+    "category": ["6492710e742e76341ed9d0df"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Marble Top Side Table",
+    "price": 79.99,
+    "image": "https://bloomr.ae/cdn/shop/products/bloomr-furniture-solon-br-marble-side-table-artificial-flowers-artificial-trees-artificial-plants-dubai-saudi-arabia-uae-33226415734946_2024x2024.jpg?v=1653057412",
+    "description": "Enhance your space with the elegant Sweet® Marble Top Side Table. This stylish table features a marble top, a metal frame, and a compact design, making it perfect for small living areas or as a bedside table.",
+    "stock": 90,
+    "category": ["649270b7742e76341ed9d0d5"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Modern Pendant Chandelier",
+    "price": 199.99,
+    "image": "https://ak1.ostkcdn.com/images/products/is/images/direct/5320437fe64983712075f154a0a6401e74e9ea36/Flyn-Mid-Century-Modern-3-Light-Mercury-Glass-Cluster-Pendant-Chandelier-for-Dining-Room.jpg",
+    "description": "Create a stunning focal point with the Sweet® Modern Pendant Chandelier. This eye-catching chandelier features a cluster of glass globes and adjustable cords, allowing you to customize the height and arrangement to suit your space.",
+    "stock": 55,
+    "category": ["649270c0742e76341ed9d0d7"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Striped Blackout Curtains",
+    "price": 49.99,
+    "image": "https://m.media-amazon.com/images/I/818H0tTcWPL._AC_UF894,1000_QL80_.jpg",
+    "description": "Block out light and add a touch of style with the Sweet® Striped Blackout Curtains. These curtains feature a striped pattern and a blackout lining, providing privacy and creating a cozy atmosphere in your room.",
+    "stock": 40,
+    "category": ["64927100742e76341ed9d0db"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Abstract Art Canvas",
+    "price": 89.99,
+    "image": "https://cdn.shopify.com/s/files/1/0279/2987/0425/products/TailoredCanvases3_cd702794-e87d-4034-8462-6d8998c743b2_1024x.jpg?v=1666596569",
+    "description": "Add a touch of artistic flair to your walls with the Sweet® Abstract Art Canvas. This captivating canvas print features bold colors and abstract shapes, making it a striking addition to any room or gallery wall.",
+    "stock": 45,
+    "category": ["64927139742e76341ed9d0e9"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Outdoor Dining Set",
+    "price": 599.99,
+    "image": "https://cdn.shopify.com/s/files/1/2268/9819/collections/Round2BrownA_69f3cd5d-5256-466d-8e13-4698e7e5ec10_1600x.jpg?v=1676083041",
+    "description": "Create an inviting outdoor space with the Sweet® Outdoor Dining Set. This stylish set includes a dining table and chairs, featuring a durable construction and weather-resistant materials, perfect for enjoying meals and gatherings in your backyard.",
+    "stock": 40,
+    "category": ["64927143742e76341ed9d0eb"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Bamboo Toothbrush Holder",
+    "price": 14.99,
+    "image": "https://cdn.shopify.com/s/files/1/0127/9207/0208/files/fto-custom-toothbrush-holder-lifestyle-6.jpg?v=1686842736",
+    "description": "Organize your bathroom essentials with the Sweet® Bamboo Toothbrush Holder. This eco-friendly holder features a sleek design and multiple compartments, keeping your toothbrushes and toothpaste neatly stored and easily accessible.",
+    "stock": 50,
+    "category": ["64927132742e76341ed9d0e7"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Floral Metal Wall Art",
+    "price": 39.99,
+    "image": "https://cdn.shopify.com/s/files/1/0477/6670/0200/products/cicekli-set-metal-duvar-tablosu-siyah_1.jpg?v=1678948951&width=1080",
+    "description": "Add a touch of nature to your walls with the Sweet® Floral Metal Wall Art. This decorative piece features a delicate floral design and a metal construction, creating a beautiful focal point in your living room, bedroom, or entryway.",
+    "stock": 25,
+    "category": ["64927139742e76341ed9d0e9"],
+    "review": []
+  },
+
+  {
+    "name": "Sweet® Velvet Accent Chair",
+    "price": 249.99,
+    "image": "https://ak1.ostkcdn.com/images/products/is/images/direct/c03ebf1f4b6c2beb7e13f3547e77062725e3d343/Carson-Carrington-Falltorp-Mid-century-Tufted-Velvet-Accent-Chair.jpg",
+    "description": "Add a touch of luxury to your space with the Sweet® Velvet Accent Chair. This elegant chair features a plush velvet upholstery, a comfortable seat cushion, and a stylish design, making it perfect for your living room or bedroom.",
+    "stock": 80,
+    "category": ["649270b7742e76341ed9d0d5"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Geometric Wall Clock",
+    "price": 34.99,
+    "image": "https://cdn.shopify.com/s/files/1/0481/1423/7605/products/Frame17_1024x1024.jpg?v=1666068579",
+    "description": "Stay on time and enhance your wall decor with the Sweet® Geometric Wall Clock. This modern clock features a geometric design, a silent sweeping movement, and easy-to-read numbers, adding a contemporary touch to any room.",
+    "stock": 55,
+    "category": ["64927139742e76341ed9d0e9"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Tufted Ottoman Bench",
+    "price": 179.99,
+    "image": "https://cdn.shopify.com/s/files/1/0248/6924/0880/products/Y9-1_1_530x@2x.jpg?v=1605299277",
+    "description": "Complete your seating area with the Sweet® Tufted Ottoman Bench. This versatile bench features a tufted top, a sturdy wooden frame, and ample storage space inside, making it a practical and stylish addition to your living room or entryway.",
+    "stock": 60,
+    "category": ["649270b7742e76341ed9d0d5"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Ceramic Vase Set",
+    "price": 44.99,
+    "image": "https://m.media-amazon.com/images/I/71GkqkvtVnL.jpg",
+    "description": "Display your favorite flowers in style with the Sweet® Ceramic Vase Set. This set includes three ceramic vases in different sizes, featuring a textured finish and a neutral color palette, adding a touch of elegance to any room.",
+    "stock": 25,
+    "category": ["6492710e742e76341ed9d0df"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Mid-Century Bookshelf",
+    "price": 299.99,
+    "image": "https://m.media-amazon.com/images/I/81+lDqwjDkL.US1500_.jpg",
+    "description": "Organize your books and display your favorite decor pieces with the Sweet® Mid-Century Bookshelf. This stylish bookshelf features a mid-century modern design, multiple shelves, and a sturdy construction, blending functionality and aesthetics seamlessly.",
+    "stock": 30,
+    "category": ["649270c0742e76341ed9d0d7"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Faux Fur Throw Pillow",
+    "price": 19.99,
+    "image": "https://www.croscill.com/cdn/shop/products/df7e52a40337259c5021eb4043338e7a00a9f098_c36bf36a-c5a8-4073-8f2e-962085ac7eec.jpg?v=1663903208&width=1080",
+    "description": "Add a cozy and luxurious accent to your sofa or bed with the Sweet® Faux Fur Throw Pillow. This soft and fluffy pillow features a faux fur cover, a hidden zipper closure, and a plush insert, creating a comfortable and stylish space.",
+    "stock": 50,
+    "category": ["6492713b742e76341ed9d0ed"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Marble Coffee Table",
+    "price": 349.99,
+    "image": "https://images.fivenoir.com/products/911/majestic%20grey%20marble%20coffee.jpg?auto=format",
+    "description": "Enhance your living room with the elegance of the Sweet® Marble Coffee Table. This stunning table features a marble top, a sleek metal base, and a contemporary design, becoming a focal point and a functional piece in your space.",
+    "stock": 25,
+    "category": ["649270c0742e76341ed9d0d7"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Design Area Rug",
+    "price": 129.99,
+    "image": "https://i5.walmartimages.com/asr/6dd9bd6e-2722-4a2e-9f2c-75e23b9323f0_1.5dbd867330c79a4e569913ef4cc69fc7.jpeg",
+    "description": "Transform your floors with the Sweet® Patterned Area Rug. This eye-catching rug features a bold pattern, a soft and durable construction, and a variety of size options, adding warmth and style to your living room, bedroom, or dining area.",
+    "stock": 120,
+    "category": ["649270e0742e76341ed9d0db"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Wall-Mounted Mirror",
+    "price": 89.99,
+    "image": "https://cdn.shopify.com/s/files/1/0555/9527/0317/products/Eviva-Sleek-42-x-30-Frameless-Bathroom-Wall-Mounted-Mirror-2.jpg?v=1666309170&width=1946",
+    "description": "Create a stunning focal point in your space with the Sweet® Wall-Mounted Mirror. This elegant mirror features a decorative frame, a versatile size, and easy installation, allowing you to enhance the aesthetics of your entryway, bedroom, or bathroom.",
+    "stock": 100,
+    "category": ["64927132742e76341ed9d0e7"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Upholstered Bed Frame",
+    "price": 549.99,
+    "image": "https://m.media-amazon.com/images/I/81tVRbUjxSL.jpg",
+    "description": "Create a cozy and stylish bedroom with the Sweet® Upholstered Bed Frame. This bed frame features a padded headboard, a sturdy wooden construction, and a contemporary design, providing both comfort and aesthetic appeal to your sleeping space.",
+    "stock": 65,
+    "category": ["649270b7742e76341ed9d0d5"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Ultralight Dining Table",
+    "price": 799.99,
+    "image": "https://cdn11.bigcommerce.com/s-t0co7/images/stencil/2048x2048/products/5322/11315/5430__87658.1507021326.jpg?c=2",
+    "description": "Gather your family and friends around the Sweet® Elegance Dining Table. This exquisite table features a solid wood construction, a spacious tabletop, and intricate carved details, creating a luxurious dining experience in your home.",
+    "stock": 40,
+    "category": ["649270b7742e76341ed9d0d5"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Crystal Pearl Chandelier",
+    "price": 499.99,
+    "image": "https://m.media-amazon.com/images/I/71bw+U5zGmL._AC_UF1000,1000_QL80_.jpg",
+    "description": "Illuminate your space with the timeless elegance of the Sweet® Crystal Chandelier. This stunning chandelier features sparkling crystals, a chrome-finished frame, and adjustable chain length, adding a touch of glamour to your dining room or foyer.",
+    "stock": 15,
+    "category": ["649270c0742e76341ed9d0d7"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Sheer Voile Curtains",
+    "price": 39.99,
+    "image": "https://cdn.shopify.com/s/files/1/0455/0990/2504/products/DSC3139-2_3434x.jpg?v=1633099594",
+    "description": "Enhance your windows with the airy elegance of Sweet® Sheer Voile Curtains. These lightweight curtains feature a delicate voile fabric, a rod pocket design, and a variety of color options, allowing natural light to filter into your space while maintaining privacy.",
+    "stock": 100,
+    "category": ["64927100742e76341ed9d0db"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Luxe Shag Area Rug",
+    "price": 199.99,
+    "image": "https://www.bhg.com/thmb/LQtUezVvMRflcLQkRXTru5KBYWg=/1500x0/filters:no_upscale():strip_icc()/tabayon-shag-area-rug-bf62c3b2ad8745f7ae59b79439bce1cd.jpg",
+    "description": "Indulge in luxurious comfort with the Sweet® Luxe Shag Area Rug. This plush rug features a thick shag pile, a soft and durable construction, and a range of size and color options, adding warmth and coziness to your living room or bedroom.",
+    "stock": 60,
+    "category": ["64927108742e76341ed9d0dd"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Dreamy Duvet Set",
+    "price": 129.99,
+    "image": "https://secure.img1-cg.wfcdn.com/im/09729942/compr-r85/1258/125858827/riva-sateen-144-tc-duvet-cover-set.jpg",
+    "description": "Transform your bedroom into a serene retreat with the Sweet® Dreamy Duvet Set. This luxurious set includes a soft duvet cover and matching pillow shams, featuring a dreamy pattern and a smooth sateen weave, ensuring a restful night's sleep.",
+    "stock": 80,
+    "category": ["6492710e742e76341ed9d0df"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Plush Velvet Cushion",
+    "price": 29.99,
+    "image": "https://i.etsystatic.com/21435118/r/il/8f5313/3819011375/il_fullxfull.3819011375_lmnx.jpg",
+    "description": "Add a touch of luxury and comfort to your living space with the Sweet® Plush Velvet Cushion. This soft and plush cushion features a rich velvet cover, a concealed zipper, and a variety of color options, making it a stylish accent for your sofa or bed.",
+    "stock": 120,
+    "category": ["64927116742e76341ed9d0e1"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Timeknowing Mundi Clock",
+    "price": 69.99,
+    "image": "https://visualhunt.com/photos/11/oakland-gears-sculptural-wall-clock.jpg",
+    "description": "Make a statement with the Sweet® Decorative Wall Clock. This eye-catching clock features a unique design, a silent quartz movement, and a durable construction, becoming a functional and stylish addition to your living room, kitchen, or office.",
+    "stock": 70,
+    "category": ["64927125742e76341ed9d0e3"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Storage Basket Set",
+    "price": 49.99,
+    "image": "https://cdn.shopify.com/s/files/1/1123/4892/products/statuto-natural-storage-basket-set-534559.jpg?v=1663345519&width=1200",
+    "description": "Keep your space organized with the Sweet® Storage Basket Set. This set includes three woven baskets in different sizes, featuring sturdy handles and a versatile design, providing a stylish and practical storage solution for your home.",
+    "stock": 90,
+    "category": ["6492712b742e76341ed9d0e5"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Bamboo Bath Accessories Set",
+    "price": 79.99,
+    "image": "https://secure.img1-cg.wfcdn.com/im/58185015/compr-r85/1047/104710921/moraga-bamboo-4-piece-bathroom-accessory-set.jpg",
+    "description": "Add a natural and spa-like touch to your bathroom with the Sweet® Bamboo Bath Accessories Set. This set includes a soap dispenser, a toothbrush holder, and a storage tray, all made of sustainable bamboo, bringing a sense of tranquility to your daily routine.",
+    "stock": 70,
+    "category": ["64927132742e76341ed9d0e7"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Abstract Canvas Wall Art",
+    "price": 149.99,
+    "image": "https://cdn.shopify.com/s/files/1/0664/6815/1528/products/sensual-wall-art-or-bedroom-erotic-art-couple-sexy-bedroom-canvas-wall-art-sexy-over-bed-canvas-art-abstract-wall-decor-home-decor-trendiart-1.jpg?v=1668294526&width=1946",
+    "description": "Elevate your walls with the captivating Sweet® Abstract Canvas Wall Art. This gallery-wrapped canvas features an abstract design, vibrant colors, and a contemporary style, becoming a focal point and an expression of artistic beauty in your living room or bedroom.",
+    "stock": 45,
+    "category": ["64927139742e76341ed9d0e9"],
+    "review": []
+  },
+  {
+    "name": "Sweet® Modern Sofa",
+    "price": 899.99,
+    "image": "https://cdn.shopify.com/s/files/1/1133/4136/products/BARIII.jpg?v=1629214948&width=1946",
+    "description": "Upgrade your living room with the sleek and comfortable Sweet® Modern Sofa. This sofa features a minimalist design, high-quality upholstery, and sturdy construction, providing both style and relaxation to your home.",
+    "stock": 50,
+    "category": ["649270b7742e76341ed9d0d5"]
+  },
+  {
+    "name": "Sweet® Contemporary Chair",
+    "price": 299.99,
+    "image": "https://furnituredepot.ca/cdn/shop/products/34502-20_1.jpg?v=1628638421&width=1946",
+    "description": "Add a touch of elegance to any room with the Sweet® Contemporary Chair. This chair showcases a unique and stylish design, premium upholstery, and ergonomic comfort, making it a perfect choice for both relaxation and conversation.",
+    "stock": 80,
+    "category": ["649270b7742e76341ed9d0d5"]
+  },
+  {
+    "name": "Sweet® Glass Coffee Table",
+    "price": 149.99,
+    "image": "https://teaklab.com/wp-content/uploads/2019/08/Furniture-of-America-Leal-Contemporary-Glass-Top-Coffee-Table-d4663547-2032-4d7a-b95e-25324f8f3eed.jpg",
+    "description": "Enhance your living room with the modern and sophisticated Sweet® Glass Coffee Table. This table features a tempered glass top, a sturdy metal frame, and a contemporary design, becoming a focal point for your conversations and gatherings.",
+    "stock": 100,
+    "category": ["649270b7742e76341ed9d0d5"]
+  },
+  {
+    "name": "Sweet® Wooden Bookcase",
+    "price": 349.99,
+    "image": "https://ak1.ostkcdn.com/images/products/is/images/direct/aa216f29d105a484140080061548a28db31c1b65/VASAGLE-Wooden-Bookcase%2C-Display-Shelf-and-Room-Divider.jpg",
+    "description": "Organize your books and display decorative items with the Sweet® Wooden Bookcase. This bookcase is made of high-quality wood, features adjustable shelves, and offers a stylish and functional storage solution for your home library or living room.",
+    "stock": 65,
+    "category": ["649270b7742e76341ed9d0d5"]
+  },
+  {
+    "name": "Sweet® Wooden Small Desk",
+    "price": 399.99,
+    "image": "https://m.media-amazon.com/images/I/61jDPaTKV6L._AC_UF894,1000_QL80_.jpg",
+    "description": "Create a productive workspace with the sleek and practical Sweet® Modern Desk. This desk features a spacious tabletop, storage drawers, and a contemporary design, allowing you to work comfortably and efficiently.",
+    "stock": 25,
+    "category": ["649270b7742e76341ed9d0d5"]
+  },
+  {
+    "name": "Sweet® Bar Furniture Chair & Table",
+    "price": 699.99,
+    "image": "https://cdn.knorrweb.com/coaster-furniture/858b35b96434eac676f5a986a4865af6.jpg",
+    "description": "Transform your home into a stylish entertainment hub with the Sweet® Bar Furniture Set. This set includes a bar counter and stools, featuring a modern design, sturdy construction, and ample storage space for your bottles and glassware.",
+    "stock": 15,
+    "category": ["649270b7742e76341ed9d0d5"]
+  },
+  {
+    "name": "Sweet® Outdo Bar Furniture Chair & Table",
+    "price": 799.99,
+    "image": "https://cdn.shopify.com/s/files/1/1140/7574/products/CTSET3-_4_SQLD_1024x1024@2x.jpg?v=1641593257",
+    "description": "Transform your home into a stylish entertainment hub with the Sweet® Bar Furniture Set. This set includes a bar counter and stools, featuring a modern design, sturdy construction, and ample storage space for your bottles and glassware.",
+    "stock": 15,
+    "category": ["649270b7742e76341ed9d0d5"]
+  },
+  {
+    "name": "Sweet® Cotton Bath Towels",
+    "price": 19.99,
+    "image": "https://cdn.shopify.com/s/files/1/1721/6071/products/towels_pearl_grey_2000x1557_62aedf1f-fa1b-4900-abca-c53c9a838a15_2048x.jpg?v=1625679951",
+    "description": "Wrap yourself in luxury with the soft and absorbent Sweet® Cotton Bath Towels. These towels are made of premium cotton, offer quick-drying properties, and come in a set of four, providing a cozy and plush experience after your bath or shower.",
+    "stock": 150,
+    "category": ["64927132742e76341ed9d0e7"]
+  },
+  {
+    "name": "Sweet® Natural Shower Curtain",
+    "price": 29.99,
+    "image": "https://cdn.shopify.com/s/files/1/0406/7839/1960/products/galileo-natural-shower-curtain_galileo-showercurtain_main-image.jpg?v=1626482370",
+    "description": "Add a touch of nature-inspired beauty to your bathroom with the Sweet® Natural Shower Curtain. This curtain features a neutral color palette, high-quality fabric, and a waterproof design, bringing both style and functionality to your daily routine.",
+    "stock": 12,
+    "category": ["64927132742e76341ed9d0e7"]
+  },
+  {
+    "name": "Sweet® Abstract Print Pillows",
+    "price": 14.99,
+    "image": "https://cdn.shopify.com/s/files/1/0578/9977/8071/products/CU6548_ef561a77-f034-4544-a9ed-6cfcda7bba1b.jpg?v=1663009857",
+    "description": "Infuse your living space with artistic flair using the Sweet® Abstract Print Pillows. These pillows feature vibrant abstract patterns, premium fabric, and a plush filling, providing both comfort and a striking decorative accent to your sofa or bed.",
+    "stock": 20,
+    "category": ["64927116742e76341ed9d0e1"]
+  },
+  {
+    "name": "Sweet® Wool Poufs",
+    "price": 59.99,
+    "image": "https://ak1.ostkcdn.com/images/products/is/images/direct/eeb8b024b4d58ecd5adcf204e1bbb0ef5d3e8b33/Jucar-Handcrafted-Boho-Wool--Cotton-Pouf-by-Christopher-Knight-Home.jpg",
+    "description": "Add warmth and texture to your home with the cozy and versatile Sweet® Wool Poufs. These poufs are made of natural wool, feature a stylish knitted design, and can be used as extra seating or as footrests, offering both comfort and style.",
+    "stock": 9,
+    "category": ["64927116742e76341ed9d0e1"]
+  },
+  {
+    "name": "Sweet® Garden Bench",
+    "price": 199.99,
+    "image": "https://cdn.shopify.com/s/files/1/0549/2195/3378/files/BetawiteakgardenbenchDublin.jpg?v=1683034414",
+    "description": "Add charm and relaxation to your garden or outdoor space with the Sweet® Garden Bench. This bench features a sturdy metal frame, a comfortable seating surface, and an elegant design, providing a perfect spot for enjoying the beauty of nature.",
+    "stock": 6,
+    "category": ["64927143742e76341ed9d0eb"]
+  },
+  {
+    "name": "Sweet® Solar Pathway Lights",
+    "price": 29.99,
+    "image": "https://ae01.alicdn.com/kf/Sf5006ce6c61d4c76b37652817fe3cbb0c/2Pack-Solar-Pathway-Lights-Outdoor-LED-Solar-Garden-Lights-Waterproof-Solar-Landscape-Lights-for-Lawn-Patio.jpg",
+    "description": "Illuminate your outdoor pathways with the energy-efficient and stylish Sweet® Solar Pathway Lights. These lights harness solar power, feature a durable construction, and emit a warm and inviting glow, enhancing the safety and aesthetics of your outdoor areas.",
+    "stock": 10,
+    "category": ["64927143742e76341ed9d0eb"]
+  },
+  {
+    "name": "Sweet® Outdoor Umbrella",
+    "price": 149.99,
+    "image": "https://www.shadeaustralia.com.au/pub/media/magefan_blog/Bambrella-Patio.jpg",
+    "description": "Stay shaded and protected from the sun with the Sweet® Outdoor Umbrella. This umbrella features a large canopy, adjustable height, and sturdy construction, making it an essential accessory for your outdoor seating area or patio furniture set.",
+    "stock": 8,
+    "category": ["64927143742e76341ed9d0eb"]
+  },
+  {
+    "name": "Sweet® Outdoor Water Fountain",
+    "price": 249.99,
+    "image": "https://m.media-amazon.com/images/I/91J1ewGYAgL.jpg",
+    "description": "Enhance the ambiance of your outdoor space with the soothing sounds of the Sweet® Outdoor Water Fountain. This beautifully designed fountain features cascading water, a durable construction, and easy installation, adding a touch of elegance and tranquility to your garden or patio.",
+    "stock": 4,
+    "category": ["64927143742e76341ed9d0eb"]
   }
 ]

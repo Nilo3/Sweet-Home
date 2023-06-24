@@ -1,35 +1,85 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removefromCart, addtoCart, removeOneFromCart } from "../../Redux/actions/actions";
+import { removefromCart, addtoCart, removeOneFromCart, postShoppingCart, postOrder} from "../../Redux/actions/actions";
 import { getTotalPrice } from "../../utils/totalprice"
-import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
-import dhlLogo from "../../assets/image/DHL-logo.png";
-import { useState } from "react";
 import {AiOutlineUser} from "react-icons/ai"
 import {BsTelephone, BsHouse} from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../../context/authContex";
+import { useEffect } from "react";
+import axios from "axios";
 
 
 const Shopping = () => {
-  const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
-  const [selectedMethod, setSelectedMethod] = useState("method1");
 
-  const dispatch = useDispatch();
+  const dispatch= useDispatch()
+  const {user} = useAuth()
+  console.log(user, "este es el user");
+  const [userId, setUserId] = useState(null)
+  
+  useEffect(()=>{
+    if(user && user.email){
+      checkUserIdInDatabase(user.email)
+    }
+  },[user])
+
+
+  const checkUserIdInDatabase = async(userEmail)=>{
+    try {
+      const response = await axios(`http://localhost:3001/api/users/v1/${userEmail}`)
+      
+      if (response.data && response.data._id) {
+        const userIdnum = response.data._id;
+        setUserId(userIdnum);
+      }
+    
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+  
+ 
+  
+
+  
+  
+
+  
+
+  const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
+  console.log(allShoppingCart);
+
+
+ 
 
   const handleDeleteFromCart = (productId) => {
     dispatch(removefromCart(productId));
+
+    // Aca tengo el Id de los productos
+    //console.log("este es el productID", productId); 
   };
 
   const handleAddToCart = (product) => {
     dispatch(addtoCart(product));
   };
 
-  const handleMethodSelection = (method) => {
-    setSelectedMethod(method);
-  };
-
   const handleReduceFromCart = (product) =>{
-    dispatch (removeOneFromCart(product.id))
+    dispatch (removeOneFromCart(product._id))
   }
+  const handleSendOrder = () => {
+    const productIds = allShoppingCart.map((product) => product._id);
+
+    const order = {
+        user: userId,
+        product: productIds,
+    };
+
+    dispatch(postOrder(order));
+
+    navigateToShipping();
+};
+
+
 
   const subTotal = getTotalPrice(allShoppingCart);
 
@@ -40,15 +90,16 @@ const Shopping = () => {
   };
   
   const navigateToShipping = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     navigate("/checkout/shipping");
   };
 
   const formattedSubTotal = subTotal.toFixed(2);
   const productCounts = allShoppingCart.reduce((counts, product) => {
-    if (counts[product.id]) {
-      counts[product.id] += 1;
+    if (counts[product._id]) {
+      counts[product._id] += 1;
     } else {
-      counts[product.id] = 1;
+      counts[product._id] = 1;
     }
     return counts;
   }, {});
@@ -96,17 +147,17 @@ const Shopping = () => {
           <p className="text-gray-400 flex items-center justify-center">Your shopping Cart is empty.</p>
         ) : (
           Object.entries(productCounts).map(([productId, count]) => {
-            const product = allShoppingCart.find((prod) => prod.id === productId);
+            const product = allShoppingCart.find((prod) => prod._id === productId);
             const totalPrice = product.price * count;
             const formattedTotalPrice = totalPrice.toFixed(2)
 
             return (
-              <div key={product.id} className="flex flex-col rounded-lg bg-white sm:flex-row">
+              <div key={product._id} className="flex flex-col rounded-lg bg-white sm:flex-row">
                 <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={product.image} alt="" />
                 <div className="flex w-full flex-col px-4 py-4">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold">{product.name}</span>
-                    <button className="ml-auto" onClick={() => handleDeleteFromCart(product.id)}>X</button>
+                    <button className="ml-auto" onClick={() => handleDeleteFromCart(product._id)}>X</button>
                   </div>
                   <p className="text-lg font-bold">${product.price}</p>
                   <div className="flex">
@@ -122,8 +173,9 @@ const Shopping = () => {
         )}
       </div>
             </div>
-        <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto">
-        
+            
+
+        <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
     <p className="text-xl font-medium">How would you like to complete your purchase?</p>
     <p className="text-gray-400 mt-2 text-m text-right">Already have an account? <a className="text-blue-600" href="#" onClick={navigateToLogin}>Login</a></p>
     <p className="text-gray-400 mt-2 text-lg">Contact</p>
@@ -204,7 +256,7 @@ const Shopping = () => {
           </div>
         </div>
 
-<div className="mt-6 border-t border-b py-2">
+<div className="mb-3 mt-6 border-t border-b py-2">
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Subtotal</p>
           <p className="font-semibold text-gray-900">${formattedSubTotal}</p>
@@ -218,46 +270,12 @@ const Shopping = () => {
         <p className="text-sm font-medium text-gray-900">Total</p>
         <p className="text-2xl font-semibold text-gray-900">${formattedSubTotal}</p>
       </div>
-   <p className="mt-8 text-lg font-medium">Shipping Methods</p>
   
-              <form className="mt-5 grid gap-6">
-                <div className="relative">
-              <div className= {`shopping-method ${selectedMethod === "method1" ? "selected" : ""}`}
-        onClick={() => handleMethodSelection("method1")}>
-               <input className="peer hidden" id="radio_1" type="radio" name="radio"  />
-               <span className={`method-label ${selectedMethod === "method1" ? "selected" : ""}`}>
-        </span>               
-        <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_1">
-                <img className="w-14 object-contain" src={fedexLogo} alt="" />
-                <div className="ml-5">
-              <span className="mt-2 font-semibold">Fedex Delivery</span>
-              <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
-               </div>
-                </label>  
-                </div>
-              </div>
-             
-              <div className="relative">
-              <div className={`shopping-method ${selectedMethod === "method2" ? "selected" : ""}`}
-        onClick={() => handleMethodSelection("method2")}>
-               <input className="peer hidden" id="radio_2" type="radio" name="radio"  />
-               <span className={`method-label ${selectedMethod === "method2" ? "selected" : ""}`}>
-        </span>               
-        <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_2">
-                <img className="w-14 object-contain" src={dhlLogo} alt="" />
-                <div className="ml-5">
-              <span className="mt-2 font-semibold">DHL Delivery</span>
-              <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
-               </div>
-                </label>  
-                </div>
-              </div>
 
-                </form>
+      <button onClick = {handleSendOrder} className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+    Place Order
+  </button>
 
-                <button onClick={navigateToShipping}className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
     </div>
     
     </div>

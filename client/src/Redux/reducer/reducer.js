@@ -11,6 +11,9 @@ import {
 	SEARCH_PRODUCTS,
 	DELETE_ONE_FROM_CART,
 	GET_USERS,
+	POST_SHOPPING_CART,
+	POST_ORDER,
+
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -24,6 +27,9 @@ const initialState = {
 	shoppingCart: [],
 	loading: false,
 	error: null,
+	newCart:[],
+	order :[]
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -76,14 +82,16 @@ const reducer = (state = initialState, action) => {
 			};
 
 		case DELETE_ONE_FROM_CART: {
-			const filterCart = state.shoppingCart.filter((product) => product.id !== action.payload);
-			const toBeDeleted = state.shoppingCart.filter((product) => product.id === action.payload);
+			const filterCart = state.shoppingCart.filter((product) => product._id !== action.payload);
+			const toBeDeleted = state.shoppingCart.filter((product) => product._id === action.payload);
 			const filterDeleted = [...toBeDeleted.slice(0, toBeDeleted.length - 1)];
 			return {
 				...state,
 				shoppingCart: [...filterCart, ...filterDeleted]
 			};
 		}
+
+		
 
 		//--//--//--//--//--//  Filter actions  //--//--//--//--//--//
 
@@ -127,11 +135,14 @@ const reducer = (state = initialState, action) => {
 
 		case FILTER_BY_CATEGORY: {
 			const filteredCategory = state.getAllProducts.filter((element) => {
-				return element.category[0].name.includes(action.payload);
+			if (element.category[0] && element.category[0].name) {
+			return element.category[0].name.includes(action.payload);
+			}
+			return false;
 			});
 			return {
-				...state,
-				products: filteredCategory
+			...state,
+			products: filteredCategory
 			};
 		}
 
@@ -150,6 +161,7 @@ const reducer = (state = initialState, action) => {
 				users: action.payload,
 			};
 
+	
 		//--//--//--//--//--//  Other actions  //--//--//--//--//--//
 
 		case GET_CATEGORY:
@@ -157,6 +169,16 @@ const reducer = (state = initialState, action) => {
 				...state,
 				category: action.payload
 			};
+
+		case POST_SHOPPING_CART:
+			return {
+				...state
+			}
+
+		case POST_ORDER:
+			return {
+				...state
+			}
 
 		default:
 			return state;

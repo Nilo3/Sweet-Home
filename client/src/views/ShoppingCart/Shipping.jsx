@@ -14,21 +14,21 @@ const Shipping = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleDeleteFromCart = (productId) => {
-    dispatch(removefromCart(productId));
-  };
+  // const handleDeleteFromCart = (productId) => {
+  //   dispatch(removefromCart(productId));
+  // };
 
-  const handleAddToCart = (product) => {
-    dispatch(addtoCart(product));
-  };
+  // const handleAddToCart = (product) => {
+  //   dispatch(addtoCart(product));
+  // };
 
   const handleMethodSelection = (method) => {
     setSelectedMethod(method);
   };
 
-  const handleReduceFromCart = (product) =>{
-    dispatch (removeOneFromCart(product.id))
-  }
+  // const handleReduceFromCart = (product) =>{
+  //   dispatch (removeOneFromCart(product._id))
+  // }
 
   const navigateToCheckout = () => {
     navigate("/checkout");
@@ -40,10 +40,10 @@ const Shipping = () => {
   const formattedTotal = total.toFixed(2);
   const formattedSubTotal = subTotal.toFixed(2);
   const productCounts = allShoppingCart.reduce((counts, product) => {
-    if (counts[product.id]) {
-      counts[product.id] += 1;
+    if (counts[product._id]) {
+      counts[product._id] += 1;
     } else {
-      counts[product.id] = 1;
+      counts[product._id] = 1;
     }
     return counts;
   }, {});
@@ -94,7 +94,7 @@ const Shipping = () => {
           <p className="text-gray-400 flex items-center justify-center">Your shopping Cart is empty.</p>
         ) : (
           Object.entries(productCounts).map(([productId, count]) => {
-            const product = allShoppingCart.find((prod) => prod.id === productId);
+            const product = allShoppingCart.find((prod) => prod._id === productId);
             const totalPrice = product.price * count;
             const formattedTotalPrice = totalPrice.toFixed(2)
 
@@ -104,13 +104,12 @@ const Shipping = () => {
                 <div className="flex w-full flex-col px-4 py-4">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold">{product.name}</span>
-                    <button className="ml-auto" onClick={() => handleDeleteFromCart(product.id)}>X</button>
+      
                   </div>
                   <p className="text-lg font-bold">${product.price}</p>
                   <div className="flex">
                     <p className="text-sm text-gray-500 mt-3">Quantity: {count}</p>
-                    <button className="mt-3 mb-5 ml-2 w-10 rounded-md bg-gray-900 px-0.5 py-.5 font-medium text-white" onClick={() => handleAddToCart(product)}>+</button>
-                    <button className="mt-3 mb-5 ml-2 w-10 rounded-md bg-gray-900 px-0.5 py-.5 font-medium text-white" onClick={() => handleReduceFromCart(product)}>-</button>
+                  
                   </div>
                   <p className="text-sm text-gray-500">Total Price: ${formattedTotalPrice}</p>
                 </div>
@@ -136,10 +135,10 @@ const Shipping = () => {
       <p className="text-black-400 mt-2 text-m text-left"> <a className="text-blue-600" href="#" onClick={navigateToCheckout}> &lt; Return to information</a></p>
             </div>
         
-              <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
-            <div>
-          <p className="mt-8 text-lg font-medium">Shipping Methods</p>
-          <form className="mt-5 grid gap-6">
+            <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
+  <div>
+  <p className="mt-8 text-lg font-medium">Shipping Methods</p>
+    <form className="mt-5 grid gap-6">
               
                 <div className="relative">
               <div className= {`shopping-method ${selectedMethod === "method1" ? "selected" : ""}`}
@@ -158,7 +157,7 @@ const Shipping = () => {
                 </div>
               </div>
              
-              <div className="relative">
+              <div className=" mb-3 relative">
               <div className={`shopping-method ${selectedMethod === "method2" ? "selected" : ""}`}
         onClick={() => handleMethodSelection("method2")}>
                <input className="peer hidden" id="radio_2" type="radio" name="radio"  />
@@ -176,12 +175,11 @@ const Shipping = () => {
               </div>
 
                 </form>
-
-                </div>
+  </div>
   <button className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
     Continue to payment
   </button>
-    </div>
+</div>
     
     </div>
         </>

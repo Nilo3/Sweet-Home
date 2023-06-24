@@ -11,7 +11,9 @@ import {
     ADD_TO_CART,
     DELETE_FROM_CART,
     POST_USER,
-    DELETE_ONE_FROM_CART
+    DELETE_ONE_FROM_CART,
+    POST_SHOPPING_CART,
+    POST_ORDER,
 } from "../action-types/action-types"
 
 const HOST = "http://localhost:3001"
@@ -141,6 +143,38 @@ export function getAllUsers() {
             dispatch({
                 type: GET_USERS,
                 payload: response.data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
+
+export function postShoppingCart(payload){
+    return async function(dispatch) {
+        try {
+            const response = await axios.post(`${HOST}/api/cart`, payload);
+            dispatch({
+                type: POST_SHOPPING_CART,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
+
+
+export function postOrder(payload){
+    return async function(dispatch) {
+        try {
+            const response = await axios.post(`${HOST}/api/order`, payload);
+            const initPoint = response.data.init_point;
+            window.location.href = initPoint;
+            
+            dispatch({
+                type: POST_ORDER,
+                payload: response.initPoint
             });
         } catch (error) {
             console.log(error);

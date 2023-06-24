@@ -3,7 +3,7 @@ import User from "../../models/schemas/user.js";
 import Product from "../../models/schemas/product.js";
 
 export default async (req, res) => {
-  const { rating, createdBy, product } = req.body;
+  const { rating, createdBy, product, reviewText } = req.body;
   console.log(rating, createdBy, product);
   try {
     if (!rating || !createdBy || !product) {
@@ -31,10 +31,11 @@ export default async (req, res) => {
 
     const newReview = await Review.create({
       rating,
+      reviewText,
       product: foundProduct._id,
       createdBy: foundUser._id
     });
-      
+
     foundProduct.review.push(newReview);
     await foundProduct.save();
 
