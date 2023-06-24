@@ -40,7 +40,7 @@ export default async (req, res) => {
       items: [
         {
           title: "Muebles",
-          unit_price: totalPrice,
+          unit_price: totalPrice/foundProducts.length,
           currency_id: "ARS",
           quantity: foundProducts.length,
         }
