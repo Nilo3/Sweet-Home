@@ -5,7 +5,7 @@ import Container from "./Container";
 import ShopNowNav from "./Buttons/ShopNowNav";
 import AboutNav from "./Buttons/AboutNav";
 import RecomendationsNav from "./Buttons/RecommendationsNav";
-import Inspiration from "./Buttons/inspiration";
+import Inspiration from "./Buttons/Inspiration";
 import TopWeekNav from "./Buttons/TopWeekNav";
 import MostValuedNav from "./Buttons/MostValueNav";
 import ShoppingCart from "./Buttons/ShoppingCart";

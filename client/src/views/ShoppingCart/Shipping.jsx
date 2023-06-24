@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removefromCart, addtoCart, removeOneFromCart } from "../../Redux/actions/actions";
 import { getTotalPrice, calculateTotal } from "../../utils/totalprice"
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
-import dhlLogo from "../../assets/image/DHL-logo.png";
+import dhlLogo from "../../assets/image/DHL-Logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
