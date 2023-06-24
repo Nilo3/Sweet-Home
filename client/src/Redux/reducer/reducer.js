@@ -13,7 +13,7 @@ import {
 	GET_USERS,
 	POST_SHOPPING_CART,
 	POST_ORDER,
-
+  POST_PRODUCT
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -29,7 +29,6 @@ const initialState = {
 	error: null,
 	newCart:[],
 	order :[]
-
 };
 
 const reducer = (state = initialState, action) => {
@@ -162,6 +161,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
+      
+      case POST_PRODUCT:
+        return {
+            ...state,
+            products: [...state.products, action.payload],
+        }
 
 	
 		//--//--//--//--//--//  Other actions  //--//--//--//--//--//

@@ -14,7 +14,6 @@ const Shopping = () => {
 
   const dispatch= useDispatch()
   const {user} = useAuth()
-  console.log(user, "este es el user");
   const [userId, setUserId] = useState(null)
   
   useEffect(()=>{
