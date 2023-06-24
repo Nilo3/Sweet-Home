@@ -29,6 +29,7 @@ export default async (req, res) => {
       totalPrice,
       padAt: new Date()
     });
+   
 
     const savedOrder = await newOrder.save();
 
@@ -40,7 +41,7 @@ export default async (req, res) => {
       items: [
         {
           title: "Muebles",
-          unit_price: totalPrice,
+          unit_price: totalPrice/foundProducts.length,
           currency_id: "ARS",
           quantity: foundProducts.length,
         }
@@ -52,10 +53,12 @@ export default async (req, res) => {
       }
     };
 
+  
+
     const result = await mercadopago.preferences.create(preference);
     console.log(result);
 
-    res.status(200).json(result.body);
+    res.status(200).json(result.body.init_point);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
