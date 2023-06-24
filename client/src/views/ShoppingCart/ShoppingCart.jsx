@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removefromCart, addtoCart, removeOneFromCart, postShoppingCart, postOrder} from "../../Redux/actions/actions";
+import { removefromCart, addtoCart, removeOneFromCart, postOrder} from "../../Redux/actions/actions";
 import { getTotalPrice } from "../../utils/totalprice"
 import {AiOutlineUser} from "react-icons/ai"
 import {BsTelephone, BsHouse} from "react-icons/bs"
+import { useAuth } from "../../context/authContex";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
 import axios from "axios";
 
@@ -62,27 +62,44 @@ const Shopping = () => {
   const handleReduceFromCart = (product) =>{
     dispatch (removeOneFromCart(product._id))
   }
-  const handleSendOrder = () => {
-    const productIds = allShoppingCart.map((product) => product._id);
 
-    const order = {
+  function handleSendOrder(event) {
+    event.preventDefault();
+    if(!user){
+        alert("Please sign in before you continue"); 
+        return;
+      }
+    else {
+      const productCounts = allShoppingCart.reduce((counts, product) => {
+        if (counts[product._id]) {
+          counts[product._id] += 1;
+        } else {
+          counts[product._id] = 1;
+        }
+        return counts;
+      }, {});
+    
+      const order = {
         user: userId,
-        product: productIds,
-    };
-
-    dispatch(postOrder(order));
-
-    navigateToShipping();
-};
-
+        products: Object.entries(productCounts).map(([productId, quantity]) => ({
+          product: productId,
+          quantity: quantity,
+        })),
+      };
+     console.log(order)
+      dispatch(postOrder(order));
+    
+      navigateToShipping();
+    }
+}
 
 
   const subTotal = getTotalPrice(allShoppingCart);
 
   const navigate = useNavigate();
 
-  const navigateToLogin = () => {
-    navigate("/login");
+  const navigateToRegister= () => {
+    navigate("/register");
   };
   
   const navigateToShipping = () => {
@@ -172,23 +189,17 @@ const Shopping = () => {
             
 
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
-    <p className="text-xl font-medium">How would you like to complete your purchase?</p>
-    <p className="text-gray-400 mt-2 text-m text-right">Already have an account? <a className="text-blue-600" href="#" onClick={navigateToLogin}>Login</a></p>
-    <p className="text-gray-400 mt-2 text-lg">Contact</p>
-    
-        <label htmlFor="email" className="mt-4 mb-2 block text-sm font-medium">Email</label>
-        <div className="relative">
-     <input type="text" id="email" name="email" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="your.email@gmail.com" />
+    <p className="text-xl font-medium">Shipping</p>
+    <p className="text-gray-400 mt-2 text-m text-right">Don´t have an account? <a className="text-blue-600" href="#" onClick={navigateToRegister}>Register</a></p>
+  
+        
      <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
           </svg>
         </div>
-        </div>
-        <div className=" mt-3 flex items-center mb-4">
-      <input id="checkbox-2" type="checkbox" value="" className="  w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-      <label htmlFor="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I want to get promotional offers</label>
-       </div>
+      
+      
     <label htmlFor="card-no" className="mt-4 mb-2 block text-sm font-medium">Personal Info</label>
       <div className="flex">
         <div className="relative w-6/12 flex-shrink-0">
@@ -262,6 +273,9 @@ const Shopping = () => {
           <p className="font-semibold text-sm text-gray-400">Calculated at next step</p>
         </div>
       </div>
+
+     
+              
       <div className="mt-6 flex items-center justify-between">
         <p className="text-sm font-medium text-gray-900">Total</p>
         <p className="text-2xl font-semibold text-gray-900">${formattedSubTotal}</p>
