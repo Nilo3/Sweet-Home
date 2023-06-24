@@ -144,10 +144,10 @@ const reducer = (state = initialState, action) => {
 			return false;
 			});
 			return {
-				...state,
-				products: filteredCategory
+			...state,
+			products: filteredCategory
 			};
-		  }
+		}
 
     case MOST_VALUED_FILTER:
       return {
