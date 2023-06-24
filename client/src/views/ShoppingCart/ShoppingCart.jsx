@@ -47,16 +47,12 @@ const Shopping = () => {
   
 
   const allShoppingCart = useSelector((state) =>  state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)))
-  console.log(allShoppingCart);
 
 
  
 
   const handleDeleteFromCart = (productId) => {
     dispatch(removefromCart(productId));
-
-    // Aca tengo el Id de los productos
-    //console.log("este es el productID", productId); 
   };
 
   const handleAddToCart = (product) => {

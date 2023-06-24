@@ -3,78 +3,87 @@ import Product from "../../models/schemas/product.js";
 import User from "../../models/schemas/user.js";
 
 export default async (req, res) => {
-  const { user, products } = req.body;
-  const userId = user;
-
   try {
-    const productList = await Product.find({
-      _id: { $in: products.map((item) => item.product) },
-    });
+    const { products, user } = req.body;
+    const productId = products[0].product;
 
-    const user = await User.findById(userId);
-    const cart = await Cart.findOne({ user: userId });
+    const product = await Product.findById(productId);
+    const user2 = await User.findOne({ _id : user});
+    const cart = await Cart.findOne({ user: user }); 
+   
 
-    if (!user) {
+    if (!product) {
+      return res.status(400).json({ message: "Product not found" });
+    }
+
+    if (!user2) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    let totalAmount = 0;
-
     if (!cart) {
+      const quantityToAdd = parseInt(products[0].quantity);
+
+      if (isNaN(quantityToAdd) || quantityToAdd < 1) {
+        return res.status(400).json({ message: "Invalid quantity provided" });
+      }
+
       const newCart = new Cart({
-        user: userId,
-        products: products.map((item) => ({
-          product: item.product,
-          quantity: item.quantity,
-        })),
+        user: user2._id,
+        products: [{ product: product._id, quantity: quantityToAdd }],
+        totalAmount: product.price * quantityToAdd,
       });
 
-      for (const product of productList) {
-        const item = products.find((item) => item.product === product._id.toString());
-        if (item) {
-          totalAmount += product.price * item.quantity;
-          product.inCart = true;
-          await product.save();
-        }
-      }
-
-      newCart.totalAmount = totalAmount;
+      user2.cart = [...user2.cart, newCart];
+      await user2.save()
+      
+      product.inCart = true;
       await newCart.save();
 
-      user.cart = newCart._id; // Asignar el carrito al usuario
-      await user.save();
-
-      return res.json({ message: "Products added to cart", cart: newCart });
+      return res.json({ message: "Product added to cart", cart: newCart });
     }
 
-    for (const product of productList) {
-      const item = products.find((item) => item.product === product._id.toString());
-      if (item) {
-        const productInCartIndex = cart.products.findIndex(
-          (item) => item.product.toString() === product._id.toString()
-        );
+    const productInCartIndex = cart.products.findIndex(
+      (item) => item.product.toString() === productId
+    );
 
-        if (productInCartIndex === -1) {
-          cart.products.push({
-            product: product._id,
-            quantity: item.quantity,
-          });
-        } else {
-          cart.products[productInCartIndex].quantity += item.quantity;
-        }
+    if (productInCartIndex === -1) {
+      const quantityToAdd = parseInt(products[0].quantity);
 
-        totalAmount += product.price * item.quantity;
-        product.inCart = true;
-        await product.save();
+      if (isNaN(quantityToAdd) || quantityToAdd < 1) {
+        return res.status(400).json({ message: "Invalid quantity provided" });
       }
+
+      if (isNaN(cart.totalAmount) || cart.totalAmount < 0) {
+        return res.status(400).json({ message: "Invalid total amount in cart" });
+      }
+
+      cart.products.push({ product: productId, quantity: quantityToAdd });
+      cart.totalAmount += product.price * quantityToAdd;
+    } else {
+      const quantityToAdd = parseInt(products[0].quantity);
+
+      if (isNaN(quantityToAdd) || quantityToAdd < 1) {
+        return res.status(400).json({ message: "Invalid quantity provided" });
+      }
+
+      if (isNaN(cart.totalAmount) || cart.totalAmount < 0) {
+        return res.status(400).json({ message: "Invalid total amount in cart" });
+      }
+
+      user2.cart = [...user2.cart, cart._id];
+      await user2.save()
+      const selectedProduct = cart.products[productInCartIndex];
+      selectedProduct.quantity += quantityToAdd;
+      cart.totalAmount += product.price * quantityToAdd;
     }
 
-    cart.totalAmount = totalAmount;
     await cart.save();
 
-    return res.json({ message: "Products added to cart", cart });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Server error" });
+    product.inCart = true;
+    await product.save();
+
+    return res.json({ message: "Product added to cart", cart });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
