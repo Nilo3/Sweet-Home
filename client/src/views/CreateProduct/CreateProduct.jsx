@@ -1,6 +1,6 @@
 const CreateProduct = () => {
     return(
-        <h1>Acá se crean los productos</h1>
+        <h1 className="pt-16">Acá se crean los productos</h1>
     )
 }
 
