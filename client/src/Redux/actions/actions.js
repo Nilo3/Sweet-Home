@@ -170,11 +170,13 @@ export function postOrder(payload) {
     return async function (dispatch) {
         try {
             const response = await axios.post(`${HOST}/api/order`, payload);
-            const initPoint = response.data.init_point;
+           
+            const initPoint = response.data
+            console.log(initPoint)
             window.location.href = initPoint;
             dispatch({
                 type: POST_ORDER,
-                payload: response.initPoint
+                payload: initPoint
             });
         } catch (error) {
             console.log(error);
