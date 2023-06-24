@@ -13,6 +13,7 @@ import {
 	GET_USERS,
 	POST_SHOPPING_CART,
 	POST_ORDER,
+  // PUT_USER_PROFILE
 
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
@@ -162,6 +163,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
+
+    // case PUT_USER_PROFILE:
+    //   return{
+    //     ...state,
+    //     users: action.payload,
+    //   }
 
 	
 		//--//--//--//--//--//  Other actions  //--//--//--//--//--//

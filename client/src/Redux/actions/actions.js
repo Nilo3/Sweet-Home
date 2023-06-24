@@ -14,6 +14,7 @@ import {
     DELETE_ONE_FROM_CART,
     POST_SHOPPING_CART,
     POST_ORDER,
+    // PUT_USER_PROFILE,
 } from "../action-types/action-types"
 
 const HOST = "http://localhost:3001"
@@ -181,3 +182,18 @@ export function postOrder(payload){
         }
     };
 }
+
+//Una vez este lo de claudinary, ver si esto es de utilidad.
+// export function putUserProfile(id) {
+//     return async function (dispatch) {
+//         try {
+//             let response = await axios.put(`${HOST}/api/users/${id}`)
+//             return dispatch({
+//                 type: PUT_USER_PROFILE,
+//                 payload: response.data
+//             })
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     }
+// }

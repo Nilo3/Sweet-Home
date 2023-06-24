@@ -15,6 +15,8 @@ const putUsers = async (req, res) => {
                     password,
                     isAdmin
                 }
+                //en profile tengo name, lastname, email, password  y foto
+                
             }, { new: true });
         res.status(200).json(users)
     } catch (error) {

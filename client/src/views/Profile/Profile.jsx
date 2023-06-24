@@ -3,6 +3,11 @@ import style from "./Profile.module.css";
 import { useAuth } from "../../context/authContex";
 import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
 import { Link, useNavigate } from "react-router-dom";
+// import { useParams } from "react-router-dom";
+// //import { getProductDetail,addtoCart, postShoppingCart } from "../../Redux/actions/actions";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useEffect, useState } from "react";
+// // import axios from "axios";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -10,12 +15,27 @@ const Profile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
   const backToHome = () => {
     navigate("/");
   };
+
+  // const dispatch = useDispatch();
+  // const allUser = useSelector((state) => state.user);
+  // const usermodify = useSelector((state) => state.profile);
+  // const { id } = useParams();
+
+ 
+
+  // const existUser = allUser.some((usermodify) => user.id === id);
+
+  // useEffect(() => {
+  //   dispatch(getProductDetail(id));
+  // }, [dispatch, id]);
+
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -80,6 +100,15 @@ const Profile = () => {
               placeholder="your.email@domain.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
+            />
+          </div>
+          <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+            <p className="shrink-0 w-32 font-medium">Password</p>
+            <input
+              placeholder="***********"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
             />
           </div>
