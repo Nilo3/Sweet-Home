@@ -120,6 +120,7 @@ export function Register() {
               placeholder="Please enter your name"
               className="shadow appearance-none border rounded text-xs w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={handleChange}
+              required
             />
           </div>
           <div className="mb-4">
@@ -135,6 +136,7 @@ export function Register() {
               placeholder="Please enter your Last Name"
               className="shadow appearance-none border rounded text-xs w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -184,6 +186,7 @@ export function Register() {
               placeholder="********"
               className="shadow appearance-none border rounded text-xs w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={handleChange}
+              required
             />
           </div>
 
