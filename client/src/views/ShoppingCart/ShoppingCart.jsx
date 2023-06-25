@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
-import dhlLogo from "../../assets/image/DHL-logo.png";
+import dhlLogo from "../../assets/image/DHL-Logo.png";
 
 
 const Shopping = () => {
