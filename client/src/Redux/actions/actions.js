@@ -17,11 +17,14 @@ import {
     POST_PRODUCT
 } from "../action-types/action-types"
 
-const HOST = "http://localhost:3001"
+//const VITE_HOST = "http://localhost:3001"
+
+const {VITE_HOST} = import.meta.env
+
 
 export function getProducts() {
     return async function (dispatch) {
-        let response = await axios.get(`${HOST}/api/product`)
+        let response = await axios.get(`${VITE_HOST}/api/product`)
         return dispatch({
             type: GET_PRODUCTS,
             payload: response.data
@@ -32,7 +35,7 @@ export function getProducts() {
 export function getProductDetail(id) {
     return async function (dispatch) {
         try {
-            let response = await axios.get(`${HOST}/api/product/${id}`)
+            let response = await axios.get(`${VITE_HOST}/api/product/${id}`)
             return dispatch({
                 type: GET_PRODUCT_DETAIL,
                 payload: response.data
@@ -45,7 +48,7 @@ export function getProductDetail(id) {
 
 export function getReviews() {
     return async function (dispatch) {
-        let response = await axios.get(`${HOST}/api/review`)
+        let response = await axios.get(`${VITE_HOST}/api/review`)
         return dispatch({
             type: MOST_VALUED_FILTER,
             payload: response.data
@@ -70,7 +73,7 @@ export const filterByPrice = (payload) => {
 export const getCategory = () => {
     return async function (dispatch) {
         try {
-            let response = await axios(`${HOST}/api/category`)
+            let response = await axios(`${VITE_HOST}/api/category`)
 
             return dispatch({
                 type: GET_CATEGORY,
@@ -127,7 +130,7 @@ export const removeOneFromCart = (id) => {
 export function postUser(payload) {
     return async function (dispatch) {
         try {
-            const response = await axios.post(`${HOST}/api/users`, payload);
+            const response = await axios.post(`${VITE_HOST}/api/users`, payload);
             dispatch({
                 type: POST_USER,
                 payload: response.data,
@@ -140,7 +143,7 @@ export function postUser(payload) {
 export function getAllUsers() {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`${HOST}/api/users`);
+            const response = await axios.get(`${VITE_HOST}/api/users`);
             dispatch({
                 type: GET_USERS,
                 payload: response.data,
@@ -154,7 +157,7 @@ export function getAllUsers() {
 export function postShoppingCart(payload) {
     return async function (dispatch) {
         try {
-            const response = await axios.post(`${HOST}/api/cart`, payload);
+            const response = await axios.post(`${VITE_HOST}/api/cart`, payload);
             dispatch({
                 type: POST_SHOPPING_CART,
                 payload: response.data,
@@ -169,14 +172,12 @@ export function postShoppingCart(payload) {
 export function postOrder(payload) {
     return async function (dispatch) {
         try {
-            const response = await axios.post(`${HOST}/api/order`, payload);
-           
-            const initPoint = response.data
-            console.log(initPoint)
+            const response = await axios.post(`${VITE_HOST}/api/order`, payload);
+            const initPoint = response.data.init_point;
             window.location.href = initPoint;
             dispatch({
                 type: POST_ORDER,
-                payload: initPoint
+                payload: response.initPoint
             });
         } catch (error) {
             console.log(error);
@@ -184,12 +185,10 @@ export function postOrder(payload) {
     };
 }
 
-
-
 export const postProduct = (product) => {
     return async (dispatch) => {
         try {
-            const response = await axios.post(`${HOST}/api/product`, product);
+            const response = await axios.post(`${VITE_HOST}/api/product`, product);
             dispatch({
                 type: POST_PRODUCT,
                 payload: response.data
