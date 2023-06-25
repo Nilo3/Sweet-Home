@@ -17,9 +17,9 @@ import {
     POST_PRODUCT
 } from "../action-types/action-types"
 
-//const VITE_HOST = "http://localhost:3001"
+const VITE_HOST = "http://localhost:3001"
 
-const {VITE_HOST} = import.meta.env
+// const {VITE_HOST} = import.meta.env
 
 
 export function getProducts() {
@@ -173,17 +173,21 @@ export function postOrder(payload) {
     return async function (dispatch) {
         try {
             const response = await axios.post(`${VITE_HOST}/api/order`, payload);
-            const initPoint = response.data.init_point;
+           
+            const initPoint = response.data
+            console.log(initPoint)
             window.location.href = initPoint;
             dispatch({
                 type: POST_ORDER,
-                payload: response.initPoint
+                payload: initPoint
             });
         } catch (error) {
             console.log(error);
         }
     };
 }
+
+
 
 export const postProduct = (product) => {
     return async (dispatch) => {
