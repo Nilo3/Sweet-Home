@@ -17,9 +17,9 @@ import {
     POST_PRODUCT
 } from "../action-types/action-types"
 
-const VITE_HOST = "http://localhost:3001"
+//const VITE_HOST = "http://localhost:3001"
 
-// const {VITE_HOST} = import.meta.env
+const {VITE_HOST} = import.meta.env
 
 
 export function getProducts() {
