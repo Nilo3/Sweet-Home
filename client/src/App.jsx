@@ -4,7 +4,6 @@ import Products from "./views/ShopNow/Products";
 import About from "./views/About/About";
 import Detail from "./views/Detail/Detail";
 import Shopping from "./views/ShoppingCart/ShoppingCart";
-import Shipping from './views/ShoppingCart/Shipping'
 import Home from "./views/Home/Home";
 import Login from "./views/Login/Login";
 import Register from "./views/Register/Register";
@@ -42,7 +41,6 @@ function App() {
           <Route path="/products/:id" element={<Layout><Detail /></Layout>} />
           <Route path="/adminDashboard" element={<Layout><Dashboard /></Layout>} />
           <Route path="/createProduct" element={<Layout><CreateProduct /></Layout>} />
-          <Route path="/checkout/shipping" element={<Layout><Shipping/></Layout>} />
           <Route path="/profile" element={<Layout><Profile/></Layout>} />
           
         </Routes>
