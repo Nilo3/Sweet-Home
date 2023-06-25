@@ -4,15 +4,15 @@ import Recommendations from "../../components/Recommendations/Recomendations";
 import MostValued from "../../components/MostValue/MostValue";
 import TopWeek from "../../components/TopWeek/TopWeek";
 import Inspiration from "../../components/Inspiration/Inspiration";
-import homeimage from "../../assets/image/home-page.webp";
+import homeimage from "../../assets/image/home-page-with-text.png";
 import "./Home.css";
 
 function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <h1 className="font-serif tracking-wider text-5xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-60 dark:bg-[#000000] bg-opacity-75 dark:bg-opacity-50 rounded text-shadow  mt-[-100px]">
+      {/*<h1 className="font-serif tracking-wider text-5xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-60 dark:bg-[#000000] bg-opacity-75 dark:bg-opacity-50 rounded text-shadow  mt-[-100px]">
         Turn your house into a home
-      </h1>
+      </h1>*/}
       <img
         className="h-auto max-w-full rounded-lg w-full"
         src={homeimage}
