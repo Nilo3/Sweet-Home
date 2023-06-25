@@ -119,7 +119,7 @@ const Detail = () => {
             <div className="flex items-center">
               <span className="mx-2 text-gray-400">/</span>
               <div className="-m-1">
-                {/* <a href="#" className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800" aria-current="page">{product.category.map((el) => el.name)} </a> */}
+                <a href="#" className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800" aria-current="page">{product.category?.map((el) => el.name)} </a>
               </div>
             </div>
           </li>
@@ -164,7 +164,7 @@ const Detail = () => {
             </div>
             <p className="ml-2 text-sm font-medium text-gray-500">1,209 Reviews</p>
           </div>
-          <h2 className="mt-8 text-base text-gray-900">Choose subscription</h2>
+          <h2 className="mt-8 text-base text-gray-900">Extension your warranty</h2>
           <div className="mt-3 flex select-none flex-wrap items-center gap-1">
             <label className="">
               <input type="radio" name="subscription" value="4 Months" className="peer sr-only" />
