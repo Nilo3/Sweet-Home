@@ -261,7 +261,7 @@ const Dashboard = () => {
                   productsToDisplay.map((product) => (
                     <div key={product._id} className="flex justify-center">
                       <AdminCard
-                        _id={product._id}
+                        id={product._id}
                         name={product.name}
                         price={product.price}
                         image={product.image}

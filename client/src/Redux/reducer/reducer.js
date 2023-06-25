@@ -13,6 +13,7 @@ import {
 	GET_USERS,
 	POST_SHOPPING_CART,
 	POST_ORDER,
+  DELETE_PRODUCT,
 
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
@@ -64,6 +65,15 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: filteredProducts,
       };
+    }
+    case DELETE_PRODUCT: {
+      const updateProduct = state.getAllProducts.filter((product) => product._id !== payload)
+      const removeProduct = state.products.filter((product) => product._id !== payload)
+      return{
+        ...state,
+        getAllProducts: updateProduct,
+        products: removeProduct
+      }
     }
 
     //--//--//--//--//--// Cart actions  //--//--//--//--//--//

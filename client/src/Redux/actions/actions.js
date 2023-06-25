@@ -14,6 +14,7 @@ import {
     DELETE_ONE_FROM_CART,
     POST_SHOPPING_CART,
     POST_ORDER,
+    DELETE_PRODUCT,
 } from "../action-types/action-types"
 
 const HOST = "http://localhost:3001"
@@ -180,4 +181,20 @@ export function postOrder(payload){
             console.log(error);
         }
     };
+}
+
+export function deleteProduct (id) {
+    return async function (dispatch) {
+        try {
+            await axios.delete(`${HOST}/api/product/${id}`)
+            return dispatch ({
+                type: DELETE_PRODUCT,
+                payload: id
+            })
+            
+        } catch (error) {
+            console.log(error)
+            
+        }
+    }
 }
