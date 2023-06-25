@@ -20,7 +20,7 @@ const Shopping = () => {
   const [selectedMethod, setSelectedMethod] = useState("method1");
 
   const subTotal = getTotalPrice(allShoppingCart);
-  const shippingRate = 8;
+  const shippingRate = 0;
   const total = calculateTotal(shippingRate, subTotal);
   const formattedTotal = total.toFixed(2);
   const formattedSubTotal = subTotal.toFixed(2);
@@ -244,7 +244,7 @@ const Shopping = () => {
         </div>
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Shipping</p>
-          <p className="font-semibold text-sm text-gray-400">${shippingRate}.00</p>
+          <p className="font-semibold text-sm text-gray-400">Calculated at next step.</p>
         </div>
       </div>
 
