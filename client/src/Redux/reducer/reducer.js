@@ -137,14 +137,14 @@ const reducer = (state = initialState, action) => {
 
 		case FILTER_BY_CATEGORY: {
 			const filteredCategory = state.getAllProducts.filter((element) => {
-			if (element.category[0] && element.category[0].name) {
-			return element.category[0].name.includes(action.payload);
-			}
-			return false;
+			  if (element.category[0] && element.category[0].name) {
+				return element.category[0].name.includes(action.payload);
+			  }
+			  return false;
 			});
 			return {
-			...state,
-			products: filteredCategory
+			  ...state,
+			  products: filteredCategory
 			};
 		}
 

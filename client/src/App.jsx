@@ -28,6 +28,7 @@ const Layout = ({ children }) => {
 };
 
 function App() {
+
   return (
     <div>
       <AuthProvider>

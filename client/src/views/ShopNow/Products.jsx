@@ -109,7 +109,7 @@ const Products = () => {
       />
       </div>
       </div>
-      <div className="grid grid-cols-4 gap-12">
+      <div className="cards">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
             
