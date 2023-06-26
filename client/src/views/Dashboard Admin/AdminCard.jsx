@@ -1,18 +1,19 @@
 import { useEffect } from "react";
-import { deleteProduct } from "../../redux/actions/actions";
+import { deleteProduct, getCategory, getProducts } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const AdminCard = ({ id, name, category, description, price }) => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(deleteProduct(id));
-  }, []);
+    dispatch(getProducts)
+    dispatch(getCategory)
+  }, [dispatch])
 
-  function handleDelete(event) {
-    event.preventDefault();
-    dispatch(deleteProduct(event.target.value));
+    function handleDelete(event) {
+      event.preventDefault();
+  dispatch(deleteProduct(event.target.value));
   }
 
   return (
@@ -33,7 +34,7 @@ const AdminCard = ({ id, name, category, description, price }) => {
             <Link to={"/editProduct"}>
               <button>Edit</button>
             </Link>
-            <button onClick={(event) => handleDelete(event)}>Delete</button>
+            <button value={id} onClick={(event) => handleDelete(event)}>Delete</button>
           </td>
         </tr>
       </tbody>

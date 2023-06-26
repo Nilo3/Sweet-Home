@@ -31,10 +31,7 @@ export default async (req, res) => {
       })
       .populate({
         path: "cart",
-        populate: {
-          path: "products.product",
-          model: Product,
-        },
+        select: "_id", // Select only the "_id" field of the cart
       })
       .populate("favorites");
 
