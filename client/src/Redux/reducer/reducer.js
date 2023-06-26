@@ -16,6 +16,7 @@ import {
   UPLOAD_PRODUCT,
   DELETE_PRODUCT,
   POST_PRODUCT,
+  POST_REVIEW
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -33,7 +34,7 @@ const initialState = {
   order: []
 };
 
-const reducer = (state = initialState, {type, payload}) => {
+const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     //--//--//--//--//--//  Product actions  //--//--//--//--//--//
 
@@ -165,6 +166,8 @@ const reducer = (state = initialState, {type, payload}) => {
       };
     }
 
+    //--//--//--//--//--//  Review actions  //--//--//--//--//--//
+
     case MOST_VALUED_FILTER:
       return {
         ...state,
@@ -202,6 +205,12 @@ const reducer = (state = initialState, {type, payload}) => {
     case POST_ORDER:
       return {
         ...state
+      }
+
+    case POST_REVIEW:
+      return {
+        ...state,
+        reviews: [...state.reviews, payload]
       }
 
     default:

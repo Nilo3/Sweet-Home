@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getProductDetail,addtoCart, postShoppingCart } from "../../redux/actions/actions";
+import { getProductDetail, addtoCart, postShoppingCart } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,6 @@ const Detail = () => {
   const { id } = useParams();
 
   const [cartId, setCartId] = useState(null) 
-  // este es el id del producto
 
   const isProductInCart = allShoppingCart.some((product) => product.id === id);
 
@@ -90,10 +89,6 @@ const Detail = () => {
     handleShoppingCart();
   }
 
-  
-
-
-  
   return (
    
     <section className="py-12 sm:py-16"> 
@@ -186,7 +181,6 @@ const Detail = () => {
           <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
             <div className="flex items-end">
               <h1 className="text-3xl font-bold">${product.price}</h1>
-              
             </div>
    
             <button  onClick={handleClick } type="button" className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
@@ -232,6 +226,15 @@ const Detail = () => {
             <p className="mt-4">{product.description}.</p>
             <h1 className="mt-8 text-3xl font-bold">Deliver to Your Door</h1>
             <p className="mt-4">Discover the convenience of doorstep delivery with our exceptional ecommerce service.</p>
+
+              {product.review.map(review => (
+          <div key={review._id}>
+            <p>Rating: {review.rating}</p>
+            <p>Review: {review.reviewText}</p>
+            <p>Created By: {review.createdBy.name}</p>
+          </div>
+        ))}
+
             
           </div>
         </div>
