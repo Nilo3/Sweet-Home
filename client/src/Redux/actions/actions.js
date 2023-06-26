@@ -14,7 +14,7 @@ import {
     DELETE_ONE_FROM_CART,
     POST_SHOPPING_CART,
     POST_ORDER,
-    POST_PRODUCT
+    POST_PRODUCT,
 } from "../action-types/action-types"
 
 const HOST = "http://localhost:3001"
@@ -194,3 +194,17 @@ export const postProduct = (product) => {
         }
     };
 };
+
+export const checkUserIdInDatabase = async (userEmail) => {
+   
+    try {
+      const response = await axios(`http://localhost:3001/api/users/v1/${userEmail}`);
+
+      if (response && response.data.cart) {
+        return response.data._id
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
