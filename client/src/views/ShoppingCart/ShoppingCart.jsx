@@ -1,16 +1,18 @@
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removefromCart, addtoCart, removeOneFromCart, postOrder } from "../../redux/actions/actions";
-import { getTotalPrice, calculateTotal } from "../../utils/totalprice"
-import { AiOutlineUser } from "react-icons/ai"
-import { BsTelephone, BsHouse } from "react-icons/bs"
+import axios from "axios";
+import { toast } from "react-toastify";
+import countries from "world-countries";
+import ReactCountryFlag from "react-country-flag";
+import Select from "react-select";
+import { AiOutlineUser } from "react-icons/ai";
+import { BsTelephone, BsHouse } from "react-icons/bs";
 import { useAuth } from "../../context/authContex";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
-import axios from "axios";
+import { removefromCart, addtoCart, removeOneFromCart, postOrder } from "../../redux/actions/actions";
+import { getTotalPrice, calculateTotal } from "../../utils/totalprice";
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-Logo.png";
-import { toast } from "react-toastify";
 
 
 const Shopping = () => {
@@ -110,6 +112,19 @@ const Shopping = () => {
     return counts;
   }, {});
 
+    const [selectedCountry, setSelectedCountry] = useState(null);
+
+      const countryOptions = countries.map((country) => ({
+          label: country.name.common,
+          value: country.name.common,
+          flag: country,
+          latlng: country.latlng,
+          region: country.region,
+     }));
+
+      const handleCountryChange = (selectedOption) => {
+          setSelectedCountry(selectedOption);
+  };
     
     return (
       <>
@@ -185,23 +200,37 @@ const Shopping = () => {
         
       </div>
       <div className="flex flex-col">
- 
-
   <label htmlFor="billing-address" className="mt-4 mb-2 block text-sm font-medium">Billing Address</label>
-  <select id="countries" className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-10">
-    <option className="hidden">Select your country</option>
-    <option>United States</option>
-    <option>Canada</option>
-    <option>France</option>
-    <option>Germany</option>
-  </select>
-</div>
-        <div className="relative">
-          <input type="text" id="billing-address" name="billing-address" className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Street and house number" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-            <img className="h-4 w-4 object-contain" src="https://flagpack.xyz/_nuxt/4c829b6c0131de7162790d2f897a90fd.svg" alt="" />
+  
+  <Select
+      id="countries"
+      className="mb-3"
+      options={countryOptions}
+      value={selectedCountry}
+      onChange={handleCountryChange}
+      formatOptionLabel={({ label, flag, region }) => (
+        <div className="flex flex-row items-center gap-3">
+          <ReactCountryFlag
+            className="w-[1em] h-[1em]"
+            countryCode={flag.cca2}
+            svg
+          />
+          <div>
+            {label}, <span className="text-neutral-500 ml-1">{region}</span>
           </div>
         </div>
+      )}
+    />
+</div>
+<div className="relative">
+      <input
+        type="text"
+        id="billing-address"
+        name="billing-address"
+        className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+        placeholder="Street and house number"
+      />
+    </div>
      
 
         <div className="relative">
@@ -216,13 +245,6 @@ const Shopping = () => {
         <div className="mt-3 relative flex-shrink-0 flex">
         <input type="text" name="billing-zip" className="mr-3 flex-shrink-0 rounded-md border border-gray-200 px-4 py-4 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="ZIP" />
         <input type="text" name="billing-city" className="mr-3 flex-shrink-0 rounded-md border border-gray-200 px-4 py-4 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="City" />
-        <select id="states" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block sm:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option>Select your state</option>
-          <option>United States</option>
-          <option>Canada</option>
-          <option>France</option>
-          <option>Germany</option>
-        </select>
       </div>
   
       <div className="relative">
@@ -260,7 +282,7 @@ const Shopping = () => {
                 <img className="w-14 object-contain" src={fedexLogo} alt="" />
                 <div className="ml-5">
               <span className="mt-2 font-semibold">Fedex Delivery</span>
-              <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
+              <p className="text-slate-500 text-sm leading-6">Delivery: 8-14 Days</p>
                </div>
                 </label>  
                 </div>
@@ -277,7 +299,7 @@ const Shopping = () => {
                 <img className="w-14 object-contain" src={dhlLogo} alt="" />
                 <div className="ml-5">
               <span className="mt-2 font-semibold">DHL Delivery</span>
-              <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
+              <p className="text-slate-500 text-sm leading-6">Delivery: 10-18 Days</p>
                </div>
                 </label>  
                 </div>
