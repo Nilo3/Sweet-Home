@@ -235,7 +235,7 @@ const Detail = () => {
             <h1 className="mt-8 text-3xl font-bold">Deliver to Your Door</h1>
             <p className="mt-4">Discover the convenience of doorstep delivery with our exceptional ecommerce service.</p>
 
-              {product.review.map(review => (
+              {product?.review?.map(review => (
           <div key={review._id}>
             <p>Rating: {review.rating}</p>
             <p>Review: {review.reviewText}</p>
