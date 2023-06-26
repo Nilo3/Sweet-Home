@@ -10,7 +10,7 @@ const Profile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-
+  console.log(user);
   const navigate = useNavigate();
 
   const backToHome = () => {

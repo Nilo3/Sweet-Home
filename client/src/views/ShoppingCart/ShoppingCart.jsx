@@ -90,9 +90,7 @@ const Shopping = () => {
           quantity: quantity,
         })),
       };
-     console.log(order)
       dispatch(postOrder(order));
-  
     }
 }
 
