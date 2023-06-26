@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContex";
 import { detailAVG } from "../../utils/rating-detail";
 import axios from "axios";
-
+import placeHolder from "../../assets/image/person-placeholder-400x400.png";
 
 const Detail = () => {
   // const allShoppingCart = useSelector((state) => state.shoppingCart);
@@ -29,15 +29,15 @@ const Detail = () => {
 
     const stars = [];
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<FaStar key={i} className="star-icon" />);
+      stars.push(<FaStar key={i} />);
     }
 
     if (hasHalfStar) {
-      stars.push(<FaStarHalfAlt key="half" className="star-icon" />);
+      stars.push(<FaStarHalfAlt key="half"  />);
     }
 
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<FaRegStar key={`empty-${i}`} className="star-icon" />);
+      stars.push(<FaRegStar key={`empty-${i}`}  />);
     }
 
     return stars;
@@ -49,14 +49,8 @@ const Detail = () => {
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
 
-  const navigate = useNavigate();
-
   const handleShoppingCart = () => {
     dispatch(addtoCart(product));
-  };
-
-  const backToHome = () => {
-    navigate("/");
   };
 
   const { user } = useAuth();
@@ -318,32 +312,33 @@ const Detail = () => {
             </ul>
           </div>
           <div className="lg:col-span-3">
-            <div className="border-b border-gray-300">
-              <nav className="flex gap-4">
-                <a
-                  title=""
-                  className={`border-b-2 cursor-pointer border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800 ${
-                    selectedSection === "description" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSection("description")}
-                >
-                  Description
-                </a>
+  <div className="border-b border-gray-300">
+    <nav className="flex gap-4">
+      <a
+        title=""
+        className={`cursor-pointer py-4 text-sm font-medium text-gray-900 hover:text-gray-800 ${
+          selectedSection === "description" ? "border-b-2 border-gray-900" : ""
+        }`}
+        onClick={() => handleSection("description")}
+      >
+        Description
+      </a>
 
-                <a
-                  title=""
-                  className={`inline-flex cursor-pointer  items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600 ${
-                    selectedSection === "reviews" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSection("reviews")}
-                >
-                  Reviews
-                  <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
-                    {product.review?.length || 0} Reviews
-                  </span>
-                </a>
-              </nav>
-            </div>
+      <a
+        title=""
+        className={`inline-flex cursor-pointer items-center py-4 text-sm font-medium text-gray-600 ${
+          selectedSection === "reviews" ? "border-b-2 border-gray-900" : ""
+        }`}
+        onClick={() => handleSection("reviews")}
+      >
+        Reviews
+        <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
+          {product.review?.length || 0} Reviews
+        </span>
+      </a>
+    </nav>
+  </div>
+
 
             <div className="mt-8 flow-root sm:mt-12">
               {selectedSection === "description" ? (
@@ -355,41 +350,50 @@ const Detail = () => {
                 <>
                   <h1 className="text-2xl font-semibold">Reviews</h1>
                   {product?.review?.map((review) => (
-                  
-                    <div className="py-8 text-left border px-4 m-2"key={review._id}>
-                        <figure className="max-w-screen-md">
-                        <div className="rating-stars flex mr-3">
-                  {renderRatingStars(review.rating)}
-                </div>
-    <blockquote>
-        <p className="text-l font-normal text-gray-900 dark:text-white">{review.reviewText}</p>
-    </blockquote>
-    <figcaption className="flex items-center mt-6 space-x-3">
-    <img className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="profile picture"/>
-    <div className="flex items-center divide-x-2 divide-gray-300 dark:divide-gray-700">
-            <cite className="pr-3 font-medium text-gray-900 dark:text-white">{review.createdBy.name}</cite>
-            <cite className="pl-3 text-sm text-gray-500 dark:text-gray-400">March 01, 2022</cite>
-        </div>
-                      
-                       </figcaption>
-                            </figure>
+                    <div
+                      className="py-8 text-left border px-4 m-2"
+                      key={review._id}
+                    >
+                      <figure className="max-w-screen-md">
+                        <div className="mb-3 text-yellow-300 text-m flex mr-3">
+                          {renderRatingStars(review.rating)}
+                        </div>
+                        <blockquote>
+                          <p className="text-l font-normal text-gray-900 dark:text-white">
+                            {review.reviewText}
+                          </p>
+                        </blockquote>
+                        <figcaption className="flex items-center mt-6 space-x-3">
+                          <img
+                            className="w-6 h-6 rounded-full"
+                            src={review.createdBy.photoURL || placeHolder}
+                            alt={review.createdBy.name}
+                          />
+                          <div className="flex items-center divide-x-2 divide-gray-300 dark:divide-gray-700">
+                            <cite className="pr-3 font-medium text-gray-900 dark:text-white">
+                              {review.createdBy.name}
+                            </cite>
+                            <cite className="pl-3 text-sm text-gray-500 dark:text-gray-400">
+                              {new Date(review.createdAt).toLocaleDateString(
+                                "en-US",
+                                {
+                                  month: "short",
+                                  day: "numeric",
+                                  year: "numeric",
+                                }
+                              )}
+                            </cite>
+                          </div>
+                        </figcaption>
+                      </figure>
                     </div>
-              
                   ))}
                 </>
               )}
             </div>
           </div>
         </div>
-        <div className="text-center mt-6">
-          <button
-            type="button"
-            className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
-            onClick={backToHome}
-          >
-            Back to Home
-          </button>
-        </div>
+        <div className="text-center mt-6"></div>
       </div>
     </section>
   );
