@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const AdminCard = ({ id, name, category, description, price }) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(deleteProduct(id));
-  }, []);
+//     const dispatch = useDispatch();
+//     useEffect(() => {
+       
+//   }, []);
 
-  function handleDelete(event) {
-    event.preventDefault();
-    dispatch(deleteProduct(event.target.value));
-  }
+//    function handleDelete(event) {
+//      event.preventDefault();
+//  dispatch(deleteProduct(event.target.value));
+//  }
 
   return (
     <div>
