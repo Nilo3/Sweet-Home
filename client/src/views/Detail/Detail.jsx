@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContex";
 import { detailAVG } from "../../utils/rating-detail";
 import axios from "axios";
-
+import placeHolder from "../../assets/image/person-placeholder-400x400.png";
 
 const Detail = () => {
   // const allShoppingCart = useSelector((state) => state.shoppingCart);
@@ -49,14 +49,8 @@ const Detail = () => {
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
 
-  const navigate = useNavigate();
-
   const handleShoppingCart = () => {
     dispatch(addtoCart(product));
-  };
-
-  const backToHome = () => {
-    navigate("/");
   };
 
   const { user } = useAuth();
@@ -355,41 +349,50 @@ const Detail = () => {
                 <>
                   <h1 className="text-2xl font-semibold">Reviews</h1>
                   {product?.review?.map((review) => (
-                  
-                    <div className="py-8 text-left border px-4 m-2"key={review._id}>
-                        <figure className="max-w-screen-md">
+                    <div
+                      className="py-8 text-left border px-4 m-2"
+                      key={review._id}
+                    >
+                      <figure className="max-w-screen-md">
                         <div className="rating-stars flex mr-3">
-                  {renderRatingStars(review.rating)}
-                </div>
-    <blockquote>
-        <p className="text-l font-normal text-gray-900 dark:text-white">{review.reviewText}</p>
-    </blockquote>
-    <figcaption className="flex items-center mt-6 space-x-3">
-    <img className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="profile picture"/>
-    <div className="flex items-center divide-x-2 divide-gray-300 dark:divide-gray-700">
-            <cite className="pr-3 font-medium text-gray-900 dark:text-white">{review.createdBy.name}</cite>
-            <cite className="pl-3 text-sm text-gray-500 dark:text-gray-400">March 01, 2022</cite>
-        </div>
-                      
-                       </figcaption>
-                            </figure>
+                          {renderRatingStars(review.rating)}
+                        </div>
+                        <blockquote>
+                          <p className="text-l font-normal text-gray-900 dark:text-white">
+                            {review.reviewText}
+                          </p>
+                        </blockquote>
+                        <figcaption className="flex items-center mt-6 space-x-3">
+                          <img
+                            className="w-6 h-6 rounded-full"
+                            src={review.createdBy.photoURL || placeHolder}
+                            alt={review.createdBy.name}
+                          />
+                          <div className="flex items-center divide-x-2 divide-gray-300 dark:divide-gray-700">
+                            <cite className="pr-3 font-medium text-gray-900 dark:text-white">
+                              {review.createdBy.name}
+                            </cite>
+                            <cite className="pl-3 text-sm text-gray-500 dark:text-gray-400">
+                              {new Date(review.createdAt).toLocaleDateString(
+                                "en-US",
+                                {
+                                  month: "short",
+                                  day: "numeric",
+                                  year: "numeric",
+                                }
+                              )}
+                            </cite>
+                          </div>
+                        </figcaption>
+                      </figure>
                     </div>
-              
                   ))}
                 </>
               )}
             </div>
           </div>
         </div>
-        <div className="text-center mt-6">
-          <button
-            type="button"
-            className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
-            onClick={backToHome}
-          >
-            Back to Home
-          </button>
-        </div>
+        <div className="text-center mt-6"></div>
       </div>
     </section>
   );
