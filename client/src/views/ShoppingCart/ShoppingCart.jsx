@@ -66,7 +66,7 @@ const Shopping = () => {
   function handleSendOrder(event) {
     event.preventDefault();
     if(!user){
-        toast.warning("Please sign in before you continue"); 
+        toast.warning("Please sign in before you continue."); 
         return;
       }
       else if (allShoppingCart.length == 0) {
@@ -90,9 +90,7 @@ const Shopping = () => {
           quantity: quantity,
         })),
       };
-     console.log(order)
       dispatch(postOrder(order));
-  
     }
 }
 
@@ -243,8 +241,9 @@ const Shopping = () => {
         </div>
         
         <div className="mt-3 relative flex-shrink-0 flex">
-        <input type="text" name="billing-zip" className="mr-3 flex-shrink-0 rounded-md border border-gray-200 px-4 py-4 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="ZIP" />
-        <input type="text" name="billing-city" className="mr-3 flex-shrink-0 rounded-md border border-gray-200 px-4 py-4 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="City" />
+        <input type="text" name="billing-zip" className="mr-1 flex-shrink-0 rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="ZIP" />
+        <input type="text" name="billing-city" className="mr-1 flex-shrink-0 rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="City" />
+        <input type="text" name="billing-state" className="mr-1 flex-shrink-0 rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="State" />
       </div>
   
       <div className="relative">

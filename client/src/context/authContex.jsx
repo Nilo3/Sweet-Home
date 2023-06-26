@@ -30,13 +30,10 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const singup = async (email, password) => {
-    const credential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    const credential = await createUserWithEmailAndPassword(auth, email, password);
     const userEmail = credential.user.email;
-    sendUserDataToBackend({ email: userEmail });
+    sendUserDataToBackend({ email: userEmail, uid: credential.user.uid });
+    return credential;
   };
 
   const login = async (email, password) => {
@@ -72,7 +69,12 @@ export function AuthProvider({ children }) {
   const sendUserDataToBackend = (userData) => {
     if (userData) {
       axios
-        .post("http://localhost:3001/api/users", userData)
+        .post("http://localhost:3001/api/users", {
+          name: userData.name,
+          email: userData.email,
+          password: userData.password,
+          uid: userData.uid,
+        })
         .then(() => {
           console.log("User data sent to Backend");
         })
