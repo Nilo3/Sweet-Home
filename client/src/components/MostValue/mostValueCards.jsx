@@ -79,7 +79,7 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
   const renderRatingStars = () => {
     const maxRating = 5;
     const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
+    const hasHalfStar = rating % 1  >= 0;
     const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
 
     const stars = [];

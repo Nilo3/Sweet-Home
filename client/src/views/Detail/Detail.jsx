@@ -24,22 +24,22 @@ const Detail = () => {
   const renderRatingStars = (rating) => {
     const maxRating = 5;
     const fullStars = Math.floor(rating);
-    const hasHalfStar = ratingAVG % 1 !== 0;
+    const hasHalfStar = rating % 1 >= 0.5;
     const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
-
+  
     const stars = [];
     for (let i = 0; i < fullStars; i++) {
       stars.push(<FaStar key={i} />);
     }
-
+  
     if (hasHalfStar) {
-      stars.push(<FaStarHalfAlt key="half"  />);
+      stars.push(<FaStarHalfAlt key="half" />);
     }
-
+  
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<FaRegStar key={`empty-${i}`}  />);
+      stars.push(<FaRegStar key={`empty-${i}`} />);
     }
-
+  
     return stars;
   };
 
@@ -355,9 +355,15 @@ const Detail = () => {
                       key={review._id}
                     >
                       <figure className="max-w-screen-md">
-                        <div className="mb-3 text-yellow-300 text-m flex mr-3">
-                          {renderRatingStars(review.rating)}
-                        </div>
+                      <div className="mb-3 flex items-center">
+  <div className="text-yellow-300 text-m flex mr-3">
+    {renderRatingStars(review.rating)}
+  </div>
+  <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
+    {review.rating}
+  </span>
+</div>
+                        
                         <blockquote>
                           <p className="text-l font-normal text-gray-900 dark:text-white">
                             {review.reviewText}
