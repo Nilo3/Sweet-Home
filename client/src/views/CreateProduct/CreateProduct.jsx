@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postProduct, getCategory } from "../../Redux/actions/actions";
-import { validate } from "../../utils/validate";
+import { postProduct, getCategory } from "../../redux/actions/actions";
+import { validate } from "../../utils/validate"; //? Validation, work in progress...
 
 const CreateProduct = () => {
   const [input, setInput] = useState({
@@ -10,7 +10,7 @@ const CreateProduct = () => {
     stock: "",
     description: "",
     image: "",
-    category: "",
+    category: [],
   });
 
   const category = useSelector((state) => state.category);
@@ -24,9 +24,11 @@ const CreateProduct = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     const error = validate(name, value);
+    const updatedValue = name === "category" ? [value] : value;
+
     setInput((prevInput) => ({
       ...prevInput,
-      [name]: value,
+      [name]: updatedValue,
     }));
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -37,15 +39,22 @@ const CreateProduct = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const validationErrors = validate(input);
+    //? Convert to number because the back need it
+    const price = parseFloat(input.price);
+    const stock = parseInt(input.stock);
+    //? Added the category _id into an array
+    const category =
+      typeof input.category === "string" ? [input.category] : input.category;
     if (Object.keys(validationErrors).length === 0) {
-      dispatch(postProduct(input));
+      //? Send the inputs with the parsed values
+      dispatch(postProduct({ ...input, category, price, stock }));
       setInput({
         name: "",
         price: "",
         stock: "",
         description: "",
         image: "",
-        category: "",
+        category: [],
       });
     }
   };
@@ -97,7 +106,8 @@ const CreateProduct = () => {
             >
               <option value="">Select category</option>
               {category.map((cat) => (
-                <option key={cat.id} value={cat.id}>
+                <option key={cat._id} value={cat._id}>
+                  {" "}
                   {cat.name}
                 </option>
               ))}
@@ -116,8 +126,8 @@ const CreateProduct = () => {
             <input
               id="price"
               name="price"
-              type="text"
-              step="0.01"
+              type="number"
+              step="10"
               required
               className="input-field"
               placeholder="Enter product price"
@@ -136,8 +146,8 @@ const CreateProduct = () => {
             <input
               id="stock"
               name="stock"
-              type="text"
-              step="0.01"
+              type="number"
+              step="10"
               required
               className="input-field"
               placeholder="Enter a stock"

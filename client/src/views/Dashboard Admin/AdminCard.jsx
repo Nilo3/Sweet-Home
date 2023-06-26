@@ -1,4 +1,6 @@
-const AdminCard = ({ name, category, description, price}) => {
+import PropTypes from "prop-types";
+
+const AdminCard = ({ name, category, description, price }) => {
   return (
     <div>
       <tbody>
@@ -9,7 +11,7 @@ const AdminCard = ({ name, category, description, price}) => {
           >
             {name}&#34;
           </th>
-       
+
           <td className="px-4 py-3">{category}</td>
           <td className="px-4 py-3 max-w-[12rem] truncate">{description}</td>
           <td className="px-4 py-3">{price}</td>
@@ -115,10 +117,15 @@ const AdminCard = ({ name, category, description, price}) => {
           </td>
         </tr>
       </tbody>
-
-      
     </div>
   );
+};
+
+AdminCard.propTypes = {
+  description: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  category: PropTypes.array.isRequired,
 };
 
 export default AdminCard;

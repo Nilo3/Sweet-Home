@@ -1,8 +1,7 @@
 import AdminCard from "./AdminCard"
-import Cards from "../../components/Card/Cards";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getCategory } from "../../Redux/actions/actions";
+import { getProducts, getCategory } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
 
 
@@ -13,8 +12,6 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.products);
-    const category = useSelector((state) => state.category);
-
 
     useEffect(() => {
         dispatch(getProducts());

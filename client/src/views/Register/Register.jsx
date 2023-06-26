@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { postUser } from "../../Redux/actions/actions";
+import { postUser } from "../../redux/actions/actions";
 import { useAuth } from "../../context/authContex";
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";

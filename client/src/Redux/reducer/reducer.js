@@ -1,34 +1,34 @@
 import {
-	GET_PRODUCTS,
-	GET_PRODUCT_DETAIL,
-	MOST_VALUED_FILTER,
-	FILTER_BY_CATEGORY,
-	FILTER_BY_NAME,
-	FILTER_BY_PRICE,
-	GET_CATEGORY,
-	ADD_TO_CART,
-	DELETE_FROM_CART,
-	SEARCH_PRODUCTS,
-	DELETE_ONE_FROM_CART,
-	GET_USERS,
-	POST_SHOPPING_CART,
-	POST_ORDER,
+  GET_PRODUCTS,
+  GET_PRODUCT_DETAIL,
+  MOST_VALUED_FILTER,
+  FILTER_BY_CATEGORY,
+  FILTER_BY_NAME,
+  FILTER_BY_PRICE,
+  GET_CATEGORY,
+  ADD_TO_CART,
+  DELETE_FROM_CART,
+  SEARCH_PRODUCTS,
+  DELETE_ONE_FROM_CART,
+  GET_USERS,
+  POST_SHOPPING_CART,
+  POST_ORDER,
   POST_PRODUCT
-} from "../action-types/action-types";
+} from "../action-types/action-types"
 import { productAVG } from "../../utils/logic-ratings";
 
 const initialState = {
-	products: [],
-	getAllProducts: [],
-	details: [],
-	reviews: [],
-	category: [],
-	users: [],
-	shoppingCart: [],
-	loading: false,
-	error: null,
-	newCart:[],
-	order :[]
+  products: [],
+  getAllProducts: [],
+  details: [],
+  reviews: [],
+  category: [],
+  users: [],
+  shoppingCart: [],
+  loading: false,
+  error: null,
+  newCart: [],
+  order: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -135,18 +135,18 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-		case FILTER_BY_CATEGORY: {
-			const filteredCategory = state.getAllProducts.filter((element) => {
-			  if (element.category[0] && element.category[0].name) {
-				return element.category[0].name.includes(action.payload);
-			  }
-			  return false;
-			});
-			return {
-			  ...state,
-			  products: filteredCategory
-			};
-		}
+    case FILTER_BY_CATEGORY: {
+      const filteredCategory = state.getAllProducts.filter((element) => {
+        if (element.category[0] && element.category[0].name) {
+          return element.category[0].name.includes(action.payload);
+        }
+        return false;
+      });
+      return {
+        ...state,
+        products: filteredCategory
+      };
+    }
 
     case MOST_VALUED_FILTER:
       return {
@@ -161,15 +161,15 @@ const reducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
-      
-      case POST_PRODUCT:
-        return {
-            ...state,
-            products: [...state.products, action.payload],
-        }
 
-	
-		//--//--//--//--//--//  Other actions  //--//--//--//--//--//
+    case POST_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, action.payload],
+      }
+
+
+    //--//--//--//--//--//  Other actions  //--//--//--//--//--//
 
     case GET_CATEGORY:
       return {
@@ -182,14 +182,14 @@ const reducer = (state = initialState, action) => {
         ...state,
       };
 
-		case POST_ORDER:
-			return {
-				...state
-			}
+    case POST_ORDER:
+      return {
+        ...state
+      }
 
-		default:
-			return state;
-	}
+    default:
+      return state;
+  }
 };
 
 export default reducer;

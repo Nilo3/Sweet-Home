@@ -4,7 +4,7 @@ export const validate = (name, value) => {
     switch (name) {
         case "name":
             if (!value.trim()) {
-                error = "El nombre de la raza es obligatorio";
+                error = "";
             }
             break;
         default:

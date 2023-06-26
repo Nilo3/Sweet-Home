@@ -10,7 +10,7 @@ import {
   getCategory,
   getProducts,
 
-} from "../../Redux/actions/actions.js"
+} from "../../redux/actions/actions.js"
 import SearchBar from "./SearchBar";
 import './Products.css'
 

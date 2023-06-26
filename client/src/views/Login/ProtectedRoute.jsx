@@ -1,7 +1,10 @@
-//Aca pongo los componentes que quiero que solo accedan los usuarios logeados//
-
+import PropTypes from "prop-types";
 import { useAuth } from "../../context/authContex";
 import { Navigate } from "react-router-dom";
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();

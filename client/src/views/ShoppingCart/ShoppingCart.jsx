@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removefromCart, addtoCart, removeOneFromCart, postOrder} from "../../Redux/actions/actions";
+import { removefromCart, addtoCart, removeOneFromCart, postOrder } from "../../redux/actions/actions";
 import { getTotalPrice, calculateTotal } from "../../utils/totalprice"
-import {AiOutlineUser} from "react-icons/ai"
-import {BsTelephone, BsHouse} from "react-icons/bs"
+import { AiOutlineUser } from "react-icons/ai"
+import { BsTelephone, BsHouse } from "react-icons/bs"
 import { useAuth } from "../../context/authContex";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-Logo.png";
+import { toast } from "react-toastify";
 
 
 const Shopping = () => {
@@ -63,13 +64,11 @@ const Shopping = () => {
   function handleSendOrder(event) {
     event.preventDefault();
     if(!user){
-        alert("Please sign in before you continue"); 
+        toast.warning("Please sign in before you continue"); 
         return;
-
-       
       }
       else if (allShoppingCart.length == 0) {
-        alert("Your shopping cart is empty."); 
+        toast.warning("Your shopping cart is empty."); 
         return;
       }
     else {
@@ -94,8 +93,6 @@ const Shopping = () => {
   
     }
 }
-
-
 
   const navigate = useNavigate();
 

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getProductDetail,addtoCart, postShoppingCart } from "../../Redux/actions/actions";
+import { getProductDetail,addtoCart, postShoppingCart } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

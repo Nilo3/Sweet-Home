@@ -5,13 +5,13 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
-  GithubAuthProvider,
   signInWithPopup,
   sendPasswordResetEmail,
 } from "firebase/auth";
 import axios from "axios";
 
 import { auth } from "../views/Login/Auth/FireBase";
+import PropTypes from "prop-types";
 
 export const authContext = createContext();
 
@@ -21,44 +21,37 @@ export const useAuth = () => {
   return context;
 };
 
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const singup = async (email, password) => {
-    const credential = await createUserWithEmailAndPassword(auth, email, password);
+    const credential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     const userEmail = credential.user.email;
-    console.log("User registered:", credential.user);
     sendUserDataToBackend({ email: userEmail });
   };
-  
 
   const login = async (email, password) => {
     const credential = await signInWithEmailAndPassword(auth, email, password);
-    console.log("User logged in:", credential.user);
     sendUserDataToBackend({ email: credential.user.email });
   };
-  
 
   const loginWithGoogle = async () => {
     const googleProvider = new GoogleAuthProvider();
     await signInWithPopup(auth, googleProvider);
   };
 
-
-  const loginWithGitHub = () => {
-    const githubProvider = new GithubAuthProvider();
-    return signInWithPopup(auth, githubProvider);
-  };
-
   const registerWithGoogle = () => {
     const googleProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleProvider);
-  };
-
-  const registerWithGitHub = () => {
-    const githubProvider = new GithubAuthProvider();
-    return signInWithPopup(auth, githubProvider);
   };
 
   const logout = () => signOut(auth);
@@ -67,37 +60,27 @@ export function AuthProvider({ children }) {
     sendPasswordResetEmail(auth, email);
   };
 
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
-      if (currentUser) {
-        console.log("User logged in:", currentUser);
-        sendUserDataToBackend({ email: currentUser.email });
-      }
     });
 
     return () => unsubscribe();
   }, []);
 
- const getUserData = () => {
-    return user;
-  };
-
-
   const sendUserDataToBackend = (userData) => {
-    axios
-      .post("http://localhost:3001/api/users", userData) // Enviar todos los datos del usuario
-      .then((response) => {
-        console.log("User data sent to Backend");
-        // El Backend ha procesado los datos del usuario
-      })
-      .catch((error) => {
-        console.error("Error sending user data to Backend:", error);
-      });
+    if (userData) {
+      axios
+        .post("http://localhost:3001/api/users", userData)
+        .then(() => {
+          console.log("User data sent to Backend");
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
   };
-  
 
   return (
     <authContext.Provider
@@ -108,9 +91,7 @@ export function AuthProvider({ children }) {
         logout,
         loading,
         loginWithGoogle,
-        loginWithGitHub,
         resetPassword,
-        registerWithGitHub,
         registerWithGoogle,
       }}
     >

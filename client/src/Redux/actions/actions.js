@@ -21,7 +21,6 @@ const VITE_HOST = "http://localhost:3001"
 
 // const {VITE_HOST} = import.meta.env
 
-
 export function getProducts() {
     return async function (dispatch) {
         let response = await axios.get(`${VITE_HOST}/api/product`)
@@ -168,12 +167,11 @@ export function postShoppingCart(payload) {
     };
 }
 
-
 export function postOrder(payload) {
     return async function (dispatch) {
         try {
             const response = await axios.post(`${VITE_HOST}/api/order`, payload);
-           
+
             const initPoint = response.data
             console.log(initPoint)
             window.location.href = initPoint;
@@ -187,8 +185,6 @@ export function postOrder(payload) {
     };
 }
 
-
-
 export const postProduct = (product) => {
     return async (dispatch) => {
         try {
@@ -200,6 +196,7 @@ export const postProduct = (product) => {
             return response;
         } catch (error) {
             console.log(error);
+            console.log(error.message);
         }
     };
 };

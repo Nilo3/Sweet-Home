@@ -13,11 +13,16 @@ const Pagination = ({
   }
 
   const onPreviusPage = () => {
-    setCurrentPage(currentPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   const onNextPage = () => {
-    setCurrentPage(currentPage + 1);
+    const totalPages = Math.ceil(totalProducts / productPerPage);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   return (
@@ -25,7 +30,9 @@ const Pagination = ({
       <ul className="inline-flex -space-x-px">
         <li>
           <a
-            className="px-3 py-2 ml-0 leading-tight cursor-pointer select-none text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className={`px-3 py-2 ml-0 leading-tight cursor-pointer select-none text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+              currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+            }`}
             onClick={onPreviusPage}
           >
             Previous
@@ -45,7 +52,11 @@ const Pagination = ({
         ))}
         <li>
           <a
-            className="px-3 py-2 leading-tight cursor-pointer select-none text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className={`px-3 py-2 leading-tight cursor-pointer select-none text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+              currentPage === Math.ceil(totalProducts / productPerPage)
+                ? "opacity-50 cursor-not-allowed"
+                : ""
+            }`}
             onClick={onNextPage}
           >
             Next
