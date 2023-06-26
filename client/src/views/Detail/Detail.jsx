@@ -24,22 +24,22 @@ const Detail = () => {
   const renderRatingStars = (rating) => {
     const maxRating = 5;
     const fullStars = Math.floor(rating);
-    const hasHalfStar = ratingAVG % 1 !== 0;
+    const hasHalfStar = rating % 1 >= 0.5;
     const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
-
+  
     const stars = [];
     for (let i = 0; i < fullStars; i++) {
       stars.push(<FaStar key={i} />);
     }
-
+  
     if (hasHalfStar) {
-      stars.push(<FaStarHalfAlt key="half"  />);
+      stars.push(<FaStarHalfAlt key="half" />);
     }
-
+  
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<FaRegStar key={`empty-${i}`}  />);
+      stars.push(<FaRegStar key={`empty-${i}`} />);
     }
-
+  
     return stars;
   };
 
