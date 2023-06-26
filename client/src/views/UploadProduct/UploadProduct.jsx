@@ -1,4 +1,4 @@
-import { getCategory, uploadProduct } from "../../Redux/actions/actions";
+// import { getCategory, uploadProduct } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -19,7 +19,7 @@ const UploadProduct = () => {
 
     useEffect(() => {
         dispatch(getCategory())
-        dispatch(uploadProduct(id,))
+
     }, [dispatch])
     return (
         <div>
