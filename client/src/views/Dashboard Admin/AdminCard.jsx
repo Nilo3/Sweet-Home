@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import {deleteProduct} from '../../Redux/actions/actions'
 import { useDispatch } from 'react-redux';
+import {Link} from 'react-router-dom'
 
 
 
@@ -34,7 +35,10 @@ function handleDelete (event) {
           <td className="px-4 py-3 max-w-[12rem] truncate">{description}</td>
           <td className="px-4 py-3">{price}</td>
           <td className="px-4 py-3 flex items-center justify-end">
+            <Link to={"/editProduct"}>
+            
             <button>Edit</button>
+            </Link>
           <button onClick={(event) => handleDelete(event)}>Delete</button>
           </td>
         </tr>
