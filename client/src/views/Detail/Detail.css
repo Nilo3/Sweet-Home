@@ -1,0 +1,19 @@
+.star-icon {
+    color: rgb(0, 0, 0);
+    font-size: 1.1rem; 
+  }
+  
+  .rating-stars {
+    display: flex;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .image-container {
+    height: 12rem; 
+  }

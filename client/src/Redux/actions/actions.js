@@ -19,6 +19,7 @@ import {
     UPLOAD_PRODUCT,
     DELETE_PRODUCT,
     POST_REVIEW
+
 } from "../action-types/action-types"
 
 const VITE_HOST = "http://localhost:3001"
@@ -215,6 +216,7 @@ export const postProduct = (product) => {
         }
     };
 };
+
 
 export function deleteProduct(id) {
     return async function (dispatch) {

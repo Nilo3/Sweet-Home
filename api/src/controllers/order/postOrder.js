@@ -65,7 +65,7 @@ export default async (req, res) => {
         },
       ],
       back_urls: {
-        success: "http://localhost:3001/api/success",
+        success: "https://front-deploy-v4j8.onrender.com/products",
         failure: "http://localhost:3001/api/failure",
         pending: "http://localhost:3001/api/pending",
       },

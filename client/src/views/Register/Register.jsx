@@ -15,6 +15,7 @@ export function Register() {
     password: "",
     confirmPassword: "",
     uid: "",
+    photoURL: "",
   });
 
   const navigate = useNavigate();
@@ -37,8 +38,8 @@ export function Register() {
         password: response.user.accessToken,
         confirmPassword: response.user.accessToken,
         uid: response.user.uid,
+        photoURL: response.user.photoURL
       };
-      console.log(reUser);
       dispatch(postUser(reUser));
 
       if (user.password !== user.confirmPassword) {
@@ -89,10 +90,8 @@ export function Register() {
         email: response.user.email,
         password: response.user.accessToken,
         uid: response.user.uid,
+        photoURL: response.user.photoURL
       };
-
-      console.log("Esto es el falopero user:", userGoogle);
-
       dispatch(postUser(userGoogle));
 
       toast.success("Welcome to Sweet Home");

@@ -1,27 +1,81 @@
 import "./MostValue.css";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { addtoCart } from "../../redux/actions/actions.js";
+import { addtoCart, postShoppingCart } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import { useAuth } from "../../context/authContex"
+import axios from "axios";
 
 const MostValueCards = ({ _id, name, image, price, rating }) => {
   const dispatch = useDispatch();
-  const [, setInCart] = useState(false);
+  const [inCart, setInCart] = useState(false);
+  const [cartId, setCartId] = useState(null) 
 
   const allShoppingCart = useSelector((state) => state.shoppingCart);
+
   const isProductInCart = allShoppingCart.some((product) => product.id === _id);
+
+  const product = useSelector((state)=>state.details)
 
   useEffect(() => {
     setInCart(isProductInCart);
   }, [isProductInCart]);
 
+  const {user} = useAuth()
+
+  useEffect(()=>{
+    if(user && user.email){
+      checkUserIdInDatabase(user.email)
+    }
+  },[user])
+ 
+
+  const checkUserIdInDatabase = async(userEmail)=>{
+    try {
+      const response = await axios(`http://localhost:3001/api/users/v1/${userEmail}`)
+      if(response && response.data.cart) {
+        setCartId(response.data._id);
+        }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   const handleShoppingCart = () => {
     setInCart(true);
-    dispatch(addtoCart({ _id, name, image, price }));
-  };
 
+    dispatch(addtoCart({_id, name, image, price }));
+    
+    if (cartId) {
+      const updatedCart = {
+        user: cartId,
+        products: [
+          {
+            product: _id,
+            quantity: 1,
+          },
+        ],
+      };
+
+      dispatch(postShoppingCart(updatedCart));
+    } else {
+      const newCart = {
+        user: user._id,
+        products: [
+          {
+            product: id,
+            quantity: 1,
+          },
+        ],
+      };
+
+      dispatch(postShoppingCart(newCart));
+    }
+
+  };
+  
   const renderRatingStars = () => {
     const maxRating = 5;
     const fullStars = Math.floor(rating);
