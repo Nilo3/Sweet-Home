@@ -12,6 +12,7 @@ import { useAuth } from "../../context/authContex";
 import { detailAVG } from "../../utils/rating-detail";
 import axios from "axios";
 
+
 const Detail = () => {
   // const allShoppingCart = useSelector((state) => state.shoppingCart);
   // const isProductInCart = allShoppingCart.some((product) => product.id === id);
@@ -20,9 +21,9 @@ const Detail = () => {
   const { id } = useParams();
   const ratingAVG = detailAVG(product);
 
-  const renderRatingStars = () => {
+  const renderRatingStars = (rating) => {
     const maxRating = 5;
-    const fullStars = Math.floor(ratingAVG);
+    const fullStars = Math.floor(rating);
     const hasHalfStar = ratingAVG % 1 !== 0;
     const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
 
@@ -193,7 +194,7 @@ const Detail = () => {
             <div className="mt-5 flex items-center">
               <div className="flex items-center mt-2">
                 <div className="rating-stars flex mr-3">
-                  {renderRatingStars()}
+                  {renderRatingStars(ratingAVG)}
                 </div>
                 <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto ">
                   {ratingAVG.toFixed(1)}
@@ -352,13 +353,28 @@ const Detail = () => {
                 </>
               ) : (
                 <>
-                  <h1 className="text-3xl font-bold">Reviews</h1>
+                  <h1 className="text-2xl font-semibold">Reviews</h1>
                   {product?.review?.map((review) => (
-                    <div key={review._id}>
-                      <p>Rating: {review.rating}</p>
-                      <p>Review: {review.reviewText}</p>
-                      <p>Created By: {review.createdBy.name}</p>
+                  
+                    <div className="py-8 text-left border px-4 m-2"key={review._id}>
+                        <figure className="max-w-screen-md">
+                        <div className="rating-stars flex mr-3">
+                  {renderRatingStars(review.rating)}
+                </div>
+    <blockquote>
+        <p className="text-l font-normal text-gray-900 dark:text-white">{review.reviewText}</p>
+    </blockquote>
+    <figcaption className="flex items-center mt-6 space-x-3">
+    <img className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="profile picture"/>
+    <div className="flex items-center divide-x-2 divide-gray-300 dark:divide-gray-700">
+            <cite className="pr-3 font-medium text-gray-900 dark:text-white">{review.createdBy.name}</cite>
+            <cite className="pl-3 text-sm text-gray-500 dark:text-gray-400">March 01, 2022</cite>
+        </div>
+                      
+                       </figcaption>
+                            </figure>
                     </div>
+              
                   ))}
                 </>
               )}
