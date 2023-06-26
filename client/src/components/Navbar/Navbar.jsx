@@ -104,52 +104,13 @@ function Navbar() {
               </button>
               <ShoppingCart />
             </div>
-            <div className="relative">
-              <div className="flex flex-row items-center gap-3">
-                <div className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
-                  {user ? (
-                    <>
-                      {user.photoURL ? (
-                        <img
-                          src={user.photoURL}
-                          alt="User Profile"
-                          className="rounded-full w-8 h-8"
-                        />
-                      ) : (
-                        <img
-                          src={userPlaceholder}
-                          alt="User Placeholder"
-                          className="rounded-full w-8 h-8"
-                        />
-                      )}
-                      <Link to="/profile">
-                      <div className="p-4 md:py-1 md:px-2 flex flex-row items-center gap-3 cursor-pointer ">
-                        <h1>Hi {user.displayName || user.email}</h1>
-                      </div>
-                    </Link>                   
-                    </>
-                  ) : (
-                    <LoginNav />
-                  )}
-                  <div className="hidden md:block cursor-pointer select-none">
-                    {user ? (
-                      <button onClick={handleLogout}>Logout</button>
-                    ) : (
-                      <RegisterNav />
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            
           <div className="md:hidden flex items-center">
             <CgMenuRound
               className="text-3xl cursor-pointer"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             />
           </div>
-        </Container>
-      </div>
       {isMenuOpen && (
         <div className="bg-white py-2">
           <Container>
@@ -215,6 +176,47 @@ function Navbar() {
           </Container>
         </div>
       )}
+
+      <div className="relative">
+              <div className="flex flex-row items-center gap-3">
+                <div className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
+                  {user ? (
+                    <>
+                      {user.photoURL ? (
+                        <img
+                          src={user.photoURL}
+                          alt="User Profile"
+                          className="rounded-full w-8 h-8"
+                        />
+                      ) : (
+                        <img
+                          src={userPlaceholder}
+                          alt="User Placeholder"
+                          className="rounded-full w-8 h-8"
+                        />
+                      )}
+                      <Link to="/profile">
+                      <div className="p-4 md:py-1 md:px-2 flex flex-row items-center gap-3 cursor-pointer ">
+                        <h1>Hi {user.displayName || user.email}</h1>
+                      </div>
+                    </Link>                   
+                    </>
+                  ) : (
+                    <LoginNav />
+                  )}
+                  <div className="hidden md:block cursor-pointer select-none">
+                    {user ? (
+                      <button onClick={handleLogout}>Logout</button>
+                    ) : (
+                      <RegisterNav />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
     </div>
   );
 }

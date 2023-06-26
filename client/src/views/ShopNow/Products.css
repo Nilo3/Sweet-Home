@@ -4,17 +4,17 @@
 
 .ordAndFil1 {
     border-right: 1px solid black;
-    padding: 7px;
+    /*padding: 7px;*/
 }
 
 .ordAndFil2 {
     border-right: 1px solid black;
-    padding: 7px;
+    /*padding: 7px;*/
 }
 
-.ordAndFil3 {
+/*.ordAndFil3 {
     padding: 7px;
-}
+}*/
 
 .cards {
     display: flex;

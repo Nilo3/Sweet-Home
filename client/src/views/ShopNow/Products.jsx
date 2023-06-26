@@ -72,6 +72,7 @@ const Products = () => {
     <div className="all">
       <div className="flex justify-center">
           <SearchBar />
+          <button className="text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2" onClick={ (event) => handleClick (event)}>Reload filter</button>
        </div>
       <div className="flex cursor-pointer select-none justify-center h-16 items-center ">
         <div className="border border-gray-300">         
@@ -99,7 +100,6 @@ const Products = () => {
           ))}
         </select>
         </div>
-          <button className="text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2" onClick={ (event) => handleClick (event)}>Reload filter</button>
         <div className="flex justify-center">
       <Pagination
         productPerPage={productPerPage}
