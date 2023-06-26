@@ -1,39 +1,41 @@
 import {
-	GET_PRODUCTS,
-	GET_PRODUCT_DETAIL,
-	MOST_VALUED_FILTER,
-	FILTER_BY_CATEGORY,
-	FILTER_BY_NAME,
-	FILTER_BY_PRICE,
-	GET_CATEGORY,
-	ADD_TO_CART,
-	DELETE_FROM_CART,
-	SEARCH_PRODUCTS,
-	DELETE_ONE_FROM_CART,
-	GET_USERS,
-	POST_SHOPPING_CART,
-	POST_ORDER,
-
+  GET_PRODUCTS,
+  GET_PRODUCT_DETAIL,
+  MOST_VALUED_FILTER,
+  FILTER_BY_CATEGORY,
+  FILTER_BY_NAME,
+  FILTER_BY_PRICE,
+  GET_CATEGORY,
+  ADD_TO_CART,
+  DELETE_FROM_CART,
+  SEARCH_PRODUCTS,
+  DELETE_ONE_FROM_CART,
+  GET_USERS,
+  POST_SHOPPING_CART,
+  POST_ORDER,
+  UPLOAD_PRODUCT,
+  DELETE_PRODUCT,
+  POST_PRODUCT,
+  POST_REVIEW
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
 const initialState = {
-	products: [],
-	getAllProducts: [],
-	details: [],
-	reviews: [],
-	category: [],
-	users: [],
-	shoppingCart: [],
-	loading: false,
-	error: null,
-	newCart:[],
-	order :[]
-
+  products: [],
+  getAllProducts: [],
+  details: [],
+  reviews: [],
+  category: [],
+  users: [],
+  shoppingCart: [],
+  loading: false,
+  error: null,
+  newCart: [],
+  order: []
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
+const reducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     //--//--//--//--//--//  Product actions  //--//--//--//--//--//
 
     case GET_PRODUCTS:
@@ -45,18 +47,18 @@ const reducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        products: action.payload,
-        getAllProducts: action.payload,
+        products: payload,
+        getAllProducts: payload,
         loading: false,
       };
     case GET_PRODUCT_DETAIL:
       return {
         ...state,
-        details: action.payload,
+        details: payload,
       };
 
     case SEARCH_PRODUCTS: {
-      const searchTerm = action.payload.toLowerCase();
+      const searchTerm = payload.toLowerCase();
       const filteredProducts = state.getAllProducts.filter((product) =>
         product.name.toLowerCase().includes(searchTerm)
       );
@@ -65,29 +67,44 @@ const reducer = (state = initialState, action) => {
         products: filteredProducts,
       };
     }
+    case DELETE_PRODUCT: {
+      const updateProduct = state.getAllProducts.filter((product) => product._id !== payload)
+      const removeProduct = state.products.filter((product) => product._id !== payload)
+      return {
+        ...state,
+        getAllProducts: updateProduct,
+        products: removeProduct
+      }
+    }
+    case UPLOAD_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, payload],
+        getAllProducts: [...state.getAllProducts, payload],
+      };
 
     //--//--//--//--//--// Cart actions  //--//--//--//--//--//
 
     case ADD_TO_CART:
       return {
         ...state,
-        shoppingCart: [...state.shoppingCart, action.payload],
+        shoppingCart: [...state.shoppingCart, payload],
       };
 
     case DELETE_FROM_CART:
       return {
         ...state,
         shoppingCart: state.shoppingCart.filter(
-          (product) => product._id !== action.payload
+          (product) => product._id !== payload
         ),
       };
 
     case DELETE_ONE_FROM_CART: {
       const filterCart = state.shoppingCart.filter(
-        (product) => product._id !== action.payload
+        (product) => product._id !== payload
       );
       const toBeDeleted = state.shoppingCart.filter(
-        (product) => product._id === action.payload
+        (product) => product._id === payload
       );
       const filterDeleted = [...toBeDeleted.slice(0, toBeDeleted.length - 1)];
       return {
@@ -100,7 +117,7 @@ const reducer = (state = initialState, action) => {
 
     case FILTER_BY_NAME: {
       const sortedProducts = [...state.products];
-      const sortOrder = action.payload === "asc" ? 1 : -1;
+      const sortOrder = payload === "asc" ? 1 : -1;
       sortedProducts.sort((productsA, productsB) => {
         if (productsA.name > productsB.name) {
           return 1 * sortOrder;
@@ -119,7 +136,7 @@ const reducer = (state = initialState, action) => {
 
     case FILTER_BY_PRICE: {
       const filterProducts = [...state.products];
-      const filterOrder = action.payload === "high" ? 1 : -1;
+      const filterOrder = payload === "high" ? 1 : -1;
       filterProducts.sort((productsA, productsB) => {
         if (productsA.price > productsB.price) {
           return 1 * filterOrder;
@@ -136,23 +153,25 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-		case FILTER_BY_CATEGORY: {
-			const filteredCategory = state.getAllProducts.filter((element) => {
-			if (element.category[0] && element.category[0].name) {
-			return element.category[0].name.includes(action.payload);
-			}
-			return false;
-			});
-			return {
-			...state,
-			products: filteredCategory
-			};
-		}
+    case FILTER_BY_CATEGORY: {
+      const filteredCategory = state.getAllProducts.filter((element) => {
+        if (element.category[0] && element.category[0].name) {
+          return element.category[0].name.includes(payload);
+        }
+        return false;
+      });
+      return {
+        ...state,
+        products: filteredCategory
+      };
+    }
+
+    //--//--//--//--//--//  Review actions  //--//--//--//--//--//
 
     case MOST_VALUED_FILTER:
       return {
         ...state,
-        reviews: productAVG(action.payload),
+        reviews: productAVG(payload),
       };
 
     //--//--//--//--//--//  User actions  //--//--//--//--//--//
@@ -160,16 +179,22 @@ const reducer = (state = initialState, action) => {
     case GET_USERS:
       return {
         ...state,
-        users: action.payload,
+        users: payload,
       };
 
-	
-		//--//--//--//--//--//  Other actions  //--//--//--//--//--//
+    case POST_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, payload],
+      }
+
+
+    //--//--//--//--//--//  Other actions  //--//--//--//--//--//
 
     case GET_CATEGORY:
       return {
         ...state,
-        category: action.payload,
+        category: payload,
       };
 
     case POST_SHOPPING_CART:
@@ -177,14 +202,20 @@ const reducer = (state = initialState, action) => {
         ...state,
       };
 
-		case POST_ORDER:
-			return {
-				...state
-			}
+    case POST_ORDER:
+      return {
+        ...state
+      }
 
-		default:
-			return state;
-	}
+    case POST_REVIEW:
+      return {
+        ...state,
+        reviews: [...state.reviews, payload]
+      }
+
+    default:
+      return state;
+  }
 };
 
 export default reducer;

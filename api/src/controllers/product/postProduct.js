@@ -11,9 +11,16 @@ export default async (req, res) => {
 
   try {
     const categoryPromises = category.map((categoryId) => Category.findById(categoryId));
-    const reviewPromises = review.map((reviewId) => Review.findById(reviewId));
 
-    const [categories, reviews] = await Promise.all([Promise.all(categoryPromises), Promise.all(reviewPromises)]);
+    let reviewPromises = [];
+    let reviews = [];
+
+    if (review) {
+      reviewPromises = review.map((reviewId) => Review.findById(reviewId));
+      reviews = await Promise.all(reviewPromises);
+    }
+
+    const categories = await Promise.all(categoryPromises);
 
     const newProduct = await Product.create({
       name,
@@ -30,3 +37,4 @@ export default async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+

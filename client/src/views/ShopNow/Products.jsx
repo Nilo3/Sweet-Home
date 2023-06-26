@@ -10,7 +10,7 @@ import {
   getCategory,
   getProducts,
 
-} from "../../Redux/actions/actions.js"
+} from "../../redux/actions/actions.js"
 import SearchBar from "./SearchBar";
 import './Products.css'
 
@@ -109,7 +109,7 @@ const Products = () => {
       />
       </div>
       </div>
-      <div className="grid grid-cols-4 gap-12">
+      <div className="cards">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
             

@@ -1,8 +1,10 @@
+// 
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const user = new Schema({
     name: { type: String, required: true },
+    uid: { type: String, required: false },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false },

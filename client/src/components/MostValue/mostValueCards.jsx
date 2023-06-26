@@ -57,6 +57,7 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
 
   const handleShoppingCart = () => {
     setInCart(true);
+
     dispatch(addtoCart({_id, name, image, price }));
     //dispatch(postShoppingCart({cartId, _id }))
     
@@ -85,6 +86,7 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
 
       dispatch(postShoppingCart(newCart));
     }
+
   };
   
 
@@ -119,9 +121,9 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
       <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="aspect-w-3 aspect-h-4 mb-4">
           <Link to={`/products/${_id}`}>
-          <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            {name}
-          </h5>
+            <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+              {name}
+            </h5>
           </Link>
           <div className="bg-gray-200 rounded-lg overflow-hidden">
             <img
@@ -135,7 +137,7 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
         <div className="flex items-center mt-2">
           <div className="rating-stars flex">{renderRatingStars()}</div>
           <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto ">
-            {rating}
+            {rating.toFixed(1)}
           </span>
         </div>
         <div className="flex items-center justify-between mt-4">

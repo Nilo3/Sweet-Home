@@ -1,57 +1,46 @@
 [
   {
-    "_id": "649270b7742e76341ed9d0d5",
     "name": "Furniture",
-    "__v": 0
+    "_id": "6499189f88e462608a55911a"
   },
   {
-    "_id": "649270c0742e76341ed9d0d7",
     "name": "Lighting",
-    "__v": 0
+    "_id": "6499189f88e462608a55911b"
   },
   {
-    "_id": "64927100742e76341ed9d0db",
     "name": "Curtains and Blinds",
-    "__v": 0
+    "_id": "6499189f88e462608a55911c"
   },
   {
-    "_id": "64927108742e76341ed9d0dd",
     "name": "Rugs and Carpets",
-    "__v": 0
+    "_id": "6499189f88e462608a55911d"
   },
   {
-    "_id": "6492710e742e76341ed9d0df",
     "name": "Bedding",
-    "__v": 0
+    "_id": "6499189f88e462608a55911e"
   },
   {
-    "_id": "64927116742e76341ed9d0e1",
     "name": "Cushions and Pillows",
-    "__v": 0
+    "_id": "6499189f88e462608a55911f"
   },
   {
-    "_id": "64927125742e76341ed9d0e3",
     "name": "Home Decor",
-    "__v": 0
+    "_id": "6499189f88e462608a559120"
   },
   {
     "name": "Organization",
-    "_id": "6492712b742e76341ed9d0e5",
-    "__v": 0
+    "_id": "6499189f88e462608a559121"
   },
   {
-    "_id": "64927132742e76341ed9d0e7",
     "name": "Bathroom Accessories",
-    "__v": 0
+    "_id": "6499189f88e462608a559122"
   },
   {
-    "_id": "64927139742e76341ed9d0e9",
     "name": "Wall Art",
-    "__v": 0
+    "_id": "6499189f88e462608a559123"
   },
   {
-    "_id": "64927143742e76341ed9d0eb",
     "name": "Garden and Outdoor",
-    "__v": 0
+    "_id": "6499189f88e462608a559124"
   }
 ]

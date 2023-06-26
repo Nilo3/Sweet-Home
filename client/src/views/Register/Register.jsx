@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { postUser } from "../../Redux/actions/actions";
+import { postUser } from "../../redux/actions/actions";
 import { useAuth } from "../../context/authContex";
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -14,6 +14,7 @@ export function Register() {
     email: "",
     password: "",
     confirmPassword: "",
+    uid: "",
   });
 
   const navigate = useNavigate();
@@ -28,15 +29,23 @@ export function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(postUser(user));
-
-    if (user.password !== user.confirmPassword) {
-      setError('Las contraseñas no coinciden');
-      return;
-    }
-  
-
     try {
+      const response = await singup(user.email, user.password);
+      const reUser = {
+        name: user.name,
+        email: user.email,
+        password: response.user.accessToken,
+        confirmPassword: response.user.accessToken,
+        uid: response.user.uid,
+      };
+      console.log(reUser);
+      dispatch(postUser(reUser));
+
+      if (user.password !== user.confirmPassword) {
+        setError("Las contraseñas no coinciden");
+        return;
+      }
+
       await singup(user.email, user.password);
       toast.success("Successful registration");
       navigate("/");
@@ -79,7 +88,10 @@ export function Register() {
         name: response.user.displayName,
         email: response.user.email,
         password: response.user.accessToken,
+        uid: response.user.uid,
       };
+
+      console.log("Esto es el falopero user:", userGoogle);
 
       dispatch(postUser(userGoogle));
 
@@ -128,7 +140,7 @@ export function Register() {
               htmlFor="lastName"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-             Last Name
+              Last Name
             </label>
             <input
               type="text"
@@ -173,7 +185,7 @@ export function Register() {
             />
           </div>
           <div className="mb-4">
-          <label
+            <label
               htmlFor="confirmPassword"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
@@ -189,7 +201,6 @@ export function Register() {
               required
             />
           </div>
-
 
           <button
             type="submit"
