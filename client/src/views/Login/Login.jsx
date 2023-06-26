@@ -25,7 +25,7 @@ export function Login() {
 
     try {
       await login(user.email, user.password);
-      toast.success("WELCOME TO SWEET HOME");
+      toast.success("Welcome to Sweet Home");
       navigate("/");
     } catch (error) {
       if (error.code === "auth/user-not-found") setError("User not Found");
@@ -38,6 +38,9 @@ export function Login() {
         setError(
           "Sorry, your account already exists with a different credential (GitHub or Google). Try again"
         );
+      if (!user.email) setError("Please enter your email");
+
+      if (!user.password) setError("Please enter your password");
 
       setTimeout(() => {
         setError("");
@@ -48,13 +51,12 @@ export function Login() {
   const handleGoogleSignIn = async () => {
     try {
       await loginWithGoogle();
-      toast.success("WELCOME TO SWEET HOME");
+      toast.success(`Welcome back`);
       navigate("/");
     } catch (error) {
       setError(error.message);
     }
   };
-
 
   const handleResetPassword = async () => {
     if (!user.email) return setError("Please enter your email");
@@ -116,7 +118,7 @@ export function Login() {
             </button>
             <a
               href="#!"
-              className="inline-block align-center font-bold text-sm mt-4 text-red-500 hover:text-blue-800 "
+              className="inline-block align-center font-bold text-sm mt-4 text-gray-900 hover:text-blue-800 "
               onClick={handleResetPassword}
             >
               Forgot password?

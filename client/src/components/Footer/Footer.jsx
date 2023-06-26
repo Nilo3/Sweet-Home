@@ -45,7 +45,7 @@ export default function Footer () {
           </div>
           <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
           <div className="sm:flex sm:items-center sm:justify-between">
-              <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400 mt-4">© 2023 <a href="" className="hover:underline">Sweet Home</a>.All Rights Reserved. No part of this may be reproduced or transmitted in any form without prior written permission from Sweet Home
+              <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400 mt-4">© 2023 <a href="" className="hover:underline">Sweet Home</a>. All Rights Reserved. No part of this may be reproduced or transmitted in any form without prior written permission from Sweet Home.
               </span>
               <div className="flex mt-2 space-x-6 sm:justify-center sm:mt-0">
                   <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">

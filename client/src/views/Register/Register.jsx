@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { postUser } from "../../Redux/actions/actions";
+import { postUser } from "../../redux/actions/actions";
 import { useAuth } from "../../context/authContex";
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -13,6 +13,7 @@ export function Register() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const navigate = useNavigate();
@@ -28,6 +29,12 @@ export function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     dispatch(postUser(user));
+
+    if (user.password !== user.confirmPassword) {
+      setError('Las contraseñas no coinciden');
+      return;
+    }
+  
 
     try {
       await singup(user.email, user.password);
@@ -113,6 +120,23 @@ export function Register() {
               placeholder="Please enter your name"
               className="shadow appearance-none border rounded text-xs w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="lastName"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+             Last Name
+            </label>
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Please enter your Last Name"
+              className="shadow appearance-none border rounded text-xs w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={handleChange}
+              required
             />
           </div>
 
@@ -148,6 +172,24 @@ export function Register() {
               onChange={handleChange}
             />
           </div>
+          <div className="mb-4">
+          <label
+              htmlFor="confirmPassword"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="********"
+              className="shadow appearance-none border rounded text-xs w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={handleChange}
+              required
+            />
+          </div>
+
 
           <button
             type="submit"

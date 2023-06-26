@@ -1,14 +1,20 @@
 import { useParams } from "react-router-dom";
-import { getProductDetail,addtoCart } from "../../Redux/actions/actions";
+import { getProductDetail,addtoCart, postShoppingCart } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContex"
+import axios from "axios";
+
 
 const Detail = () => {
   const dispatch = useDispatch();
   const allShoppingCart = useSelector((state) => state.shoppingCart);
   const product = useSelector((state) => state.details);
   const { id } = useParams();
+
+  const [cartId, setCartId] = useState(null) 
+  // este es el id del producto
 
   const isProductInCart = allShoppingCart.some((product) => product.id === id);
 
@@ -25,6 +31,68 @@ const Detail = () => {
   const backToHome = () => {
     navigate("/");
   };
+
+  const {user} = useAuth()
+
+  useEffect(()=>{
+    if(user && user.email){
+      checkUserIdInDatabase(user.email)
+    }
+  },[user])
+
+  const checkUserIdInDatabase = async(userEmail)=>{
+    try {
+      const response = await axios(`http://localhost:3001/api/users/v1/${userEmail}`)
+     
+
+      if(response && response.data.cart) {
+        setCartId(response.data._id);
+        }
+
+
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  const handleSubmit = async(event) => {
+    event.preventDefault()
+
+    if (cartId) {
+      const updatedCart = {
+        user: cartId,
+        products: [
+          {
+            product: id,
+            quantity: 1,
+          },
+        ],
+      };
+
+      dispatch(postShoppingCart(updatedCart));
+    } else {
+      const newCart = {
+        user: user._id,
+        products: [
+          {
+            product: id,
+            quantity: 1,
+          },
+        ],
+      };
+
+      dispatch(postShoppingCart(newCart));
+    }
+  };
+
+  function handleClick(event) {
+    handleSubmit(event);
+    handleShoppingCart();
+  }
+
+  
+
+
   
   return (
    
@@ -51,7 +119,7 @@ const Detail = () => {
             <div className="flex items-center">
               <span className="mx-2 text-gray-400">/</span>
               <div className="-m-1">
-                {/* <a href="#" className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800" aria-current="page">{product.category.map((el) => el.name)} </a> */}
+                <a href="#" className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800" aria-current="page">{product.category?.map((el) => el.name)} </a>
               </div>
             </div>
           </li>
@@ -96,7 +164,7 @@ const Detail = () => {
             </div>
             <p className="ml-2 text-sm font-medium text-gray-500">1,209 Reviews</p>
           </div>
-          <h2 className="mt-8 text-base text-gray-900">Choose subscription</h2>
+          <h2 className="mt-8 text-base text-gray-900">Extension your warranty</h2>
           <div className="mt-3 flex select-none flex-wrap items-center gap-1">
             <label className="">
               <input type="radio" name="subscription" value="4 Months" className="peer sr-only" />
@@ -121,7 +189,7 @@ const Detail = () => {
               
             </div>
    
-            <button onClick={handleShoppingCart} type="button" className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+            <button  onClick={handleClick } type="button" className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
               <svg xmlns="http://www.w3.org/2000/svg" className="shrink-0 mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
