@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
   const singup = async (email, password) => {
     const credential = await createUserWithEmailAndPassword(auth, email, password);
     const userEmail = credential.user.email;
-    sendUserDataToBackend({ email: userEmail, uid: credential.user.uid });
+    sendUserDataToBackend({ email: userEmail, uid: credential.user.uid, photoURL: credential.user.photoURL });
     return credential;
   };
 
@@ -74,6 +74,7 @@ export function AuthProvider({ children }) {
           email: userData.email,
           password: userData.password,
           uid: userData.uid,
+          photoURL: userData.photoURL
         })
         .then(() => {
           console.log("User data sent to Backend");
