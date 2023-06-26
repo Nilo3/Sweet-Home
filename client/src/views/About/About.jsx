@@ -15,7 +15,7 @@ const About = () => {
             >
               <div className={style.info}>
                 <h4 className="font-bold">{member.name}</h4>
-                <p className="p-8 -m-8 mx-2 text-xs">{member.description}</p>
+                <p className="p-8 -m-8 mx--1 text-xs">{member.description}</p>
                 <div className="flex justify-center mt-2">
                   <a
                     href={member.github}
