@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { getProductDetail,addtoCart, postShoppingCart } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -7,10 +8,10 @@ import { useAuth } from "../../context/authContex"
 import { detailAVG } from "../../utils/rating-detail"
 import axios from "axios";
 
-
 const Detail = () => {
+  // const allShoppingCart = useSelector((state) => state.shoppingCart);
+  // const isProductInCart = allShoppingCart.some((product) => product.id === id);
   const dispatch = useDispatch();
-  const allShoppingCart = useSelector((state) => state.shoppingCart);
   const product = useSelector((state) => state.details);
   const { id } = useParams();
   const ratingAVG = detailAVG(product)
@@ -36,12 +37,8 @@ const Detail = () => {
 
     return stars;
   };
-  
 
   const [cartId, setCartId] = useState(null) 
-  
-
-  const isProductInCart = allShoppingCart.some((product) => product.id === id);
 
   useEffect(() => {
     dispatch(getProductDetail(id));
@@ -68,13 +65,9 @@ const Detail = () => {
   const checkUserIdInDatabase = async(userEmail)=>{
     try {
       const response = await axios(`http://localhost:3001/api/users/v1/${userEmail}`)
-     
-
       if(response && response.data.cart) {
         setCartId(response.data._id);
         }
-
-
     } catch (error) {
       console.log(error.message);
     }
@@ -114,7 +107,6 @@ const Detail = () => {
     handleSubmit(event);
     handleShoppingCart();
   }
-
 
   return (
    
