@@ -17,7 +17,8 @@ import {
     POST_ORDER,
     POST_PRODUCT,
     UPLOAD_PRODUCT,
-    DELETE_PRODUCT
+    DELETE_PRODUCT,
+    POST_REVIEW
 } from "../action-types/action-types"
 
 const VITE_HOST = "http://localhost:3001"
@@ -38,14 +39,14 @@ export function getProductDetail(id) {
     return async function (dispatch) {
         try {
             let response = await axios.get(`${VITE_HOST}/api/product/${id}`)
-        return dispatch({
-            type: GET_PRODUCT_DETAIL,
-            payload: response.data,
-        });
-    } catch (error) {
-        console.log(error);
-    }
-};
+            return dispatch({
+                type: GET_PRODUCT_DETAIL,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 }
 
 export function getReviews() {
@@ -57,6 +58,21 @@ export function getReviews() {
         });
     };
 }
+
+export const postReview = (review) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(`${VITE_HOST}/api/review`, review);
+            dispatch({
+                type: POST_REVIEW,
+                payload: response.data
+            });
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
 
 export const filterByName = (payload) => {
     return {
@@ -138,6 +154,7 @@ export function postUser(payload) {
         }
     };
 }
+
 export function getAllUsers() {
     return async function (dispatch) {
         try {
@@ -198,6 +215,7 @@ export const postProduct = (product) => {
         }
     };
 };
+
 export function deleteProduct(id) {
     return async function (dispatch) {
         try {
