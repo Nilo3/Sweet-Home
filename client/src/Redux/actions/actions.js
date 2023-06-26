@@ -1,7 +1,8 @@
 import axios from "axios";
 import {
     GET_CATEGORY,
-    GET_USERS, GET_PRODUCTS,
+    GET_USERS,
+    GET_PRODUCTS,
     GET_PRODUCT_DETAIL,
     MOST_VALUED_FILTER,
     FILTER_BY_NAME,
@@ -14,7 +15,9 @@ import {
     DELETE_ONE_FROM_CART,
     POST_SHOPPING_CART,
     POST_ORDER,
-    POST_PRODUCT
+    POST_PRODUCT,
+    UPLOAD_PRODUCT,
+    DELETE_PRODUCT
 } from "../action-types/action-types"
 
 const VITE_HOST = "http://localhost:3001"
@@ -26,23 +29,23 @@ export function getProducts() {
         let response = await axios.get(`${VITE_HOST}/api/product`)
         return dispatch({
             type: GET_PRODUCTS,
-            payload: response.data
-        })
-    }
+            payload: response.data,
+        });
+    };
 }
 
 export function getProductDetail(id) {
     return async function (dispatch) {
         try {
             let response = await axios.get(`${VITE_HOST}/api/product/${id}`)
-            return dispatch({
-                type: GET_PRODUCT_DETAIL,
-                payload: response.data
-            })
-        } catch (error) {
-            console.log(error)
-        }
+        return dispatch({
+            type: GET_PRODUCT_DETAIL,
+            payload: response.data,
+        });
+    } catch (error) {
+        console.log(error);
     }
+};
 }
 
 export function getReviews() {
@@ -50,24 +53,24 @@ export function getReviews() {
         let response = await axios.get(`${VITE_HOST}/api/review`)
         return dispatch({
             type: MOST_VALUED_FILTER,
-            payload: response.data
-        })
-    }
+            payload: response.data,
+        });
+    };
 }
 
 export const filterByName = (payload) => {
     return {
         type: FILTER_BY_NAME,
-        payload
-    }
-}
+        payload,
+    };
+};
 
 export const filterByPrice = (payload) => {
     return {
         type: FILTER_BY_PRICE,
-        payload
-    }
-}
+        payload,
+    };
+};
 
 export const getCategory = () => {
     return async function (dispatch) {
@@ -76,55 +79,51 @@ export const getCategory = () => {
 
             return dispatch({
                 type: GET_CATEGORY,
-                payload: response.data
-            })
-
+                payload: response.data,
+            });
         } catch (error) {
             return {
                 error: "No category found",
                 originalError: error,
-            }
-
+            };
         }
-    }
-}
+    };
+};
 
 export const filterByCategory = (payload) => {
     return {
         type: FILTER_BY_CATEGORY,
-        payload
-    }
-}
-
+        payload,
+    };
+};
 
 export const searchProducts = (searchTerm) => {
     return {
         type: SEARCH_PRODUCTS,
-        payload: searchTerm
-    }
-}
+        payload: searchTerm,
+    };
+};
 
 export const addtoCart = (product) => {
     return {
         type: ADD_TO_CART,
-        payload: product
-    }
-}
+        payload: product,
+    };
+};
 
 export const removefromCart = (id) => {
     return {
         type: DELETE_FROM_CART,
-        payload: id
-    }
-}
+        payload: id,
+    };
+};
 
 export const removeOneFromCart = (id) => {
     return {
         type: DELETE_ONE_FROM_CART,
-        payload: id
-    }
-}
-
+        payload: id,
+    };
+};
 
 export function postUser(payload) {
     return async function (dispatch) {
@@ -196,7 +195,33 @@ export const postProduct = (product) => {
             return response;
         } catch (error) {
             console.log(error);
-            console.log(error.message);
         }
     };
 };
+export function deleteProduct(id) {
+    return async function (dispatch) {
+        try {
+            await axios.delete(`${VITE_HOST}/api/product/${id}`);
+            return dispatch({
+                type: DELETE_PRODUCT,
+                payload: id,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
+
+export function uploadProduct(id, data) {
+    return async function (dispatch) {
+        try {
+            await axios.put(`${VITE_HOST}/api/product/${id}`);
+            return dispatch({
+                type: UPLOAD_PRODUCT,
+                payload: data,
+            });
+        } catch (error) {
+            console.log(error.response.data.error);
+        }
+    };
+}

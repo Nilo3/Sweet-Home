@@ -13,8 +13,10 @@ import {
   GET_USERS,
   POST_SHOPPING_CART,
   POST_ORDER,
-  POST_PRODUCT
-} from "../action-types/action-types"
+  UPLOAD_PRODUCT,
+  DELETE_PRODUCT,
+  POST_PRODUCT,
+} from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
 const initialState = {
@@ -31,8 +33,8 @@ const initialState = {
   order: []
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
+const reducer = (state = initialState, {type, payload}) => {
+  switch (type) {
     //--//--//--//--//--//  Product actions  //--//--//--//--//--//
 
     case GET_PRODUCTS:
@@ -44,18 +46,18 @@ const reducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        products: action.payload,
-        getAllProducts: action.payload,
+        products: payload,
+        getAllProducts: payload,
         loading: false,
       };
     case GET_PRODUCT_DETAIL:
       return {
         ...state,
-        details: action.payload,
+        details: payload,
       };
 
     case SEARCH_PRODUCTS: {
-      const searchTerm = action.payload.toLowerCase();
+      const searchTerm = payload.toLowerCase();
       const filteredProducts = state.getAllProducts.filter((product) =>
         product.name.toLowerCase().includes(searchTerm)
       );
@@ -64,29 +66,44 @@ const reducer = (state = initialState, action) => {
         products: filteredProducts,
       };
     }
+    case DELETE_PRODUCT: {
+      const updateProduct = state.getAllProducts.filter((product) => product._id !== payload)
+      const removeProduct = state.products.filter((product) => product._id !== payload)
+      return {
+        ...state,
+        getAllProducts: updateProduct,
+        products: removeProduct
+      }
+    }
+    case UPLOAD_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, payload],
+        getAllProducts: [...state.getAllProducts, payload],
+      };
 
     //--//--//--//--//--// Cart actions  //--//--//--//--//--//
 
     case ADD_TO_CART:
       return {
         ...state,
-        shoppingCart: [...state.shoppingCart, action.payload],
+        shoppingCart: [...state.shoppingCart, payload],
       };
 
     case DELETE_FROM_CART:
       return {
         ...state,
         shoppingCart: state.shoppingCart.filter(
-          (product) => product._id !== action.payload
+          (product) => product._id !== payload
         ),
       };
 
     case DELETE_ONE_FROM_CART: {
       const filterCart = state.shoppingCart.filter(
-        (product) => product._id !== action.payload
+        (product) => product._id !== payload
       );
       const toBeDeleted = state.shoppingCart.filter(
-        (product) => product._id === action.payload
+        (product) => product._id === payload
       );
       const filterDeleted = [...toBeDeleted.slice(0, toBeDeleted.length - 1)];
       return {
@@ -99,7 +116,7 @@ const reducer = (state = initialState, action) => {
 
     case FILTER_BY_NAME: {
       const sortedProducts = [...state.products];
-      const sortOrder = action.payload === "asc" ? 1 : -1;
+      const sortOrder = payload === "asc" ? 1 : -1;
       sortedProducts.sort((productsA, productsB) => {
         if (productsA.name > productsB.name) {
           return 1 * sortOrder;
@@ -118,7 +135,7 @@ const reducer = (state = initialState, action) => {
 
     case FILTER_BY_PRICE: {
       const filterProducts = [...state.products];
-      const filterOrder = action.payload === "high" ? 1 : -1;
+      const filterOrder = payload === "high" ? 1 : -1;
       filterProducts.sort((productsA, productsB) => {
         if (productsA.price > productsB.price) {
           return 1 * filterOrder;
@@ -138,7 +155,7 @@ const reducer = (state = initialState, action) => {
     case FILTER_BY_CATEGORY: {
       const filteredCategory = state.getAllProducts.filter((element) => {
         if (element.category[0] && element.category[0].name) {
-          return element.category[0].name.includes(action.payload);
+          return element.category[0].name.includes(payload);
         }
         return false;
       });
@@ -151,7 +168,7 @@ const reducer = (state = initialState, action) => {
     case MOST_VALUED_FILTER:
       return {
         ...state,
-        reviews: productAVG(action.payload),
+        reviews: productAVG(payload),
       };
 
     //--//--//--//--//--//  User actions  //--//--//--//--//--//
@@ -159,13 +176,13 @@ const reducer = (state = initialState, action) => {
     case GET_USERS:
       return {
         ...state,
-        users: action.payload,
+        users: payload,
       };
 
     case POST_PRODUCT:
       return {
         ...state,
-        products: [...state.products, action.payload],
+        products: [...state.products, payload],
       }
 
 
@@ -174,7 +191,7 @@ const reducer = (state = initialState, action) => {
     case GET_CATEGORY:
       return {
         ...state,
-        category: action.payload,
+        category: payload,
       };
 
     case POST_SHOPPING_CART:
