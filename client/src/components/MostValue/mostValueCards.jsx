@@ -13,17 +13,11 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
   const [inCart, setInCart] = useState(false);
   const [cartId, setCartId] = useState(null) 
 
-  //Esto devuelve todo lo que hay en el cart
   const allShoppingCart = useSelector((state) => state.shoppingCart);
 
-  //Esto devuelve true o false unicamente
   const isProductInCart = allShoppingCart.some((product) => product.id === _id);
 
-  //
-
   const product = useSelector((state)=>state.details)
-
-
 
   useEffect(() => {
     setInCart(isProductInCart);
@@ -41,25 +35,18 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
   const checkUserIdInDatabase = async(userEmail)=>{
     try {
       const response = await axios(`http://localhost:3001/api/users/v1/${userEmail}`)
-     
-
       if(response && response.data.cart) {
         setCartId(response.data._id);
         }
-
-
     } catch (error) {
       console.log(error.message);
     }
   }
 
-
-
   const handleShoppingCart = () => {
     setInCart(true);
 
     dispatch(addtoCart({_id, name, image, price }));
-    //dispatch(postShoppingCart({cartId, _id }))
     
     if (cartId) {
       const updatedCart = {
@@ -89,12 +76,6 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
 
   };
   
-
- 
-  
-
- 
-
   const renderRatingStars = () => {
     const maxRating = 5;
     const fullStars = Math.floor(rating);
