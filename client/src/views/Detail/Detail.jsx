@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContex"
+import { detailAVG } from "../../utils/rating-detail"
 import axios from "axios";
 
 
@@ -12,9 +13,11 @@ const Detail = () => {
   const allShoppingCart = useSelector((state) => state.shoppingCart);
   const product = useSelector((state) => state.details);
   const { id } = useParams();
+  const ratingAVG = detailAVG(product)
+  
 
   const [cartId, setCartId] = useState(null) 
-  // este es el id del producto
+  
 
   const isProductInCart = allShoppingCart.some((product) => product.id === id);
 
@@ -162,7 +165,7 @@ const Detail = () => {
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" className=""></path>
               </svg>
             </div>
-            <p className="ml-2 text-sm font-medium text-gray-500">1,209 Reviews</p>
+            <p className="ml-2 text-sm font-medium text-gray-500">{product.review?.length || 0} Reviews</p>
           </div>
           <h2 className="mt-8 text-base text-gray-900">Extension your warranty</h2>
           <div className="mt-3 flex select-none flex-wrap items-center gap-1">
@@ -222,7 +225,7 @@ const Detail = () => {
   
               <a href="#" title="" className="inline-flex items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600">
                 Reviews
-                <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100"> 1,209 </span>
+                <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100"> {product.review?.length || 0} Reviews</span>
               </a>
             </nav>
           </div>
