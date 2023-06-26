@@ -29,15 +29,15 @@ const Detail = () => {
 
     const stars = [];
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<FaStar key={i} className="star-icon" />);
+      stars.push(<FaStar key={i} />);
     }
 
     if (hasHalfStar) {
-      stars.push(<FaStarHalfAlt key="half" className="star-icon" />);
+      stars.push(<FaStarHalfAlt key="half"  />);
     }
 
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<FaRegStar key={`empty-${i}`} className="star-icon" />);
+      stars.push(<FaRegStar key={`empty-${i}`}  />);
     }
 
     return stars;
@@ -312,32 +312,33 @@ const Detail = () => {
             </ul>
           </div>
           <div className="lg:col-span-3">
-            <div className="border-b border-gray-300">
-              <nav className="flex gap-4">
-                <a
-                  title=""
-                  className={`border-b-2 cursor-pointer border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800 ${
-                    selectedSection === "description" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSection("description")}
-                >
-                  Description
-                </a>
+  <div className="border-b border-gray-300">
+    <nav className="flex gap-4">
+      <a
+        title=""
+        className={`cursor-pointer py-4 text-sm font-medium text-gray-900 hover:text-gray-800 ${
+          selectedSection === "description" ? "border-b-2 border-gray-900" : ""
+        }`}
+        onClick={() => handleSection("description")}
+      >
+        Description
+      </a>
 
-                <a
-                  title=""
-                  className={`inline-flex cursor-pointer  items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600 ${
-                    selectedSection === "reviews" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSection("reviews")}
-                >
-                  Reviews
-                  <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
-                    {product.review?.length || 0} Reviews
-                  </span>
-                </a>
-              </nav>
-            </div>
+      <a
+        title=""
+        className={`inline-flex cursor-pointer items-center py-4 text-sm font-medium text-gray-600 ${
+          selectedSection === "reviews" ? "border-b-2 border-gray-900" : ""
+        }`}
+        onClick={() => handleSection("reviews")}
+      >
+        Reviews
+        <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
+          {product.review?.length || 0} Reviews
+        </span>
+      </a>
+    </nav>
+  </div>
+
 
             <div className="mt-8 flow-root sm:mt-12">
               {selectedSection === "description" ? (
@@ -354,7 +355,7 @@ const Detail = () => {
                       key={review._id}
                     >
                       <figure className="max-w-screen-md">
-                        <div className="rating-stars flex mr-3">
+                        <div className="mb-3 text-yellow-300 text-m flex mr-3">
                           {renderRatingStars(review.rating)}
                         </div>
                         <blockquote>
