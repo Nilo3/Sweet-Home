@@ -1,7 +1,8 @@
 import axios from "axios";
 import {
     GET_CATEGORY,
-    GET_USERS, GET_PRODUCTS,
+    GET_USERS,
+    GET_PRODUCTS,
     GET_PRODUCT_DETAIL,
     MOST_VALUED_FILTER,
     FILTER_BY_NAME,
@@ -14,22 +15,25 @@ import {
     DELETE_ONE_FROM_CART,
     POST_SHOPPING_CART,
     POST_ORDER,
-    POST_PRODUCT
+    POST_PRODUCT,
+    UPLOAD_PRODUCT,
+    DELETE_PRODUCT,
+    POST_REVIEW,
+    GET_ORDERS
 } from "../action-types/action-types"
 
 const VITE_HOST = "http://localhost:3001"
 
 // const {VITE_HOST} = import.meta.env
 
-
 export function getProducts() {
     return async function (dispatch) {
         let response = await axios.get(`${VITE_HOST}/api/product`)
         return dispatch({
             type: GET_PRODUCTS,
-            payload: response.data
-        })
-    }
+            payload: response.data,
+        });
+    };
 }
 
 export function getProductDetail(id) {
@@ -38,12 +42,12 @@ export function getProductDetail(id) {
             let response = await axios.get(`${VITE_HOST}/api/product/${id}`)
             return dispatch({
                 type: GET_PRODUCT_DETAIL,
-                payload: response.data
-            })
+                payload: response.data,
+            });
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 }
 
 export function getReviews() {
@@ -51,24 +55,39 @@ export function getReviews() {
         let response = await axios.get(`${VITE_HOST}/api/review`)
         return dispatch({
             type: MOST_VALUED_FILTER,
-            payload: response.data
-        })
-    }
+            payload: response.data,
+        });
+    };
 }
+
+export const postReview = (review) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(`${VITE_HOST}/api/review`, review);
+            dispatch({
+                type: POST_REVIEW,
+                payload: response.data
+            });
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
 
 export const filterByName = (payload) => {
     return {
         type: FILTER_BY_NAME,
-        payload
-    }
-}
+        payload,
+    };
+};
 
 export const filterByPrice = (payload) => {
     return {
         type: FILTER_BY_PRICE,
-        payload
-    }
-}
+        payload,
+    };
+};
 
 export const getCategory = () => {
     return async function (dispatch) {
@@ -77,55 +96,51 @@ export const getCategory = () => {
 
             return dispatch({
                 type: GET_CATEGORY,
-                payload: response.data
-            })
-
+                payload: response.data,
+            });
         } catch (error) {
             return {
                 error: "No category found",
                 originalError: error,
-            }
-
+            };
         }
-    }
-}
+    };
+};
 
 export const filterByCategory = (payload) => {
     return {
         type: FILTER_BY_CATEGORY,
-        payload
-    }
-}
-
+        payload,
+    };
+};
 
 export const searchProducts = (searchTerm) => {
     return {
         type: SEARCH_PRODUCTS,
-        payload: searchTerm
-    }
-}
+        payload: searchTerm,
+    };
+};
 
 export const addtoCart = (product) => {
     return {
         type: ADD_TO_CART,
-        payload: product
-    }
-}
+        payload: product,
+    };
+};
 
 export const removefromCart = (id) => {
     return {
         type: DELETE_FROM_CART,
-        payload: id
-    }
-}
+        payload: id,
+    };
+};
 
 export const removeOneFromCart = (id) => {
     return {
         type: DELETE_ONE_FROM_CART,
-        payload: id
-    }
-}
-
+        payload: id,
+    };
+};
 
 export function postUser(payload) {
     return async function (dispatch) {
@@ -140,6 +155,7 @@ export function postUser(payload) {
         }
     };
 }
+
 export function getAllUsers() {
     return async function (dispatch) {
         try {
@@ -168,16 +184,17 @@ export function postShoppingCart(payload) {
     };
 }
 
-
 export function postOrder(payload) {
     return async function (dispatch) {
         try {
             const response = await axios.post(`${VITE_HOST}/api/order`, payload);
-            const initPoint = response.data.init_point;
+
+            const initPoint = response.data
+            console.log(initPoint)
             window.location.href = initPoint;
             dispatch({
                 type: POST_ORDER,
-                payload: response.initPoint
+                payload: initPoint
             });
         } catch (error) {
             console.log(error);
@@ -199,3 +216,47 @@ export const postProduct = (product) => {
         }
     };
 };
+
+
+export function deleteProduct(id) {
+    return async function (dispatch) {
+        try {
+            await axios.delete(`${VITE_HOST}/api/product/${id}`);
+            return dispatch({
+                type: DELETE_PRODUCT,
+                payload: id,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
+
+export function uploadProduct(id, data) {
+    return async function (dispatch) {
+        try {
+            await axios.put(`${VITE_HOST}/api/product/${id}`);
+            return dispatch({
+                type: UPLOAD_PRODUCT,
+                payload: data,
+            });
+        } catch (error) {
+            console.log(error.response.data.error);
+        }
+    };
+}
+
+
+export function getAllOrders() {
+    return async function (dispatch) {
+        try {
+            const response = await axios.get(`${VITE_HOST}/api/order`);
+            dispatch({
+                type: GET_ORDERS,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}

@@ -1,142 +1,53 @@
 [
   {
-    "_id": "6495054089ffbc4f16655d71",
     "name": "Juan Perez",
     "email": "juan@example.com",
-    "password": "$2a$10$T3./Mm6WAUFk2wta5KUMjewhgiw.uz.gYFfMiu1o2gMEf3l1go.ba",
-    "isAdmin": false,
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSnVhbiBQZXJleiIsImVtYWlsIjoianVhbkBleGFtcGxlLmNvbSIsImlhdCI6MTY4NzQ4NzgwOCwiZXhwIjoxNjg3NTc0MjA4fQ.lXlc43ZvF3IhyQobxIuVhA_qk05mVWdfxUaCV68EamA",
-    "cart": [],
-    "bought": [],
-    "favorites": [],
-    "userReviews": [],
-    "userOrders": [],
-    "__v": 0
+    "password": "$2a$10$T3./Mm6WAUFk2wta5KUMjewhgiw.uz.gYFfMiu1o2gMEf3l1go.ba"
   },
   {
-    "_id": "6495054d89ffbc4f16655d74",
     "name": "María López",
     "email": "maria@example.com",
-    "password": "$2a$10$uK41PBOGU.puuiSDnnVpWOa8njQzCFBnelLvm0yR//jx0KdWxIrVu",
-    "isAdmin": false,
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWFyw61hIEzDs3BleiIsImVtYWlsIjoibWFyaWFAZXhhbXBsZS5jb20iLCJpYXQiOjE2ODc0ODc4MjEsImV4cCI6MTY4NzU3NDIyMX0.hWsaLwEY0IBmJNJ5PfV4Wx0VI6ZRHNxBCFlndoXoKSI",
-    "cart": [],
-    "bought": [],
-    "favorites": [],
-    "userReviews": [],
-    "userOrders": [],
-    "__v": 0
+    "password": "$2a$10$uK41PBOGU.puuiSDnnVpWOa8njQzCFBnelLvm0yR//jx0KdWxIrVu"
   },
   {
-    "_id": "6495055289ffbc4f16655d77",
     "name": "Carlos Ramirez",
     "email": "carlos@example.com",
-    "password": "$2a$10$SRxGsda8OtXVQKpOAq3JcOSdi8PQBJerIRQ1PDRQSuhpchACiZ9lG",
-    "isAdmin": false,
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2FybG9zIFJhbWlyZXoiLCJlbWFpbCI6ImNhcmxvc0BleGFtcGxlLmNvbSIsImlhdCI6MTY4NzQ4NzgyNiwiZXhwIjoxNjg3NTc0MjI2fQ.MnWSDQThqzeGjMeZxDe8uptiwAIBUe3iD2Qo0vyrVu4",
-    "cart": [],
-    "bought": [],
-    "favorites": [],
-    "userReviews": [],
-    "userOrders": [],
-    "__v": 0
+    "password": "$2a$10$SRxGsda8OtXVQKpOAq3JcOSdi8PQBJerIRQ1PDRQSuhpchACiZ9lG"
   },
   {
-    "_id": "6495055789ffbc4f16655d7a",
     "name": "Laura García",
     "email": "laura@example.com",
-    "password": "$2a$10$eJdkcKyhX44oO.wc2g/RB.qWbVxqmX.lzSkwacqCNd1021qO9ETpK",
-    "isAdmin": false,
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEgR2FyY8OtYSIsImVtYWlsIjoibGF1cmFAZXhhbXBsZS5jb20iLCJpYXQiOjE2ODc0ODc4MzEsImV4cCI6MTY4NzU3NDIzMX0.gzzaXkOSgmH36Gej0OB149L856yl9pVUXa_DhJI8ML4",
-    "cart": [],
-    "bought": [],
-    "favorites": [],
-    "userReviews": [],
-    "userOrders": [],
-    "__v": 0
+    "password": "$2a$10$eJdkcKyhX44oO.wc2g/RB.qWbVxqmX.lzSkwacqCNd1021qO9ETpK"
   },
   {
-    "_id": "6495055d89ffbc4f16655d7d",
     "name": "Pedro Martinez",
     "email": "pedro@example.com",
-    "password": "$2a$10$9H9FEDCT1EVqzKjULdBf.eZA4SXtayhW4pJZeBP1H68dhUonxv6Kq",
-    "isAdmin": false,
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUGVkcm8gTWFydGluZXoiLCJlbWFpbCI6InBlZHJvQGV4YW1wbGUuY29tIiwiaWF0IjoxNjg3NDg3ODM3LCJleHAiOjE2ODc1NzQyMzd9.dFkau2Jv0VpPaRO00itjw0u6TcD5B8iYDy3xey8FAXA",
-    "cart": [],
-    "bought": [],
-    "favorites": [],
-    "userReviews": [],
-    "userOrders": [],
-    "__v": 0
+    "password": "$2a$10$9H9FEDCT1EVqzKjULdBf.eZA4SXtayhW4pJZeBP1H68dhUonxv6Kq"
   },
   {
     "_id": "6495056489ffbc4f16655d80",
     "name": "Ana Herrera",
     "email": "ana@example.com",
-    "password": "$2a$10$GJBw4AqEXHuj2o0LzATPNOyvOJPxOJ7nQl7qGe9fLYiG2W74D6ckK",
-    "isAdmin": false,
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQW5hIEhlcnJlcmEiLCJlbWFpbCI6ImFuYUBleGFtcGxlLmNvbSIsImlhdCI6MTY4NzQ4Nzg0NCwiZXhwIjoxNjg3NTc0MjQ0fQ.HOr671pss2_ZtQUZOPkDYu-t8URLmRz97T4FbXAH2Ts",
-    "cart": [],
-    "bought": [],
-    "favorites": [],
-    "userReviews": [],
-    "userOrders": [],
-    "__v": 0
+    "password": "$2a$10$GJBw4AqEXHuj2o0LzATPNOyvOJPxOJ7nQl7qGe9fLYiG2W74D6ckK"
   },
   {
-    "_id": "6495057089ffbc4f16655d83",
     "name": "Luis Torres",
     "email": "luis@example.com",
-    "password": "$2a$10$ilI.MvWMax7ZaBuzetzDsO7ORgE1p8In2GlqIsblbu8Ap0GsxLruO",
-    "isAdmin": false,
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVpcyBUb3JyZXMiLCJlbWFpbCI6Imx1aXNAZXhhbXBsZS5jb20iLCJpYXQiOjE2ODc0ODc4NTYsImV4cCI6MTY4NzU3NDI1Nn0.f6AN9oNFAqvEzkGWndarRiNkydFQmen68zmPE1OnFe8",
-    "cart": [],
-    "bought": [],
-    "favorites": [],
-    "userReviews": [],
-    "userOrders": [],
-    "__v": 0
+    "password": "$2a$10$ilI.MvWMax7ZaBuzetzDsO7ORgE1p8In2GlqIsblbu8Ap0GsxLruO"
   },
   {
-    "_id": "6495057589ffbc4f16655d86",
     "name": "Isabel Rodriguez",
     "email": "isabel@example.com",
-    "password": "$2a$10$tyvg5P8rgnsehOsLiCR3v.hRAZMao.dy5mgVmyUFH3x74yCVY/I.K",
-    "isAdmin": false,
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSXNhYmVsIFJvZHJpZ3VleiIsImVtYWlsIjoiaXNhYmVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNjg3NDg3ODYxLCJleHAiOjE2ODc1NzQyNjF9.Ytj8R4f6pv6Yaj5URDgu2BswkZnmLjLVLIbjPJQvNoA",
-    "cart": [],
-    "bought": [],
-    "favorites": [],
-    "userReviews": [],
-    "userOrders": [],
-    "__v": 0
+    "password": "$2a$10$tyvg5P8rgnsehOsLiCR3v.hRAZMao.dy5mgVmyUFH3x74yCVY/I.K"
   },
   {
-    "_id": "6495057a89ffbc4f16655d89",
     "name": "Daniel Navarro",
     "email": "daniel@example.com",
-    "password": "$2a$10$aLpo0uHjhPICcsJLYAr6eeH8OiCE.3IJLuZJyGfen2Jd2jnqv6Ofe",
-    "isAdmin": false,
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRGFuaWVsIE5hdmFycm8iLCJlbWFpbCI6ImRhbmllbEBleGFtcGxlLmNvbSIsImlhdCI6MTY4NzQ4Nzg2NiwiZXhwIjoxNjg3NTc0MjY2fQ.NAD2r8YENANV0sDq2GLO8DiEpEoAlJITVFXwTBCx9iY",
-    "cart": [],
-    "bought": [],
-    "favorites": [],
-    "userReviews": [],
-    "userOrders": [],
-    "__v": 0
+    "password": "$2a$10$aLpo0uHjhPICcsJLYAr6eeH8OiCE.3IJLuZJyGfen2Jd2jnqv6Ofe"
   },
   {
-    "_id": "6495058489ffbc4f16655d8c",
     "name": "Sofía Castro",
     "email": "sofia@example.com",
-    "password": "$2a$10$.dxMwbY69rGWYPSh7Jo74uBdwWbz1Kr9zEU4eDPigM2S.w.cflh8q",
-    "isAdmin": false,
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiU29mw61hIENhc3RybyIsImVtYWlsIjoic29maWFAZXhhbXBsZS5jb20iLCJpYXQiOjE2ODc0ODc4NzYsImV4cCI6MTY4NzU3NDI3Nn0.AfnVbBsENPYaSu4yOly3AyfnM-HjJB6fGbgfbMkudU0",
-    "cart": [],
-    "bought": [],
-    "favorites": [],
-    "userReviews": [],
-    "userOrders": [],
-    "__v": 0
+    "password": "$2a$10$.dxMwbY69rGWYPSh7Jo74uBdwWbz1Kr9zEU4eDPigM2S.w.cflh8q"
   }
 ]

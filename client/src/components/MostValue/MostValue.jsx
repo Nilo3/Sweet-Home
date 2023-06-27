@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getReviews } from "../../Redux/actions/actions.js";
+import { getReviews } from "../../redux/actions/actions.js";
 import MostValueCards from "./mostValueCards";
 import "./MostValue.css";
 
@@ -15,6 +15,7 @@ const MostValue = () => {
   useEffect(() => {
     dispatch(getReviews());
   }, [dispatch]);
+
 
   return (
     <div>

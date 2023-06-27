@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import style from "./Profile.module.css";
 import { useAuth } from "../../context/authContex";
 import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
@@ -10,7 +10,7 @@ const Profile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-
+  console.log(user);
   const navigate = useNavigate();
 
   const backToHome = () => {

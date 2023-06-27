@@ -2,7 +2,7 @@ import User from "../../models/schemas/user.js"
 
 const putUsers = async (req, res) => {
     const { usersId } = req.params;
-    const { name, lastName, email, password, isAdmin } = req.body;
+    const { name, photoURL, email, password, isAdmin } = req.body;
 
     console.log(usersId);
     try {
@@ -13,7 +13,8 @@ const putUsers = async (req, res) => {
                     lastName,
                     email,
                     password,
-                    isAdmin
+                    isAdmin,
+                    photoURL
                 }
             }, { new: true });
         res.status(200).json(users)

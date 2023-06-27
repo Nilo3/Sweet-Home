@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { searchProducts } from "../../Redux/actions/actions";
+import { searchProducts } from "../../redux/actions/actions";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,3 +49,6 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
+
+

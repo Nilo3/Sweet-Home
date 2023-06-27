@@ -6,6 +6,7 @@ import { useAuth } from "../../context/authContex";
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { Alert } from "../Login/Alert.jsx";
+import emailjs from "emailjs-com"
 
 export function Register() {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ export function Register() {
     email: "",
     password: "",
     confirmPassword: "",
+    uid: "",
+    photoURL: "",
   });
 
   const navigate = useNavigate();
@@ -28,21 +31,31 @@ export function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(postUser(user));
 
-    if (user.password !== user.confirmPassword) {
-      setError('Las contraseñas no coinciden');
-      return;
-    }
-  
+    emailjs
+    .sendForm("service_ow4w0a4", "template_q87hreg", event.target, "sj_J3uCnEGmKNh4pA")
 
     try {
-      await singup(user.email, user.password);
-      toast.success("Successful registration");
+      const response = await singup(user.email, user.password);
+      const reUser = {
+        name: user.name,
+        email: user.email,
+        password: response.user.accessToken,
+        confirmPassword: response.user.accessToken,
+        uid: response.user.uid,
+        photoURL: response.user.photoURL,
+      };
+      dispatch(postUser(reUser));
+
+      if (user.password !== user.confirmPassword) {
+        setError("The passwords are different");
+        return;
+      }
+      toast.success("Registered successfully");
       navigate("/");
     } catch (error) {
       if (error.code === "auth/weak-password")
-        setError("Invalid password. Please enter your password again");
+        setError("Invalid password. Too weak");
 
       if (error.code === "auth/internal.error")
         setError("Invalid Email. Please enter your email again");
@@ -52,7 +65,7 @@ export function Register() {
 
       if (user.password.length < 8)
         setError(
-          "Invalid Form, Password must contain greater than or equal to 8 characters."
+          "Invalid password, it must contain greater than or equal to 8 characters."
         );
 
       if (error.code === "auth/account-exists-with-different-credential")
@@ -60,9 +73,9 @@ export function Register() {
           "Sorry, your account already exists with a different credential. Try again"
         );
 
-      if (!user.email) setError("Please enter your email");
+      if (!user.email) setError("Please enter an email");
 
-      if (!user.password) setError("Please enter your password");
+      if (!user.password) setError("Please enter a password");
 
       if (!emailRegex.test(user.email))
         setError("Please enter a valid email address");
@@ -79,8 +92,9 @@ export function Register() {
         name: response.user.displayName,
         email: response.user.email,
         password: response.user.accessToken,
+        uid: response.user.uid,
+        photoURL: response.user.photoURL,
       };
-
       dispatch(postUser(userGoogle));
 
       toast.success("Welcome to Sweet Home");
@@ -128,7 +142,7 @@ export function Register() {
               htmlFor="lastName"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-             Last Name
+              Last Name
             </label>
             <input
               type="text"
@@ -173,7 +187,7 @@ export function Register() {
             />
           </div>
           <div className="mb-4">
-          <label
+            <label
               htmlFor="confirmPassword"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
@@ -189,7 +203,6 @@ export function Register() {
               required
             />
           </div>
-
 
           <button
             type="submit"
