@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { toast } from "react-toastify";
 import countries from "world-countries";
 import ReactCountryFlag from "react-country-flag";
@@ -9,48 +8,41 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsTelephone, BsHouse } from "react-icons/bs";
 import { useAuth } from "../../context/authContex";
 import { useNavigate } from "react-router-dom";
-import { removefromCart, addtoCart, removeOneFromCart, postOrder } from "../../Redux/actions/actions";
+import { removefromCart, addtoCart, removeOneFromCart, postOrder, getUserByUid } from "../../Redux/actions/actions";
 import { getTotalPrice, calculateTotal } from "../../utils/totalprice";
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-Logo.png";
-import emailjs from "emailjs-com"
+import emailjs from "emailjs-com";
 
 const Shopping = () => {
-  const allShoppingCart = useSelector((state) =>
-    state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name))
-  );
+  const allShoppingCart = useSelector((state) => state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)));
   const dispatch = useDispatch();
+
   const { user } = useAuth();
   const [userId, setUserId] = useState(null);
-  const [selectedMethod, setSelectedMethod] = useState("method1");
-
+  
   const subTotal = getTotalPrice(allShoppingCart);
   const shippingRate = 0;
   const total = calculateTotal(shippingRate, subTotal);
   const formattedTotal = total.toFixed(2);
 
   useEffect(() => {
-    if (user && user.email) {
-      checkUserIdInDatabase(user.email);
+    if (user) {
+      dispatch(getUserByUid(user.uid));
     }
-  }, [user]);
+  }, [dispatch, user]);
 
+  const userUid = user?.uid || null;
+
+  useEffect(() => {
+    if (userUid) {
+      setUserId(userUid);
+    }
+  }, [userUid]);
+
+  const [selectedMethod, setSelectedMethod] = useState("method1");
   const handleMethodSelection = (method) => {
     setSelectedMethod(method);
-  };
-  const checkUserIdInDatabase = async (userEmail) => {
-    try {
-      const response = await axios(
-        `http://localhost:3001/api/users/v1/${userEmail}`
-      );
-
-      if (response.data && response.data._id) {
-        const userIdnum = response.data._id;
-        setUserId(userIdnum);
-      }
-    } catch (error) {
-      console.error(error.message);
-    }
   };
 
   const handleDeleteFromCart = (productId) => {
@@ -68,12 +60,10 @@ const Shopping = () => {
   function handleSendOrder(event) {
     event.preventDefault();
 
-    
-
     if (!user) {
       toast.warning("Please sign in before you continue.");
       return;
-    } else if (allShoppingCart.length == 0) {
+    } else if (allShoppingCart.length === 0) {
       toast.warning("Your shopping cart is empty.");
       return;
     } else {
@@ -86,8 +76,12 @@ const Shopping = () => {
         return counts;
       }, {});
 
-      emailjs
-    .sendForm("service_ow4w0a4", "template_3r112cn", event.target, "sj_J3uCnEGmKNh4pA")
+      emailjs.sendForm(
+        "service_ow4w0a4",
+        "template_3r112cn",
+        event.target,
+        "sj_J3uCnEGmKNh4pA"
+      );
 
       const order = {
         user: userId,
@@ -102,12 +96,6 @@ const Shopping = () => {
     }
   }
 
-
-
-
-
-
-  
   const navigate = useNavigate();
 
   const navigateToRegister = () => {
@@ -217,7 +205,13 @@ const Shopping = () => {
             <p className="text-xl font-medium">Shipping</p>
             <p className="text-gray-400 mt-2 text-m text-right">
               Dont have an account?{" "}
-              <a className="text-blue-600" href="#" onClick={navigateToRegister}>Register</a>
+              <a
+                className="text-blue-600"
+                href="#"
+                onClick={navigateToRegister}
+              >
+                Register
+              </a>
             </p>
             <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
               <svg
@@ -264,7 +258,7 @@ const Shopping = () => {
                 placeholder="Last Name"
               />
             </div>
-            
+
             <div className="flex flex-col">
               <label
                 htmlFor="billing-address"
@@ -272,7 +266,6 @@ const Shopping = () => {
               >
                 Billing Address
               </label>
-              
 
               <Select
                 id="countries"
@@ -380,8 +373,9 @@ const Shopping = () => {
             <div className="mt-5 grid gap-6">
               <div className="relative">
                 <div
-                  className={`shopping-method ${selectedMethod === "method1" ? "selected" : ""
-                    }`}
+                  className={`shopping-method ${
+                    selectedMethod === "method1" ? "selected" : ""
+                  }`}
                   onClick={() => handleMethodSelection("method1")}
                 >
                   <input
@@ -391,8 +385,9 @@ const Shopping = () => {
                     name="radio"
                   />
                   <span
-                    className={`method-label ${selectedMethod === "method1" ? "selected" : ""
-                      }`}
+                    className={`method-label ${
+                      selectedMethod === "method1" ? "selected" : ""
+                    }`}
                   ></span>
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
@@ -415,8 +410,9 @@ const Shopping = () => {
               </div>
               <div className=" mb-3 relative">
                 <div
-                  className={`shopping-method ${selectedMethod === "method2" ? "selected" : ""
-                    }`}
+                  className={`shopping-method ${
+                    selectedMethod === "method2" ? "selected" : ""
+                  }`}
                   onClick={() => handleMethodSelection("method2")}
                 >
                   <input
@@ -426,8 +422,9 @@ const Shopping = () => {
                     name="radio"
                   />
                   <span
-                    className={`method-label ${selectedMethod === "method2" ? "selected" : ""
-                      }`}
+                    className={`method-label ${
+                      selectedMethod === "method2" ? "selected" : ""
+                    }`}
                   ></span>
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
@@ -447,14 +444,16 @@ const Shopping = () => {
             </div>
             <div className="mb-3 mt-6 border-t border-b py-2">
               <div className="mt-6 flex items-center justify-between">
-                <p name="Tito" className="text-sm font-medium text-gray-900">Total</p>
+                <p name="Tito" className="text-sm font-medium text-gray-900">
+                  Total
+                </p>
                 <p className="text-2xl font-semibold text-gray-900">
                   ${formattedTotal}
                 </p>
               </div>
               <div className="flex items-center justify-between"></div>
             </div>
-            <button 
+            <button
               type="submit"
               className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
             >

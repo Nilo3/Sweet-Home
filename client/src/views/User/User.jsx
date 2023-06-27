@@ -9,13 +9,13 @@ import { getUserByUid } from "../../Redux/actions/actions";
 const User = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
-  // const userUid = user.uid;
+  const userUid = user.uid;
   useEffect(() => {
-    // dispatch(getUserByUid(userUid));
-  }, [dispatch]);
+    dispatch(getUserByUid(userUid));
+  }, [dispatch, userUid]);
   const userData = useSelector((state) => state.user);
-  console.log(userData.userOrders);
-  // const orders = userData.userOrders
+  const userOrders = userData?.userOrders || [];
+  console.log(userOrders);
   return (
     <>
       <aside
@@ -79,20 +79,19 @@ const User = () => {
           </ul>
         </div>
       </aside>
-
-      {/* <div className="flex justify-center">
-        {orders.map((order) => (
+      <div className="flex justify-center">
+        {userOrders.map((order) => (
           <div key={order._id} className="flex justify-center">
             {order.products?.map((product) => (
               <div key={product._id}>
-                <p>Product ID: {product.product._id}</p>
-                <p>Price: {product.product.price}</p>
+                <p>Product ID: {product.product}</p>
+                <p>Price: {product.price}</p>
                 <p>Quantity: {product.quantity}</p>
               </div>
             ))}
           </div>
         ))}
-      </div> */}
+      </div>
     </>
   );
 };

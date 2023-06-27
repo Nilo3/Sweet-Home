@@ -7,7 +7,7 @@ export default async (req, res) => {
   try {
     const { user, products } = req.body;
 
-    const foundUser = await User.findOne({ _id: user });
+    const foundUser = await User.findOne({ uid: user });
     const foundProducts = await Product.find({ _id: { $in: products.map((p) => p.product) } });
 
     if (!foundUser) {
