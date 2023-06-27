@@ -1,6 +1,12 @@
 import { useParams } from "react-router-dom";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
-import { getProductDetail, addtoCart, postShoppingCart } from "../../Redux/actions/actions";
+
+import {
+  getProductDetail,
+  addtoCart,
+  postShoppingCart,
+} from "../../Redux/actions/actions";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContex";
