@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { postUser } from "../../redux/actions/actions";
+import { postUser } from "../../Redux/actions/actions";
 import { useAuth } from "../../context/authContex";
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -38,21 +38,19 @@ export function Register() {
         password: response.user.accessToken,
         confirmPassword: response.user.accessToken,
         uid: response.user.uid,
-        photoURL: response.user.photoURL
+        photoURL: response.user.photoURL,
       };
       dispatch(postUser(reUser));
 
       if (user.password !== user.confirmPassword) {
-        setError("Las contraseñas no coinciden");
+        setError("The passwords are different");
         return;
       }
-
-      await singup(user.email, user.password);
-      toast.success("Successful registration");
+      toast.success("Registered successfully");
       navigate("/");
     } catch (error) {
       if (error.code === "auth/weak-password")
-        setError("Invalid password. Please enter your password again");
+        setError("Invalid password. Too weak");
 
       if (error.code === "auth/internal.error")
         setError("Invalid Email. Please enter your email again");
@@ -62,7 +60,7 @@ export function Register() {
 
       if (user.password.length < 8)
         setError(
-          "Invalid Form, Password must contain greater than or equal to 8 characters."
+          "Invalid password, it must contain greater than or equal to 8 characters."
         );
 
       if (error.code === "auth/account-exists-with-different-credential")
@@ -70,9 +68,9 @@ export function Register() {
           "Sorry, your account already exists with a different credential. Try again"
         );
 
-      if (!user.email) setError("Please enter your email");
+      if (!user.email) setError("Please enter an email");
 
-      if (!user.password) setError("Please enter your password");
+      if (!user.password) setError("Please enter a password");
 
       if (!emailRegex.test(user.email))
         setError("Please enter a valid email address");
@@ -90,7 +88,7 @@ export function Register() {
         email: response.user.email,
         password: response.user.accessToken,
         uid: response.user.uid,
-        photoURL: response.user.photoURL
+        photoURL: response.user.photoURL,
       };
       dispatch(postUser(userGoogle));
 

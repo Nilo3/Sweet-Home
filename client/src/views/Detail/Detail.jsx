@@ -312,33 +312,36 @@ const Detail = () => {
             </ul>
           </div>
           <div className="lg:col-span-3">
-  <div className="border-b border-gray-300">
-    <nav className="flex gap-4">
-      <a
-        title=""
-        className={`cursor-pointer py-4 text-sm font-medium text-gray-900 hover:text-gray-800 ${
-          selectedSection === "description" ? "border-b-2 border-gray-900" : ""
-        }`}
-        onClick={() => handleSection("description")}
-      >
-        Description
-      </a>
+            <div className="border-b border-gray-300">
+              <nav className="flex gap-4">
+                <a
+                  title=""
+                  className={`cursor-pointer py-4 text-sm font-medium text-gray-900 hover:text-gray-800 ${
+                    selectedSection === "description"
+                      ? "border-b-2 border-gray-900"
+                      : ""
+                  }`}
+                  onClick={() => handleSection("description")}
+                >
+                  Description
+                </a>
 
-      <a
-        title=""
-        className={`inline-flex cursor-pointer items-center py-4 text-sm font-medium text-gray-600 ${
-          selectedSection === "reviews" ? "border-b-2 border-gray-900" : ""
-        }`}
-        onClick={() => handleSection("reviews")}
-      >
-        Reviews
-        <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
-          {product.review?.length || 0} Reviews
-        </span>
-      </a>
-    </nav>
-  </div>
-
+                <a
+                  title=""
+                  className={`inline-flex cursor-pointer items-center py-4 text-sm font-medium text-gray-600 ${
+                    selectedSection === "reviews"
+                      ? "border-b-2 border-gray-900"
+                      : ""
+                  }`}
+                  onClick={() => handleSection("reviews")}
+                >
+                  Reviews
+                  <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
+                    {product.review?.length || 0} Reviews
+                  </span>
+                </a>
+              </nav>
+            </div>
 
             <div className="mt-8 flow-root sm:mt-12">
               {selectedSection === "description" ? (
