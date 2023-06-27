@@ -9,14 +9,18 @@ export default async (req, res) => {
         select: "_id",
       })
       .populate({
-        path: "product",
+        path: "products.product",
         select: "_id price",
         model: Product,
       })
-      .select("user product totalPrice isPaid padAt");
+      .select("_id user products totalPrice isPaid paidAt isPaid");
       
-    res.status(200).json(orders);
+    if (!orders) {
+      return res.status(404).json({ message: "There are no orders" });
+    }
+
+    return res.status(200).json(orders);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };

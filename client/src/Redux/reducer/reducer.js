@@ -16,7 +16,8 @@ import {
   UPLOAD_PRODUCT,
   DELETE_PRODUCT,
   POST_PRODUCT,
-  POST_REVIEW
+  POST_REVIEW,
+  GET_ORDERS
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -31,7 +32,7 @@ const initialState = {
   loading: false,
   error: null,
   newCart: [],
-  order: []
+  orders: []
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -211,6 +212,12 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         reviews: [...state.reviews, payload]
+      }
+
+    case GET_ORDERS:
+      return {
+        ...state,
+        orders: [...state.orders, payload]
       }
 
     default:
