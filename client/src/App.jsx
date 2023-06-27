@@ -75,7 +75,7 @@ function App() {
           <div style={{ flex: 1, position: "relative" }}>
             {showButton && (
               <button
-                className="bg-blue-100 text-blue-800 text-5xl font-semibold mb-20 px-5 py-5 rounded-full dark:bg-blue-200 dark:text-blue-800 ml-auto mr-20"
+                className=" fixed bg-blue-100 text-blue-800 text-5xl font-semibold mb-20 px-5 py-5 rounded-full dark:bg-blue-200 dark:text-blue-800 ml-auto mr-20"
                 onClick={toggleChatbot}
                 style={{ position: "absolute", bottom: "calc(100% - 50px)", right: "20px" }}
               >

@@ -304,7 +304,7 @@ const Shopping = () => {
                 placeholder="Street and house number"
               />
             </div>
-
+            <br />
             <div className="relative">
               <input
                 type="text"

@@ -40,22 +40,22 @@ export const steps = [
     },
     {
       id: "Shop",
-      message: "Thanks for providing your issue, one of our executives will shortly get back to you to resolve the issue",
+      message: "Thanks for answer your issue, one of our executives will shortly get back to you to resolve the issue",
       end: true
     },
     {
       id: "Reviews",
-      message: "Thanks for providing your issue, one of our executives will shortly get back to you to resolve the issue",
+      message: "Thanks for answer your issue, one of our executives will shortly get back to you to resolve the issue",
       end: true
     },
     {
       id: "Shipping",
-      message: "Thanks for providing your issue, one of our executives will shortly get back to you to resolve the issue",
+      message: "Thanks for answer your issue, one of our executives will shortly get back to you to resolve the issue",
       end: true
     },
     {
       id: "Payment",
-      message: "Thanks for providing your issue, one of our executives will shortly get back to you to resolve the issue",
+      message: "Thanks for answer your issue, one of our executives will shortly get back to you to resolve the issue",
       end: true
     },
     

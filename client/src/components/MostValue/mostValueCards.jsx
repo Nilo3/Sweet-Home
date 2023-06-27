@@ -10,14 +10,12 @@ import axios from "axios";
 
 const MostValueCards = ({ _id, name, image, price, rating }) => {
   const dispatch = useDispatch();
-  const [inCart, setInCart] = useState(false);
+  const [, setInCart] = useState(false);
   const [cartId, setCartId] = useState(null) 
 
   const allShoppingCart = useSelector((state) => state.shoppingCart);
 
   const isProductInCart = allShoppingCart.some((product) => product.id === _id);
-
-  const product = useSelector((state)=>state.details)
 
   useEffect(() => {
     setInCart(isProductInCart);
@@ -47,7 +45,6 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
     setInCart(true);
 
     dispatch(addtoCart({_id, name, image, price }));
-    
     if (cartId) {
       const updatedCart = {
         user: cartId,
@@ -58,14 +55,13 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
           },
         ],
       };
-
       dispatch(postShoppingCart(updatedCart));
     } else {
       const newCart = {
         user: user._id,
         products: [
           {
-            product: id,
+            product: _id,
             quantity: 1,
           },
         ],
@@ -73,7 +69,6 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
 
       dispatch(postShoppingCart(newCart));
     }
-
   };
   
   const renderRatingStars = () => {
