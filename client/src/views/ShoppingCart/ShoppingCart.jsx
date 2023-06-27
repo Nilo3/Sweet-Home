@@ -67,6 +67,10 @@ const Shopping = () => {
 
   function handleSendOrder(event) {
     event.preventDefault();
+
+    emailjs
+    .sendForm("service_ow4w0a4", "template_3r112cn", event.target, "sj_J3uCnEGmKNh4pA")
+
     if (!user) {
       toast.warning("Please sign in before you continue.");
       return;
@@ -97,29 +101,10 @@ const Shopping = () => {
   }
 
 
-  const handleClicks = (event) => {
-    //// event.preventDefault();
-    emailjs
-      .sendForm("service_ow4w0a4", "template_q87hreg", event.target, "sj_J3uCnEGmKNh4pA")
-      .then((response) => {
-        // Aquí puedes manejar la respuesta exitosa de enviar el formulario
-        console.log("Email enviado exitosamente", response);
-        // Mostrar una notificación o realizar alguna otra acción
-        toast.success("Email sent successfully");
-      })
-      .catch((error) => {
-        // Aquí puedes manejar cualquier error que ocurra al enviar el formulario
-        console.error("Error al enviar el email", error);
-        // Mostrar una notificación o realizar alguna otra acción
-        toast.error("Failed to send email");
-      });
-   }
 
 
-   function handlePlaceOrder(event) {
-     handleClicks(event);
-    handleSendOrder(event);
-  }
+
+
   
   const navigate = useNavigate();
 
@@ -225,7 +210,7 @@ const Shopping = () => {
             )}
           </div>
         </div>
-        <form action="">
+        <form onSubmit={handleSendOrder} action="">
           <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
             <p className="text-xl font-medium">Shipping</p>
             <p className="text-gray-400 mt-2 text-m text-right">
@@ -277,6 +262,7 @@ const Shopping = () => {
                 placeholder="Last Name"
               />
             </div>
+            
             <div className="flex flex-col">
               <label
                 htmlFor="billing-address"
@@ -284,6 +270,7 @@ const Shopping = () => {
               >
                 Billing Address
               </label>
+              
 
               <Select
                 id="countries"
@@ -455,8 +442,8 @@ const Shopping = () => {
               </div>
               <div className="flex items-center justify-between"></div>
             </div>
-            <button
-              onClick={handlePlaceOrder}
+            <button 
+              type="submit"
               className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
             >
               Place Order
