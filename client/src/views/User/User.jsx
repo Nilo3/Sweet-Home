@@ -1,10 +1,30 @@
-import {HiOutlineShoppingBag} from "react-icons/hi"
-import{MdOutlineReviews} from "react-icons/md"
-import {BiUserCircle} from "react-icons/bi"
+import { HiOutlineShoppingBag } from "react-icons/hi"
+import{ MdOutlineReviews } from "react-icons/md"
+import { BiUserCircle } from "react-icons/bi"
+import { useSelector } from "react-redux"
+import { Cards } from "../../components/Card/Cards"
 
 const User = () => {
+   // const {user } = useAuth()
+   const order = useSelector(state => state.orders)
+
+   // {order.length > 0 ? (
+   //    order.map((product) => (
+   //      <div key={product._id} className="flex justify-center">
+   //        <Cards
+   //          id={product._id}
+   //          name={product.name}
+   //          price={product.price}
+   //          image={product.image}
+   //          category={product.category.map((el) => el.name)}
+   //        />
+   //      </div>
+   //    ))
+   
+
     return(
         <>
+
 <aside id="cta-button-sidebar" className="relative top-14 left-0 z-45 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
    <div className=" ml-3 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
       <ul className="space-y-2 font-medium">
@@ -30,7 +50,7 @@ const User = () => {
          </li>
         
       </ul>
-      
+
    </div>
 </aside>
         </>   )

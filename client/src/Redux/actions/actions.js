@@ -246,7 +246,6 @@ export function uploadProduct(id, data) {
     };
 }
 
-
 export function getAllOrders() {
     return async function (dispatch) {
         try {
