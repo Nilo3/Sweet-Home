@@ -2,6 +2,7 @@ import User from "../../models/schemas/user.js";
 import Category from "../../models/schemas/category.js";
 import Review from "../../models/schemas/reviews.js";
 import Product from "../../models/schemas/product.js";
+import Order from "../../models/schemas/order.js";
 
 export default async (req, res) => {
   try {
@@ -28,7 +29,17 @@ export default async (req, res) => {
             model: Product,
           },
         ],
-      });
+      })
+      .populate({
+        path: "userOrders",
+        populate: [
+          {
+            path: "products.product",
+            model: Product,
+          },
+        ],
+      })
+      .populate("userOrders", null, Order);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });

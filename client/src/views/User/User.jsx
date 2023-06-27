@@ -4,19 +4,18 @@ import { MdOutlineReviews } from "react-icons/md";
 import { BiUserCircle } from "react-icons/bi";
 import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
-import { getUserByUid, getAllOrders } from "../../Redux/actions/actions";
+import { getUserByUid } from "../../Redux/actions/actions";
+
 const User = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
-  const userUid = user.uid;
+  // const userUid = user.uid;
   useEffect(() => {
-    dispatch(getUserByUid(userUid));
-  }, [dispatch, userUid]);
+    // dispatch(getUserByUid(userUid));
+  }, [dispatch]);
   const userData = useSelector((state) => state.user);
   console.log(userData.userOrders);
-  const userOrders = dispatch(getAllOrders(userData.userOrders))
-  console.log(userOrders);
-
+  // const orders = userData.userOrders
   return (
     <>
       <aside
