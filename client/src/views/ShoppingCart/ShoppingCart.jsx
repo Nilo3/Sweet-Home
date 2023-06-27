@@ -68,8 +68,7 @@ const Shopping = () => {
   function handleSendOrder(event) {
     event.preventDefault();
 
-    emailjs
-    .sendForm("service_ow4w0a4", "template_3r112cn", event.target, "sj_J3uCnEGmKNh4pA")
+    
 
     if (!user) {
       toast.warning("Please sign in before you continue.");
@@ -86,6 +85,9 @@ const Shopping = () => {
         }
         return counts;
       }, {});
+
+      emailjs
+    .sendForm("service_ow4w0a4", "template_3r112cn", event.target, "sj_J3uCnEGmKNh4pA")
 
       const order = {
         user: userId,
@@ -306,6 +308,16 @@ const Shopping = () => {
             <div className="relative">
               <input
                 type="text"
+                id="email"
+                name="email"
+                className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                placeholder="Email"
+              />
+            </div>
+
+            <div className="relative">
+              <input
+                type="text"
                 name="billing-zip"
                 className=" mt-3 w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Appartment, suite, etc.(optional)"
@@ -435,7 +447,7 @@ const Shopping = () => {
             </div>
             <div className="mb-3 mt-6 border-t border-b py-2">
               <div className="mt-6 flex items-center justify-between">
-                <p className="text-sm font-medium text-gray-900">Total</p>
+                <p name="Tito" className="text-sm font-medium text-gray-900">Total</p>
                 <p className="text-2xl font-semibold text-gray-900">
                   ${formattedTotal}
                 </p>
