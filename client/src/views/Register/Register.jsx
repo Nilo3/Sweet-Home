@@ -6,6 +6,7 @@ import { useAuth } from "../../context/authContex";
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { Alert } from "../Login/Alert.jsx";
+import emailjs from "emailjs-com"
 
 export function Register() {
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ export function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    emailjs
+    .sendForm("service_ow4w0a4", "template_q87hreg", event.target, "sj_J3uCnEGmKNh4pA")
+
     try {
       const response = await singup(user.email, user.password);
       const reUser = {
