@@ -13,7 +13,7 @@ export default async (req, res) => {
     if (!foundUser) {
       return res.status(400).json({ message: "User not found" });
     }
-    if (!foundProducts ) {
+    if (!foundProducts) {
       return res.status(400).json({ message: "One or more products not found" });
     }
 
@@ -48,7 +48,8 @@ export default async (req, res) => {
     });
 
     const savedOrder = await newOrder.save();
-
+    foundUser.userOrders.push(savedOrder._id);
+    await foundUser.save();
     mercadopago.configure({
       access_token: "TEST-373757202745327-062218-fa0a61220d206b6b0540c92d588ceb20-1405850896",
     });
@@ -59,7 +60,7 @@ export default async (req, res) => {
       items: [
         {
           title: title,
-          unit_price: totalPrice/foundProducts.length,
+          unit_price: totalPrice / foundProducts.length,
           currency_id: "ARS",
           quantity: foundProducts.length,
         },
