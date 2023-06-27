@@ -1,4 +1,15 @@
-export const steps = [
+
+  const validateEmail = (value) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+  };
+  
+  const validateName = (value) => {
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    return nameRegex.test(value);
+  };
+  
+  export const steps = [
     {
       id: "Greet",
       message: "Hi, thanks for visiting Sweet Home",
@@ -7,22 +18,41 @@ export const steps = [
     {
       id: "Ask email",
       message: "Please enter your email",
-      trigger: "waiting1"
+      trigger: "validateEmail"
     },
     {
-      id: "waiting1",
+      id: "validateEmail",
       user: true,
+      validator: (value) => {
+        if (validateEmail(value)) {
+          return true;
+        } else {
+          return "Please enter a valid email";
+        }
+      },
       trigger: "Ask Name"
     },
     {
       id: "Ask Name",
       message: "Please enter your name",
-      trigger: "waiting2"
+      trigger: "validateName"
     },
     {
-      id: "waiting2",
+      id: "validateName",
       user: true,
+      validator: (value) => {
+        if (validateName(value)) {
+          return true;
+        } else {
+          return "Please enter a valid name";
+        }
+      },
       trigger: "Name"
+    },
+    {
+      id: "Name",
+      message: "Hi {previousValue}, How can I help you today?",
+      trigger: "issues"
     },
     {
       id: "Name",
@@ -37,26 +67,35 @@ export const steps = [
         { value: "Shipping", label: "Shipping", trigger: "Shipping" },
         { value: "Payment", label: "Payment", trigger: "Payment" },
       ],
+      validator: (value) => {
+        if (value) {
+          return true; // Validation passes if an option is selected
+        } else {
+          return "Please select an option"; // Validation fails if no option is selected
+        }
+      }
     },
     {
       id: "Shop",
-      message: "Thanks for answer your issue, one of our executives will shortly get back to you to resolve the issue",
+      message: "Thanks for your answer, one of our executives will shortly get back to you to resolve your problem.",
       end: true
     },
     {
       id: "Reviews",
-      message: "Thanks for answer your issue, one of our executives will shortly get back to you to resolve the issue",
+      message: "Thanks for your answer, one of our executives will shortly get back to you to resolve your problem.",
       end: true
     },
     {
       id: "Shipping",
-      message: "Thanks for answer your issue, one of our executives will shortly get back to you to resolve the issue",
+      message: "Thanks for your answer, one of our executives will shortly get back to you to resolve your problem.",
       end: true
     },
     {
       id: "Payment",
-      message: "Thanks for answer your issue, one of our executives will shortly get back to you to resolve the issue",
+      message: "Thanks or your answer, one of our executives will shortly get back to you to resolve your problem.",
       end: true
     },
     
   ];
+
+  
