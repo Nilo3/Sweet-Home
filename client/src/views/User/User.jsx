@@ -5,6 +5,7 @@ import { BiUserCircle } from "react-icons/bi";
 import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
 import { getUserByUid } from "../../Redux/actions/actions";
+
 const User = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
