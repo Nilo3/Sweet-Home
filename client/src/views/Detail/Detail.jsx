@@ -1,21 +1,20 @@
 import { useParams } from "react-router-dom";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
+
 import {
   getProductDetail,
   addtoCart,
   postShoppingCart,
-} from "../../redux/actions/actions";
+} from "../../Redux/actions/actions";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContex";
 import { detailAVG } from "../../utils/rating-detail";
 import axios from "axios";
 import placeHolder from "../../assets/image/person-placeholder-400x400.png";
 
 const Detail = () => {
-  // const allShoppingCart = useSelector((state) => state.shoppingCart);
-  // const isProductInCart = allShoppingCart.some((product) => product.id === id);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.details);
   const { id } = useParams();
@@ -26,20 +25,20 @@ const Detail = () => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
     const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
-  
+
     const stars = [];
     for (let i = 0; i < fullStars; i++) {
       stars.push(<FaStar key={i} />);
     }
-  
+
     if (hasHalfStar) {
       stars.push(<FaStarHalfAlt key="half" />);
     }
-  
+
     for (let i = 0; i < emptyStars; i++) {
       stars.push(<FaRegStar key={`empty-${i}`} />);
     }
-  
+
     return stars;
   };
 
@@ -358,15 +357,15 @@ const Detail = () => {
                       key={review._id}
                     >
                       <figure className="max-w-screen-md">
-                      <div className="mb-3 flex items-center">
-  <div className="text-yellow-300 text-m flex mr-3">
-    {renderRatingStars(review.rating)}
-  </div>
-  <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
-    {review.rating}
-  </span>
-</div>
-                        
+                        <div className="mb-3 flex items-center">
+                          <div className="text-yellow-300 text-m flex mr-3">
+                            {renderRatingStars(review.rating)}
+                          </div>
+                          <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
+                            {review.rating}
+                          </span>
+                        </div>
+
                         <blockquote>
                           <p className="text-l font-normal text-gray-900 dark:text-white">
                             {review.reviewText}
