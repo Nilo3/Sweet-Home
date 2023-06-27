@@ -23,6 +23,8 @@ import person from "../src/assets/image/person-placeholder-400x400.png"
 import { ThemeProvider } from 'styled-components';
 import PropTypes from "prop-types";
 import {SiChatbot} from "react-icons/si"
+import {theme} from "../src/utils/theme"
+import {steps} from "../src/utils/steps"
 
 
 const Layout = ({ children }) => {
@@ -35,79 +37,8 @@ const Layout = ({ children }) => {
   );
 };
 
-const theme = {
-  background: '#f5f8fb',
-  headerBgColor: '#000000',
-  headerFontColor: '#fff',
-  headerFontSize: '15px',
-  botBubbleColor: '#000000',
-  botFontColor: '#fff',
-  userBubbleColor: '#fff',
-  userFontColor: '#4a4a4a',
-};
 
-const steps = [
-  {
-    id: "Greet",
-    message: "Hi, thanks for visiting Sweet Home",
-    trigger: "Ask email"
-  },
-  {
-    id: "Ask email",
-    message: "Please enter your email",
-    trigger: "waiting1"
-  },
-  {
-    id: "waiting1",
-    user: true,
-    trigger: "Ask Name"
-  },
-  {
-    id: "Ask Name",
-    message: "Please enter your name",
-    trigger: "waiting2"
-  },
-  {
-    id: "waiting2",
-    user: true,
-    trigger: "Name"
-  },
-  {
-    id: "Name",
-    message: "Hi {previousValue}, How can I help you today?",
-    trigger: "issues"
-  },
-  {
-    id: "issues",
-    options: [
-      { value: "Shop", label: "Shop", trigger: "Shop" },
-      { value: "Reviews", label: "Reviews", trigger: "Reviews" },
-      { value: "Shipping", label: "Shipping", trigger: "Shipping" },
-      { value: "Payment", label: "Payment", trigger: "Payment" },
-    ],
-  },
-  {
-    id: "Shop",
-    message: "Thanks for providing your issue, one of our executives will shortly get back to you to resolve the issue",
-    end: true
-  },
-  {
-    id: "Reviews",
-    message: "Thanks for providing your issue, one of our executives will shortly get back to you to resolve the issue",
-    end: true
-  },
-  {
-    id: "Shipping",
-    message: "Thanks for providing your issue, one of our executives will shortly get back to you to resolve the issue",
-    end: true
-  },
-  {
-    id: "Payment",
-    message: "Thanks for providing your issue, one of our executives will shortly get back to you to resolve the issue",
-    end: true
-  },
-  
-];
+
 
 function App() {
   const [showChatbot, setShowChatbot] = useState(false);
