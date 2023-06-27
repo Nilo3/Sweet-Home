@@ -2,7 +2,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi"
 import{ MdOutlineReviews } from "react-icons/md"
 import { BiUserCircle } from "react-icons/bi"
 import { useSelector } from "react-redux"
-import { Cards } from "../../components/Card/Cards"
+
 
 const User = () => {
    // const {user } = useAuth()

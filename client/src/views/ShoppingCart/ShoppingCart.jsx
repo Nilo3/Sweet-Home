@@ -13,6 +13,7 @@ import { removefromCart, addtoCart, removeOneFromCart, postOrder } from "../../R
 import { getTotalPrice, calculateTotal } from "../../utils/totalprice";
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-Logo.png";
+import emailjs from "emailjs-com"
 
 const Shopping = () => {
   const allShoppingCart = useSelector((state) =>
@@ -95,6 +96,31 @@ const Shopping = () => {
     }
   }
 
+
+  const handleClicks = (event) => {
+    //// event.preventDefault();
+    emailjs
+      .sendForm("service_ow4w0a4", "template_q87hreg", event.target, "sj_J3uCnEGmKNh4pA")
+      .then((response) => {
+        // Aquí puedes manejar la respuesta exitosa de enviar el formulario
+        console.log("Email enviado exitosamente", response);
+        // Mostrar una notificación o realizar alguna otra acción
+        toast.success("Email sent successfully");
+      })
+      .catch((error) => {
+        // Aquí puedes manejar cualquier error que ocurra al enviar el formulario
+        console.error("Error al enviar el email", error);
+        // Mostrar una notificación o realizar alguna otra acción
+        toast.error("Failed to send email");
+      });
+   }
+
+
+   function handlePlaceOrder(event) {
+     handleClicks(event);
+    handleSendOrder(event);
+  }
+  
   const navigate = useNavigate();
 
   const navigateToRegister = () => {
@@ -355,9 +381,8 @@ const Shopping = () => {
             <div className="mt-5 grid gap-6">
               <div className="relative">
                 <div
-                  className={`shopping-method ${
-                    selectedMethod === "method1" ? "selected" : ""
-                  }`}
+                  className={`shopping-method ${selectedMethod === "method1" ? "selected" : ""
+                    }`}
                   onClick={() => handleMethodSelection("method1")}
                 >
                   <input
@@ -367,9 +392,8 @@ const Shopping = () => {
                     name="radio"
                   />
                   <span
-                    className={`method-label ${
-                      selectedMethod === "method1" ? "selected" : ""
-                    }`}
+                    className={`method-label ${selectedMethod === "method1" ? "selected" : ""
+                      }`}
                   ></span>
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
@@ -392,9 +416,8 @@ const Shopping = () => {
               </div>
               <div className=" mb-3 relative">
                 <div
-                  className={`shopping-method ${
-                    selectedMethod === "method2" ? "selected" : ""
-                  }`}
+                  className={`shopping-method ${selectedMethod === "method2" ? "selected" : ""
+                    }`}
                   onClick={() => handleMethodSelection("method2")}
                 >
                   <input
@@ -404,9 +427,8 @@ const Shopping = () => {
                     name="radio"
                   />
                   <span
-                    className={`method-label ${
-                      selectedMethod === "method2" ? "selected" : ""
-                    }`}
+                    className={`method-label ${selectedMethod === "method2" ? "selected" : ""
+                      }`}
                   ></span>
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
@@ -434,7 +456,7 @@ const Shopping = () => {
               <div className="flex items-center justify-between"></div>
             </div>
             <button
-              onClick={handleSendOrder}
+              onClick={handlePlaceOrder}
               className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
             >
               Place Order
