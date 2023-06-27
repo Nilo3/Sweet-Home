@@ -4,7 +4,7 @@ import { MdOutlineReviews } from "react-icons/md";
 import { BiUserCircle } from "react-icons/bi";
 import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
-import { getUserByUid, getAllOrders } from "../../redux/actions/actions";
+import { getUserByUid, getAllOrders } from "../../Redux/actions/actions";
 const User = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
