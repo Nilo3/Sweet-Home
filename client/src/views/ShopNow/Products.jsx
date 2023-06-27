@@ -70,10 +70,10 @@ const Products = () => {
   return (
     
     <div className="all">
-      <div className="flex justify-center">
+      <div className="flex flex-wrap justify-center pt-12">
           <SearchBar />
-       </div>
-      <div className="flex cursor-pointer select-none justify-center h-16 items-center ">
+          <button className="text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2" onClick={ (event) => handleClick (event)}>Reload filter</button>
+          <div className="flex flex-wrap cursor-pointer select-none justify-center h-16 items-center">
         <div className="border border-gray-300">         
         <select className="ordAndFil1" onChange={(event) => handleOrderName(event)}>
           <option>Order by Name</option>
@@ -99,8 +99,9 @@ const Products = () => {
           ))}
         </select>
         </div>
-          <button className="text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2" onClick={ (event) => handleClick (event)}>Reload filter</button>
-        <div className="flex justify-center">
+          </div>
+          <div className="flex flex-wrap cursor-pointer select-none justify-center h-16 items-center">
+        <div className="flex justify-center pl-4">
       <Pagination
         productPerPage={productPerPage}
         currentPage={currentPage}
@@ -108,8 +109,9 @@ const Products = () => {
         totalProducts={allProducts.length}
       />
       </div>
+          </div>
       </div>
-      <div className="cards">
+      <div className="cards pt-8">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
             
