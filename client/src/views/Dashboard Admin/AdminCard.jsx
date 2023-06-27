@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { deleteProduct, getCategory, getProducts } from "../../redux/actions/actions";
+import { deleteProduct, getCategory, getProducts } from "../../Redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
