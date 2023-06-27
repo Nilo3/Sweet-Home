@@ -15,6 +15,7 @@ import Dashboard from './views/Dashboard Admin/Dashboard'
 import CreateProduct from './views/CreateProduct/CreateProduct'
 import Profile from "./views/Profile/Profile";
 import "react-toastify/dist/ReactToastify.css";
+import User from "./views/User/User"
 
 
 import PropTypes from "prop-types";
@@ -40,6 +41,7 @@ function App() {
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/products" element={<Layout><Products /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
+          <Route path="/my_profile" element={<Layout><User/></Layout>} />
           <Route path="/checkout" element={<Layout><Shopping /></Layout>} />
           <Route path="/products/:id" element={<Layout><Detail /></Layout>} />
           <Route path="/adminDashboard" element={<Layout><Dashboard /></Layout>} />
