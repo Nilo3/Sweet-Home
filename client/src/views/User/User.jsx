@@ -4,7 +4,7 @@ import { MdOutlineReviews } from "react-icons/md";
 import { BiUserCircle } from "react-icons/bi";
 import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
-import { getUserByUid, getAllOrders } from "../../redux/actions/actions";
+import { getUserByUid } from "../../Redux/actions/actions";
 const User = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
@@ -14,8 +14,7 @@ const User = () => {
   }, [dispatch, userUid]);
   const userData = useSelector((state) => state.user);
   console.log(userData.userOrders);
-  const userOrders = dispatch(getAllOrders(userData.userOrders))
-  console.log(userOrders);
+  const orders = userData.userOrders
 
   return (
     <>
@@ -81,7 +80,7 @@ const User = () => {
         </div>
       </aside>
 
-      {/* <div className="flex justify-center">
+      <div className="flex justify-center">
         {orders.map((order) => (
           <div key={order._id} className="flex justify-center">
             {order.products?.map((product) => (
@@ -93,7 +92,7 @@ const User = () => {
             ))}
           </div>
         ))}
-      </div> */}
+      </div>
     </>
   );
 };
