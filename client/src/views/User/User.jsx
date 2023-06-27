@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { MdOutlineReviews } from "react-icons/md";
@@ -5,6 +6,14 @@ import { BiUserCircle } from "react-icons/bi";
 import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
 import { getUserByUid, getAllOrders } from "../../redux/actions/actions";
+=======
+import { HiOutlineShoppingBag } from "react-icons/hi"
+import{ MdOutlineReviews } from "react-icons/md"
+import { BiUserCircle } from "react-icons/bi"
+import { useSelector } from "react-redux"
+
+
+>>>>>>> 01f82efb6bb8d91f0759d222b175eaec3125ef82
 const User = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();

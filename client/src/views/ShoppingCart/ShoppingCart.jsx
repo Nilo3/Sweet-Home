@@ -13,6 +13,7 @@ import { removefromCart, addtoCart, removeOneFromCart, postOrder } from "../../R
 import { getTotalPrice, calculateTotal } from "../../utils/totalprice";
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-Logo.png";
+import emailjs from "emailjs-com"
 
 const Shopping = () => {
   const allShoppingCart = useSelector((state) =>
@@ -66,6 +67,9 @@ const Shopping = () => {
 
   function handleSendOrder(event) {
     event.preventDefault();
+
+    
+
     if (!user) {
       toast.warning("Please sign in before you continue.");
       return;
@@ -82,6 +86,9 @@ const Shopping = () => {
         return counts;
       }, {});
 
+      emailjs
+    .sendForm("service_ow4w0a4", "template_3r112cn", event.target, "sj_J3uCnEGmKNh4pA")
+
       const order = {
         user: userId,
         products: Object.entries(productCounts).map(
@@ -95,6 +102,12 @@ const Shopping = () => {
     }
   }
 
+
+
+
+
+
+  
   const navigate = useNavigate();
 
   const navigateToRegister = () => {
@@ -199,7 +212,7 @@ const Shopping = () => {
             )}
           </div>
         </div>
-        <form action="">
+        <form onSubmit={handleSendOrder} action="">
           <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
             <p className="text-xl font-medium">Shipping</p>
             <p className="text-gray-400 mt-2 text-m text-right">
@@ -251,6 +264,7 @@ const Shopping = () => {
                 placeholder="Last Name"
               />
             </div>
+            
             <div className="flex flex-col">
               <label
                 htmlFor="billing-address"
@@ -258,6 +272,7 @@ const Shopping = () => {
               >
                 Billing Address
               </label>
+              
 
               <Select
                 id="countries"
@@ -287,6 +302,16 @@ const Shopping = () => {
                 name="billing-address"
                 className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Street and house number"
+              />
+            </div>
+            <br />
+            <div className="relative">
+              <input
+                type="text"
+                id="email"
+                name="email"
+                className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                placeholder="Email"
               />
             </div>
 
@@ -355,9 +380,8 @@ const Shopping = () => {
             <div className="mt-5 grid gap-6">
               <div className="relative">
                 <div
-                  className={`shopping-method ${
-                    selectedMethod === "method1" ? "selected" : ""
-                  }`}
+                  className={`shopping-method ${selectedMethod === "method1" ? "selected" : ""
+                    }`}
                   onClick={() => handleMethodSelection("method1")}
                 >
                   <input
@@ -367,9 +391,8 @@ const Shopping = () => {
                     name="radio"
                   />
                   <span
-                    className={`method-label ${
-                      selectedMethod === "method1" ? "selected" : ""
-                    }`}
+                    className={`method-label ${selectedMethod === "method1" ? "selected" : ""
+                      }`}
                   ></span>
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
@@ -392,9 +415,8 @@ const Shopping = () => {
               </div>
               <div className=" mb-3 relative">
                 <div
-                  className={`shopping-method ${
-                    selectedMethod === "method2" ? "selected" : ""
-                  }`}
+                  className={`shopping-method ${selectedMethod === "method2" ? "selected" : ""
+                    }`}
                   onClick={() => handleMethodSelection("method2")}
                 >
                   <input
@@ -404,9 +426,8 @@ const Shopping = () => {
                     name="radio"
                   />
                   <span
-                    className={`method-label ${
-                      selectedMethod === "method2" ? "selected" : ""
-                    }`}
+                    className={`method-label ${selectedMethod === "method2" ? "selected" : ""
+                      }`}
                   ></span>
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
@@ -426,15 +447,15 @@ const Shopping = () => {
             </div>
             <div className="mb-3 mt-6 border-t border-b py-2">
               <div className="mt-6 flex items-center justify-between">
-                <p className="text-sm font-medium text-gray-900">Total</p>
+                <p name="Tito" className="text-sm font-medium text-gray-900">Total</p>
                 <p className="text-2xl font-semibold text-gray-900">
                   ${formattedTotal}
                 </p>
               </div>
               <div className="flex items-center justify-between"></div>
             </div>
-            <button
-              onClick={handleSendOrder}
+            <button 
+              type="submit"
               className="mt-auto mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
             >
               Place Order
