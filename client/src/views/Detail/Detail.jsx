@@ -4,7 +4,7 @@ import {
   getProductDetail,
   addtoCart,
   postShoppingCart,
-} from "../../redux/actions/actions";
+} from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
