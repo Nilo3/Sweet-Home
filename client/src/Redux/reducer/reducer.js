@@ -17,7 +17,9 @@ import {
   DELETE_PRODUCT,
   POST_PRODUCT,
   POST_REVIEW,
-  GET_ORDERS
+  GET_ORDERS,
+  GET_USER_BY_UID,
+  GET_ORDER_BY_ID
 } from "../action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -28,15 +30,18 @@ const initialState = {
   reviews: [],
   category: [],
   users: [],
+  user: [],
   shoppingCart: [],
   loading: false,
   error: null,
   newCart: [],
-  orders: []
+  orders: [],
+  order: []
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    
     //--//--//--//--//--//  Product actions  //--//--//--//--//--//
 
     case GET_PRODUCTS:
@@ -84,6 +89,12 @@ const reducer = (state = initialState, { type, payload }) => {
         getAllProducts: [...state.getAllProducts, payload],
       };
 
+    case POST_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, payload],
+      }
+
     //--//--//--//--//--// Cart actions  //--//--//--//--//--//
 
     case ADD_TO_CART:
@@ -113,6 +124,11 @@ const reducer = (state = initialState, { type, payload }) => {
         shoppingCart: [...filterCart, ...filterDeleted],
       };
     }
+
+    case POST_SHOPPING_CART:
+      return {
+        ...state,
+      };
 
     //--//--//--//--//--//  Filter actions  //--//--//--//--//--//
 
@@ -175,6 +191,12 @@ const reducer = (state = initialState, { type, payload }) => {
         reviews: productAVG(payload),
       };
 
+    case POST_REVIEW:
+      return {
+        ...state,
+        reviews: [...state.reviews, payload]
+      }
+
     //--//--//--//--//--//  User actions  //--//--//--//--//--//
 
     case GET_USERS:
@@ -183,13 +205,31 @@ const reducer = (state = initialState, { type, payload }) => {
         users: payload,
       };
 
-    case POST_PRODUCT:
+
+
+    case GET_USER_BY_UID:
       return {
         ...state,
-        products: [...state.products, payload],
+        user: payload,
+      };
+
+    //--//--//--//--//--//  ORDER actions  //--//--//--//--//--//
+
+    case POST_ORDER:
+      return {
+        ...state
       }
-
-
+    case GET_ORDERS:
+      return {
+        ...state,
+        orders: [...state.orders, payload]
+      }
+      case GET_ORDER_BY_ID:
+        return {
+          ...state,
+          order: payload,
+        };
+  
     //--//--//--//--//--//  Other actions  //--//--//--//--//--//
 
     case GET_CATEGORY:
@@ -197,28 +237,6 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         category: payload,
       };
-
-    case POST_SHOPPING_CART:
-      return {
-        ...state,
-      };
-
-    case POST_ORDER:
-      return {
-        ...state
-      }
-
-    case POST_REVIEW:
-      return {
-        ...state,
-        reviews: [...state.reviews, payload]
-      }
-
-    case GET_ORDERS:
-      return {
-        ...state,
-        orders: [...state.orders, payload]
-      }
 
     default:
       return state;

@@ -6,14 +6,14 @@ export default async (req, res) => {
     const orders = await Order.find({})
       .populate({
         path: "user",
-        select: "_id",
+        select: "_id uid",
       })
       .populate({
         path: "products.product",
         select: "_id price",
         model: Product,
       })
-      .select("_id user products totalPrice isPaid paidAt isPaid");
+      .select("uid user products totalPrice isPaid paidAt isPaid");
       
     if (!orders) {
       return res.status(404).json({ message: "There are no orders" });
