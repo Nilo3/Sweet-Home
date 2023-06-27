@@ -5,17 +5,17 @@ import { BiUserCircle } from "react-icons/bi";
 import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
 import { getUserByUid } from "../../Redux/actions/actions";
+
 const User = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
-  const userUid = user.uid;
+  // const userUid = user.uid;
   useEffect(() => {
-    dispatch(getUserByUid(userUid));
-  }, [dispatch, userUid]);
+    // dispatch(getUserByUid(userUid));
+  }, [dispatch]);
   const userData = useSelector((state) => state.user);
   console.log(userData.userOrders);
-  const orders = userData.userOrders
-
+  // const orders = userData.userOrders
   return (
     <>
       <aside
@@ -80,7 +80,7 @@ const User = () => {
         </div>
       </aside>
 
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         {orders.map((order) => (
           <div key={order._id} className="flex justify-center">
             {order.products?.map((product) => (
@@ -92,7 +92,7 @@ const User = () => {
             ))}
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   );
 };
