@@ -119,7 +119,7 @@ const Profile = (props) => {
                   {selectedImage ? (
                     <>
                       <img
-                        src={selectedImage}
+                        src={URL.createObjectURL(selectedImage)}
                         alt="Selected Image"
                         className="rounded-full w-20 h-20 max-w-full max-h-full"
                       />
