@@ -131,7 +131,7 @@ const User = () => {
             {userOrders.map((order) => (
               <div
                 key={order._id}
-                className="text-left mt-5 mb-5 m-4 bg-white rounded-lg pt-5 pb-5 border border-gray-200 rounded-lg"
+                className="text-left mt-5 mb-5 m-4 bg-white pt-5 pb-5 border border-gray-200 rounded-lg"
               >
                 <div className="border-b-1 border-gray-200">
                   <cite className="ml-3 font-semibold text-gray-800 text-sm block mb-5">
@@ -197,7 +197,7 @@ const User = () => {
             {userData?.userReviews.map((review) => (
               <div
                 key={review._id}
-                className="text-left mt-5 mb-5 m-4 bg-white rounded-lg pt-5 pb-5 border border-gray-200 rounded-lg"
+                className="text-left mt-5 mb-5 m-4 bg-white pt-5 pb-5 border border-gray-200 rounded-lg"
               >
                 <div className="border-b-1 border-gray-200">
                   <cite className="ml-3 font-semibold text-gray-800 text-sm block mb-5">
