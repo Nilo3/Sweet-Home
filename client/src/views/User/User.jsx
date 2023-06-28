@@ -18,7 +18,6 @@ const User = () => {
   const userData = useSelector((state) => state.user);
   const userOrders = userData?.userOrders || [];
 
- 
 
   const [selectedSection, setSelectedSection] = useState("profile");
 
@@ -114,7 +113,7 @@ const User = () => {
         
         {userOrders.map((order) => (
            <div key={order._id} className=" text-left mt-5 mb-5 m-4">
-            <div className=" bg-white  rounded-lg pt-5 pb-12">
+            <div className=" bg-white  rounded-lg pt-5 pb-5">
             <div className="border-b-2 border-gray-200">
             <cite className="ml-3 font-bold text-sm block mb-5">
                   {new Date(order.paidAt).toLocaleDateString("en-US", {
@@ -140,13 +139,16 @@ const User = () => {
                 <div className="flex w-full flex-col px-4 py-4">
                 <p className="text-sm text-green-500">Delivered</p>
                   <span className="font-semibold">{product.product.name}</span>
-                  <p>Price: ${product.product.price}</p>
-                  <p className="text-xs">Quantity: {product.quantity}</p>
+                  <p className="text-sm">Price: ${product.product.price}</p>
+                  <p className="text-xs ">Quantity: {product.quantity}</p>
                     </div>
+                
                   </div>
                   
                 ))}
+                   <p className="text-sm font-semibold mt-5 text-right mr-3">Total Price: ${order.totalPrice.toFixed(2)}</p>
               </div>
+              
               </div>
             ))}
           </div>
