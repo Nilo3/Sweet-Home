@@ -6,6 +6,9 @@ import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
 import { getUserByUid } from "../../Redux/actions/actions";
 import { useState } from "react";
+import Profile from "../Profile/Profile";
+
+ 
 
 
 const User = () => {
@@ -97,7 +100,8 @@ const User = () => {
 
    
       {selectedSection === "profile" && (
-        <div className="pt-20 flex flex-col items-center justify-center bg-gray-100 w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+        <div className="pt-20 flex flex-col items-center justify-center bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+          <Profile />
         </div>
       )}
 
