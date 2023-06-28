@@ -1,5 +1,8 @@
 import User from "../../models/schemas/user.js";
 import Review from "../../models/schemas/reviews.js";
+import Order from "../../models/schemas/order.js";
+import Cart from "../../models/schemas/cart.js";
+
 
 export default async (req, res) => {
   try {
@@ -7,14 +10,19 @@ export default async (req, res) => {
     const { userid } = req.headers;
     const user = await User.findById(id);
     const userAux = await User.findById(userid);
-    if (!user)
+
+    if (!user) {
       return res.status(400).json({ message: "The user you want to delete does not exist" });
-    if (user.email !== userAux.email)
+    }
+
+    if (user.email !== userAux.email) {
       return res.status(400).json({ message: "You can't delete another user!" });
+    }
 
     try {
       await Review.deleteMany({ createdBy: id });
-
+      await Order.deleteMany({ user: id })
+      await Cart.deleteMany({ user: id })
       await User.findByIdAndDelete(id);
 
       res.json({ message: "User deleted successfully" });
@@ -24,4 +32,6 @@ export default async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
-};
+}
+
+

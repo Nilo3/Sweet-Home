@@ -165,7 +165,7 @@ function Navbar() {
                 {user.photoURL ? (
                   <img
                     src={user.photoURL}
-                    alt="User Profile"
+                    alt={user.displayName || "user"}
                     className="rounded-full w-8 h-8"
                   />
                 ) : (
