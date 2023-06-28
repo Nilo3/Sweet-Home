@@ -2,7 +2,7 @@ import { useState } from "react";
 import style from "./Profile.module.css";
 import { useAuth } from "../../context/authContex";
 import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Container, FormGroup } from "reactstrap";
 import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 
@@ -23,7 +23,7 @@ const Profile = (props) => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    setSelectedImage(URL.createObjectURL(file));
+    setSelectedImage(file);
   };
 
   const handleRemoveImage = () => {
@@ -37,10 +37,9 @@ const Profile = (props) => {
     setSelectedImage(null);
   };
 
-  const uploadImage = async (event) => {
-    const files = event.currentTarget.files;
+  const uploadImage = async (file) => {
     const data = new FormData();
-    data.append("file", files[0]);
+    data.append("file", file);
     data.append("upload_preset", "SweetHome");
     setLoading(true);
     const res = await fetch(
@@ -50,15 +49,16 @@ const Profile = (props) => {
         body: data,
       }
     );
-    const file = await res.json();
-    setImage(file.secure_url);
-    console.log(file.secure_url);
+    const result = await res.json();
+    setImage(result.secure_url);
     setLoading(false);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    if (selectedImage) {
+      await uploadImage(selectedImage);
+    }
     // Lógica para guardar los datos en el usuario
-
     navigate("/");
   };
 
@@ -81,10 +81,7 @@ const Profile = (props) => {
                 </button>
                 <button
                   className="rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-blue-700"
-                  onClick={() => {
-                    handleSave();
-                    uploadImage({ currentTarget: { files: [selectedImage] } });
-                  }}
+                  onClick={handleSave}
                 >
                   Save
                 </button>
@@ -169,25 +166,7 @@ const Profile = (props) => {
                   )}
                 </div>
               </div>
-              <div className="flex justify-end py-4 sm:hidden">
-                <Link to="/">
-                  <button
-                    onClick={handleCancel}
-                    className="mr-2 rounded-lg border-2 px-4 py-2 font-medium text-gray-500 focus:outline-none focus:ring hover:bg-gray-200"
-                  >
-                    Cancel
-                  </button>
-                </Link>
-                <button
-                  className="rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-blue-700"
-                  onClick={() => {
-                    handleSave();
-                    uploadImage({ currentTarget: { files: [selectedImage] } });
-                  }}
-                >
-                  Save
-                </button>
-              </div>
+              <div className="flex justify-end py-4 sm:hidden"></div>
             </div>
           </div>
           <div className="text-center mt-6">
