@@ -70,7 +70,7 @@ const Products = () => {
   return (
     
     <div className="all">
-      <div className="flex flex-wrap justify-center pt-12">
+      <div className="flex flex-wrap justify-center">
           <SearchBar />
           <button className="text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2" onClick={ (event) => handleClick (event)}>Reload filter</button>
           <div className="flex flex-wrap cursor-pointer select-none justify-center h-16 items-center">
@@ -111,7 +111,7 @@ const Products = () => {
       </div>
           </div>
       </div>
-      <div className="cards pt-8">
+      <div className="cards pt-2">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
             
