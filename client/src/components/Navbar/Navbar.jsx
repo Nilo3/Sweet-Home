@@ -126,14 +126,14 @@ function Navbar() {
   };
 
   return (
-    <div className="fixed w-full bg-white z-10 shadow-sm">
+    <div className="sticky top-0 w-full bg-white z-50 shadow-sm">
       <div className="py-1 border-b-[1px]">
         <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
-          <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
+          <div className="flex flex-row flex-wrap items-center justify-between gap-3 md:gap-0">
             <button onClick={handleHome}>
               <Logo className="order-first" />
             </button>
-            <div className="hidden md:flex md:flex-row md:items-center md:gap-3">
+            <div className="hidden md:flex md:flex-row md:items-center md:gap-3"> 
               <div onClick={handleShopNow}>
                 <ShopNowNav />
               </div>
@@ -231,6 +231,7 @@ function Navbar() {
               )}
             </div>
           </div>
+          {/*EN CASO DE DEJARLO CON LA MISMA FUNCIONALIDAD DEL DESPLIEGUE DEL PERFIL, ELIMINAR. ATT: NACHO*/}
           <div className="md:hidden flex items-center">
             <CgMenuRound
               className="text-3xl cursor-pointer"

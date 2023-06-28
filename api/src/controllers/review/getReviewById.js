@@ -10,7 +10,7 @@ export default async (req, res) => {
             product: 1,
         })
             .populate("createdBy", "_id")
-            .populate("product");
+            .populate("product", "reviewText");
 
         if (!review) {
             return res.status(404).json({ message: "Review not found" });

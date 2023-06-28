@@ -248,10 +248,10 @@ export function deleteProduct(id) {
     };
 }
 
-export function uploadProduct(id, data) {
+export function uploadProduct(data, id ) {
     return async function (dispatch) {
         try {
-            await axios.put(`${VITE_HOST}/api/product/${id}`);
+            await axios.put(`${VITE_HOST}/api/product/${id}`, data);
             return dispatch({
                 type: UPLOAD_PRODUCT,
                 payload: data,

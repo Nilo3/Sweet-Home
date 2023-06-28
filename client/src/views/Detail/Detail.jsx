@@ -1,17 +1,10 @@
 import { useParams } from "react-router-dom";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
-
-import {
-  getProductDetail,
-  addtoCart,
-  postShoppingCart,
-} from "../../Redux/actions/actions";
-
+import { getProductDetail, addtoCart, postShoppingCart, getUserByUid } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContex";
 import { detailAVG } from "../../utils/rating-detail";
-import axios from "axios";
 import placeHolder from "../../assets/image/person-placeholder-400x400.png";
 
 const Detail = () => {
@@ -25,24 +18,18 @@ const Detail = () => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
     const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
-
     const stars = [];
     for (let i = 0; i < fullStars; i++) {
       stars.push(<FaStar key={i} />);
     }
-
     if (hasHalfStar) {
       stars.push(<FaStarHalfAlt key="half" />);
     }
-
     for (let i = 0; i < emptyStars; i++) {
       stars.push(<FaRegStar key={`empty-${i}`} />);
     }
-
     return stars;
   };
-
-  const [cartId, setCartId] = useState(null);
 
   useEffect(() => {
     dispatch(getProductDetail(id));
@@ -53,32 +40,26 @@ const Detail = () => {
   };
 
   const { user } = useAuth();
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserByUid(user.uid));
+    }
+  }, [dispatch, user]);
+
+  const userUid = user?.uid || null;
 
   useEffect(() => {
-    if (user && user.email) {
-      checkUserIdInDatabase(user.email);
+    if (userUid) {
+      setUserId(userUid);
     }
-  }, [user]);
-
-  const checkUserIdInDatabase = async (userEmail) => {
-    try {
-      const response = await axios(
-        `http://localhost:3001/api/users/v1/${userEmail}`
-      );
-      if (response && response.data.cart) {
-        setCartId(response.data._id);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  }, [userUid]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    if (cartId) {
+    if (userId) {
       const updatedCart = {
-        user: cartId,
+        user: userId,
         products: [
           {
             product: id,
@@ -86,11 +67,10 @@ const Detail = () => {
           },
         ],
       };
-
       dispatch(postShoppingCart(updatedCart));
     } else {
       const newCart = {
-        user: user._id,
+        user: user.uid,
         products: [
           {
             product: id,
@@ -98,7 +78,6 @@ const Detail = () => {
           },
         ],
       };
-
       dispatch(postShoppingCart(newCart));
     }
   };
@@ -114,7 +93,7 @@ const Detail = () => {
     setSelectedSection(section);
   };
   return (
-    <section className="py-12 sm:py-16">
+    <section className="py-4 sm:py-4">
       <div className="container mx-auto px-4">
         <nav className="flex">
           <ol role="list" className="flex items-center">
