@@ -1,15 +1,8 @@
 import Cards from "../../components/Card/Cards";
 import Pagination from "../../components/Pagination/Pagination";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterByCategory,
-  filterByPrice,
-  filterByName,
-  getCategory,
-  getProducts,
-} from "../../Redux/actions/actions.js";
+import { filterByCategory, filterByPrice, filterByName, getCategory, getProducts } from "../../Redux/actions/actions.js";
 import SearchBar from "./SearchBar";
 import "./Products.css";
 
@@ -26,12 +19,6 @@ const Products = () => {
     dispatch(getCategory());
     dispatch(filterByCategory());
   }, [dispatch]);
-
-  const navigate = useNavigate();
-
-  const backToHome = () => {
-    navigate("/");
-  };
 
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
@@ -113,7 +100,7 @@ const Products = () => {
         <div className="flex flex-wrap cursor-pointer select-none justify-center h-16 items-center">
         </div>
       </div>
-      <div className="cards pt-8">
+      <div className="cards pt-2">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
             <div key={product._id} className="flex justify-center">
