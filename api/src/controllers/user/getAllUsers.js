@@ -2,7 +2,6 @@ import User from "../../models/schemas/user.js";
 import Category from "../../models/schemas/category.js";
 import Review from "../../models/schemas/reviews.js";
 import Product from "../../models/schemas/product.js";
-import Cart from "../../models/schemas/cart.js";
 
 export default async (req, res) => {
   try {

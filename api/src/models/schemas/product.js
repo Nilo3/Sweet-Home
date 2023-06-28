@@ -10,7 +10,8 @@ const product = new Schema({
     stock: { type: Number, required: true },
     inCart: { type: Boolean, default: false },
     category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
-    review: [{ type: Schema.Types.ObjectId, ref: 'Review' }]
+    review: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
+    isDelete: { type: Boolean, default: false}
 });
 
 const Product = mongoose.model("Product", product)

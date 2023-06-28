@@ -2,7 +2,7 @@ import Product from "../../models/schemas/product.js";
 
 export default async (req, res) => {
     const { productId } = req.params;
-    const { name, price, image, description, stock, category, review } = req.body;
+    const { name, price, image, description, stock, inCart, category, review, isDelete } = req.body;
     try {
         const product = await Product.updateOne({ _id: productId },
             {
@@ -12,8 +12,10 @@ export default async (req, res) => {
                     image,
                     description,
                     stock,
+                    inCart,
                     category,
                     review,
+                    isDelete
                 }
             }, { new: true });
         res.status(200).json(product)

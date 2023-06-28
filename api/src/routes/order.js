@@ -22,11 +22,5 @@ router.delete("/order/:orderId", deleteOrder);
 //? Rutas .put
 router.put("/order/:orderId", putOrder);
 
-// //? pagado 
-router.get("/failure", (req, res) => { res.send("Failure") });
-
-router.get("/pending", (req, res) => { res.send("Pending...") });
-
-
 
 export default router;
