@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../context/authContex";
-import { useNavigate } from "react-router-dom";
-import Container from "./Container";
+import { useNavigate, Link } from "react-router-dom";
 import ShopNowNav from "./Buttons/ShopNowNav";
 import AboutNav from "./Buttons/AboutNav";
 import RecomendationsNav from "./Buttons/RecommendationsNav";
@@ -14,7 +13,6 @@ import RegisterNav from "./Buttons/RegisterNav";
 import Logo from "./Logo/Logo";
 import { CgMenuRound } from "react-icons/cg";
 import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
-import { Link } from "react-router-dom";
 
 function Navbar() {
   const { user, logout } = useAuth();
@@ -80,16 +78,68 @@ function Navbar() {
       scrollToSection("mostValuedSection");
     }
   };
+  const handleSelect = () => {
+    setIsMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleProfileClick = () => {
+    if (user === null) {
+      return;
+    }
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleAbout = () => {
+    navigate("/about");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleShopNow = () => {
+    navigate("/products");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleHome = () => {
+    navigate("/");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleShoppingCart = () => {
+    navigate("/checkout");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
-    <div className="fixed w-full bg-white z-10 shadow-sm">
+    <div className="sticky top-0 w-full bg-white z-50 shadow-sm">
       <div className="py-1 border-b-[1px]">
-        <Container>
-          <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
-            <Logo className="order-first" />
-            <div className="hidden md:flex md:flex-row md:items-center md:gap-3">
-              <ShopNowNav />
-              <AboutNav />
+        <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
+          <div className="flex flex-row flex-wrap items-center justify-between gap-3 md:gap-0">
+            <button onClick={handleHome}>
+              <Logo className="order-first" />
+            </button>
+            <div className="hidden md:flex md:flex-row md:items-center md:gap-3"> 
+              <div onClick={handleShopNow}>
+                <ShopNowNav />
+              </div>
+              <div onClick={handleAbout}>
+                <AboutNav />
+              </div>
               <div onClick={handleRecommendationsClick}>
                 <RecomendationsNav />
               </div>
@@ -102,119 +152,94 @@ function Navbar() {
               <button onClick={handleMostValuedClick}>
                 <MostValuedNav />
               </button>
-              <ShoppingCart />
+              <button onClick={handleShoppingCart}>
+                <ShoppingCart />
+              </button>
             </div>
-            <div className="relative">
-              <div className="flex flex-row items-center gap-3">
-                <div className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
-                  {user ? (
-                    <>
-                      {user.photoURL ? (
-                        <img
-                          src={user.photoURL}
-                          alt="User Profile"
-                          className="rounded-full w-8 h-8"
-                        />
-                      ) : (
-                        <img
-                          src={userPlaceholder}
-                          alt="User Placeholder"
-                          className="rounded-full w-8 h-8"
-                        />
-                      )}
-                      <Link to="/profile">
-                      <div className="p-4 md:py-1 md:px-2 flex flex-row items-center gap-3 cursor-pointer ">
-                        <h1>Hi {user.displayName || user.email}</h1>
-                      </div>
-                    </Link>                   
-                    </>
-                  ) : (
-                    <LoginNav />
-                  )}
-                  <div className="hidden md:block cursor-pointer select-none">
-                    {user ? (
-                      <button onClick={handleLogout}>Logout</button>
+            <div className="flex-row items-center gap-3">
+              <div
+                onClick={handleProfileClick}
+                className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+              >
+                {user ? (
+                  <>
+                    {user.photoURL ? (
+                      <img
+                        src={user.photoURL}
+                        alt="User Profile"
+                        className="rounded-full w-8 h-8"
+                      />
                     ) : (
-                      <RegisterNav />
+                      <img
+                        src={userPlaceholder}
+                        alt={user.displayName}
+                        className="rounded-full w-8 h-8"
+                      />
                     )}
-                  </div>
+                    <div className="p-4 md:py-1 md:px-2 flex flex-row items-center gap-3 cursor-pointer">
+                      <h1 className="text-sm md:text-base">
+                        Hi {user.displayName || user.email}
+                      </h1>
+                    </div>
+                  </>
+                ) : (
+                  <LoginNav />
+                )}
+                <div className="hidden md:block cursor-pointer select-none">
+                  {user ? null : <RegisterNav />}
                 </div>
               </div>
+              {isMenuOpen && (
+                <div className="absolute bg-white py-2 mt-1 w-48 right-0 shadow-md">
+                  <div className="flex flex-col gap-2">
+                    <Link
+                      to="/purchases"
+                      onClick={handleSelect}
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      Purchases
+                    </Link>
+                    <Link
+                      to="/reviews"
+                      onClick={handleSelect}
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      Reviews
+                    </Link>
+                    <Link
+                      to="/favorites"
+                      onClick={handleSelect}
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      Favorites
+                    </Link>
+                    <Link
+                      to="/my_profile"
+                      onClick={handleSelect}
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      My Profile
+                    </Link>
+                    <button
+                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                      onClick={handleLogout}
+                    >
+                      Log out
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
+          {/*EN CASO DE DEJARLO CON LA MISMA FUNCIONALIDAD DEL DESPLIEGUE DEL PERFIL, ELIMINAR. ATT: NACHO*/}
           <div className="md:hidden flex items-center">
             <CgMenuRound
               className="text-3xl cursor-pointer"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             />
           </div>
-        </Container>
-      </div>
-      {isMenuOpen && (
-        <div className="bg-white py-2">
-          <Container>
-            <div className="flex flex-col items-center gap-2">
-              <ShopNowNav
-                mobileMenu={true}
-                onClick={() => setIsMenuOpen(false)}
-              />
-              <AboutNav
-                mobileMenu={true}
-                onClick={() => setIsMenuOpen(false)}
-              />
-              <RecomendationsNav
-                mobileMenu={true}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  handleRecommendationsClick();
-                }}
-              />
-              <Inspiration
-                mobileMenu={true}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  handleInspirationClick();
-                }}
-              />
-              <TopWeekNav
-                mobileMenu={true}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  handleTopWeekClick();
-                }}
-              />
-              <MostValuedNav
-                mobileMenu={true}
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  handleMostValuedClick();
-                }}
-              />
-              {user ? (
-                <>
-                  <button
-                    className="font-medium text-gray-600"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <>
-                  <LoginNav
-                    mobileMenu={true}
-                    onClick={() => setIsMenuOpen(false)}
-                  />
-                  <RegisterNav
-                    mobileMenu={true}
-                    onClick={() => setIsMenuOpen(false)}
-                  />
-                </>
-              )}
-            </div>
-          </Container>
         </div>
-      )}
+      </div>
     </div>
   );
 }

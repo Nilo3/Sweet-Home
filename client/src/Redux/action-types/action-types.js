@@ -17,4 +17,6 @@ export const POST_PRODUCT = "POST_PRODUCT"
 export const DELETE_PRODUCT= "DELETE_PRODUCT"
 export const UPLOAD_PRODUCT = "UPLOAD_PRODUCT"
 export const POST_REVIEW = "POST_REVIEW"
-
+export const GET_ORDERS = "GET_ORDERS"
+export const GET_USER_BY_UID = "GET_USER_BY_UID"
+export const  GET_ORDER_BY_ID = " GET_ORDER_BY_ID"

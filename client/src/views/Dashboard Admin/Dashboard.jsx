@@ -1,7 +1,7 @@
 import AdminCard from "./AdminCard";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName } from "../../redux/actions/actions";
+import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName } from "../../Redux/actions/actions";
 import { Link } from "react-router-dom";
 import  SearchBar from '../ShopNow/SearchBar'
 import Pagination from "../../components/Pagination/Pagination";

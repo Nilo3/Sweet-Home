@@ -18,8 +18,10 @@ import {
     POST_PRODUCT,
     UPLOAD_PRODUCT,
     DELETE_PRODUCT,
-    POST_REVIEW
-
+    POST_REVIEW,
+    GET_ORDERS,
+    GET_USER_BY_UID,
+    GET_ORDER_BY_ID
 } from "../action-types/action-types"
 
 const VITE_HOST = "http://localhost:3001"
@@ -156,6 +158,20 @@ export function postUser(payload) {
     };
 }
 
+export function getUserByUid(uid) {
+    return async function (dispatch) {
+        try {
+            let response = await axios.get(`${VITE_HOST}/api/users/v1/${uid}`)
+            return dispatch({
+                type: GET_USER_BY_UID,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
+
 export function getAllUsers() {
     return async function (dispatch) {
         try {
@@ -242,6 +258,34 @@ export function uploadProduct(data, id ) {
             });
         } catch (error) {
             console.log(error.response.data.error);
+        }
+    };
+}
+
+export function getAllOrders() {
+    return async function (dispatch) {
+        try {
+            const response = await axios.get(`${VITE_HOST}/api/order`);
+            dispatch({
+                type: GET_ORDERS,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
+
+export function getOrderById(id) {
+    return async function (dispatch) {
+        try {
+            let response = await axios.get(`${VITE_HOST}/api/order/${id}`)
+            return dispatch({
+                type: GET_ORDER_BY_ID,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.log(error);
         }
     };
 }

@@ -10,7 +10,7 @@ export default function Footer () {
                       <img  className="h-14 mr-3 mt-2" src={logo} alt="sweet-homeLogo" />
                       
               </div>
-              <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+              <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
             
                   <div>
                       <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
@@ -41,6 +41,7 @@ export default function Footer () {
                           </li>
                       </ul>
                   </div>
+                  
               </div>
           </div>
           <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />

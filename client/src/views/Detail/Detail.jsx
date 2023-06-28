@@ -1,21 +1,13 @@
 import { useParams } from "react-router-dom";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
-import {
-  getProductDetail,
-  addtoCart,
-  postShoppingCart,
-} from "../../redux/actions/actions";
+import { getProductDetail, addtoCart, postShoppingCart, getUserByUid } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContex";
 import { detailAVG } from "../../utils/rating-detail";
-import axios from "axios";
 import placeHolder from "../../assets/image/person-placeholder-400x400.png";
 
 const Detail = () => {
-  // const allShoppingCart = useSelector((state) => state.shoppingCart);
-  // const isProductInCart = allShoppingCart.some((product) => product.id === id);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.details);
   const { id } = useParams();
@@ -24,26 +16,20 @@ const Detail = () => {
   const renderRatingStars = (rating) => {
     const maxRating = 5;
     const fullStars = Math.floor(rating);
-    const hasHalfStar = ratingAVG % 1 !== 0;
+    const hasHalfStar = rating % 1 >= 0.5;
     const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
-
     const stars = [];
     for (let i = 0; i < fullStars; i++) {
       stars.push(<FaStar key={i} />);
     }
-
     if (hasHalfStar) {
-      stars.push(<FaStarHalfAlt key="half"  />);
+      stars.push(<FaStarHalfAlt key="half" />);
     }
-
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<FaRegStar key={`empty-${i}`}  />);
+      stars.push(<FaRegStar key={`empty-${i}`} />);
     }
-
     return stars;
   };
-
-  const [cartId, setCartId] = useState(null);
 
   useEffect(() => {
     dispatch(getProductDetail(id));
@@ -54,32 +40,26 @@ const Detail = () => {
   };
 
   const { user } = useAuth();
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserByUid(user.uid));
+    }
+  }, [dispatch, user]);
+
+  const userUid = user?.uid || null;
 
   useEffect(() => {
-    if (user && user.email) {
-      checkUserIdInDatabase(user.email);
+    if (userUid) {
+      setUserId(userUid);
     }
-  }, [user]);
-
-  const checkUserIdInDatabase = async (userEmail) => {
-    try {
-      const response = await axios(
-        `http://localhost:3001/api/users/v1/${userEmail}`
-      );
-      if (response && response.data.cart) {
-        setCartId(response.data._id);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  }, [userUid]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    if (cartId) {
+    if (userId) {
       const updatedCart = {
-        user: cartId,
+        user: userId,
         products: [
           {
             product: id,
@@ -87,11 +67,10 @@ const Detail = () => {
           },
         ],
       };
-
       dispatch(postShoppingCart(updatedCart));
     } else {
       const newCart = {
-        user: user._id,
+        user: user.uid,
         products: [
           {
             product: id,
@@ -99,7 +78,6 @@ const Detail = () => {
           },
         ],
       };
-
       dispatch(postShoppingCart(newCart));
     }
   };
@@ -115,7 +93,7 @@ const Detail = () => {
     setSelectedSection(section);
   };
   return (
-    <section className="py-12 sm:py-16">
+    <section className="py-4 sm:py-4">
       <div className="container mx-auto px-4">
         <nav className="flex">
           <ol role="list" className="flex items-center">
@@ -312,33 +290,36 @@ const Detail = () => {
             </ul>
           </div>
           <div className="lg:col-span-3">
-  <div className="border-b border-gray-300">
-    <nav className="flex gap-4">
-      <a
-        title=""
-        className={`cursor-pointer py-4 text-sm font-medium text-gray-900 hover:text-gray-800 ${
-          selectedSection === "description" ? "border-b-2 border-gray-900" : ""
-        }`}
-        onClick={() => handleSection("description")}
-      >
-        Description
-      </a>
+            <div className="border-b border-gray-300">
+              <nav className="flex gap-4">
+                <a
+                  title=""
+                  className={`cursor-pointer py-4 text-sm font-medium text-gray-900 hover:text-gray-800 ${
+                    selectedSection === "description"
+                      ? "border-b-2 border-gray-900"
+                      : ""
+                  }`}
+                  onClick={() => handleSection("description")}
+                >
+                  Description
+                </a>
 
-      <a
-        title=""
-        className={`inline-flex cursor-pointer items-center py-4 text-sm font-medium text-gray-600 ${
-          selectedSection === "reviews" ? "border-b-2 border-gray-900" : ""
-        }`}
-        onClick={() => handleSection("reviews")}
-      >
-        Reviews
-        <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
-          {product.review?.length || 0} Reviews
-        </span>
-      </a>
-    </nav>
-  </div>
-
+                <a
+                  title=""
+                  className={`inline-flex cursor-pointer items-center py-4 text-sm font-medium text-gray-600 ${
+                    selectedSection === "reviews"
+                      ? "border-b-2 border-gray-900"
+                      : ""
+                  }`}
+                  onClick={() => handleSection("reviews")}
+                >
+                  Reviews
+                  <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
+                    {product.review?.length || 0} Reviews
+                  </span>
+                </a>
+              </nav>
+            </div>
 
             <div className="mt-8 flow-root sm:mt-12">
               {selectedSection === "description" ? (
@@ -355,9 +336,15 @@ const Detail = () => {
                       key={review._id}
                     >
                       <figure className="max-w-screen-md">
-                        <div className="mb-3 text-yellow-300 text-m flex mr-3">
-                          {renderRatingStars(review.rating)}
+                        <div className="mb-3 flex items-center">
+                          <div className="text-yellow-300 text-m flex mr-3">
+                            {renderRatingStars(review.rating)}
+                          </div>
+                          <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
+                            {review.rating}
+                          </span>
                         </div>
+
                         <blockquote>
                           <p className="text-l font-normal text-gray-900 dark:text-white">
                             {review.reviewText}
