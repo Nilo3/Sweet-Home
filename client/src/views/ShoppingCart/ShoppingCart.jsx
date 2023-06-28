@@ -44,22 +44,6 @@ const Shopping = () => {
   const handleMethodSelection = (method) => {
     setSelectedMethod(method);
   };
-  const checkUserIdInDatabase = async (userEmail) => {
-    try {
-      const baseUrl = process.env.VITE_HOST === 'production' ? 'https://front-deploy-v4j8.onrender.com/checkout' : 'http://localhost:3001';
-
-      const response = await axios(
-        `${baseUrl}/api/users/v1/${userEmail}`
-      );
-
-      if (response.data && response.data._id) {
-        const userIdnum = response.data._id;
-        setUserId(userIdnum);
-      }
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
 
   const handleDeleteFromCart = (productId) => {
     dispatch(removefromCart(productId));
