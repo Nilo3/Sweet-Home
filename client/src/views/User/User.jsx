@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { MdOutlineReviews } from "react-icons/md";
@@ -5,6 +6,7 @@ import { BiUserCircle } from "react-icons/bi";
 import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
 import { getUserByUid } from "../../Redux/actions/actions";
+import { Link } from "react-router-dom";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,13 @@ const User = () => {
   }, [dispatch, userUid]);
   const userData = useSelector((state) => state.user);
   const userOrders = userData?.userOrders || [];
+
+  const [showPurchases, setShowPurchases] = useState(false); 
+
+  const handleProductClick = (productId) => {
+    console.log("Clicked product:", productId);
+  };
+
   return (
     <>
       <aside
@@ -42,9 +51,9 @@ const User = () => {
               </a>
             </li>
             <li>
-              <a
-                href="#"
+              <button
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                onClick={() => setShowPurchases(!showPurchases)} // Cambia el estado para mostrar/ocultar las compras
               >
                 <svg
                   aria-hidden="true"
@@ -55,8 +64,8 @@ const User = () => {
                 >
                   <HiOutlineShoppingBag />
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Purchases</span>
-              </a>
+                <span className="ml-3 text-m">Purchases</span>
+              </button>
             </li>
             <li>
               <a
@@ -72,23 +81,68 @@ const User = () => {
                 >
                   <MdOutlineReviews />
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Reviews</span>
+                <span className="ml-3 text-m">Reviews</span>
               </a>
             </li>
           </ul>
         </div>
       </aside>
       <div className="flex justify-center">
-        {userOrders.map((order) => (
-          <div key={order._id} className="flex justify-center">
-            {order.products?.map((product) => (
-              <div key={product._id}>
-                <p>Price: {product.price}</p>
-                <p>Quantity: {product.quantity}</p>
-              </div>
-            ))}
+        {showPurchases && ( // Renderizado condicional para mostrar las compras
+          <div className="flex justify-center">
+            {userOrders.length > 0 ? (
+              userOrders.map((order) => (
+                <div
+                  key={order._id}
+                  className="border border-gray-300 rounded-lg p-4 m-4"
+                >
+                  <h2 className="text-lg font-bold">Order ID: {order._id}</h2>
+                  <div className="flex flex-wrap justify-start items-center">
+                    {order.products?.map((product) => (
+                      <div
+                        key={product._id}
+                        className="m-2 w-60 border rounded-lg p-4"
+                      >
+                        <img
+                          src={product.product.image}
+                          alt={product.product.name}
+                          className="w-full h-40 object-cover rounded-lg"
+                        />
+                        <p className="text-lg font-bold mt-2">
+                          {product.product.name}
+                        </p>
+                        <p className="text-gray-500">
+                          Price: {product.product.price}
+                        </p>
+                        <p className="text-gray-500">
+                          Quantity: {product.quantity}
+                        </p>
+                        <Link
+                          to={`/products/${product.product._id}`}
+                          className=" bg-black text-white px-4 py-2 mt-4 rounded-lg inline-block"
+                        >
+                          View Product
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="mt-4 font-bold">
+                    Total Price: {order.totalPrice}
+                  </p>
+                  <cite className="mt-4 font-bold">
+                  {new Date(order.paidAt).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </cite>
+                </div>
+              ))
+            ) : (
+              <p>No purchases found.</p>
+            )}
           </div>
-        ))}
+        )}
       </div>
     </>
   );
