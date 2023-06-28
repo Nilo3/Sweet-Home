@@ -13,9 +13,7 @@ export default async (req, res) => {
 
     if (!user) {
       return res.status(400).json({ message: "The user you want to delete does not exist" });
-    }
-
-    if (user.email !== userAux.email) {
+    if (user.email !== user.email)
       return res.status(400).json({ message: "You can't delete another user!" });
     }
 
