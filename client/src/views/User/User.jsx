@@ -83,7 +83,6 @@ const User = () => {
           <div key={order._id} className="flex justify-center">
             {order.products?.map((product) => (
               <div key={product._id}>
-                <p>Product ID: {product.product}</p>
                 <p>Price: {product.price}</p>
                 <p>Quantity: {product.quantity}</p>
               </div>
