@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { uploadProduct, getCategory } from "../../redux/actions/actions";
+import { uploadProduct, getCategory } from "../../Redux/actions/actions";
 import { validate } from "../../utils/validate"; //? Validation, work in progress...
 
 
