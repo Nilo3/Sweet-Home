@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const AdminCard = ({ id, name, category, description, price }) => {
+
+const AdminCard = ({ id, name, price,description, image, category }) => {
     const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts)
@@ -31,9 +32,11 @@ const AdminCard = ({ id, name, category, description, price }) => {
           <td className="px-4 py-3 max-w-[12rem] truncate">{description}</td>
           <td className="px-4 py-3">{price}</td>
           <td className="px-4 py-3 flex items-center justify-end">
-            <Link to={"/editProduct"}>
-              <button>Edit</button>
-            </Link>
+      
+       <Link to ={"/editProduct"}>
+           <button>Edit</button>
+       </Link>
+           
             <button value={id} onClick={(event) => handleDelete(event)}>Delete</button>
           </td>
         </tr>

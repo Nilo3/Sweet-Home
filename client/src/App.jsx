@@ -44,8 +44,8 @@ function App() {
           <Route path="/products/:id" element={<Layout><Detail /></Layout>} />
           <Route path="/adminDashboard" element={<Layout><Dashboard /></Layout>} />
           <Route path="/createProduct" element={<Layout><CreateProduct /></Layout>} />
+          <Route path="/editProduct" element={<Layout><UploadProduct /></Layout>} />
           <Route path="/profile" element={<Layout><Profile/></Layout>} />
-          <Route path="/editProduct" element={<Layout><UploadProduct/></Layout>} />
           
         </Routes>
         <ToastContainer />

@@ -5,6 +5,7 @@ import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName
 import { Link } from "react-router-dom";
 import  SearchBar from '../ShopNow/SearchBar'
 import Pagination from "../../components/Pagination/Pagination";
+import UploadProduct from "../UploadProduct/UploadProduct";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -86,9 +87,7 @@ const Dashboard = () => {
                 <Link to={"/createProduct"}>
                   <button
                     type="button"
-                    id="createProductModalButton"
-                    data-modal-target="createProductModal"
-                    data-modal-toggle="createProductModal"
+                    
                     className="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
                   >
                     <svg
@@ -258,9 +257,11 @@ const Dashboard = () => {
                         id={product._id}
                         name={product.name}
                         price={product.price}
+                        description={product.description}
                         image={product.image}
                         category={product.category.map((el) => el.name)}
                       />
+                      
                     </div>
                   ))
                 ) : (
