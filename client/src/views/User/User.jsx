@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { getUserByUid } from "../../Redux/actions/actions";
 import { useState } from "react";
 
+
 const User = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
@@ -97,31 +98,36 @@ const User = () => {
 
    
       {selectedSection === "profile" && (
-        <div className="pt-20 flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+        <div className="pt-20 flex flex-col items-center border-b  bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
         </div>
       )}
 
 {selectedSection === "purchases" && (
-  <div className="pt-20 flex flex-col items-center justify-center bg-gray-200 w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-    <div className="grid w-1/2 ">
-      <div className="space-y-6 rounded-lg bg-white mb-5 px-2 w-full py-6 m:px-8">
+  
+  <div className="pt-20 flex flex-col  items-center justify-center bg-gray-200 w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+   
+    <div className="grid  w-1/2 ">
+    <p className="text-xl font-medium">Purchases</p>
+      
       
 
         
         {userOrders.map((order) => (
-            
-          <div key={order._id} className="py-8 text-left mb-5 border px-4 m-4">
-              <cite className="mt-1 mb-20 ml-3 font-bold text-s">
+           <div key={order._id} className=" text-left mt-5 mb-5 m-4">
+            <div className=" bg-white  rounded-lg pt-5 pb-12">
+            <div className="border-b-2 border-gray-200">
+            <cite className="ml-3 font-bold text-sm block mb-5">
                   {new Date(order.paidAt).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
                       year: "numeric",
                     })}
                   </cite>
+                  </div>
             {order.products?.map((product) => (
                    
               <div
-                className=" mt-3 flex flex-col rounded-lg bg-white sm:flex-row"
+                className=" mt-3 flex mr-5 ml-5 flex-col rounded-lg bg-white sm:flex-row  border border-gray-200"
                 key={product.product._id}
               >
                 
@@ -135,14 +141,16 @@ const User = () => {
                 <p className="text-sm text-green-500">Delivered</p>
                   <span className="font-semibold">{product.product.name}</span>
                   <p>Price: ${product.product.price}</p>
-                  <p>Quantity: {product.product.quantity}</p>
+                  <p className="text-xs">Quantity: {product.quantity}</p>
                     </div>
                   </div>
+                  
                 ))}
+              </div>
               </div>
             ))}
           </div>
-        </div>
+       
         </div>
       )}
 
