@@ -7,6 +7,7 @@ import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
 import { getUserByUid } from "../../Redux/actions/actions";
 import { Link } from "react-router-dom";
+import Profile from "../Profile/Profile";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -18,25 +19,25 @@ const User = () => {
   const userData = useSelector((state) => state.user);
   const userOrders = userData?.userOrders || [];
 
-  const [showPurchases, setShowPurchases] = useState(false); 
+  const [showPurchases, setShowPurchases] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   const handleProductClick = (productId) => {
-    console.log("Clicked product:", productId);
   };
 
   return (
-    <>
+    <div className="flex flex-col justify-center items-center">
       <aside
         id="cta-button-sidebar"
-        className="relative top-14 left-0 z-45 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className="fixed top-16 left-0 z-50 w-64 h-screen overflow-y-auto bg-white dark:bg-gray-800"
         aria-label="Sidebar"
       >
-        <div className="ml-3 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="px-3 py-4">
           <ul className="space-y-2 font-medium">
             <li>
-              <a
-                href="#"
+              <button
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                onClick={() => setShowProfile(!showProfile)}
               >
                 <svg
                   aria-hidden="true"
@@ -48,12 +49,12 @@ const User = () => {
                   <BiUserCircle />
                 </svg>
                 <span className="ml-3 text-m">Profile</span>
-              </a>
+              </button>
             </li>
             <li>
               <button
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                onClick={() => setShowPurchases(!showPurchases)} // Cambia el estado para mostrar/ocultar las compras
+                onClick={() => setShowPurchases(!showPurchases)}
               >
                 <svg
                   aria-hidden="true"
@@ -87,56 +88,57 @@ const User = () => {
           </ul>
         </div>
       </aside>
-      <div className="flex justify-center">
-        {showPurchases && ( // Renderizado condicional para mostrar las compras
-          <div className="flex justify-center">
+      <div className="flex flex-col items-center justify-center mt-14 ml-64">
+        {showProfile && <Profile />}
+        {showPurchases && (
+          <div className="flex flex-wrap justify-center">
             {userOrders.length > 0 ? (
               userOrders.map((order) => (
-                <div
+                <article
                   key={order._id}
-                  className="border border-gray-300 rounded-lg p-4 m-4"
+                  className="flex flex-wrap justify-start items-center w-full border border-gray-200 rounded-lg p-4 m-4 hover:shadow-md"
                 >
-                  <h2 className="text-lg font-bold">Order ID: {order._id}</h2>
-                  <div className="flex flex-wrap justify-start items-center">
-                    {order.products?.map((product) => (
-                      <div
-                        key={product._id}
-                        className="m-2 w-60 border rounded-lg p-4"
+                  <h2 className="w-full text-lg font-bold">
+                    Order ID: {order._id}
+                  </h2>
+                  {order.products?.map((product) => (
+                    <div
+                      key={product._id}
+                      className="m-2 w-full sm:w-60 border rounded-lg p-4"
+                    >
+                      <img
+                        src={product.product.image}
+                        alt={product.product.name}
+                        className="w-full h-40 object-cover rounded-lg"
+                      />
+                      <p className="text-lg font-bold mt-2">
+                        {product.product.name}
+                      </p>
+                      <p className="text-gray-500">
+                        ${product.product.price * product.quantity}
+                      </p>
+                      <p className="text-gray-500">
+                        Quantity: {product.quantity}
+                      </p>
+                      <Link
+                        to={`/products/${product.product._id}`}
+                        className=" bg-black text-white px-4 py-2 mt-4 rounded-lg inline-block hover:shadow-lg"
                       >
-                        <img
-                          src={product.product.image}
-                          alt={product.product.name}
-                          className="w-full h-40 object-cover rounded-lg"
-                        />
-                        <p className="text-lg font-bold mt-2">
-                          {product.product.name}
-                        </p>
-                        <p className="text-gray-500">
-                          Price: {product.product.price}
-                        </p>
-                        <p className="text-gray-500">
-                          Quantity: {product.quantity}
-                        </p>
-                        <Link
-                          to={`/products/${product.product._id}`}
-                          className=" bg-black text-white px-4 py-2 mt-4 rounded-lg inline-block"
-                        >
-                          View Product
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="mt-4 font-bold">
-                    Total Price: {order.totalPrice}
+                        View Product
+                      </Link>
+                    </div>
+                  ))}
+                  <p className="w-full mt-4 font-bold">
+                    Total: ${order.totalPrice.toFixed(2)}
                   </p>
-                  <cite className="mt-4 font-bold">
-                  {new Date(order.paidAt).toLocaleDateString("en-US", {
+                  <cite className="w-full mt-4 font-bold">
+                    {new Date(order.paidAt).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
                       year: "numeric",
                     })}
                   </cite>
-                </div>
+                </article>
               ))
             ) : (
               <p>No purchases found.</p>
@@ -144,7 +146,7 @@ const User = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

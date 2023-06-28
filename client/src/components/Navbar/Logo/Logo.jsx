@@ -5,6 +5,13 @@ function Logo() {
   return (
     <Link to="/">
       <img
+        className="block md:hidden cursor-pointer select-none"
+        src={logo}
+        height={40}
+        width={40}
+        alt="Logo"
+      />
+      <img
         className="hidden md:block cursor-pointer select-none"
         src={logo}
         height={75}
