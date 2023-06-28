@@ -1,13 +1,12 @@
 import User from "../../models/schemas/user.js";
 import Review from "../../models/schemas/reviews.js";
 
-
 export default async (req, res) => {
   try {
     const { id } = req.params;
-
+    const { userid } = req.headers;
     const user = await User.findById(id);
-
+    const userAux = await User.findById(userid);
     if (!user)
       return res.status(400).json({ message: "The user you want to delete does not exist" });
     if (user.email !== user.email)

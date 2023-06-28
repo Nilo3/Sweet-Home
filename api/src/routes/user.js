@@ -22,6 +22,6 @@ router.get("/users/v1/:email", getUserByEmail)
 router.post("/users", postUser);
 
 //? Ruta .delete
-router.delete("users/:id", deleteUsers)
+router.delete("/users/:id", deleteUsers)
 
 export default router;
