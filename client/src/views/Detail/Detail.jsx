@@ -93,7 +93,7 @@ const Detail = () => {
     setSelectedSection(section);
   };
   return (
-    <section className="py-12 sm:py-16">
+    <section className="py-4 sm:py-4">
       <div className="container mx-auto px-4">
         <nav className="flex">
           <ol role="list" className="flex items-center">
