@@ -27,10 +27,10 @@ const User = () => {
   return (
     <div className="flex">
     <aside
-      id="cta-button-sidebar"
-      className="relative left-0 z-45 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
-      aria-label="Sidebar"
-    >
+    id="cta-button-sidebar"
+    className="relative left-0 z-45 w-64 min-h-screen transition-transform -translate-x-full sm:translate-x-0"
+    aria-label="Sidebar"
+  >
       <div className="ml-3 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 w-full">
         <ul className="space-y-2 font-medium">
           <li>
