@@ -6,6 +6,9 @@ import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
 import { getUserByUid } from "../../Redux/actions/actions";
 import { useState } from "react";
+import Profile from "../Profile/Profile";
+
+ 
 
 
 const User = () => {
@@ -26,7 +29,7 @@ const User = () => {
   };
   return (
     <div className="flex">
-    <aside
+  <aside
     id="cta-button-sidebar"
     className="relative left-0 z-45 w-64 min-h-screen transition-transform -translate-x-full sm:translate-x-0"
     aria-label="Sidebar"
@@ -37,7 +40,7 @@ const User = () => {
           <a
   href="#"
   className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ${
-    selectedSection === "profile" ? " border-gray-100 bg-gray-400 dark:bg-gray-900" : ""
+    selectedSection === "profile" ? " border-gray-100 bg-gray-200 dark:bg-gray-900" : ""
   }`}
   onClick={() => handleSection("profile")}
 >
@@ -57,7 +60,7 @@ const User = () => {
           <a
   href="#"
   className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ${
-    selectedSection === "purchases" ? " border-gray-100 bg-gray-400 dark:bg-gray-900" : ""
+    selectedSection === "purchases" ? " border-gray-100 bg-gray-200 dark:bg-gray-900" : ""
   }`}
   onClick={() => handleSection("purchases")}
 >
@@ -76,7 +79,7 @@ const User = () => {
           <a
   href="#"
   className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ${
-    selectedSection === "reviews" ? " border-gray-100 bg-gray-400 dark:bg-gray-900" : ""
+    selectedSection === "reviews" ? " border-gray-100 bg-gray-200 dark:bg-gray-900" : ""
   }`}
   onClick={() => handleSection("reviews")}
 >
@@ -97,13 +100,14 @@ const User = () => {
 
    
       {selectedSection === "profile" && (
-        <div className="pt-20 flex flex-col items-center border-b  bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+        <div className="pt-20 flex flex-col items-center justify-center bg-gray-100 w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+          <Profile />
         </div>
       )}
 
 {selectedSection === "purchases" && (
   
-  <div className="pt-20 flex flex-col items-center justify-center bg-gray-200 w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+  <div className="pt-20 flex flex-col items-center justify-center bg-gray-100 w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
    
     <div className="grid  w-1/2 ">
     <p className="text-xl font-medium">Purchases</p>
@@ -157,7 +161,7 @@ const User = () => {
       )}
 
       {selectedSection === "reviews" && (
-        <div className="pt-20 flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+         <div className="pt-20 flex flex-col items-center justify-center bg-gray-100 w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
         
         </div>
       )}
