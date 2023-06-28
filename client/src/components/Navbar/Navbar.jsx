@@ -231,7 +231,6 @@ function Navbar() {
               )}
             </div>
           </div>
-          {/*EN CASO DE DEJARLO CON LA MISMA FUNCIONALIDAD DEL DESPLIEGUE DEL PERFIL, ELIMINAR. ATT: NACHO*/}
           <div className="md:hidden flex items-center">
             <CgMenuRound
               className="text-3xl cursor-pointer"
