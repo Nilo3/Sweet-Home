@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { searchProducts } from "../../Redux/actions/actions";
+import { toast } from "react-toastify";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -9,9 +10,8 @@ const SearchBar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     if (searchTerm.trim() === "") {
-      alert("Please enter a valid search term");
+      toast.warning("Please enter a valid search term");
     } else {
       dispatch(searchProducts(searchTerm));
     }

@@ -15,7 +15,6 @@ const User = () => {
   }, [dispatch, userUid]);
   const userData = useSelector((state) => state.user);
   const userOrders = userData?.userOrders || [];
-  console.log(userOrders);
   return (
     <>
       <aside
