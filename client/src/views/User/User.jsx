@@ -111,11 +111,17 @@ const User = () => {
         {userOrders.map((order) => (
             
           <div key={order._id} className="py-8 text-left mb-5 border px-4 m-4">
-              <p key={order.paidAt}></p>
+              <cite className="mt-1 mb-20 ml-3 font-bold text-s">
+                  {new Date(order.paidAt).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </cite>
             {order.products?.map((product) => (
                    
               <div
-                className="flex flex-col rounded-lg bg-white sm:flex-row"
+                className=" mt-3 flex flex-col rounded-lg bg-white sm:flex-row"
                 key={product.product._id}
               >
                 
@@ -128,7 +134,7 @@ const User = () => {
                 <div className="flex w-full flex-col px-4 py-4">
                 <p className="text-sm text-green-500">Delivered</p>
                   <span className="font-semibold">{product.product.name}</span>
-                  <p>Price: {product.product.price}</p>
+                  <p>Price: ${product.product.price}</p>
                   <p>Quantity: {product.product.quantity}</p>
                     </div>
                   </div>
