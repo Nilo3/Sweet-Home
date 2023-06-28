@@ -40,8 +40,10 @@ const Shopping = () => {
   };
   const checkUserIdInDatabase = async (userEmail) => {
     try {
+      const baseUrl = process.env.VITE_HOST === 'production' ? 'https://front-deploy-v4j8.onrender.com/checkout' : 'http://localhost:3001';
+
       const response = await axios(
-        `http://localhost:3001/api/users/v1/${userEmail}`
+        `${baseUrl}/api/users/v1/${userEmail}`
       );
 
       if (response.data && response.data._id) {
