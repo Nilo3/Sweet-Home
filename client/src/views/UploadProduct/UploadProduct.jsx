@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { uploadProduct, getCategory } from "../../redux/actions/actions";
 import { validate } from "../../utils/validate"; //? Validation, work in progress...
 
@@ -10,19 +11,22 @@ import { validate } from "../../utils/validate"; //? Validation, work in progres
 const UploadProduct = () => {
     const [input, setInput] = useState({
         name: "",
-        price: "",
-        stock: "",
+        price: null,
+        stock: null,
         description: "",
         image: "",
         category: [],
+        review: [],
       });
     
       const category = useSelector((state) => state.category);
       const [errors, setErrors] = useState({});
       const dispatch = useDispatch();
+      const { id } = useParams(); 
     
       useEffect(() => {
         dispatch(getCategory());
+        // Obtener los datos del producto que se va a editar
       }, [dispatch]);
     
       const handleChange = (event) => {
@@ -43,22 +47,22 @@ const UploadProduct = () => {
       const handleSubmit = (event) => {
         event.preventDefault();
         const validationErrors = validate(input);
-        //? Convert to number because the back need it
         const price = parseFloat(input.price);
         const stock = parseInt(input.stock);
-        //? Added the category _id into an array
         const category =
           typeof input.category === "string" ? [input.category] : input.category;
         if (Object.keys(validationErrors).length === 0) {
-          //? Send the inputs with the parsed values
-          dispatch(uploadProduct({ ...input, category, price, stock }));
+          dispatch(
+            uploadProduct({ ...input, category, price, stock }, id)
+          );
           setInput({
             name: "",
-            price: "",
-            stock: "",
+            price: null,
+            stock: null,
             description: "",
             image: "",
             category: [],
+            review: [],
           });
         }
       };
@@ -87,7 +91,7 @@ const UploadProduct = () => {
               type="text"
               required
               className="input-field"
-              placeholder="Enter product name"
+              placeholder="Nombre..."
               value={input.name}
               onChange={handleChange}
             />

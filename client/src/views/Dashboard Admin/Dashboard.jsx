@@ -5,7 +5,7 @@ import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName
 import { Link } from "react-router-dom";
 import  SearchBar from '../ShopNow/SearchBar'
 import Pagination from "../../components/Pagination/Pagination";
-import UploadProduct from "../UploadProduct/UploadProduct";
+
 
 const Dashboard = () => {
   const dispatch = useDispatch();
