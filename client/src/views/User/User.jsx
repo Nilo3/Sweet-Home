@@ -7,7 +7,7 @@ import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
 import { getUserByUid, editReview, deleteReview } from "../../Redux/actions/actions"
 import { Link } from "react-router-dom";
-// import Profile from "../Profile/Profile";
+import Profile from "../Profile/Profile";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { toast } from "react-toastify";
 
@@ -155,7 +155,7 @@ const User = () => {
 
       {selectedSection === "profile" && (
         <div className="pt-20 flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-          {/* <Profile /> */}
+          <Profile />
         </div>
       )}
 
