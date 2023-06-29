@@ -1,19 +1,13 @@
-import "tailwindcss/tailwind.css";
 import Recommendations from "../../components/Recommendations/Recomendations";
 import MostValued from "../../components/MostValue/MostValue";
 import TopWeek from "../../components/TopWeek/TopWeek";
 import Inspiration from "../../components/Inspiration/Inspiration";
-import homeimage from "../../assets/image/home-page-with-text.png";
-import "./Home.css";
+import Landing from "../../components/Landing/Landing";
 
 function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <img
-        className="h-auto max-w-full rounded-lg w-full"
-        src={homeimage}
-        alt="home_page"
-      />
+      <Landing />
       <section id="recommendationsSection">
         <Recommendations />
       </section>

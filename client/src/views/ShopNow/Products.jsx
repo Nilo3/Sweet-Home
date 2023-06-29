@@ -100,7 +100,7 @@ const Products = () => {
         <div className="flex flex-wrap cursor-pointer select-none justify-center h-16 items-center">
         </div>
       </div>
-      <div className="cards pt-2">
+      <div className="cards pt-2 select-none">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
             <div key={product._id} className="flex justify-center">

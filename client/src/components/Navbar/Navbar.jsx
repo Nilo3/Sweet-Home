@@ -158,7 +158,7 @@ function Navbar() {
         <div className="flex-row items-center gap-3">
           <div
             onClick={handleProfileClick}
-            className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+            className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition self-center select-none"
           >
             {user ? (
               <>
@@ -189,7 +189,7 @@ function Navbar() {
             </div>
           </div>
           {isMenuOpen && (
-            <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md">
+            <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md z-10">
               <div className="flex flex-col gap-2">
                 <button
                   to="/my_profile"
