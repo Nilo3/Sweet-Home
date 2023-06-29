@@ -1,21 +1,17 @@
 import recommendation1 from "../../assets/image/recommendations1.webp";
 
-export default function Recommendations() {
+const Recommendations = () => {
   return (
     <>
       <br />
-      <div className="w-screen">
-        <a
-          href="#"
-          className="flex items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mx-auto"
-          style={{ width: "75%" }}
-        >
+      <div className="w-screen px-12">
+        <div className="flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mx-auto">
           <img
-            className="object-cover w-1/2 h-80 md:h-100 rounded-l-lg"
+            className="object-cover w-full md:w-1/2 h-80 md:h-auto md:max-h-100 rounded-lg md:rounded-l-lg"
             src={recommendation1}
             alt=""
           />
-          <div className="flex flex-col justify-between p-4 leading-normal w-1/2">
+          <div className="flex flex-col justify-between p-4 leading-normal w-full md:w-1/2">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               Our recommendations
             </h5>
@@ -27,8 +23,10 @@ export default function Recommendations() {
               recommendations.
             </p>
           </div>
-        </a>
+        </div>
       </div>
     </>
   );
-}
+};
+
+export default Recommendations;

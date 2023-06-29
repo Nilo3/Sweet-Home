@@ -54,7 +54,7 @@ const Products = () => {
 
   return (
     <div className="all">
-      <div className="flex flex-wrap justify-center pt-12">
+      <div className="flex flex-wrap justify-center pt-2">
         <SearchBar />
         <button
           className="text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2"
@@ -64,12 +64,12 @@ const Products = () => {
         </button>
 
         <div className="flex flex-wrap cursor-pointer select-none justify-center h-16 items-center">
-          <div className="border border-gray-300">
+          <div className="grid text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2 grid-cols-3">
             <select
               className="ordAndFil1"
               onChange={(event) => handleOrderName(event)}
             >
-              <option>Order by Name</option>
+              <option>Name</option>
               <option value="asc">A - Z</option>
               <option value="desc">Z - A</option>
             </select>
@@ -100,7 +100,7 @@ const Products = () => {
         <div className="flex flex-wrap cursor-pointer select-none justify-center h-16 items-center">
         </div>
       </div>
-      <div className="cards pt-2">
+      <div className="cards pt-2 select-none">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
             <div key={product._id} className="flex justify-center">

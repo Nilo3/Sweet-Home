@@ -14,7 +14,6 @@ import Logo from "./Logo/Logo";
 import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import getUserByEmail from "../../../../api/src/controllers/user/getUserByEmail";
 import { getUserByUid } from "../../Redux/actions/actions";
 
 function Navbar() {
@@ -23,18 +22,14 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [completeUser, setCompleteUser] = useState({ photoURL: "" });
   const dispatch = useDispatch()
-  
-  
+  console.log(user);
   useEffect(() => {
     if (user) {
       dispatch(getUserByUid(user.uid)).then((response) => {
         setCompleteUser(response.payload);
-        ; // Almacena la respuesta en completeUser
       });
     }
   }, [dispatch, user]);
-
-  console.log(completeUser)
 
   const handleLogout = async () => {
     try {
@@ -98,7 +93,7 @@ function Navbar() {
   };
 
   const handleSelect = () => {
-    navigate("/profile")
+    navigate("/my_profile")
     setIsMenuOpen(false);
     window.scrollTo({
       top: 0,
@@ -177,26 +172,26 @@ function Navbar() {
         <div className="flex-row items-center gap-3">
           <div
             onClick={handleProfileClick}
-            className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+            className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition self-center select-none"
           >
-            {completeUser ? (
+            {user ? (
               <>
-                {completeUser.photoURL ? (
+                {completeUser?.photoURL ? (
                   <img
-                    src={completeUser.photoURL}
-                    alt={completeUser.displayName || "user"}
+                    src={completeUser?.photoURL}
+                    alt={completeUser?.name || "user"}
                     className="rounded-full w-8 h-8"
                   />
                 ) : (
                   <img
                     src={userPlaceholder}
-                    alt={completeUser.displayName}
+                    alt={completeUser?.name}
                     className="rounded-full w-8 h-8"
                   />
                 )}
                 <div className="p-4 md:py-1 md:px-2 flex flex-row items-center gap-3 cursor-pointer">
                   <h1 className="text-sm md:text-base">
-                    Hi {completeUser.displayName || completeUser.email}
+                    Hi {completeUser?.name || completeUser?.email}
                   </h1>
                 </div>
               </>
@@ -204,11 +199,11 @@ function Navbar() {
               <LoginNav />
             )}
             <div className="hidden md:block cursor-pointer select-none">
-              {completeUser ? null : <RegisterNav />}
+              {user ? null : <RegisterNav />}
             </div>
           </div>
           {isMenuOpen && (
-            <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md">
+            <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md z-10">
               <div className="flex flex-col gap-2">
                 <button
                   to="/my_profile"

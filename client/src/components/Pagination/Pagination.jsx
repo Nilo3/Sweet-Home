@@ -42,7 +42,7 @@ const Pagination = ({
   };
 
   return (
-    <ol className="flex justify-center text-xl gap-1 font-normal">
+    <ol className="flex flex-wrap justify-center text-xl gap-1 font-normal">
       <li>
         <a
           id="prev"
