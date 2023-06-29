@@ -13,8 +13,11 @@ const MostValue = () => {
   const currentReviews = allReviews.slice(mostValuedFirst, mostValuedLast);
 
   useEffect(() => {
+    if (!allReviews) {
+      return
+    }
     dispatch(getReviews());
-  }, [dispatch]);
+  }, [allReviews, dispatch]);
 
 
   return (

@@ -5,9 +5,9 @@ import { MdOutlineReviews } from "react-icons/md";
 import { BiUserCircle } from "react-icons/bi";
 import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
-import { getUserByUid } from "../../Redux/actions/actions";
+import { getUserByUid, editReview } from "../../Redux/actions/actions"
 import { Link } from "react-router-dom";
-import Profile from "../Profile/Profile";
+// import Profile from "../Profile/Profile";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 
 const User = () => {
@@ -19,13 +19,16 @@ const User = () => {
   }, [dispatch, userUid]);
   const userData = useSelector((state) => state.user);
   const userOrders = userData?.userOrders || [];
-  const userReviews = userData?.userReviews || [];
 
   const [selectedSection, setSelectedSection] = useState("profile");
 
   const handleSection = (section) => {
     setSelectedSection(section);
   };
+
+  const [editingReviewId, setEditingReviewId] = useState(null);
+  const [editedReviewText, setEditedReviewText] = useState("");
+  const [editedRating, setEditedRating] = useState(0);
 
   const renderStars = (rating) => {
     const stars = [];
@@ -41,6 +44,29 @@ const User = () => {
     return stars;
   };
 
+  const startReviewEdit = (review) => {
+    setEditingReviewId(review._id);
+    setEditedReviewText(review.reviewText);
+    setEditedRating(review.rating);
+  };
+
+  const cancelReviewEdit = () => {
+    setEditingReviewId(null);
+    setEditedReviewText("");
+    setEditedRating(0);
+  };
+
+  const saveReviewChanges = async (reviewId) => {
+    const data = {
+      reviewText: editedReviewText,
+      rating: editedRating,
+    };
+    await dispatch(editReview(data, reviewId));
+    dispatch(getUserByUid(userUid));
+    setEditingReviewId(null);
+    setEditedReviewText("");
+    setEditedRating(0);
+  };
   return (
     <div className="flex">
       <aside
@@ -120,7 +146,7 @@ const User = () => {
 
       {selectedSection === "profile" && (
         <div className="pt-20 flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-          <Profile />
+          {/* <Profile /> */}
         </div>
       )}
 
@@ -216,31 +242,69 @@ const User = () => {
                       alt=""
                     />
                     <div className="flex w-full flex-col justify-between px-4 py-4">
-                      <div>
-                        <span className="font-semibold text-xl">
-                          {review.product.name}
-                        </span>
-                        <p className="text-sm">{review.reviewText}</p>
-                        <div className="flex mt-2">
-                          <div className="flex items-center">
-                            {[...Array(review.rating)].map((_, index) => (
-                              <FaStar key={index} className="text-yellow-500" />
-                            ))}
-                            {[...Array(5 - review.rating)].map((_, index) => (
-                              <FaRegStar
-                                key={index}
-                                className="text-yellow-500"
-                              />
-                            ))}
+                      {editingReviewId === review._id ? (
+                        <div>
+                          <span className="font-semibold text-xl">
+                            {review.product.name}
+                          </span>
+                          <textarea
+                            className="mt-2 p-2 border rounded-md resize-none"
+                            value={editedReviewText}
+                            onChange={(e) =>
+                              setEditedReviewText(e.target.value)
+                            }
+                          ></textarea>
+                          <div className="flex mt-2">
+                            <div className="flex items-center">
+                              {[...Array(editedRating)].map((_, index) => (
+                                <FaStar
+                                  key={index}
+                                  className="text-yellow-500"
+                                />
+                              ))}
+                              {[...Array(5 - editedRating)].map((_, index) => (
+                                <FaRegStar
+                                  key={index}
+                                  className="text-yellow-500"
+                                />
+                              ))}
+                            </div>
+                            <button
+                              className="ml-2 text-blue-500 hover:underline"
+                              onClick={() => saveReviewChanges(review._id)}
+                            >
+                              Save
+                            </button>
+                            <button
+                              className="ml-2 text-red-500 hover:underline"
+                              onClick={cancelReviewEdit}
+                            >
+                              Cancel
+                            </button>
                           </div>
-                          <button className="ml-2 text-blue-500 hover:underline">
-                            Edit
-                          </button>
-                          <button className="ml-2 text-red-500 hover:underline">
-                            Delete
-                          </button>
                         </div>
-                      </div>
+                      ) : (
+                        <div>
+                          <span className="font-semibold text-xl">
+                            {review.product.name}
+                          </span>
+                          <p className="text-sm">{review.reviewText}</p>
+                          <div className="flex mt-2">
+                            <div className="flex items-center">
+                              {renderStars(review.rating)}
+                            </div>
+                            <button
+                              className="ml-2 text-blue-500 hover:underline"
+                              onClick={() => startReviewEdit(review)}
+                            >
+                              Edit
+                            </button>
+                            <button className="ml-2 text-red-500 hover:underline">
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

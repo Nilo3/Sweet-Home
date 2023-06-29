@@ -21,8 +21,9 @@ import {
     POST_REVIEW,
     GET_ORDERS,
     GET_USER_BY_UID,
-    GET_ORDER_BY_ID
-} from "../action-types/action-types"
+    GET_ORDER_BY_ID,
+    PUT_REVIEW
+} from "../../Redux/action-types/action-types"
 
 const VITE_HOST = "http://localhost:3001"
 
@@ -286,6 +287,20 @@ export function getOrderById(id) {
             });
         } catch (error) {
             console.log(error);
+        }
+    };
+}
+
+export function editReview(data, id ) {
+    return async function (dispatch) {
+        try {
+            await axios.put(`${VITE_HOST}/api/review/${id}`, data);
+            return dispatch({
+                type: PUT_REVIEW,
+                payload: data,
+            });
+        } catch (error) {
+            console.log(error.message);
         }
     };
 }
