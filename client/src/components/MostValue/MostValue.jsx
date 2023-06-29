@@ -26,7 +26,7 @@ const MostValue = () => {
       <br />
       <h1 className="text-4xl font-bold text-center">Most Valued Products</h1>
       <br />
-      <div className="grid-container ml-4 flex justify-center">
+      <div className="grid-container ml-4 flex justify-center pb-8">
         {currentReviews.map((product) => (
           <MostValueCards
             key={product._id}
