@@ -5,7 +5,7 @@ export default async (req, res) => {
     try {
         const { reviewId } = req.params;
         const { userId } = req.headers;
-        const { rating } = req.body;
+        const { rating,  reviewText} = req.body;
 
         if (!rating || !reviewId) {
             return res.status(400).json({ message: "Missing data" });
@@ -19,7 +19,7 @@ export default async (req, res) => {
 
         const updatedReview = await Review.updateOne(
             { _id: reviewId },
-            { $set: { rating } },
+            { $set: { rating, reviewText} },
             { new: true }
         );
 

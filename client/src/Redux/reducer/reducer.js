@@ -19,8 +19,12 @@ import {
   POST_REVIEW,
   GET_ORDERS,
   GET_USER_BY_UID,
-  GET_ORDER_BY_ID
-} from "../action-types/action-types";
+  GET_ORDER_BY_ID,
+  PUT_REVIEW,
+  DELETE_REVIEW,
+  UPDATE_USER,
+  GET_USER_BY_EMAIL
+} from "../action-types/action-types.js";
 import { productAVG } from "../../utils/logic-ratings";
 
 const initialState = {
@@ -41,7 +45,7 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    
+
     //--//--//--//--//--//  Product actions  //--//--//--//--//--//
 
     case GET_PRODUCTS:
@@ -197,6 +201,19 @@ const reducer = (state = initialState, { type, payload }) => {
         reviews: [...state.reviews, payload]
       }
 
+    case PUT_REVIEW:
+      return {
+        ...state,
+        reviews: [...state.reviews, payload],
+      };
+      
+    case DELETE_REVIEW:
+      return {
+        ...state,
+        reviews: state.reviews.filter((review) => review._id !== payload),
+      };
+
+
     //--//--//--//--//--//  User actions  //--//--//--//--//--//
 
     case GET_USERS:
@@ -205,12 +222,23 @@ const reducer = (state = initialState, { type, payload }) => {
         users: payload,
       };
 
-
-
     case GET_USER_BY_UID:
       return {
         ...state,
         user: payload,
+      };
+
+    case GET_USER_BY_EMAIL:
+      return {
+        ...state,
+        user: payload
+      }
+
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: [...state.user, payload],
+
       };
 
     //--//--//--//--//--//  ORDER actions  //--//--//--//--//--//
@@ -224,12 +252,12 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         orders: [...state.orders, payload]
       }
-      case GET_ORDER_BY_ID:
-        return {
-          ...state,
-          order: payload,
-        };
-  
+    case GET_ORDER_BY_ID:
+      return {
+        ...state,
+        order: payload,
+      };
+
     //--//--//--//--//--//  Other actions  //--//--//--//--//--//
 
     case GET_CATEGORY:

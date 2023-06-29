@@ -14,8 +14,8 @@ export default async (req, res) => {
         model: Product,
       })
       .select("uid user products totalPrice isPaid paidAt isPaid");
-      
-    if (!orders) {
+
+    if (orders.length === 0) {
       return res.status(404).json({ message: "There are no orders" });
     }
 
