@@ -38,33 +38,41 @@ Once the server is running, you can access the API endpoints from the frontend a
 
 For detailed documentation on the API endpoints and their usage, please refer to the API Documentation.
 
-### Categories
-- GET /api/category: Get all property categories.
-- GET /api/category/:id Get a specific property category by ID.
-- POST /api/category: Create a new property category.
-- PUT /api/category/:id Update an existing property category by ID.
-### Orders
-- GET /api/order: Get all orders.
-- GET /api/order/:id Get a specific order by ID.
-- POST /api/order: Create a new order.
-- PUT /api/order/:id Update an existing order by ID.
-- DELETE /api/order/:id Delete an existing order by ID.
 ### Products
 - GET /api/product: Get all products.
 - GET /api/product/:id Get a specific product by ID.
 - POST /api/product: Create a new product.
 - PUT /api/product/:id Update an existing product by ID.
 - DELETE /api/product/:id Delete an existing product by ID.
+### Users
+- GET /api/users: Get all users.
+- GET /api/users/:id Get a specific user by ID.
+- POST /api/users: Create a new user.
+- PUT /api/users: Update an existing user.
+- DELETE /api/users/:id Delete an existing user by ID.
+### Orders
+- GET /api/order: Get all orders.
+- GET /api/order/:id Get a specific order by ID.
+- POST /api/order: Create a new order.
+- PUT /api/order/:id Update an existing order by ID.
+- DELETE /api/order/:id Delete an existing order by ID.
+### Cart
+- GET /api/cart: Get all cart.
+- GET /api/cart/:id Get a specific cart by ID.
+- POST /api/cart: Create a new cart.
+- PUT /api/cart/:id Update an existing cart by ID.
+- DELETE /api/cart/ Delete an existing cart by ID.
+### Categories
+- GET /api/category: Get all property categories.
+- GET /api/category/:id Get a specific property category by ID.
+- POST /api/category: Create a new property category.
+- PUT /api/category/:id Update an existing property category by ID.
 ### Reviews
 - GET /api/review: Get all reviews.
 - GET /api/review/:id Get a specific review by ID.
 - POST /api/review: Create a new review.
 - PUT /api/review/:id Update an existing review by ID.
-### Users
-- GET /api/users: Get all users.
-- GET /api/users/:id Get a specific user by ID.
-- POST /api/users: Create a new user.
-- DELETE /api/users/:id Delete an existing user by ID.
+- DELETE /api/review/ Delete an existing review by ID.
 
 
 ## Contributing

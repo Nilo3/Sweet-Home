@@ -12,12 +12,14 @@ import { removefromCart, addtoCart, removeOneFromCart, postOrder, getUserByUid }
 import { getTotalPrice, calculateTotal } from "../../utils/totalprice";
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-Logo.png";
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 
 import "./ShoppingCart.css"
 
 const Shopping = () => {
-  const allShoppingCart = useSelector((state) => state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name)));
+  const allShoppingCart = useSelector((state) =>
+    state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name))
+  );
   const dispatch = useDispatch();
   const[errors, setErrors] = useState({
     name:"",
@@ -31,7 +33,7 @@ const Shopping = () => {
   })
   const { user } = useAuth();
   const [userId, setUserId] = useState(null);
-  
+
   const subTotal = getTotalPrice(allShoppingCart);
   const shippingRate = 0;
   const total = calculateTotal(shippingRate, subTotal);
@@ -199,14 +201,6 @@ const Shopping = () => {
         }
         return counts;
       }, {});
-
-      emailjs.sendForm(
-        "service_ow4w0a4",
-        "template_3r112cn",
-        event.target,
-        "sj_J3uCnEGmKNh4pA"
-      );
-
       const order = {
         user: userId,
         products: Object.entries(productCounts).map(
@@ -216,6 +210,8 @@ const Shopping = () => {
           })
         ),
       };
+      //emailjs
+      //.sendForm("service_ndc6jsv", "template_snuctui", event.target, "_6alTseIIZ36HGhIC")
       dispatch(postOrder(order));
     }
   }

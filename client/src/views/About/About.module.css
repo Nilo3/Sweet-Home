@@ -96,3 +96,18 @@
 .backLink:hover {
   background-color: #ccc;
 }
+
+.aboutContainer {
+  min-height: 82.7vh; /* Establece la altura mínima del contenedor para abarcar el 100% de la ventana de visualización */
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.aboutContainer footer {
+  position: sticky; /* Fija el footer en la parte inferior de la pantalla */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
