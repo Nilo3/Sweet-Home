@@ -1,46 +1,9 @@
 import { FaWhatsapp } from 'react-icons/fa';
-// import logo from "../../assets/image/logo.svg"
 
 export default function Footer() {
   return (
     <footer className="bg-gray-900">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-        {/*<div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0">
-            <img className="h-14 mr-3 mt-2" src={logo} alt="sweet-homeLogo" />
-          </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
-            <div>
-              <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
-              <ul className="text-gray-600 dark:text-gray-400 font-medium">
-                <li className="mb-2">
-                  <a href="" className="hover:underline">Github</a>
-                </li>
-                <li className="mb-2">
-                  <a href="" className="hover:underline">Facebook</a>
-                </li>
-                <li className="mb-2">
-                  <a href="" className="hover:underline">Twitter</a>
-                </li>
-                <li>
-                  <a href="" className="hover:underline">Instagram</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-              <ul className="text-gray-600 dark:text-gray-400 font-medium">
-                <li className="mb-2">
-                  <a href="#" className="hover:underline">Privacy Policy</a>
-                </li>
-                <li>
-                  <a href="#" className="hover:underline">Terms &amp; Conditions</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>*/}
-        {/*<hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />*/}
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-300 sm:text-center dark:text-gray-400 mt-4">
             © 2023 <a href="" className="hover:underline">Sweet Home</a>. All Rights Reserved. No part of this may be reproduced or transmitted in any form without prior written permission from Sweet Home.
