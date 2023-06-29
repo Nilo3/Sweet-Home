@@ -89,6 +89,7 @@ const Profile = (props) => {
     }
     // Lógica para guardar los datos en el usuario
     navigate("/");
+    window.location.reload()
   };
   
 
