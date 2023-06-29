@@ -23,10 +23,12 @@ import {
     GET_USER_BY_UID,
     GET_ORDER_BY_ID,
     PUT_REVIEW,
-    DELETE_REVIEW
-} from "../../redux/action-types/action-types"
-const VITE_HOST = "http://localhost:3001"
-// const {VITE_HOST} = import.meta.env
+    DELETE_REVIEW,
+    UPDATE_USER,
+    GET_USER_BY_EMAIL
+} from "../../Redux/action-types/action-types"
+//const VITE_HOST = "http://localhost:3001"
+ const {VITE_HOST} = import.meta.env
 
 
 //>          |------------------------------------|          <\\
@@ -150,6 +152,20 @@ export function getUserByUid(uid) {
     }
 }
 
+export function getUserByEmail(email){
+    return async function (dispatch) {
+        try {
+            let response = await axios.get(`${VITE_HOST}/api/users/${email}`)
+            return dispatch({
+                type: GET_USER_BY_EMAIL,
+                payload: response.data,
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 export function postUser(payload) {
     return async function (dispatch) {
         try {
@@ -157,6 +173,20 @@ export function postUser(payload) {
             dispatch({
                 type: POST_USER,
                 payload: response.data,
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function updateUser(data, id) {
+    return async function (dispatch) {
+        try {
+            await axios.put(`${VITE_HOST}/api/users/${id}`, data)
+            return dispatch({
+                type: UPDATE_USER,
+                payload: data,
             })
         } catch (error) {
             console.log(error)

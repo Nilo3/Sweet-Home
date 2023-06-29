@@ -12,11 +12,29 @@ import LoginNav from "./Buttons/LoginNav";
 import RegisterNav from "./Buttons/RegisterNav";
 import Logo from "./Logo/Logo";
 import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import getUserByEmail from "../../../../api/src/controllers/user/getUserByEmail";
+import { getUserByUid } from "../../Redux/actions/actions";
 
 function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [completeUser, setCompleteUser] = useState({ photoURL: "" });
+  const dispatch = useDispatch()
+  
+  
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserByUid(user.uid)).then((response) => {
+        setCompleteUser(response.payload);
+        ; // Almacena la respuesta en completeUser
+      });
+    }
+  }, [dispatch, user]);
+
+  console.log(completeUser)
 
   const handleLogout = async () => {
     try {
@@ -27,6 +45,7 @@ function Navbar() {
     }
   };
 
+  
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -79,7 +98,7 @@ function Navbar() {
   };
 
   const handleSelect = () => {
-    navigate("/my_profile")
+    navigate("/profile")
     setIsMenuOpen(false);
     window.scrollTo({
       top: 0,
@@ -160,24 +179,24 @@ function Navbar() {
             onClick={handleProfileClick}
             className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition self-center select-none"
           >
-            {user ? (
+            {completeUser ? (
               <>
-                {user.photoURL ? (
+                {completeUser.photoURL ? (
                   <img
-                    src={user.photoURL}
-                    alt={user.displayName || "user"}
+                    src={completeUser.photoURL}
+                    alt={completeUser.displayName || "user"}
                     className="rounded-full w-8 h-8"
                   />
                 ) : (
                   <img
                     src={userPlaceholder}
-                    alt={user.displayName}
+                    alt={completeUser.displayName}
                     className="rounded-full w-8 h-8"
                   />
                 )}
                 <div className="p-4 md:py-1 md:px-2 flex flex-row items-center gap-3 cursor-pointer">
                   <h1 className="text-sm md:text-base">
-                    Hi {user.displayName || user.email}
+                    Hi {completeUser.displayName || completeUser.email}
                   </h1>
                 </div>
               </>
@@ -185,7 +204,7 @@ function Navbar() {
               <LoginNav />
             )}
             <div className="hidden md:block cursor-pointer select-none">
-              {user ? null : <RegisterNav />}
+              {completeUser ? null : <RegisterNav />}
             </div>
           </div>
           {isMenuOpen && (
