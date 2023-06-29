@@ -133,7 +133,7 @@ function Navbar() {
             <button onClick={handleHome}>
               <Logo className="order-first" />
             </button>
-            <div className="hidden md:flex md:flex-row md:items-center md:gap-3"> 
+            <div className="hidden md:flex md:flex-wrap md:items-center md:gap-3"> 
               <div onClick={handleShopNow}>
                 <ShopNowNav />
               </div>
@@ -231,7 +231,6 @@ function Navbar() {
               )}
             </div>
           </div>
-          {/*EN CASO DE DEJARLO CON LA MISMA FUNCIONALIDAD DEL DESPLIEGUE DEL PERFIL, ELIMINAR. ATT: NACHO*/}
           <div className="md:hidden flex items-center">
             <CgMenuRound
               className="text-3xl cursor-pointer"
