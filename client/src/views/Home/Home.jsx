@@ -10,7 +10,7 @@ function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <img
-        className="h-auto max-w-full rounded-lg w-full"
+        className="h-auto max-w-full rounded-b-lg w-full"
         src={homeimage}
         alt="home_page"
       />

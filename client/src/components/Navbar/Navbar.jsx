@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useAuth } from "../../context/authContex";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ShopNowNav from "./Buttons/ShopNowNav";
 import AboutNav from "./Buttons/AboutNav";
-import RecomendationsNav from "./Buttons/RecommendationsNav";
+import RecommendationsNav from "./Buttons/RecommendationsNav";
 import Inspiration from "./Buttons/Inspiration";
 import TopWeekNav from "./Buttons/TopWeekNav";
 import MostValuedNav from "./Buttons/MostValueNav";
@@ -11,13 +11,28 @@ import ShoppingCart from "./Buttons/ShoppingCart";
 import LoginNav from "./Buttons/LoginNav";
 import RegisterNav from "./Buttons/RegisterNav";
 import Logo from "./Logo/Logo";
-import { CgMenuRound } from "react-icons/cg";
 import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import getUserByEmail from "../../../../api/src/controllers/user/getUserByEmail";
+import { getUserByUid } from "../../Redux/actions/actions";
 
 function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [completeUser, setCompleteUser] = useState({ photoURL: "" });
+  const dispatch = useDispatch()
+  
+  
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserByUid(user.uid)).then((response) => {
+        setCompleteUser(response.payload);
+        ; // Almacena la respuesta en completeUser
+      });
+    }
+  }, [dispatch, user]);
 
   const handleLogout = async () => {
     try {
@@ -27,7 +42,7 @@ function Navbar() {
       console.log(error);
     }
   };
-
+  
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -78,7 +93,20 @@ function Navbar() {
       scrollToSection("mostValuedSection");
     }
   };
+
+
+  // Esto esta fallando, esta mal que redirijan todos al mismo lugar
   const handleSelect = () => {
+    navigate("/my_profile")
+    setIsMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleProfile = () => {
+    navigate("/profile")
     setIsMenuOpen(false);
     window.scrollTo({
       top: 0,
@@ -141,7 +169,7 @@ function Navbar() {
                 <AboutNav />
               </div>
               <div onClick={handleRecommendationsClick}>
-                <RecomendationsNav />
+                <RecommendationsNav />
               </div>
               <button onClick={handleInspirationClick}>
                 <Inspiration />
@@ -163,22 +191,22 @@ function Navbar() {
               >
                 {user ? (
                   <>
-                    {user.photoURL ? (
+                    {completeUser.photoURL ? (
                       <img
-                        src={user.photoURL}
-                        alt="User Profile"
+                        src={completeUser.photoURL}
+                        alt={completeUser.displayName || "user"}
                         className="rounded-full w-8 h-8"
                       />
                     ) : (
                       <img
                         src={userPlaceholder}
-                        alt={user.displayName}
+                        alt={completeUser.displayName}
                         className="rounded-full w-8 h-8"
                       />
                     )}
                     <div className="p-4 md:py-1 md:px-2 flex flex-row items-center gap-3 cursor-pointer">
                       <h1 className="text-sm md:text-base">
-                        Hi {user.displayName || user.email}
+                        Hi {completeUser.displayName || completeUser.email}
                       </h1>
                     </div>
                   </>
@@ -190,36 +218,39 @@ function Navbar() {
                 </div>
               </div>
               {isMenuOpen && (
-                <div className="absolute bg-white py-2 mt-1 w-48 right-0 shadow-md">
+                <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md">
                   <div className="flex flex-col gap-2">
-                    <Link
-                      to="/purchases"
-                      onClick={handleSelect}
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      Purchases
-                    </Link>
-                    <Link
-                      to="/reviews"
-                      onClick={handleSelect}
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      Reviews
-                    </Link>
-                    <Link
-                      to="/favorites"
-                      onClick={handleSelect}
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      Favorites
-                    </Link>
-                    <Link
+                    <button
                       to="/my_profile"
                       onClick={handleSelect}
-                      className="block px-4 py-2 hover:bg-gray-100"
+                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                     >
                       My Profile
-                    </Link>
+                    </button>
+                    <button
+                      to="/my_profile"
+                      onClick={handleSelect}
+                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                    >
+                      Pucharses
+                    </button>
+                    <button
+                      to="/my_profile"
+                      onClick={handleSelect}
+                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                    >
+                      Reviews
+                    </button>
+                    <button
+                      to="/my_profile"
+                      onClick={handleSelect}
+                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                    >
+                      Favorites
+                    </button>
+                    <button className="bloc text-zinc-200" disabled={true}>
+                      ───────────────
+                    </button>
                     <button
                       className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       onClick={handleLogout}
@@ -231,6 +262,7 @@ function Navbar() {
               )}
             </div>
           </div>
+          {/*EN CASO DE DEJARLO CON LA MISMA FUNCIONALIDAD DEL DESPLIEGUE DEL PERFIL, ELIMINAR. ATT: NACHO*/}
           <div className="md:hidden flex items-center">
             <CgMenuRound
               className="text-3xl cursor-pointer"

@@ -7,6 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { Alert } from "../Login/Alert.jsx";
 import emailjs from "emailjs-com"
+var messi = "https://media.radio10.com.ar/p/1eb8ef09699afe339031aa3c6b6566ba/adjuntos/220/imagenes/040/367/0040367760/730x0/smart/messi-campeon-del-mundojpg.jpg"
 
 export function Register() {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ export function Register() {
         password: response.user.accessToken,
         confirmPassword: response.user.accessToken,
         uid: response.user.uid,
-        photoURL: response.user.photoURL,
+        photoURL: response.user.photoURL || messi,
       };
       dispatch(postUser(reUser));
 

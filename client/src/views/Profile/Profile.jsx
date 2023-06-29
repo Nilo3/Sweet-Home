@@ -5,6 +5,11 @@ import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
 import { useNavigate } from "react-router-dom";
 import { Container, FormGroup } from "reactstrap";
 import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getUserByUid, updateUser } from "../../Redux/actions/actions";
+
+
 
 const Profile = (props) => {
   const { user } = useAuth();
@@ -14,6 +19,20 @@ const Profile = (props) => {
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const [completeUser, setCompleteUser] = useState({});
+  const [cloudinaryURL, setCloudinaryURL] = useState("");
+
+
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserByUid(user.uid)).then((response) => {
+        setCompleteUser(response.payload); // Almacena la respuesta en completeUser
+      });
+    }
+  }, [dispatch, user]);
+
 
   const navigate = useNavigate();
 
@@ -51,7 +70,17 @@ const Profile = (props) => {
     );
     const result = await res.json();
     setImage(result.secure_url);
+    const hardcodeJson = {"photoURL": result.secure_url}
+    dispatch(updateUser(hardcodeJson, completeUser._id ))
+    setCloudinaryURL(result.secure_url);
+
+    // Logica de put
+
+
+
+
     setLoading(false);
+
   };
 
   const handleSave = async () => {
@@ -59,8 +88,11 @@ const Profile = (props) => {
       await uploadImage(selectedImage);
     }
     // Lógica para guardar los datos en el usuario
+    
     navigate("/");
+    window.location.reload()
   };
+  
 
   return (
     <div className={style.all}>
@@ -132,18 +164,17 @@ const Profile = (props) => {
                     </>
                   ) : (
                     <>
-                      {user && user.photoURL ? (
+                      {completeUser && completeUser.photoURL ? (
                         <CloudinaryContext cloudName="dt8snufoj">
                           <Image
-                            publicId={user.photoURL}
-                            className="rounded-full w-30 h-30 max-w-full"
+                            publicId={completeUser.photoURL}
+                            className="rounded-full w-20 h-20 max-w-full"
                           >
                             <Transformation width="300" crop="scale" />
                           </Image>
                         </CloudinaryContext>
                       ) : (
                         <Image
-                          publicId={userPlaceholder}
                           className="rounded-full w-20 h-20 max-w-full"
                         >
                           <Transformation width="300" crop="scale" />
@@ -160,23 +191,11 @@ const Profile = (props) => {
                   {loading ? (
                     <h3>Loading image...</h3>
                   ) : (
-                    <Image publicId={image} className="w-300">
-                      <Transformation width="300" crop="scale" />
-                    </Image>
+                    <h3>Upload an image</h3>
                   )}
                 </div>
               </div>
-              <div className="flex justify-end py-4 sm:hidden"></div>
             </div>
-          </div>
-          <div className="text-center mt-6">
-            <button
-              type="button"
-              className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
-              onClick={backToHome}
-            >
-              Back to Home
-            </button>
           </div>
         </FormGroup>
       </Container>

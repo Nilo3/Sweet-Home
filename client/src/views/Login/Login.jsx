@@ -29,19 +29,13 @@ export function Login() {
       navigate("/");
     } catch (error) {
       if (error.code === "auth/user-not-found") setError("User not Found");
-
+      if (error.code === "auth/popup-closed-by-user") setError("The popup has been closed by the user before finalizing the operation");
       if (error.code === "auth/weak-password")
         setError("Invalid password. Please enter your password again");
-      toast.error("Invalid password. Please enter your password again");
-
       if (error.code === "auth/account-exists-with-different-credential")
-        setError(
-          "Sorry, your account already exists with a different credential (GitHub or Google). Try again"
-        );
+        setError("Sorry, your account already exists with a different credential (GitHub or Google). Try again");
       if (!user.email) setError("Please enter your email");
-
       if (!user.password) setError("Please enter your password");
-
       setTimeout(() => {
         setError("");
       }, 5000);
