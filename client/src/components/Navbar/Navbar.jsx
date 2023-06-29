@@ -179,7 +179,7 @@ function Navbar() {
             onClick={handleProfileClick}
             className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
           >
-            {completeUser ? (
+            {user ? (
               <>
                 {completeUser.photoURL ? (
                   <img
@@ -204,7 +204,7 @@ function Navbar() {
               <LoginNav />
             )}
             <div className="hidden md:block cursor-pointer select-none">
-              {completeUser ? null : <RegisterNav />}
+              {user ? null : <RegisterNav />}
             </div>
           </div>
           {isMenuOpen && (
