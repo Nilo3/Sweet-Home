@@ -94,7 +94,18 @@ function Navbar() {
     }
   };
 
+
+  // Esto esta fallando, esta mal que redirijan todos al mismo lugar
   const handleSelect = () => {
+    navigate("/my_profile")
+    setIsMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleProfile = () => {
     navigate("/profile")
     setIsMenuOpen(false);
     window.scrollTo({
