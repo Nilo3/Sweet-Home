@@ -2,7 +2,7 @@ export default function TopWeek() {
   return (
     <>
       <br />
-      <div className="w-screen">
+      <div className="w-screen px-12">
         <div className="flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mx-auto">
           <div className="flex flex-col justify-between p-4 leading-normal w-full md:w-1/2">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

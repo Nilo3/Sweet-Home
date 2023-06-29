@@ -4,7 +4,7 @@ const Recommendations = () => {
   return (
     <>
       <br />
-      <div className="w-screen">
+      <div className="w-screen px-12">
         <div className="flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mx-auto">
           <img
             className="object-cover w-full md:w-1/2 h-80 md:h-auto md:max-h-100 rounded-lg md:rounded-l-lg"
