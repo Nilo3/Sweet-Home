@@ -3,7 +3,7 @@ import User from "../../models/schemas/user.js";
 import Product from "../../models/schemas/product.js";
 
 export default async (req, res) => {
-  const { rating, createdBy, product, reviewText } = req.body;
+  const { rating, reviewText, createdBy, product } = req.body;
   console.log(rating, createdBy, product);
   try {
     if (!rating || !createdBy || !product) {

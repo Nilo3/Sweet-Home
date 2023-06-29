@@ -1,8 +1,9 @@
-import { addtoCart } from "../../redux/actions/actions.js";
+import { addtoCart, getUserByUid, postShoppingCart } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useAuth } from "../../context/authContex.jsx";
 
 const Cards = ({ _id, name, image, price, category }) => {
   const dispatch = useDispatch();
@@ -15,10 +16,61 @@ const Cards = ({ _id, name, image, price, category }) => {
     setInCart(isProductInCart);
   }, [isProductInCart]);
 
-  const handleShoppingCart = () => {
+  // const handleShoppingCart = () => {
+  //   setInCart(true);
+  //   dispatch(addtoCart({ _id, name, image, price }));
+  // };
+
+  const { user } = useAuth();
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserByUid(user.uid));
+    }
+  }, [dispatch, user]);
+
+  const userUid = user?.uid || null;
+
+  useEffect(() => {
+    if (userUid) {
+      setUserId(userUid);
+    }
+  }, [userUid]);
+
+const handleSubmit = () => {
     setInCart(true);
     dispatch(addtoCart({ _id, name, image, price }));
+    if (userId) {
+      const updatedCart = {
+        user: userId,
+        products: [
+          {
+            product: _id,
+            quantity: 1,
+          },
+        ],
+      };
+      dispatch(postShoppingCart(updatedCart));
+    } else {
+      const newCart = {
+        user: user.uid,
+        products: [
+          {
+            product: _id,
+            quantity: 1,
+          },
+        ],
+      };
+      dispatch(postShoppingCart(newCart));
+    }
   };
+
+  // function handleClick(event) {
+  //   handleSubmit(event);
+  //   handleShoppingCart();
+  // }
+
+
   return (
     <div>
       <div className="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -48,7 +100,7 @@ const Cards = ({ _id, name, image, price, category }) => {
               ${price}
             </span>
             <button
-              onClick={handleShoppingCart}
+              onClick={handleSubmit}
               href="#"
               className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer select-none text-center"
             >

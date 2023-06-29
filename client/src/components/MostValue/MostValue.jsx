@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getReviews } from "../../redux/actions/actions.js";
+import { getReviews } from "../../Redux/actions/actions.js";
 import MostValueCards from "./mostValueCards";
 import "./MostValue.css";
 
@@ -13,8 +13,12 @@ const MostValue = () => {
   const currentReviews = allReviews.slice(mostValuedFirst, mostValuedLast);
 
   useEffect(() => {
+    if (!allReviews) {
+      return
+    }
     dispatch(getReviews());
   }, [dispatch]);
+
 
   return (
     <div>

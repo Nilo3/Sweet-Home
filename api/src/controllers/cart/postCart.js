@@ -4,50 +4,49 @@ import User from "../../models/schemas/user.js";
 
 export default async (req, res) => {
   try {
-    const { products, user } = req.body;
-    const productId = products[0].product;
+    const { user, products } = req.body;
+    const { product, quantity } = products[0];
 
-    const product = await Product.findById(productId);
-    const user2 = await User.findOne({ _id : user});
-    const cart = await Cart.findOne({ user: user }); 
-   
+    const productObj = await Product.findById(product);
+    const userObj = await User.findOne({ uid: user });
+    const cart = await Cart.findOne({ user: userObj });
 
-    if (!product) {
+    if (!productObj) {
       return res.status(400).json({ message: "Product not found" });
     }
 
-    if (!user2) {
+    if (!userObj) {
       return res.status(400).json({ message: "User not found" });
     }
 
     if (!cart) {
-      const quantityToAdd = parseInt(products[0].quantity);
+      const quantityToAdd = parseInt(quantity);
 
       if (isNaN(quantityToAdd) || quantityToAdd < 1) {
         return res.status(400).json({ message: "Invalid quantity provided" });
       }
 
       const newCart = new Cart({
-        user: user2._id,
-        products: [{ product: product._id, quantity: quantityToAdd }],
-        totalAmount: product.price * quantityToAdd,
+        user: userObj,
+        products: [{ product: productObj._id, quantity: quantityToAdd }],
+        totalAmount: productObj.price * quantityToAdd,
       });
 
-      user2.cart = [...user2.cart, newCart];
-      await user2.save()
-      
-      product.inCart = true;
+      userObj.cart = [...userObj.cart, newCart];
+      await userObj.save();
+
+      productObj.inCart = true;
       await newCart.save();
 
       return res.json({ message: "Product added to cart", cart: newCart });
     }
 
     const productInCartIndex = cart.products.findIndex(
-      (item) => item.product.toString() === productId
+      (item) => item.product.toString() === product
     );
 
     if (productInCartIndex === -1) {
-      const quantityToAdd = parseInt(products[0].quantity);
+      const quantityToAdd = parseInt(quantity);
 
       if (isNaN(quantityToAdd) || quantityToAdd < 1) {
         return res.status(400).json({ message: "Invalid quantity provided" });
@@ -57,10 +56,10 @@ export default async (req, res) => {
         return res.status(400).json({ message: "Invalid total amount in cart" });
       }
 
-      cart.products.push({ product: productId, quantity: quantityToAdd });
-      cart.totalAmount += product.price * quantityToAdd;
+      cart.products.push({ product: productObj._id, quantity: quantityToAdd });
+      cart.totalAmount += productObj.price * quantityToAdd;
     } else {
-      const quantityToAdd = parseInt(products[0].quantity);
+      const quantityToAdd = parseInt(quantity);
 
       if (isNaN(quantityToAdd) || quantityToAdd < 1) {
         return res.status(400).json({ message: "Invalid quantity provided" });
@@ -70,17 +69,18 @@ export default async (req, res) => {
         return res.status(400).json({ message: "Invalid total amount in cart" });
       }
 
-      user2.cart = [...user2.cart, cart._id];
-      await user2.save()
+      userObj.cart = [...userObj.cart, cart._id];
+      await userObj.save();
+
       const selectedProduct = cart.products[productInCartIndex];
       selectedProduct.quantity += quantityToAdd;
-      cart.totalAmount += product.price * quantityToAdd;
+      cart.totalAmount += productObj.price * quantityToAdd;
     }
 
     await cart.save();
 
-    product.inCart = true;
-    await product.save();
+    productObj.inCart = true;
+    await productObj.save();
 
     return res.json({ message: "Product added to cart", cart });
   } catch (error) {

@@ -8,7 +8,6 @@ import {
   signInWithPopup,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import axios from "axios";
 
 import { auth } from "../views/Login/Auth/FireBase";
 import PropTypes from "prop-types";
@@ -31,14 +30,13 @@ export function AuthProvider({ children }) {
 
   const singup = async (email, password) => {
     const credential = await createUserWithEmailAndPassword(auth, email, password);
-    const userEmail = credential.user.email;
-    sendUserDataToBackend({ email: userEmail, uid: credential.user.uid });
     return credential;
   };
 
   const login = async (email, password) => {
     const credential = await signInWithEmailAndPassword(auth, email, password);
-    sendUserDataToBackend({ email: credential.user.email });
+    return credential;
+
   };
 
   const loginWithGoogle = async () => {
@@ -65,24 +63,6 @@ export function AuthProvider({ children }) {
 
     return () => unsubscribe();
   }, []);
-
-  const sendUserDataToBackend = (userData) => {
-    if (userData) {
-      axios
-        .post("http://localhost:3001/api/users", {
-          name: userData.name,
-          email: userData.email,
-          password: userData.password,
-          uid: userData.uid,
-        })
-        .then(() => {
-          console.log("User data sent to Backend");
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-    }
-  };
 
   return (
     <authContext.Provider

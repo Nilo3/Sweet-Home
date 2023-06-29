@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { generateToken } from "../../utils/jwt.js";
 
 export default async (req, res) => {
-  const { name, email, password, isAdmin, uid, accessToken, cart, bought, favorites, userReviews, userOrders } = req.body;
+  const { name, uid, photoURL, email, password, isAdmin, isDelete, accessToken, cart, bought, favorites, userReviews, userOrders } = req.body;
   try {
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Missing data" });
@@ -17,10 +17,12 @@ export default async (req, res) => {
     const newUser = await User.create({
       uid,
       name,
+      photoURL,
       email,
       password: hashedPassword,
       isAdmin,
       accessToken: generateToken({ name: name, email: email }),
+      isDelete
     });
 
     return res.json(newUser);

@@ -1,31 +1,70 @@
 import "./MostValue.css";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { addtoCart } from "../../redux/actions/actions.js";
+import { addtoCart, postShoppingCart, getUserByUid } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "../../context/authContex";
 import PropTypes from "prop-types";
 
 const MostValueCards = ({ _id, name, image, price, rating }) => {
   const dispatch = useDispatch();
-  const [, setInCart] = useState(false);
 
+  const [, setInCart] = useState(false);
   const allShoppingCart = useSelector((state) => state.shoppingCart);
   const isProductInCart = allShoppingCart.some((product) => product.id === _id);
-
   useEffect(() => {
     setInCart(isProductInCart);
   }, [isProductInCart]);
 
+  const { user } = useAuth();
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserByUid(user.uid));
+    }
+  }, [dispatch, user]);
+
+  const userUid = user?.uid || null;
+  useEffect(() => {
+    if (userUid) {
+      setUserId(userUid);
+    }
+  }, [userUid]);
+
   const handleShoppingCart = () => {
     setInCart(true);
     dispatch(addtoCart({ _id, name, image, price }));
+    if (userId) {
+      const updatedCart = {
+        user: userId,
+        products: [
+          {
+            product: _id,
+            quantity: 1,
+          },
+        ],
+      };
+      dispatch(postShoppingCart(updatedCart));
+    } else {
+      const newCart = {
+        user: user.uid,
+        products: [
+          {
+            product: _id,
+            quantity: 1,
+          },
+        ],
+      };
+      dispatch(postShoppingCart(newCart));
+    }
   };
 
   const renderRatingStars = () => {
     const maxRating = 5;
     const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
+    const hasHalfStar = rating % 1 >= 0.5;
     const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
 
     const stars = [];

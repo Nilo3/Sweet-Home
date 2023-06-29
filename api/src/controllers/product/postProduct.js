@@ -3,7 +3,7 @@ import Category from "../../models/schemas/category.js";
 import Review from "../../models/schemas/reviews.js";
 
 export default async (req, res) => {
-  const { name, price, image, description, stock, category, review } = req.body;
+  const { name, price, image, description, stock, inCart, category, review, isDelete } = req.body;
 
   if (!name || !price || !image || !stock || !category) {
     return res.status(400).json({ message: "There's missing data" });
@@ -28,8 +28,10 @@ export default async (req, res) => {
       image,
       description,
       stock: Number(stock),
+      inCart,
       category: categories.map((category) => category._id),
       review: reviews.map((review) => review._id),
+      isDelete,
     });
     return res.json(newProduct);
   } catch (error) {

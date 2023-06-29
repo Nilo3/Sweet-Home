@@ -6,17 +6,21 @@ export default async (req, res) => {
     const orders = await Order.find({})
       .populate({
         path: "user",
-        select: "_id",
+        select: "_id uid",
       })
       .populate({
-        path: "product",
+        path: "products.product",
         select: "_id price",
         model: Product,
       })
-      .select("user product totalPrice isPaid padAt");
-      
-    res.status(200).json(orders);
+      .select("uid user products totalPrice isPaid paidAt isPaid");
+
+    if (orders.length === 0) {
+      return res.status(404).json({ message: "There are no orders" });
+    }
+
+    return res.status(200).json(orders);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
