@@ -21,8 +21,10 @@ import {
   GET_USER_BY_UID,
   GET_ORDER_BY_ID,
   PUT_REVIEW,
-  DELETE_REVIEW
-} from "../../Redux/action-types/action-types";
+  DELETE_REVIEW,
+  UPDATE_USER,
+  GET_USER_BY_EMAIL
+} from "../action-types/action-types.js";
 import { productAVG } from "../../utils/logic-ratings";
 
 const initialState = {
@@ -224,6 +226,19 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         user: payload,
+      };
+
+    case GET_USER_BY_EMAIL:
+      return {
+        ...state,
+        user: payload
+      }
+
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: [...state.user, payload],
+
       };
 
     //--//--//--//--//--//  ORDER actions  //--//--//--//--//--//
