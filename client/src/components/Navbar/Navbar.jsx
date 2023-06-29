@@ -97,7 +97,18 @@ function Navbar() {
     }
   };
 
+
+  // Esto esta fallando, esta mal que redirijan todos al mismo lugar
   const handleSelect = () => {
+    navigate("/my_profile")
+    setIsMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleProfile = () => {
     navigate("/profile")
     setIsMenuOpen(false);
     window.scrollTo({
@@ -179,7 +190,7 @@ function Navbar() {
             onClick={handleProfileClick}
             className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
           >
-            {completeUser ? (
+            {user ? (
               <>
                 {completeUser.photoURL ? (
                   <img
@@ -204,7 +215,7 @@ function Navbar() {
               <LoginNav />
             )}
             <div className="hidden md:block cursor-pointer select-none">
-              {completeUser ? null : <RegisterNav />}
+              {user ? null : <RegisterNav />}
             </div>
           </div>
           {isMenuOpen && (
@@ -212,7 +223,7 @@ function Navbar() {
               <div className="flex flex-col gap-2">
                 <button
                   to="/my_profile"
-                  onClick={handleSelect}
+                  onClick={handleProfile}
                   className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                 >
                   My Profile
