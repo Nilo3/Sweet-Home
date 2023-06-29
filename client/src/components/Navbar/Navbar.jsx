@@ -97,7 +97,18 @@ function Navbar() {
     }
   };
 
+
+  // Esto esta fallando, esta mal que redirijan todos al mismo lugar
   const handleSelect = () => {
+    navigate("/my_profile")
+    setIsMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleProfile = () => {
     navigate("/profile")
     setIsMenuOpen(false);
     window.scrollTo({
@@ -212,7 +223,7 @@ function Navbar() {
               <div className="flex flex-col gap-2">
                 <button
                   to="/my_profile"
-                  onClick={handleSelect}
+                  onClick={handleProfile}
                   className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                 >
                   My Profile
