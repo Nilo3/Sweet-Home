@@ -64,7 +64,7 @@ const Products = () => {
         </button>
 
         <div className="flex flex-wrap cursor-pointer select-none justify-center h-16 items-center">
-          <div className="grid text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-2 mr-4 ml-2 grid-cols-3">
+          <div className="grid text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-1 py-0 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 grid-cols-3">
             <select
               className="ordAndFil1"
               onChange={(event) => handleOrderName(event)}
