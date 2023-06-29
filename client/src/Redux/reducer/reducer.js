@@ -20,7 +20,8 @@ import {
   GET_ORDERS,
   GET_USER_BY_UID,
   GET_ORDER_BY_ID,
-  PUT_REVIEW
+  PUT_REVIEW,
+  DELETE_REVIEW
 } from "../../Redux/action-types/action-types";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -203,6 +204,13 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         reviews: [...state.reviews, payload],
       };
+      
+    case DELETE_REVIEW:
+      return {
+        ...state,
+        reviews: state.reviews.filter((review) => review._id !== payload),
+      };
+
 
     //--//--//--//--//--//  User actions  //--//--//--//--//--//
 

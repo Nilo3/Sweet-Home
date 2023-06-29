@@ -5,10 +5,11 @@ import { MdOutlineReviews } from "react-icons/md";
 import { BiUserCircle } from "react-icons/bi";
 import { useAuth } from "../../context/authContex";
 import { useEffect } from "react";
-import { getUserByUid, editReview } from "../../Redux/actions/actions"
+import { getUserByUid, editReview, deleteReview } from "../../Redux/actions/actions"
 import { Link } from "react-router-dom";
 // import Profile from "../Profile/Profile";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -66,7 +67,15 @@ const User = () => {
     setEditingReviewId(null);
     setEditedReviewText("");
     setEditedRating(0);
+    toast.success("Your changes have been saved")
   };
+
+  const handleDeleteReview = async (reviewId) => {
+    await dispatch(deleteReview(reviewId));
+    dispatch(getUserByUid(userUid));
+    toast.success("Your review has been removed")
+  };
+  
   return (
     <div className="flex">
       <aside
@@ -285,9 +294,9 @@ const User = () => {
                         </div>
                       ) : (
                         <div>
-                          <span className="font-semibold text-xl">
+                          <Link to={`/products/${review.product._id}`}  className="font-semibold text-xl">
                             {review.product.name}
-                          </span>
+                          </Link>
                           <p className="text-sm">{review.reviewText}</p>
                           <div className="flex mt-2">
                             <div className="flex items-center">
@@ -299,7 +308,7 @@ const User = () => {
                             >
                               Edit
                             </button>
-                            <button className="ml-2 text-red-500 hover:underline">
+                            <button className="ml-2 text-red-500 hover:underline" onClick={() => handleDeleteReview(review._id)}>
                               Delete
                             </button>
                           </div>
@@ -313,8 +322,6 @@ const User = () => {
           </div>
         </div>
       )}
-
-      {/* Other sections */}
     </div>
   );
 };

@@ -9,7 +9,7 @@ export const GET_PRODUCTS = "GET_PRODUCTS"
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL"
 export const POST_PRODUCT = "POST_PRODUCT"
 export const UPLOAD_PRODUCT = "UPLOAD_PRODUCT"
-export const DELETE_PRODUCT= "DELETE_PRODUCT"
+export const DELETE_PRODUCT = "DELETE_PRODUCT"
 export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS'
 
 //? User Actions
@@ -28,7 +28,10 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY"
 export const FILTER_BY_NAME = "FILTER_BY_NAME"
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE"
 
-//? Other Actions
+//? Review Actions
 export const POST_REVIEW = "POST_REVIEW"
 export const PUT_REVIEW = "PUT_REVIEW"
+export const DELETE_REVIEW = "DELETE_REVIEW"
+
+//? Other Actions
 export const GET_CATEGORY = "GET_CATEGORY"

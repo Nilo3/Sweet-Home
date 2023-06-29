@@ -17,7 +17,7 @@ const MostValue = () => {
       return
     }
     dispatch(getReviews());
-  }, [allReviews, dispatch]);
+  }, [dispatch]);
 
 
   return (
