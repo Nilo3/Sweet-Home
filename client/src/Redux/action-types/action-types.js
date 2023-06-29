@@ -16,6 +16,8 @@ export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS'
 export const GET_USERS = "GET_USERS"
 export const GET_USER_BY_UID = "GET_USER_BY_UID"
 export const POST_USER = "POST_USER"
+export const UPDATE_USER = "UPDATE_USER"
+export const GET_USER_BY_EMAIL = "GET_USER_BY_EMAIL"
 
 //? Order Actions
 export const GET_ORDERS = "GET_ORDERS"
