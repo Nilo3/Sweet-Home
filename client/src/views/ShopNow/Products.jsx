@@ -69,7 +69,7 @@ const Products = () => {
               className="ordAndFil1"
               onChange={(event) => handleOrderName(event)}
             >
-              <option>Order by Name</option>
+              <option>Name</option>
               <option value="asc">A - Z</option>
               <option value="desc">Z - A</option>
             </select>
