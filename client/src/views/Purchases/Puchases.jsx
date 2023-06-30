@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContex";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUserByUid } from "../../Redux/actions/actions";
 import { Link } from "react-router-dom";
 
@@ -13,6 +13,8 @@ const Puchases = () => {
   }, [dispatch, userUid]);
   const userData = useSelector((state) => state.user);
   const userOrders = userData?.userOrders || [];
+  const [reviewNumber, setReviewNumber] = useState(0)
+  const [reviewText, setReviewText] = useState("")
 
   return (
     <div className="pt-8 flex flex-col items-center justify-center  bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
@@ -56,12 +58,27 @@ const Puchases = () => {
                       <p className="text-xs">Quantity: {product.quantity}</p>
                     </div>
                     <div className="mt-3">
-                      <Link
-                        to={`/products/${product.product._id}`}
-                        className="px-4 py-2 text-white bg-black rounded-lg inline-block"
-                      >
-                        View Product
-                      </Link>
+                     <form>
+                      <input type="radio"
+                      name="1"
+                      placeholder="1" />
+                      <input type="radio"
+                      name="2"
+                      placeholder="2" />
+                      <input type="radio"
+                      name="3"
+                      placeholder="3" />
+                      <input type="radio"
+                      name="4"
+                      placeholder="4" />
+                      <input type="radio"
+                      name="5"
+                      placeholder="5" />
+                      <input type="text" 
+                      name="reviewtext"
+                      className="w-full ml-3 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                      placeholder="Insert your review"/>
+                     </form>
                     </div>
                   </div>
                 </div>
