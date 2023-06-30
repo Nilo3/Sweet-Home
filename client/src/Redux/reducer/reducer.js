@@ -35,7 +35,7 @@ const initialState = {
   category: [],
   users: [],
   user: [],
-  shoppingCart: [],
+  shoppingCart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
   loading: false,
   error: null,
   newCart: [],
@@ -102,11 +102,13 @@ const reducer = (state = initialState, { type, payload }) => {
     //--//--//--//--//--// Cart actions  //--//--//--//--//--//
 
     case ADD_TO_CART:
+      const updatedCart = [...state.shoppingCart, payload];
+      window.localStorage.setItem('cart', JSON.stringify(updatedCart));
       return {
         ...state,
-        shoppingCart: [...state.shoppingCart, payload],
+        shoppingCart: updatedCart,
       };
-
+    
     case DELETE_FROM_CART:
       return {
         ...state,
