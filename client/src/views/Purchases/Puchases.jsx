@@ -3,6 +3,7 @@ import { useAuth } from "../../context/authContex";
 import { useEffect, useState } from "react";
 import { getUserByUid } from "../../Redux/actions/actions";
 import { Link } from "react-router-dom";
+import Stars from "../../components/Stars/Stars";
 
 const Puchases = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,23 @@ const Puchases = () => {
   const userOrders = userData?.userOrders || [];
   const [reviewNumber, setReviewNumber] = useState(0)
   const [reviewText, setReviewText] = useState("")
+
+
+  const handleText = (e) => {
+    setReviewText(e.target.value)
+  }
+
+  const handleReview = () => {
+    const reviewProduct = {
+      
+    }
+  }
+console.log(userOrders.product);
+  /*console.log("este es el id del usuario", userData._id);
+  console.log("este es review number desde el purchase", reviewNumber);
+  console.log("este es el review text", reviewText);
+  */
+
 
   return (
     <div className="pt-8 flex flex-col items-center justify-center  bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
@@ -59,25 +77,18 @@ const Puchases = () => {
                     </div>
                     <div className="mt-3">
                      <form>
-                      <input type="radio"
-                      name="1"
-                      placeholder="1" />
-                      <input type="radio"
-                      name="2"
-                      placeholder="2" />
-                      <input type="radio"
-                      name="3"
-                      placeholder="3" />
-                      <input type="radio"
-                      name="4"
-                      placeholder="4" />
-                      <input type="radio"
-                      name="5"
-                      placeholder="5" />
+                     <Stars handleRating={setReviewNumber} />
                       <input type="text" 
                       name="reviewtext"
                       className="w-full ml-3 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                      placeholder="Insert your review"/>
+                      placeholder="Insert your review"
+                      onChange={handleText}/>
+                      <button
+                  className="rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-blue-700"
+                  
+                >
+                  Save
+                </button>
                      </form>
                     </div>
                   </div>
