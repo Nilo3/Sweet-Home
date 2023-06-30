@@ -185,10 +185,10 @@ function Navbar() {
                 <ShoppingCart />
               </button>
             </div>
-            <div className="flex-row items-center gap-3">
+            <div className="flex flex-row items-center gap-3 justify-end">
               <div
                 onClick={handleProfileClick}
-                className="p-4 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition self-center select-none"
+                className="p-2 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition self-center select-none"
               >
                 {user ? (
                   <>
@@ -205,8 +205,8 @@ function Navbar() {
                         className="rounded-full w-8 h-8"
                       />
                     )}
-                    <div className="p-4 md:py-1 md:px-2 flex flex-row items-center gap-3 cursor-pointer">
-                      <h1 className="text-sm md:text-base">
+                    <div className="md:py-1 md:px-2 flex flex-row items-center gap-3 cursor-pointer">
+                      <h1 className="text-sm md:text-base hidden md:block">
                         Hi {completeUser?.name || completeUser?.email}
                       </h1>
                     </div>
@@ -219,41 +219,43 @@ function Navbar() {
                 </div>
               </div>
               {isMenuOpen && (
-                <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md z-10">
-                  <div className="flex flex-col gap-2">
-                    <button
-                      onClick={handleProfile}
-                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
-                    >
-                      My Profile
-                    </button>
-                    <button
-                      onClick={handlePuchases}
-                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
-                    >
-                      Pucharses
-                    </button>
-                    <button
-                      onClick={handleReviews}
-                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
-                    >
-                      Reviews
-                    </button>
-                    <button
-                      onClick={handlePuchases}
-                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
-                    >
-                      Favorites
-                    </button>
-                    <button className="bloc text-zinc-200" disabled={true}>
-                      ───────────────
-                    </button>
-                    <button
-                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
-                      onClick={handleLogout}
-                    >
-                      Log out
-                    </button>
+                <div className="relative">
+                  <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md z-10 hidden md:block" style={{ top: 'calc(100% + 5px)' }}>
+                    <div className="flex flex-col gap-2">
+                      <button
+                          onClick={handleProfile}
+                        className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                      >
+                        My Profile
+                      </button>
+                      <button
+                          onClick={handlePuchases}
+                        className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                      >
+                        Pucharses
+                      </button>
+                      <button
+                          onClick={handleReviews}
+                        className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                      >
+                        Reviews
+                      </button>
+                      <button
+                          onClick={handlePuchases}
+                        className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                      >
+                        Favorites
+                      </button>
+                      <button className="bloc text-zinc-200" disabled={true}>
+                        ───────────────
+                      </button>
+                      <button
+                        className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                        onClick={handleLogout}
+                      >
+                        Log out
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
