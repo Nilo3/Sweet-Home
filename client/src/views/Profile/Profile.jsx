@@ -114,22 +114,9 @@ const Profile = () => {
                   onChange={(e) => setFirstName(e.target.value)}
                   className="mb-2 w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1"
                 />
-                <input
-                  placeholder="Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
-                />
+                
               </div>
-              <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
-                <p className="shrink-0 w-32 font-medium">Email</p>
-                <input
-                  placeholder="your.email@domain.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
-                />
-              </div>
+              
               <div className="flex flex-col gap-4 py-4 lg:flex-row">
                 <div className="shrink-0 w-32 sm:py-4">
                   <p className="mb-auto font-medium">Avatar</p>
