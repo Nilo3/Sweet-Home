@@ -101,42 +101,44 @@ const reducer = (state = initialState, { type, payload }) => {
 
     //--//--//--//--//--// Cart actions  //--//--//--//--//--//
 
-    case ADD_TO_CART:
+    case ADD_TO_CART: {
       const updatedCart = [...state.shoppingCart, payload];
       window.localStorage.setItem('cart', JSON.stringify(updatedCart));
       return {
         ...state,
         shoppingCart: updatedCart,
-      };
-    
-      case DELETE_FROM_CART:
-        const updatedCarts = state.shoppingCart.filter(
-          (product) => product._id !== payload
-        );
-        localStorage.setItem('cart', JSON.stringify(updatedCarts));
-        return {
-          ...state,
-          shoppingCart: updatedCarts,
-        };
+      }
+    }
 
-        case DELETE_ONE_FROM_CART: {
-          const filterCart = state.shoppingCart.filter(
-            (product) => product._id !== payload
-          );
-          const toBeDeleted = state.shoppingCart.filter(
-            (product) => product._id === payload
-          );
-          const filterDeleted = [...toBeDeleted.slice(0, toBeDeleted.length - 1)];
-          
-          const updatedCart = [...filterCart, ...filterDeleted];
-          localStorage.setItem('cart', JSON.stringify(updatedCart));
-          
-          return {
-            ...state,
-            shoppingCart: updatedCart,
-          };
-        }
-        
+    case DELETE_FROM_CART: {
+      const updatedCarts = state.shoppingCart.filter(
+        (product) => product._id !== payload
+      );
+      localStorage.setItem('cart', JSON.stringify(updatedCarts));
+      return {
+        ...state,
+        shoppingCart: updatedCarts,
+      }
+    }
+
+    case DELETE_ONE_FROM_CART: {
+      const filterCart = state.shoppingCart.filter(
+        (product) => product._id !== payload
+      );
+      const toBeDeleted = state.shoppingCart.filter(
+        (product) => product._id === payload
+      );
+      const filterDeleted = [...toBeDeleted.slice(0, toBeDeleted.length - 1)];
+
+      const updatedCart = [...filterCart, ...filterDeleted];
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+      return {
+        ...state,
+        shoppingCart: updatedCart,
+      };
+    }
+
 
 
     case POST_SHOPPING_CART:
@@ -216,7 +218,7 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         reviews: [...state.reviews, payload],
       };
-      
+
     case DELETE_REVIEW:
       return {
         ...state,
