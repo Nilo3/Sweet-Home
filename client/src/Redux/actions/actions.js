@@ -295,15 +295,15 @@ export function getReviews() {
     }
 }
 
-export const postReview = (review) => {
+export function postReview  (payload)  {
     return async (dispatch) => {
         try {
-            const response = await axios.post(`${VITE_HOST}/api/review`, review)
-            dispatch({
+            const response = await axios.post(`${VITE_HOST}/api/review`, payload)
+            return dispatch({
                 type: POST_REVIEW,
                 payload: response.data
             })
-            return response
+            
         } catch (error) {
             console.log(error)
         }
