@@ -1,4 +1,4 @@
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp, FaFacebook, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -21,12 +21,12 @@ export default function Footer() {
               including texts, images, or any other element, may be reproduced
               or transmitted in any form or by any means without our permission.
             </span>
-            <div className="flex mt-2 space-x-6 sm:justify-center sm:mt-0 mb-2">
+            <div className="flex flex-wrap justify-evenly mt-2 space-x-6 sm:justify-center sm:mt-0 mb-2">
               <p className="text-zinc-900 text-sm font-bold ml-1 mt-4">
                 Follow us
               </p>
             </div>
-            <div className="flex mt-2 space-x-6 sm:justify-center">
+            <div className="flex flex-wrap justify-evenly mt-2 space-x-6 sm:justify-center">
               <a href="#" className="text-zinc-900 dark:hover:text-white">
                 <FaInstagram
                   className="w-5 h-5"
