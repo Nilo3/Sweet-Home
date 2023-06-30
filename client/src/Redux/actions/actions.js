@@ -28,7 +28,7 @@ import {
     GET_USER_BY_EMAIL
 } from "../../Redux/action-types/action-types"
 const VITE_HOST = "http://localhost:3001"
-// const {VITE_HOST} = import.meta.env
+//const {VITE_HOST} = import.meta.env
 
 //>          |------------------------------------|          <\\
 //>          |          (CTRL  +    G)            |          <\\
@@ -196,13 +196,12 @@ export function updateUser(data, id) {
 
 //--//--//--//--//--//  CART ACTIONS  //--//--//--//--//--//
 
-
 export const addtoCart = (product) => {
     return {
-        type: ADD_TO_CART,
-        payload: product,
-    }
-}
+      type: ADD_TO_CART,
+      payload: product,
+    };
+  };  
 
 export function postShoppingCart(payload) {
     return async function (dispatch) {

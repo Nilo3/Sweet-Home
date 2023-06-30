@@ -1,7 +1,6 @@
 import { useState } from "react";
 import style from "./Profile.module.css";
 import { useAuth } from "../../context/authContex";
-import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
 import { useNavigate } from "react-router-dom";
 import { Container, FormGroup } from "reactstrap";
 import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
@@ -9,36 +8,27 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUserByUid, updateUser } from "../../Redux/actions/actions";
 
-
-
-const Profile = (props) => {
+const Profile = () => {
   const { user } = useAuth();
   const [selectedImage, setSelectedImage] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [image, setImage] = useState("");
+  const [, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const [completeUser, setCompleteUser] = useState({});
-  const [cloudinaryURL, setCloudinaryURL] = useState("");
-
-
+  const [, setCloudinaryURL] = useState("");
 
   useEffect(() => {
     if (user) {
       dispatch(getUserByUid(user.uid)).then((response) => {
-        setCompleteUser(response.payload); // Almacena la respuesta en completeUser
+        setCompleteUser(response.payload);
       });
     }
   }, [dispatch, user]);
 
-
   const navigate = useNavigate();
-
-  const backToHome = () => {
-    navigate("/");
-  };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -55,7 +45,7 @@ const Profile = (props) => {
     setEmail("");
     setSelectedImage(null);
   };
-
+  console.log(firstName);
   const uploadImage = async (file) => {
     const data = new FormData();
     data.append("file", file);
@@ -70,29 +60,27 @@ const Profile = (props) => {
     );
     const result = await res.json();
     setImage(result.secure_url);
-    const hardcodeJson = {"photoURL": result.secure_url}
-    dispatch(updateUser(hardcodeJson, completeUser._id ))
+    const hardcodeJson = { photoURL: result.secure_url, name: firstName };
+    dispatch(updateUser(hardcodeJson, completeUser._id));
     setCloudinaryURL(result.secure_url);
-
-    // Logica de put
-
-
-
-
     setLoading(false);
+  };
 
+  const handleName = () => {
+    const name = {
+      name: firstName,
+    };
+    dispatch(updateUser(name, completeUser._id));
   };
 
   const handleSave = async () => {
     if (selectedImage) {
       await uploadImage(selectedImage);
     }
-    // Lógica para guardar los datos en el usuario
-    
+    handleName();
     navigate("/");
-    window.location.reload()
+    window.location.reload();
   };
-  
 
   return (
     <div className={style.all}>
@@ -174,9 +162,7 @@ const Profile = (props) => {
                           </Image>
                         </CloudinaryContext>
                       ) : (
-                        <Image
-                          className="rounded-full w-20 h-20 max-w-full"
-                        >
+                        <Image className="rounded-full w-20 h-20 max-w-full">
                           <Transformation width="300" crop="scale" />
                         </Image>
                       )}
