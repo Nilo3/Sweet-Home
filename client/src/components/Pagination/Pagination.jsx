@@ -80,7 +80,9 @@ const Pagination = ({
                   : "text-neutral-600 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
               }`}
               onClick={onNextPage}
-              disabled={currentPage === Math.ceil(totalProducts / productPerPage)}
+              disabled={
+                currentPage === Math.ceil(totalProducts / productPerPage)
+              }
             >
               Next
             </button>
