@@ -16,7 +16,6 @@ import Dashboard from './views/Dashboard Admin/Dashboard'
 import CreateProduct from './views/CreateProduct/CreateProduct'
 import Profile from "./views/Profile/Profile";
 import "react-toastify/dist/ReactToastify.css";
-import User from "./views/User/User"
 import ChatBot from "react-simple-chatbot";
 import { useState } from "react";
 import person from "../src/assets/image/person-placeholder-400x400.png"
@@ -25,6 +24,7 @@ import PropTypes from "prop-types";
 import {SiChatbot} from "react-icons/si"
 import {theme} from "../src/utils/theme"
 import {steps} from "../src/utils/steps"
+import Puchases from "./views/Purchases/Puchases";
 
 
 const Layout = ({ children }) => {
@@ -62,7 +62,7 @@ function App() {
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/products" element={<Layout><Products /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
-          <Route path="/my_profile" element={<Layout><User/></Layout>} />
+          <Route path="/my_puchases" element={<Layout><Puchases/></Layout>} />
           <Route path="/checkout" element={<Layout><Shopping /></Layout>} />
           <Route path="/products/:id" element={<Layout><Detail /></Layout>} />
           <Route path="/adminDashboard" element={<Layout><Dashboard /></Layout>} />

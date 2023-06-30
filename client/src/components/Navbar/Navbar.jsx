@@ -91,7 +91,7 @@ function Navbar() {
   };
 
   const handleSelect = () => {
-    navigate("/my_profile");
+    navigate("/my_puchases");
     setIsMenuOpen(false);
     window.scrollTo({
       top: 0,
@@ -213,7 +213,7 @@ function Navbar() {
                       My Profile
                     </button>
                     <button
-                      to="/my_profile"
+                      to="/my_puchases"
                       onClick={handleSelect}
                       className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                     >
