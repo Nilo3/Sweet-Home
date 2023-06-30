@@ -62,7 +62,10 @@ const Puchases = () => {
     <div className="pt-8 flex flex-col items-center justify-center  bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
       <div className="grid w-3/4">
         <p className="text-3xl font-medium mb-4">My purchases</p>
-        {userOrders.map((order) => (
+        {userOrders.length === 0 ? ( <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6"> <p className="text-gray-400 flex items-center justify-center">
+                No purchases have been made with this account.
+              </p></div>
+            ) : userOrders.map((order) => (
           <div
             key={order._id}
             className="text-left mt-5 mb-5 m-4 bg-white pt-5 pb-5 border border-gray-200 rounded-lg"
