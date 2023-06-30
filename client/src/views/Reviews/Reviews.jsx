@@ -70,7 +70,10 @@ const Reviews = () => {
       <div className="pt-20 flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
         <div className="grid w-3/4">
           <p className="text-3xl font-medium mb-4">My Reviews</p>
-          {userData?.userReviews.map((review) => (
+          {userData?.userReviews.length === 0 ? (  <p className="text-gray-400 flex items-center justify-center">
+                No reviews have been made with this account.
+              </p>
+            ) :userData?.userReviews.map((review) => (
             <div
               key={review._id}
               className="text-left mt-5 mb-5 m-4 bg-white pt-5 pb-5 border border-gray-200 rounded-lg"
