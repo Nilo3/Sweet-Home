@@ -90,8 +90,24 @@ function Navbar() {
     }
   };
 
-  const handleSelect = () => {
+  const handlePuchases = () => {
+    navigate("/my_puchases");
+    setIsMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const handleProfile = () => {
     navigate("/my_profile");
+    setIsMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const handleReviews = () => {
+    navigate("/my_reviews");
     setIsMenuOpen(false);
     window.scrollTo({
       top: 0,
@@ -206,29 +222,25 @@ function Navbar() {
                 <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md z-10">
                   <div className="flex flex-col gap-2">
                     <button
-                      to="/my_profile"
-                      onClick={handleSelect}
+                      onClick={handleProfile}
                       className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                     >
                       My Profile
                     </button>
                     <button
-                      to="/my_profile"
-                      onClick={handleSelect}
+                      onClick={handlePuchases}
                       className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                     >
                       Pucharses
                     </button>
                     <button
-                      to="/my_profile"
-                      onClick={handleSelect}
+                      onClick={handleReviews}
                       className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                     >
                       Reviews
                     </button>
                     <button
-                      to="/my_profile"
-                      onClick={handleSelect}
+                      onClick={handlePuchases}
                       className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                     >
                       Favorites
@@ -302,29 +314,25 @@ function Navbar() {
                     ───────────────────────────────────────────────────────────────
                   </button>
                   <button
-                    to="/my_profile"
-                    onClick={handleSelect}
+                    onClick={handleProfile}
                     className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                   >
                     My Profile
                   </button>
                   <button
-                    to="/my_profile"
-                    onClick={handleSelect}
+                    onClick={handlePuchases}
                     className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                   >
                     Pucharses
                   </button>
                   <button
-                    to="/my_profile"
-                    onClick={handleSelect}
+                    onClick={handleReviews}
                     className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                   >
                     Reviews
                   </button>
                   <button
-                    to="/my_profile"
-                    onClick={handleSelect}
+                    onClick={handlePuchases}
                     className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                   >
                     Favorites
