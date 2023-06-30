@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import PropTypes from "prop-types";
 
-function Stars(props) {
+function Stars({ handleRating }) {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex" }}> 
       {[...Array(5)].map((star, index) => {
         const currentRating = index + 1;
         return (
@@ -18,7 +19,7 @@ function Stars(props) {
               value={currentRating}
               onClick={() => {
                 setRating(currentRating);
-                props.handleRating(currentRating); //
+                handleRating(currentRating);
               }}
             />
             <FaStar
@@ -31,9 +32,12 @@ function Stars(props) {
           </label>
         );
       })}
-      <p>Your rating is {rating}</p>
     </div>
   );
 }
+
+Stars.propTypes = {
+  handleRating: PropTypes.any.isRequired,
+};
 
 export default Stars;

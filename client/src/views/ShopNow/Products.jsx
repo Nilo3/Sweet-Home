@@ -2,13 +2,7 @@ import Cards from "../../components/Card/Cards";
 import Pagination from "../../components/Pagination/Pagination";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterByCategory,
-  filterByPrice,
-  filterByName,
-  getCategory,
-  getProducts,
-} from "../../Redux/actions/actions.js";
+import { filterByCategory, filterByPrice, filterByName, getCategory, getProducts } from "../../Redux/actions/actions.js";
 import SearchBar from "./SearchBar";
 import "./Products.css";
 

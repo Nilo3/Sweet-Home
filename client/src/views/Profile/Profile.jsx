@@ -12,8 +12,8 @@ const Profile = () => {
   const { user } = useAuth();
   const [selectedImage, setSelectedImage] = useState(null);
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [, setLastName] = useState("");
+  const [, setEmail] = useState("");
   const [, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();

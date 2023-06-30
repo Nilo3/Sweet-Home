@@ -6,6 +6,8 @@ import { getUserByUid, editReview, deleteReview } from "../../Redux/actions/acti
 import { Link } from "react-router-dom";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { toast } from "react-toastify";
+import Stars from "../../components/Stars/Stars"
+
 
 const Reviews = () => {
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ const Reviews = () => {
   const [editingReviewId, setEditingReviewId] = useState(null);
   const [editedReviewText, setEditedReviewText] = useState("");
   const [editedRating, setEditedRating] = useState(0);
-
+console.log(setEditedRating);
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -106,17 +108,7 @@ const Reviews = () => {
                           onChange={(e) => setEditedReviewText(e.target.value)}
                         ></textarea>
                         <div className="flex mt-2">
-                          <div className="flex items-center">
-                            {[...Array(editedRating)].map((_, index) => (
-                              <FaStar key={index} className="text-yellow-500" />
-                            ))}
-                            {[...Array(5 - editedRating)].map((_, index) => (
-                              <FaRegStar
-                                key={index}
-                                className="text-yellow-500"
-                              />
-                            ))}
-                          </div>
+                       <Stars handleRating={setEditedRating}></Stars>
                           <button
                             className="ml-2 text-blue-500 hover:underline"
                             onClick={() => saveReviewChanges(review._id)}

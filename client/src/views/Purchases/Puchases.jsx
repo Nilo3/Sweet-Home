@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { getUserByUid } from "../../Redux/actions/actions";
 import { useNavigate } from "react-router-dom";
 import Stars from "../../components/Stars/Stars";
-import {postReview} from "../../Redux/actions/actions";
-
+import { postReview } from "../../Redux/actions/actions";
 
 const Puchases = () => {
   const dispatch = useDispatch();
@@ -13,59 +12,38 @@ const Puchases = () => {
   const userUid = user?.uid;
 
   useEffect(() => {
-    if(user){
-    dispatch(getUserByUid(userUid));
+    if (user) {
+      dispatch(getUserByUid(userUid));
     }
-  }, [dispatch, userUid]);
+  }, [dispatch, userUid, user]);
 
   const userData = useSelector((state) => state.user);
   const userOrders = userData?.userOrders || [];
-  const [reviewNumber, setReviewNumber] = useState(0)
-  const [reviewText, setReviewText] = useState("")
-  const [productId, setProductId] = useState("")
+  const [reviewNumber, setReviewNumber] = useState(0);
+  const [reviewText, setReviewText] = useState("");
+  const [productId, setProductId] = useState("");
   const navigate = useNavigate();
 
-
   const handleText = (e) => {
-    setReviewText(e.target.value)
-  }
+    setReviewText(e.target.value);
+  };
 
- 
- 
-  
-
-  const handleSave = ()  => {
+  const handleSave = () => {
     let reviewProduct = {
       rating: reviewNumber,
       reviewText: reviewText,
       createdBy: userData._id,
-      product: productId
-    }
-    dispatch(postReview(reviewProduct))
-    navigate("/")
-  }
-
- 
-
-
-
-  /*console.log("este es el id del usuario", userData._id);
-  console.log("este es review number desde el purchase", reviewNumber);
-  console.log("este es el review text", reviewText);
-  */
-
-
-
-
+      product: productId,
+    };
+    dispatch(postReview(reviewProduct));
+    navigate("/");
+  };
 
   return (
     <div className="pt-8 flex flex-col items-center justify-center  bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
       <div className="grid w-3/4">
         <p className="text-3xl font-medium mb-4">My purchases</p>
-        {userOrders.length === 0 ? ( <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6"> <p className="text-gray-400 flex items-center justify-center">
-                No purchases have been made with this account.
-              </p></div>
-            ) : userOrders.map((order) => (
+        {userOrders.map((order) => (
           <div
             key={order._id}
             className="text-left mt-5 mb-5 m-4 bg-white pt-5 pb-5 border border-gray-200 rounded-lg"
@@ -103,21 +81,23 @@ const Puchases = () => {
                       <p className="text-xs">Quantity: {product.quantity}</p>
                     </div>
                     <div className="mt-3">
-                     <form onSubmit={handleSave}>
-                     <Stars handleRating={setReviewNumber} />
-                      <input type="text" 
-                      name="reviewtext"
-                      className="w-full ml-3 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                      placeholder="Insert your review"
-                      onChange={handleText}/>
-                      <button
-                      type="submit"
-                      className="rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-blue-700"
-                      onClick={() => setProductId(product.product._id)}
-                >
-                  Save
-                </button>
-                     </form>
+                      <form onSubmit={handleSave}>
+                        <Stars handleRating={setReviewNumber} />
+                        <input
+                          type="text"
+                          name="reviewtext"
+                          className="w-full ml-3 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="Insert your review"
+                          onChange={handleText}
+                        />
+                        <button
+                          type="submit"
+                          className="rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-blue-700"
+                          onClick={() => setProductId(product.product._id)}
+                        >
+                          Save
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>
