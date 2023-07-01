@@ -2,10 +2,11 @@ import style from "./About.module.css";
 import { Link } from "react-router-dom";
 import { FaGithub, FaEnvelope, FaLinkedin } from "react-icons/fa";
 import { teamMembers } from "./profiles/profiles";
+//import "./About.css"; // Importa el archivo CSS aquí
 
 const About = () => {
   return (
-    <div className={style.all}>
+    <div className={style.aboutContainer} >
       <div className={style.container}>
         {teamMembers.map((member, index) => (
           <div key={index} className={style.card}>
