@@ -8,6 +8,7 @@ import Shopping from "./views/ShoppingCart/ShoppingCart";
 import Home from "./views/Home/Home";
 import Login from "./views/Login/Login";
 import Register from "./views/Register/Register";
+import Favorite from "./views/Profile/Favorite/Favorite";
 import UploadProduct from './views/UploadProduct/UploadProduct'
 import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/authContex";
@@ -72,6 +73,7 @@ function App() {
           <Route path="/my_puchases" element={<Layout><Puchases/></Layout>} />
           <Route path="/my_reviews" element={<Layout><Reviews/></Layout>} />
           <Route path="/stars" element={<Layout><Stars/></Layout>} />
+          <Route path="/favorite" element={<Layout><Favorite/></Layout>} />
         </Routes>
      
         <ThemeProvider theme={theme}>

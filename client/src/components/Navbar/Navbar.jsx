@@ -130,6 +130,14 @@ function Navbar() {
     });
   };
 
+  const handleFavorite = () => {
+    navigate("/favorite");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const handleShopNow = () => {
     navigate("/products");
     window.scrollTo({
@@ -241,7 +249,7 @@ function Navbar() {
                         Reviews
                       </button>
                       <button
-                          onClick={handlePuchases}
+                          onClick={handleFavorite}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         Favorites
