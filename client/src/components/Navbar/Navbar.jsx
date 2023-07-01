@@ -313,7 +313,7 @@ function Navbar() {
                     className="block px-4 py-2 text-zinc-200"
                     disabled={true}
                   >
-                    ───────────────────────────────────────────────────────────────
+                    ───────────────────────────────
                   </button>
                   <button
                     onClick={handleProfile}
