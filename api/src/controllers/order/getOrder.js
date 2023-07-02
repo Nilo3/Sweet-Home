@@ -10,7 +10,7 @@ export default async (req, res) => {
       })
       .populate({
         path: "products.product",
-        select: "_id price",
+        select: "_id price name",
         model: Product,
       })
       .select("uid user products totalPrice isPaid paidAt isPaid");
