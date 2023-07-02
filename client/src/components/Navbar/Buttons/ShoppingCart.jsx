@@ -9,7 +9,9 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    
     setCartCount(allShoppingCart.length);
+
     window.localStorage.setItem("shoppingCart", JSON.stringify(allShoppingCart));
   }, [allShoppingCart]);
 

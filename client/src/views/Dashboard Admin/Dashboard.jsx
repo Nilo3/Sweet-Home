@@ -25,9 +25,10 @@ const Dashboard = () => {
   );
 
   useEffect(() => {
+    
     dispatch(getProducts());
     dispatch(getCategory());
-    dispatch(filterByCategory);
+    dispatch(filterByCategory());
    
   }, [dispatch]);
 
@@ -48,11 +49,7 @@ const Dashboard = () => {
     dispatch(filterByCategory(event.target.value));
     setCurrentPage(1);
   }
-  function handleFilterBestSeller(event) {
-    event.preventDefault();
-    dispatch(filterBestSeller(event.target.value));
-    setCurrentPage(1);
-  }
+
 
  
   
