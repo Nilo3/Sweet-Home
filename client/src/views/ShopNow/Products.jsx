@@ -5,10 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory, filterByPrice, filterByName, getCategory, getProducts } from "../../Redux/actions/actions.js";
 import SearchBar from "./SearchBar";
 import "./Products.css";
-import { Modal, Ripple, initTE } from "tw-elements";
 
 const Products = () => {
-  initTE({ Modal, Ripple });
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
   const category = useSelector((state) => state.category);
@@ -105,24 +103,20 @@ const Products = () => {
         </div>
       )}
       <div className="cards pt-2 select-none">
-          <button
-             type="button"
-             data-te-toggle="modal"
-             data-te-target="#exampleModal">
-             Launch demo modal
-          </button>
         {productsToDisplay.length > 0 ? (
-          productsToDisplay.map((product) => (
-            <div key={product._id} className="flex justify-center">
-              <Cards
-                _id={product._id}
-                name={product.name}
-                price={product.price}
-                image={product.image}
-                category={product.category.map((el) => el.name)}
-              />
-            </div>
-          ))
+          productsToDisplay
+            .filter((product) => !product.isDelete)
+            .map((product) => (
+              <div key={product._id} className="flex justify-center">
+                <Cards
+                  _id={product._id}
+                  name={product.name}
+                  price={product.price}
+                  image={product.image}
+                  category={product.category.map((el) => el.name)}
+                />
+              </div>
+            ))
         ) : (
           <div
             className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
