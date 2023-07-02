@@ -63,7 +63,7 @@ const Pagination = ({
               <button
                 className={`relative block rounded bg-transparent px-3 py-1.5 text-base ${
                   currentPage === noPage
-                    ? "bg-neutral-800 text-neutral-50"
+                    ? "bg-neutral-800 text-neutral-600 border-2 border-gray-400"
                     : "text-neutral-600 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
                 }`}
                 onClick={() => handlePageClick(noPage)}

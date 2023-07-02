@@ -255,11 +255,11 @@ const Shopping = () => {
           <div className="relative"></div>
         </div>
       </div>
-      <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
+      <div className="flex flex-wrap justify-center items-stretch md:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 lg:grid">
         <div className="px-4 pt-8">
           <p className="text-xl font-medium">Order Summary</p>
           <p className="text-gray-400">Check your items.</p>
-          <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
+          <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
             {allShoppingCart?.length === 0 ? (
               <p className="text-gray-400 flex items-center justify-center">
                 Your shopping cart is empty.
@@ -321,7 +321,7 @@ const Shopping = () => {
           </div>
         </div>
         <form onSubmit={handleSendOrder} action="">
-          <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full flex flex-col justify-between">
+          <div className="flex flex-wrap flex-col justify-center mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full">
             <p className="text-xl font-medium">Shipping</p>
             <p className="text-gray-400 mt-2 text-m text-right">
               Dont have an account?{" "}
@@ -350,7 +350,7 @@ const Shopping = () => {
             >
               Personal Info
             </label>
-            <div className="flex">
+            <div className="flex flex-wrap">
               <div className="relative w-6/12 flex-shrink-0">
               <div className="input-container">
                   <input
@@ -418,7 +418,7 @@ const Shopping = () => {
             </div>
           
 
-            <div className="flex flex-col">
+            <div className="flex flex-wrap flex-col">
               <label
                 htmlFor="billing-address"
                 className="mt-4 mb-2 block text-sm font-medium"
@@ -484,7 +484,7 @@ const Shopping = () => {
               </div>
             </div>
 
-            <div className="mt-3 relative flex-shrink-0 flex">
+            <div className="mt-3 relative flex-shrink-0 flex flex-wrap">
               <div className="input-container">
               <input
                 type="text"
@@ -538,7 +538,7 @@ const Shopping = () => {
               </div>
             </div>
 
-            <div className="relative flex">
+            <div className="relative flex flex-wrap">
   <input
     type="text"
     id="phone"
