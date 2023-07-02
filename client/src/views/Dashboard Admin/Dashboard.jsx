@@ -5,6 +5,7 @@ import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName
 import { Link } from "react-router-dom";
 import  SearchBar from '../ShopNow/SearchBar'
 import Pagination from "../../components/Pagination/Pagination";
+import Chart from "./grafico";
 
 
 const Dashboard = () => {
@@ -14,40 +15,41 @@ const Dashboard = () => {
 
   const [productPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
-
+  
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
   const productsToDisplay = allProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
-  );
-
-  useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getCategory());
-    dispatch(filterByCategory);
-  }, [dispatch]);
-
-  function handleOrderName(event) {
-    event.preventDefault();
-    dispatch(filterByName(event.target.value));
-    setCurrentPage(1);
-  }
-
-  function handleOrderPrice(event) {
-    event.preventDefault();
-    dispatch(filterByPrice(event.target.value));
-    setCurrentPage(1);
-  }
-
-  function handleFilterCategory(event) {
-    event.preventDefault();
-    dispatch(filterByCategory(event.target.value));
-    setCurrentPage(1);
-  }
+    );
+    
+    useEffect(() => {
+      dispatch(getProducts());
+      dispatch(getCategory());
+      dispatch(filterByCategory);
+    }, [dispatch]);
+    
+    function handleOrderName(event) {
+      event.preventDefault();
+      dispatch(filterByName(event.target.value));
+      setCurrentPage(1);
+    }
+    
+    function handleOrderPrice(event) {
+      event.preventDefault();
+      dispatch(filterByPrice(event.target.value));
+      setCurrentPage(1);
+    }
+    
+    function handleFilterCategory(event) {
+      event.preventDefault();
+      dispatch(filterByCategory(event.target.value));
+      setCurrentPage(1);
+    }
 
   return (
     <div className="pt-16">
+      <Chart/>
       {/* <!-- Start block --> */}
       <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased ">
         <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
