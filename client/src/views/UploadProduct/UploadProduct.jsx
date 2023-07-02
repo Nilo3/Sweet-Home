@@ -22,7 +22,7 @@ const UploadProduct = () => {
 
   useEffect(() => {
     dispatch(getCategory());
-    // Obtener los datos del producto que se va a editar
+   
   }, [dispatch]);
 
   const handleChange = (event) => {
@@ -33,7 +33,7 @@ const UploadProduct = () => {
     setInput((prevInput) => ({
       ...prevInput,
       [name]: updatedValue,
-      isDelete: name === "disable" ? value === "true" : prevInput.isDelete, // Actualiza el estado input.isDelete
+      isDelete: name === "disable" ? value === "true" : prevInput.isDelete, 
     }));
     setErrors((prevErrors) => ({
       ...prevErrors,

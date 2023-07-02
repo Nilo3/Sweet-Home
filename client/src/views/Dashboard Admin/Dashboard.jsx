@@ -28,7 +28,7 @@ const Dashboard = () => {
     dispatch(getProducts());
     dispatch(getCategory());
     dispatch(filterByCategory);
-    dispatch(getAllOrders())
+   
   }, [dispatch]);
 
   function handleOrderName(event) {
@@ -54,11 +54,7 @@ const Dashboard = () => {
     setCurrentPage(1);
   }
 
-  const filter = orders?.filter((element) => {
-    element[0].products.map((el) => {
-      console.log(el.product._id, 'aca estamos viendo el id')
-    })
-  })
+ 
   
 
   return (
@@ -224,15 +220,6 @@ const Dashboard = () => {
                       <option>Price</option>
                       <option value="high">Low to high</option>
                       <option value="low">High to low</option>
-                    </select>
-                    <select
-                      className="ordAndFil2"
-                      onChange={(event) => handleFilterBestSeller(event)}
-                    >
-                      <option>Sell</option>
-                      <option value="high">Most Sold</option>
-                      <option value="high">Low Sold</option>
-                   
                     </select>
                   </div>
                 </div>
