@@ -30,8 +30,10 @@ import {
     REMOVE_FAVORITE,
     GET_FAVORITE_PRODUCTS
 } from "../../Redux/action-types/action-types"
-const VITE_HOST = "http://localhost:3001"
-// const {VITE_HOST} = import.meta.env
+//const VITE_HOST = "http://localhost:3001"
+const VITE_HOST = import.meta.env.VITE_HOST;
+console.log('Este es el error de: ' ,VITE_HOST)
+
 
 //>          |------------------------------------|          <\\
 //>          |          (CTRL  +    G)            |          <\\
