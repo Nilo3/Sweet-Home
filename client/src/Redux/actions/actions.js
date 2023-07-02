@@ -25,10 +25,11 @@ import {
     PUT_REVIEW,
     DELETE_REVIEW,
     UPDATE_USER,
-    GET_USER_BY_EMAIL
+    GET_USER_BY_EMAIL,
+    BEST_SELLER
 } from "../../Redux/action-types/action-types"
-// const VITE_HOST = "http://localhost:3001"
-const {VITE_HOST} = import.meta.env
+ const VITE_HOST = "http://localhost:3001"
+//const {VITE_HOST} = import.meta.env
 
 //>          |------------------------------------|          <\\
 //>          |          (CTRL  +    G)            |          <\\
@@ -375,6 +376,14 @@ export const filterByPrice = (payload) => {
 export const filterByCategory = (payload) => {
     return {
         type: FILTER_BY_CATEGORY,
+        payload,
+    }
+}
+
+
+export const filterBestSeller = (payload) => {
+    return{
+        type: BEST_SELLER,
         payload,
     }
 }

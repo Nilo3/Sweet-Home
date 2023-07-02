@@ -65,9 +65,9 @@ function App() {
           <Route path="/my_profile" element={<Layout><User/></Layout>} />
           <Route path="/checkout" element={<Layout><Shopping /></Layout>} />
           <Route path="/products/:id" element={<Layout><Detail /></Layout>} />
-          <Route path="/adminDashboard" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/createProduct" element={<Layout><CreateProduct /></Layout>} />
-          <Route path="/editProduct/:id" element={<Layout><UploadProduct /></Layout>} />
+          <Route path="/adminDashboard" element={<Dashboard />} />
+          <Route path="/createProduct" element={<CreateProduct />} />
+          <Route path="/editProduct/:id" element={<UploadProduct />} />
           <Route path="/profile" element={<Layout><Profile/></Layout>} />
         </Routes>
      

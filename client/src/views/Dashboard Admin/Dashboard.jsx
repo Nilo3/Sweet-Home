@@ -1,7 +1,7 @@
 import AdminCard from "./AdminCard";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName } from "../../Redux/actions/actions";
+import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName, filterBestSeller } from "../../Redux/actions/actions";
 import { Link } from "react-router-dom";
 import  SearchBar from '../ShopNow/SearchBar'
 import Pagination from "../../components/Pagination/Pagination";
@@ -43,6 +43,11 @@ const Dashboard = () => {
   function handleFilterCategory(event) {
     event.preventDefault();
     dispatch(filterByCategory(event.target.value));
+    setCurrentPage(1);
+  }
+  function handleFilterBestSeller(event) {
+    event.preventDefault();
+    dispatch(filterBestSeller(event.target.value));
     setCurrentPage(1);
   }
 
@@ -209,6 +214,15 @@ const Dashboard = () => {
                       <option>Price</option>
                       <option value="high">Low to high</option>
                       <option value="low">High to low</option>
+                    </select>
+                    <select
+                      className="ordAndFil2"
+                      onChange={(event) => handleFilterBestSeller(event)}
+                    >
+                      <option>Sell</option>
+                      <option value="high">Most Sold</option>
+                      <option value="high">Low Sold</option>
+                   
                     </select>
                   </div>
                 </div>
