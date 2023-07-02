@@ -128,6 +128,7 @@ function Navbar() {
 
   const handleProfileClick = () => {
     if (user === null) {
+      navigate("/login");
       return;
     }
     setIsMenuOpen(!isMenuOpen);
@@ -180,11 +181,11 @@ function Navbar() {
     <div className="sticky top-0 w-full bg-neutral-200 z-50 shadow-sm">
       <div className="py-1 border-b-[1px]">
         <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
-          <div className="flex flex-col md:flex-row md:flex-wrap md:items-center md:justify-between gap-3 md:gap-0">
+          <div className="flex 2xl:flex-row 2xl:flex-wrap 2xl:items-center justify-between gap-3 2xl:gap-0 2xl:flex">
             <button onClick={handleHome} className="order-first">
               <Logo className="order-first" />
             </button>
-            <div className="hidden md:flex md:flex-wrap md:items-center md:gap-3">
+            <div className="hidden lg:flex lg:flex-wrap lg:items-center lg:gap-3">
               <div onClick={handleShopNow}>
                 <ShopNowNav />
               </div>
@@ -236,13 +237,13 @@ function Navbar() {
                 ) : (
                   <LoginNav />
                 )}
-                <div className="hidden md:block cursor-pointer select-none">
+                <div className="hidden 2xl:block cursor-pointer select-none">
                   {user ? null : <RegisterNav />}
                 </div>
               </div>
               {isMenuOpen && (
                 <div className="relative select-none">
-                  <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-36 right-3 shadow-md z-10 hidden md:block" style={{ top: 'calc(100% + 5px)' }}>
+                  <div className="absolute rounded-b-lg bg-white py-2 mt-4 w-36 right-0 shadow-md z-10 hidden lg:block" style={{ top: 'calc(100% + 5px)' }}>
                     <div className="flex flex-col gap-2">
                       <button
                         onClick={handleProfile}
@@ -292,7 +293,7 @@ function Navbar() {
             </div>
           </div>
           {isMenuOpen && (
-            <div className="md:hidden absolute bg-white py-2  w-full right-0 shadow-md">
+            <div className="lg:hidden absolute bg-white py-2  w-full right-0 shadow-md">
               <div className="flex flex-col gap-2">
                 <button
                   onClick={handleShopNow}
