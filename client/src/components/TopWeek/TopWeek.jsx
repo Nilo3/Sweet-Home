@@ -12,7 +12,7 @@ export default function TopWeek() {
               Discover the latest trends and styles for your home. From
               furniture and decor to appliances and accessories, find everything
               you need to transform your space into a haven of comfort and
-              beauty. Don't miss out on our top picks of the week!
+              beauty. Dont miss out on our top picks of the week!
             </p>
           </div>
           <img

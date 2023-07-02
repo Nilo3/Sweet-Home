@@ -30,6 +30,10 @@ function Navbar() {
     }
   }, [dispatch, user]);
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -48,6 +52,7 @@ function Navbar() {
 
   const handleRecommendationsClick = () => {
     if (window.location.pathname !== "/") {
+      closeMenu();
       navigate("/");
       setTimeout(() => {
         scrollToSection("recommendationsSection");
@@ -59,6 +64,7 @@ function Navbar() {
 
   const handleInspirationClick = () => {
     if (window.location.pathname !== "/") {
+      closeMenu();
       navigate("/");
       setTimeout(() => {
         scrollToSection("inspirationSection");
@@ -70,6 +76,7 @@ function Navbar() {
 
   const handleTopWeekClick = () => {
     if (window.location.pathname !== "/") {
+      closeMenu();
       navigate("/");
       setTimeout(() => {
         scrollToSection("topWeekSection");
@@ -81,6 +88,7 @@ function Navbar() {
 
   const handleMostValuedClick = () => {
     if (window.location.pathname !== "/") {
+      closeMenu();
       navigate("/");
       setTimeout(() => {
         scrollToSection("mostValuedSection");
@@ -91,6 +99,7 @@ function Navbar() {
   };
 
   const handlePuchases = () => {
+    closeMenu();
     navigate("/my_puchases");
     setIsMenuOpen(false);
     window.scrollTo({
@@ -99,6 +108,7 @@ function Navbar() {
     });
   };
   const handleProfile = () => {
+    closeMenu();
     navigate("/my_profile");
     setIsMenuOpen(false);
     window.scrollTo({
@@ -107,6 +117,7 @@ function Navbar() {
     });
   };
   const handleReviews = () => {
+    closeMenu();
     navigate("/my_reviews");
     setIsMenuOpen(false);
     window.scrollTo({
@@ -123,6 +134,7 @@ function Navbar() {
   };
 
   const handleAbout = () => {
+    closeMenu();
     navigate("/about");
     window.scrollTo({
       top: 0,
@@ -131,6 +143,7 @@ function Navbar() {
   };
 
   const handleShopNow = () => {
+    closeMenu();
     navigate("/products");
     window.scrollTo({
       top: 0,
@@ -139,7 +152,15 @@ function Navbar() {
   };
 
   const handleHome = () => {
+    closeMenu();
     navigate("/");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const handleDashboard = () => {
+    navigate("/adminDashboard");
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -147,6 +168,7 @@ function Navbar() {
   };
 
   const handleShoppingCart = () => {
+    closeMenu();
     navigate("/checkout");
     window.scrollTo({
       top: 0,
@@ -185,7 +207,7 @@ function Navbar() {
                 <ShoppingCart />
               </button>
             </div>
-            <div className="flex flex-row items-center gap-3 justify-end">
+            <div className="flex flex-row items-center justify-end">
               <div
                 onClick={handleProfileClick}
                 className="p-2 md:py-1 md:px-2 border-[1px] flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition self-center select-none"
@@ -219,35 +241,43 @@ function Navbar() {
                 </div>
               </div>
               {isMenuOpen && (
-                <div className="relative">
-                  <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md z-10 hidden md:block" style={{ top: 'calc(100% + 5px)' }}>
+                <div className="relative select-none">
+                  <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-36 right-3 shadow-md z-10 hidden md:block" style={{ top: 'calc(100% + 5px)' }}>
                     <div className="flex flex-col gap-2">
                       <button
-                          onClick={handleProfile}
+                        onClick={handleProfile}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         My Profile
                       </button>
                       <button
-                          onClick={handlePuchases}
+                        onClick={handlePuchases}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         Pucharses
                       </button>
                       <button
-                          onClick={handleReviews}
+                        onClick={handleReviews}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         Reviews
                       </button>
                       <button
-                          onClick={handlePuchases}
+                        onClick={handlePuchases}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         Favorites
                       </button>
+                      {completeUser.isAdmin && (
+                        <button
+                          onClick={handleDashboard}
+                          className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                        >
+                          Dashboard
+                        </button>
+                      )}
                       <button className="bloc text-zinc-200" disabled={true}>
-                        ───────────────
+                        ──────────
                       </button>
                       <button
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
@@ -313,7 +343,7 @@ function Navbar() {
                     className="block px-4 py-2 text-zinc-200"
                     disabled={true}
                   >
-                    ───────────────────────────────────────────────────────────────
+                    ───────────────────────────────
                   </button>
                   <button
                     onClick={handleProfile}
@@ -339,6 +369,14 @@ function Navbar() {
                   >
                     Favorites
                   </button>
+                  {completeUser.isAdmin && (
+                    <button
+                      onClick={handleDashboard}
+                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                    >
+                      Dashboard
+                    </button>
+                  )}
                   <button
                     className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                     onClick={handleLogout}
