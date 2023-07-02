@@ -37,7 +37,7 @@ function Stars({ handleRating }) {
 }
 
 Stars.propTypes = {
-  handleRating: PropTypes.any.isRequired,
+  handleRating: PropTypes.any,
 };
 
 export default Stars;

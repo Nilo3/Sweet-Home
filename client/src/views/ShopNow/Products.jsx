@@ -51,7 +51,6 @@ const Products = () => {
     dispatch(getProducts());
     window.location.reload();
   }
-
   return (
     <div className="all">
       {productsToDisplay.length === 0 ? (
@@ -105,17 +104,19 @@ const Products = () => {
       )}
       <div className="cards pt-2 select-none">
         {productsToDisplay.length > 0 ? (
-          productsToDisplay.map((product) => (
-            <div key={product._id} className="flex justify-center">
-              <Cards
-                _id={product._id}
-                name={product.name}
-                price={product.price}
-                image={product.image}
-                category={product.category.map((el) => el.name)}
-              />
-            </div>
-          ))
+          productsToDisplay
+            .filter((product) => !product.isDelete)
+            .map((product) => (
+              <div key={product._id} className="flex justify-center">
+                <Cards
+                  _id={product._id}
+                  name={product.name}
+                  price={product.price}
+                  image={product.image}
+                  category={product.category.map((el) => el.name)}
+                />
+              </div>
+            ))
         ) : (
           <div
             className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
