@@ -145,6 +145,13 @@ function Navbar() {
       behavior: "smooth",
     });
   };
+  const handleDashboard = () => {
+    navigate("/adminDashboard");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const handleShoppingCart = () => {
     navigate("/checkout");
@@ -219,33 +226,44 @@ function Navbar() {
                 </div>
               </div>
               {isMenuOpen && (
-                <div className="relative">
-                  <div className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md z-10 hidden md:block" style={{ top: 'calc(100% + 5px)' }}>
+                <div className="relative select-none">
+                  <div
+                    className="absolute rounded-b-lg bg-white py-2 mt-1 w-48 right-0 shadow-md z-10 hidden md:block"
+                    style={{ top: "calc(100% + 5px)" }}
+                  >
                     <div className="flex flex-col gap-2">
                       <button
-                          onClick={handleProfile}
+                        onClick={handleProfile}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         My Profile
                       </button>
                       <button
-                          onClick={handlePuchases}
+                        onClick={handlePuchases}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         Pucharses
                       </button>
                       <button
-                          onClick={handleReviews}
+                        onClick={handleReviews}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         Reviews
                       </button>
                       <button
-                          onClick={handlePuchases}
+                        onClick={handlePuchases}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         Favorites
                       </button>
+                      {completeUser.isAdmin && (
+                        <button
+                          onClick={handleDashboard}
+                          className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                        >
+                          Dashboard
+                        </button>
+                      )}
                       <button className="bloc text-zinc-200" disabled={true}>
                         ───────────────
                       </button>
@@ -339,6 +357,14 @@ function Navbar() {
                   >
                     Favorites
                   </button>
+                  {completeUser.isAdmin && (
+                    <button
+                      onClick={handleDashboard}
+                      className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                    >
+                      Dashboard
+                    </button>
+                  )}
                   <button
                     className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                     onClick={handleLogout}
