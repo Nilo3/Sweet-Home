@@ -21,7 +21,7 @@ export const GET_USER_BY_UID = "GET_USER_BY_UID"
 export const POST_USER = "POST_USER"
 export const UPDATE_USER = "UPDATE_USER"
 export const GET_USER_BY_EMAIL = "GET_USER_BY_EMAIL"
-export const GET_FAVORITE_PRODUCTS = "GET_FAVORITE_PRODUCTS" //esta es para obtener el producto favorito del usuario
+export const GET_FAVORITE_PRODUCTS = "GET_FAVORITE_PRODUCTS"
 
 //? Order Actions
 export const GET_ORDERS = "GET_ORDERS"

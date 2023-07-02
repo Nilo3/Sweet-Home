@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
-import { getFavoriteProducts } from "../../../Redux/actions/actions.js"
+import { useEffect } from "react";
+import { getFavoriteProducts, removeFavorite } from "../../../Redux/actions/actions.js"
 import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "../../../context/authContex.jsx";
 
 function Favorite() {
     const dispatch = useDispatch();
     const favoriteProducts = useSelector((state) => state.favorites);
-
+const {user} = useAuth()
     useEffect(() => {
-        dispatch(getFavoriteProducts())
+        dispatch(getFavoriteProducts(user.uid))
           .catch((error) => {
             console.log(error);
           });

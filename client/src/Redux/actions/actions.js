@@ -30,9 +30,9 @@ import {
     REMOVE_FAVORITE,
     GET_FAVORITE_PRODUCTS
 } from "../../Redux/action-types/action-types"
-const VITE_HOST = "http://localhost:3001"
-//const VITE_HOST = import.meta.env.VITE_HOST;
-console.log('Este es el error de: ' ,VITE_HOST)
+
+//const VITE_HOST = "http://localhost:3001"
+const VITE_HOST = import.meta.env.VITE_HOST;
 
 
 //>          |------------------------------------|          <\\
@@ -154,7 +154,6 @@ export const removeFavorite = (id) => {
 }
 
 
-
 //--//--//--//--//--//  USER ACTIONS  //--//--//--//--//--//
 
 
@@ -228,7 +227,7 @@ export function updateUser(data, id) {
     }
 }
 
-export const getFavoriteProducts = (uid) => { //es de usuario, no de productos, trae los productos favoritos del usuario por su uid.
+export const getFavoriteProducts = (uid) => {
     return async function (dispatch) {
       try {
         const response = await axios.get(`${VITE_HOST}/api/users/favorites/${uid}`);
@@ -244,9 +243,8 @@ export const getFavoriteProducts = (uid) => { //es de usuario, no de productos, 
   };
 
 
-
-
 //--//--//--//--//--//  CART ACTIONS  //--//--//--//--//--//
+
 
 export const addtoCart = (product) => {
     return {
