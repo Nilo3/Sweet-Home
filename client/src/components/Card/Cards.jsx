@@ -51,7 +51,9 @@ const Card = ({ _id, name, image, price, category }) => {
   };
 
   const allShoppingCart = useSelector((state) => state.shoppingCart);
-  const isProductInCart = allShoppingCart.some((product) => product.id === _id);
+  const isProductInCart = allShoppingCart?.some(
+    (product) => product.id === _id
+  );
 
   useEffect(() => {
     setInCart(isProductInCart);

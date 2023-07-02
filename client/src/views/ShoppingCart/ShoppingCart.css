@@ -1,19 +1,14 @@
-.errors{
-    margin-left: 50%;
-    display:inline-block;
- }
+.errors {
+  margin-left: 50%;
+  display: inline-block;
+}
 
-     
-  .error {
-    color: red;
-    font-style: italic;
-    font-size: 12px;
-    
-   
-   
-    
-  }
+.error {
+  color: red;
+  font-style: italic;
+  font-size: 12px;
+}
 
-  .input-container {
-    height: 48px; /* Adjust the height as needed */
-  }
+.input-container {
+  height: 48px;
+}

@@ -83,7 +83,7 @@ const Profile = () => {
   };
 
   return (
-    <div className={style.all}>
+    <div className={"style.all select-none"}>
       <Container>
         <FormGroup>
           <div className={style.container}>
