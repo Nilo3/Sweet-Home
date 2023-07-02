@@ -14,12 +14,7 @@ function Favorite() {
       }, [dispatch]);
 
   const handleRemoveFavorite = (productId) => {
-    removeFavorite(productId)
-      .then(() => {
-        setFavoriteProducts((prevFavorites) =>
-          prevFavorites.filter((product) => product.id !== productId)
-        );
-      })
+     dispatch(removeFavorite(productId))
       .catch((error) => {
         console.log(error);
       });
