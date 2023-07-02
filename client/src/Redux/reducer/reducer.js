@@ -23,7 +23,11 @@ import {
   PUT_REVIEW,
   DELETE_REVIEW,
   UPDATE_USER,
-  GET_USER_BY_EMAIL
+  GET_USER_BY_EMAIL,
+  ADD_FAVORITE,
+  REMOVE_FAVORITE,
+  GET_FAVORITE_PRODUCTS,
+
 } from "../action-types/action-types.js";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -40,7 +44,8 @@ const initialState = {
   error: null,
   newCart: [],
   orders: [],
-  order: []
+  order: [],
+  favorites: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -98,6 +103,22 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         products: [...state.products, payload],
       }
+    
+      case ADD_FAVORITE:
+        return {
+          ...state,
+          favorites: [...state.favorites, payload], 
+        };
+  
+      case REMOVE_FAVORITE:
+        return {
+          ...state,
+          favorites: state.favorites.filter(
+            (favorite) => favorite.id !== payload.id
+          ), 
+        };
+  
+  
 
     //--//--//--//--//--// Cart actions  //--//--//--//--//--//
 
@@ -252,6 +273,12 @@ const reducer = (state = initialState, { type, payload }) => {
         user: [...state.user, payload],
 
       };
+
+      case GET_FAVORITE_PRODUCTS://obtengo los productos favoritos DEL USUARIO
+        return {
+          ...state,
+          favorites: payload,
+        };
 
     //--//--//--//--//--//  ORDER actions  //--//--//--//--//--//
 

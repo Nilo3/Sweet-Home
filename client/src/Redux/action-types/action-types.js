@@ -11,6 +11,9 @@ export const POST_PRODUCT = "POST_PRODUCT"
 export const UPLOAD_PRODUCT = "UPLOAD_PRODUCT"
 export const DELETE_PRODUCT = "DELETE_PRODUCT"
 export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS'
+export const ADD_FAVORITE = "ADD_FAVORITE"
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE"
+
 
 //? User Actions
 export const GET_USERS = "GET_USERS"
@@ -18,6 +21,7 @@ export const GET_USER_BY_UID = "GET_USER_BY_UID"
 export const POST_USER = "POST_USER"
 export const UPDATE_USER = "UPDATE_USER"
 export const GET_USER_BY_EMAIL = "GET_USER_BY_EMAIL"
+export const GET_FAVORITE_PRODUCTS = "GET_FAVORITE_PRODUCTS" //esta es para obtener el producto favorito del usuario
 
 //? Order Actions
 export const GET_ORDERS = "GET_ORDERS"

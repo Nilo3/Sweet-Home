@@ -209,7 +209,10 @@ export function Register() {
 
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full flex items-center justify-center"
+            className={`bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full flex items-center justify-center ${
+              !!error ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={!!error}
           >
             Register
           </button>
