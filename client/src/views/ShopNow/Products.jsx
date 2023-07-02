@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory, filterByPrice, filterByName, getCategory, getProducts } from "../../Redux/actions/actions.js";
 import SearchBar from "./SearchBar";
 import "./Products.css";
+import { Modal, Ripple, initTE } from "tw-elements";
 
 const Products = () => {
+  initTE({ Modal, Ripple });
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
   const category = useSelector((state) => state.category);
@@ -51,7 +53,6 @@ const Products = () => {
     dispatch(getProducts());
     window.location.reload();
   }
-
   return (
     <div className="all">
       {productsToDisplay.length === 0 ? (
@@ -104,6 +105,12 @@ const Products = () => {
         </div>
       )}
       <div className="cards pt-2 select-none">
+          <button
+             type="button"
+             data-te-toggle="modal"
+             data-te-target="#exampleModal">
+             Launch demo modal
+          </button>
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
             <div key={product._id} className="flex justify-center">
