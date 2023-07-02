@@ -1,4 +1,4 @@
-import User from "../models/User.js";
+import User from "../../models/schemas/user.js";
 
 const deleteProductFavorite = async (req, res) => {
   const { userId, productId } = req.params;

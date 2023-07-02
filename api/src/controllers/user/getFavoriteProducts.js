@@ -1,4 +1,4 @@
-import User from '../models/user.js';
+import User from '../../models/schemas/user.js';
 
 export const getFavoriteProducts = async (req, res) => {
   try {

@@ -1,4 +1,6 @@
-import User from "../models/User.js";
+import User from "../../models/schemas/user.js"
+
+
 
 const postProductFavorite = async (req, res) => {
   const { userId, productId } = req.body;

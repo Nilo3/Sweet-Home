@@ -9,7 +9,8 @@ import getUserByUid from "../controllers/user/getUserByUid.js";
 import deleteUsers from "../controllers/user/deleteUsers.js";
 import getUserByEmail from "../controllers/user/getUserByEmail.js";
 import putUsers from "../controllers/user/putUsers.js";
-import getFavoriteProducts from '../controllers/user/favoriteController.js';
+import { getFavoriteProducts } from '../controllers/user/getFavoriteProducts.js';
+
 
 const router = Router();
 
