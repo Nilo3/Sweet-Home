@@ -44,7 +44,7 @@ const Pagination = ({
   return (
     <div>
       <nav className="mb-4">
-        <ul className="list-style-none flex">
+        <ul className="list-style-none flex flex-wrap justify-center">
           <li>
             <button
               className={`relative block rounded bg-transparent px-3 py-1.5 text-base ${
