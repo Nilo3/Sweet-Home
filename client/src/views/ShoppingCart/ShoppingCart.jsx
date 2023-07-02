@@ -14,12 +14,23 @@ import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-Logo.png";
 // import emailjs from "emailjs-com";
 
+import "./ShoppingCart.css"
+
 const Shopping = () => {
   const allShoppingCart = useSelector((state) =>
     state.shoppingCart.sort((a, b) => a.name.localeCompare(b.name))
   );
   const dispatch = useDispatch();
-
+  const[errors, setErrors] = useState({
+    name:"",
+    lastName:"",
+    email:"",
+    street:"",
+    zip:"",
+    city:"",
+    state:"",
+    phone:"",
+  })
   const { user } = useAuth();
   const [userId, setUserId] = useState(null);
 
@@ -27,6 +38,119 @@ const Shopping = () => {
   const shippingRate = 0;
   const total = calculateTotal(shippingRate, subTotal);
   const formattedTotal = total.toFixed(2);
+
+  const[input, setInput] =useState({
+    name:"",
+    lastName:"",
+    email:"",
+    street:"",
+    zip:"",
+    city:"",
+    state:"",
+    phone:"",
+  })
+  
+  const handleChange = (event) => { 
+    const property = event.target.name; 
+    const value = event.target.value;
+    setInput({...input, [property]: value}) 
+    
+    if(property === 'name') nameValidate({...input, [property]: value}) 
+    else if (property === 'lastName'){ lastNameValidate({...input, [property]: value})}
+    else if (property === 'email'){ emailValidate({...input, [property]: value})}
+    else if (property === 'street'){ streetValidate({...input, [property]: value})}
+    else if (property === 'zip'){ zipValidate({...input, [property]: value})}  
+    else if (property === 'city'){ cityValidate({...input, [property]: value})}
+    else if (property === 'state'){ stateValidate({...input, [property]: value})}
+    else if (property === 'phone'){ phoneValidate({...input, [property]: value})}     
+  }
+
+
+  const nameValidate = (input) =>{
+    if (!input.name) {
+      setErrors({...errors,name:"*First name is required."})
+    } else if (!/^[a-zA-Z]+$/.test(input.name)) {
+      setErrors({...errors,name:'*No numbers or special characters are allowed in this field.'})
+    } else {
+      setErrors({...errors,name:''})
+    }
+  }
+
+  const lastNameValidate = (input) =>{
+    if (!input.lastName) {
+      setErrors({...errors,lastName:"*Last name is required."})
+    } else if (!/^[a-zA-Z]+$/.test(input.lastName)) {
+      setErrors({...errors,lastName:'*No numbers or special characters are allowed in this field.'})
+    }
+    else {
+      setErrors({...errors,lastName:''})
+    }
+  }
+
+  const emailValidate = (input) =>{
+    if (!input.email) {
+      setErrors({...errors,email:"*Email is required."})
+    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(input.email)) {
+      setErrors({...errors,email:'*Enter a valid email.'})
+    }
+    else {
+      setErrors({...errors,email:''})
+    }
+  }
+
+
+  const streetValidate = (input) =>{
+    if (!input.street) {
+      setErrors({...errors,street:"*Address is required."})
+    }
+    else {
+      setErrors({...errors,street:''})
+    }
+  }
+
+  const zipValidate = (input) =>{
+    if (!input.zip) {
+      setErrors({...errors,zip:"*ZIP code is required."})
+    } else if (!/^[0-9]+$/.test(input.zip)) {
+      setErrors({...errors,zip:'*Only numbers allowed.'})
+    }
+    else {
+      setErrors({...errors,zip:''})
+    }
+  }
+
+  const phoneValidate = (input) =>{
+    if (!input.phone) {
+      setErrors({...errors,phone:"*Phone is required."})
+    } else if (!/^[0-9]+$/.test(input.phone)) {
+      setErrors({...errors,phone:'*Only numbers allowed.'})
+    }
+    else {
+      setErrors({...errors,phone:''})
+    }
+  }
+
+
+  const cityValidate = (input) =>{
+    if (!input.city) {
+      setErrors({...errors,city:"*City is required."})
+    } else if (!/^[a-zA-Z]+$/.test(input.city)) {
+      setErrors({...errors,city:'*No numbers or special characters are allowed in this field.'})
+    } else {
+      setErrors({...errors,city:''})
+    }
+  }
+
+  
+  const stateValidate = (input) =>{
+    if (!input.state) {
+      setErrors({...errors,state:"*State is required."})
+    } else if (!/^[a-zA-Z]+$/.test(input.state)) {
+      setErrors({...errors,state:'*No numbers or special characters are allowed in this field.'})
+    } else {
+      setErrors({...errors,state:''})
+    }
+  }
 
   useEffect(() => {
     if (user) {
@@ -228,32 +352,71 @@ const Shopping = () => {
             </label>
             <div className="flex">
               <div className="relative w-6/12 flex-shrink-0">
-                <input
-                  type="text"
-                  id="card-no"
-                  name="card-no"
-                  className=" mr-3 w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                  placeholder="First name"
-                />
-                <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                  <svg
-                    className="h-4 w-4 text-gray-400"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <AiOutlineUser />
-                  </svg>
+              <div className="input-container">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={input.name}
+                    onChange={event => handleChange(event)}
+                    className="mr-3 mb-1 w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="First name"
+                  />
+                  {errors.name && (
+                    <p className=" mb-1 error">
+                      <strong>{errors.name}</strong>
+                    </p>
+                  )}
+                  <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                    <svg
+                      className="h-4 w-4 text-gray-400"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                    >
+                      <AiOutlineUser />
+                    </svg>
+                  </div>
                 </div>
               </div>
+
+              <div className="input-container">
               <input
                 type="text"
-                name="credit-expiry"
+                name="lastName"
+                value={input.lastName}
+                onChange={event => handleChange(event)}
                 className="w-full ml-3 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Last Name"
               />
+
+              {errors.lastName && (
+                    <p className=" mb-1 error">
+                      <strong>{errors.lastName}</strong>
+                    </p>
+    )}
             </div>
+            
+            </div>
+            <br/>
+            <div className="relative">
+              <input
+                type="text"
+                id="email"
+                name="email"
+                value={input.email}
+                    onChange={event => handleChange(event)}
+                className=" mt-3 w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                placeholder="Email"
+              />
+              {errors.email && (
+                    <p className=" mb-1 mt-2 error">
+                      <strong>{errors.email}</strong>
+                    </p>
+    )}
+            </div>
+          
 
             <div className="flex flex-col">
               <label
@@ -292,22 +455,19 @@ const Shopping = () => {
                 className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Street and house number"
               />
+
+                      {errors.street && (
+                    <p className=" mb-1 mt-2 error">
+                      <strong>{errors.street}</strong>
+                    </p>
+                  )}
             </div>
-            <br />
-            <div className="relative">
-              <input
-                type="text"
-                id="email"
-                name="email"
-                className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                placeholder="Email"
-              />
-            </div>
+          
 
             <div className="relative">
               <input
                 type="text"
-                name="billing-zip"
+                name="appartment"
                 className=" mt-3 w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Appartment, suite, etc.(optional)"
               />
@@ -325,46 +485,89 @@ const Shopping = () => {
             </div>
 
             <div className="mt-3 relative flex-shrink-0 flex">
+              <div className="input-container">
               <input
                 type="text"
-                name="billing-zip"
-                className="mr-1 flex-shrink-0 rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                id="zip"
+                name="zip"
+                value={input.zip}
+                onChange={event => handleChange(event)}
+                className="mr-1 mb-2 rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none sm:w-5/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="ZIP"
+               
               />
+               {errors.zip && (
+                  <p className=" mb-1 error">
+                    <strong>{errors.zip}</strong>
+                  </p>
+                           )}
+              </div>
+              <div className="input-container">
               <input
                 type="text"
-                name="billing-city"
-                className="mr-1 flex-shrink-0 rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                id="city"
+                name="city"
+                value={input.city}
+                    onChange={event => handleChange(event)}
+                className="mr-1 rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none sm:w-7/8 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="City"
               />
+
+              {errors.city && (
+                                  <p className=" mb-1 mt-2 error">
+                                    <strong>{errors.city}</strong>
+                                  </p>
+                  )}
+
+                        </div>
+             <div className="input-container">
               <input
                 type="text"
-                name="billing-state"
-                className="mr-1 flex-shrink-0 rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none sm:w-1/3 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                id="state"
+                name="state"
+                value={input.state}
+                    onChange={event => handleChange(event)}
+                className="mr-1 flex-shrink-0 rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none sm:w-7/8 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="State"
               />
-            </div>
-
-            <div className="relative">
-              <input
-                type="text"
-                id="phone"
-                name="phone"
-                className="mt-3 w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                placeholder="Phone"
-              />
-              <div className="mt-3 pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                <svg
-                  className="h-4 w-4 text-gray-400"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                >
-                  <BsTelephone />
-                </svg>
+               {errors.state && (
+                                  <p className=" mb-1 mt-2 error">
+                                 <strong>{errors.state}</strong>
+                                  </p>
+                  )}
               </div>
             </div>
+
+            <div className="relative flex">
+  <input
+    type="text"
+    id="phone"
+    name="phone"
+    value={input.phone}
+    onChange={event => handleChange(event)}
+    className="mt-7 w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+    placeholder="Phone"
+  />
+  <div className="absolute inset-y-0 left-0 flex items-center px-3">
+    <svg
+      className=" mt-7 h-4 w-4 text-gray-400"
+      width="16"
+      height="16"
+      fill="currentColor"
+      viewBox="0 0 16 16"
+    >
+      <BsTelephone />
+    </svg>
+    
+  </div>
+ 
+</div>
+{ errors.phone && (
+                                  <p className=" mb-1 mt-2 error">
+                                 <strong>{errors.phone}</strong>
+                                  </p>
+                  )}
+
             <p className="mt-8 text-lg font-medium">Shipping Methods</p>
             <div className="mt-5 grid gap-6">
               <div className="relative">
