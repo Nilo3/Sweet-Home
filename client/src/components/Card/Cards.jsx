@@ -1,4 +1,8 @@
-import { addtoCart, getUserByUid, postShoppingCart } from "../../Redux/actions/actions.js";
+import {
+  addtoCart,
+  getUserByUid,
+  postShoppingCart,
+} from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -16,7 +20,9 @@ const Card = ({ _id, name, image, price, category }) => {
 
   useEffect(() => {
     if (user) {
-      const isProductFavorite = favorites.some((favorite) => favorite._id === _id);
+      const isProductFavorite = favorites.some(
+        (favorite) => favorite._id === _id
+      );
       setIsFavorite(isProductFavorite);
     }
   }, [user, favorites, _id]);
@@ -94,16 +100,16 @@ const Card = ({ _id, name, image, price, category }) => {
             </div>
           </Link>
           <span
-            className={`heart-icon ${isFavorite ? 'favorite' : ''}`}
+            className={`heart-icon ${isFavorite ? "favorite" : ""}`}
             onClick={toggleFavorite}
             style={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-              fontSize: '24px',
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              fontSize: "24px",
             }}
           >
-            {isFavorite ? '❤️' : '🤍'}
+            {isFavorite ? "❤️" : "🤍"}
           </span>
         </div>
         <div className="flex flex-col justify-between h-full">
@@ -142,4 +148,3 @@ Card.propTypes = {
 };
 
 export default Card;
-
