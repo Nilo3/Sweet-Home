@@ -78,7 +78,7 @@ function App() {
   <div style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 9999 }}>
     {showButton && (
       <button
-        className="bg-blue-100 text-blue-800 text-5xl font-semibold mb-20 px-5 py-5 rounded-full dark:bg-blue-200 dark:text-blue-800 mr-20"
+        className="bg-blue-100 text-blue-800 text-3xl font-semibold mb-2 px-3 py-3 rounded-full dark:bg-blue-200 dark:text-blue-800 mr-2"
         onClick={toggleChatbot}
       >
         <SiChatbot />

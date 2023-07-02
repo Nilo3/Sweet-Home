@@ -50,11 +50,11 @@ const About = () => {
           </div>
         ))}
       </div>
-      <div className={style.backButton}>
+      {/*<div className={style.backButton}>
         <Link to="/" className={style.backLink}>
           Back to Home
         </Link>
-      </div>
+      </div>*/}
     </div>
   );
 };
