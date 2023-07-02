@@ -1,7 +1,11 @@
 import "./MostValue.css";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { addtoCart, postShoppingCart, getUserByUid } from "../../Redux/actions/actions.js";
+import {
+  addtoCart,
+  postShoppingCart,
+  getUserByUid,
+} from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContex";
@@ -32,6 +36,13 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
       setUserId(userUid);
     }
   }, [userUid]);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const handleShoppingCart = () => {
     setInCart(true);
@@ -86,7 +97,7 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
     <div>
       <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="aspect-w-3 aspect-h-4 mb-4">
-          <Link to={`/products/${_id}`}>
+          <Link to={`/products/${_id}`} onClick={scrollToTop}>
             <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
               {name}
             </h5>
