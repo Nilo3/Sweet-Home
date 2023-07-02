@@ -1,22 +1,30 @@
 import React, { useEffect } from "react";
-import { getFavoriteProducts } from "../../../Redux/actions/actions.js"
+import { addtoFavorites, removefromFavorites, getFavorites, postFavorites } from "../../../Redux/actions/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 
 function Favorite() {
-    const dispatch = useDispatch();
-    const favoriteProducts = useSelector((state) => state.favorites);
+  const dispatch = useDispatch();
+  const favoriteProducts = useSelector((state) => state.favorites);
 
-    useEffect(() => {
-        dispatch(getFavoriteProducts())
-          .catch((error) => {
-            console.log(error);
-          });
-      }, [dispatch]);
+  useEffect(() => {
+    dispatch(getFavorites());
+  }, [dispatch]);
 
   const handleRemoveFavorite = (productId) => {
-     dispatch(removeFavorite(productId))
+    dispatch(removefromFavorites(productId))
       .catch((error) => {
         console.log(error);
+      });
+  };
+
+  const handleAddFavorite = (product) => { //manejador que hace que el producto tambien se guarde en el servidor
+    dispatch(addtoFavorites(product));
+    dispatch(postFavorites(product))
+      .then(() => {
+        console.log('Favorito guardado en el servidor');
+      })
+      .catch((error) => {
+        console.log('Error al guardar el favorito en el servidor:', error);
       });
   };
 
@@ -25,12 +33,11 @@ function Favorite() {
       <h1>Favorite Products</h1>
       {favoriteProducts.length > 0 ? (
         favoriteProducts.map((product) => (
-          <div key={product.id}>
+          <div key={product._id}>
             <h3>{product.name}</h3>
             <img src={product.image} alt={product.name} />
-            <h2>{product.price}</h2>
-            <h3>{product.category.map((el) => el.name)}</h3>
-            <button onClick={() => handleRemoveFavorite(product.id)}>
+            <h3>{product.category}</h3>
+            <button onClick={() => handleRemoveFavorite(product._id)}>
               Remove from Favorites
             </button>
           </div>
@@ -43,3 +50,5 @@ function Favorite() {
 }
 
 export default Favorite;
+
+

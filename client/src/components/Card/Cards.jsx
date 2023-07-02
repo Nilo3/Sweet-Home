@@ -1,10 +1,10 @@
-import { addtoCart, getUserByUid, postShoppingCart } from "../../Redux/actions/actions.js";
+import { addtoCart, getUserByUid, postShoppingCart, addtoFavorites, postFavorites, removefromFavorites } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useAuth } from "../../context/authContex.jsx";
-import { removeFavorite, addFavorite } from "../../Redux/actions/actions.js";
+
 
 const Card = ({ _id, name, image, price, category }) => {
   const dispatch = useDispatch();
@@ -37,9 +37,28 @@ const Card = ({ _id, name, image, price, category }) => {
 
   const toggleFavorite = () => {
     if (isFavorite) {
-      dispatch(removeFavorite(_id));
+      dispatch(removefromFavorites(_id));
     } else {
-      dispatch(addFavorite({ _id, name, image, price }));
+      const newFavorite = {
+        _id,
+        name,
+        image,
+        price,
+      };
+      dispatch(addtoFavorites(newFavorite));
+      if (userId) {
+        const updatedFavorites = {
+          user: userId,
+          products: [newFavorite],
+        };
+        dispatch(postFavorites(updatedFavorites));
+      } else {
+        const newFavorites = {
+          user: user.uid,
+          products: [newFavorite],
+        };
+        dispatch(postFavorites(newFavorites));
+      }
     }
     setIsFavorite(!isFavorite);
   };
