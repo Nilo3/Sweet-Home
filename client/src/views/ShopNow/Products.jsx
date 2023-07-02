@@ -11,7 +11,7 @@ const Products = () => {
   const allProducts = useSelector((state) => state.products);
   const category = useSelector((state) => state.category);
 
-  const [productPerPage] = useState(8);
+  const [productPerPage] = useState(9);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -104,19 +104,20 @@ const Products = () => {
       )}
       <div className="cards pt-2 select-none">
         {productsToDisplay.length > 0 ? (
-          productsToDisplay
-            .filter((product) => !product.isDelete)
-            .map((product) => (
-              <div key={product._id} className="flex justify-center">
+          <div className="grid grid-cols-3 gap-4">
+            {productsToDisplay
+              .filter((product) => !product.isDelete)
+              .map((product) => (
                 <Cards
+                  key={product._id}
                   _id={product._id}
                   name={product.name}
                   price={product.price}
                   image={product.image}
                   category={product.category.map((el) => el.name)}
                 />
-              </div>
-            ))
+              ))}
+          </div>
         ) : (
           <div
             className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"

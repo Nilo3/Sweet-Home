@@ -185,7 +185,7 @@ function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 w-full bg-neutral-200 z-50 shadow-sm">
+    <div className="sticky top-0 w-full bg-neutral-200 z-50 shadow-sm select-none">
       <div className="py-1 border-b-[1px]">
         <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
           <div className="flex flex-col md:flex-row md:flex-wrap md:items-center md:justify-between gap-3 md:gap-0">
