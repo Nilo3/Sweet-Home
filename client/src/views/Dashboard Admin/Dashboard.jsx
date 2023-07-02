@@ -1,7 +1,7 @@
 import AdminCard from "./AdminCard";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName, filterBestSeller } from "../../Redux/actions/actions";
+import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName, filterBestSeller, getAllOrders } from "../../Redux/actions/actions";
 import { Link } from "react-router-dom";
 import  SearchBar from '../ShopNow/SearchBar'
 import Pagination from "../../components/Pagination/Pagination";
@@ -11,6 +11,8 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
   const category = useSelector((state) => state.category);
+  const orders = useSelector((state) => state.orders)
+
 
   const [productPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,6 +28,7 @@ const Dashboard = () => {
     dispatch(getProducts());
     dispatch(getCategory());
     dispatch(filterByCategory);
+    dispatch(getAllOrders())
   }, [dispatch]);
 
   function handleOrderName(event) {
@@ -50,6 +53,13 @@ const Dashboard = () => {
     dispatch(filterBestSeller(event.target.value));
     setCurrentPage(1);
   }
+
+  const filter = orders?.filter((element) => {
+    element[0].products.map((el) => {
+      console.log(el.product._id, 'aca estamos viendo el id')
+    })
+  })
+  
 
   return (
     <div className="pt-16">

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { deleteProduct, getCategory, getProducts } from "../../Redux/actions/actions";
+import { deleteProduct, getCategory, getProducts, softDeleteProduct } from "../../Redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -15,7 +15,7 @@ const AdminCard = ({ id, name, price,description, image, category }) => {
 
     function handleDelete(event) {
       event.preventDefault();
-  dispatch(deleteProduct(event.target.value));
+  dispatch(softDeleteProduct(event.target.value));
   }
 
   return (

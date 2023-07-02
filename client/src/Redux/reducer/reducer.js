@@ -24,7 +24,8 @@ import {
   DELETE_REVIEW,
   UPDATE_USER,
   GET_USER_BY_EMAIL,
-  BEST_SELLER
+  BEST_SELLER,
+  SOFT_DELETE
 } from "../action-types/action-types.js";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -86,6 +87,14 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         getAllProducts: updateProduct,
         products: removeProduct
+      }
+    }
+    case SOFT_DELETE: {
+      
+      return {
+        ...state,
+        products: [...state.products, payload],
+        getAllProducts: [...state.getAllProducts, payload],
       }
     }
     case UPLOAD_PRODUCT:
@@ -201,34 +210,8 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     }
 
-    case BEST_SELLER: {
-      const countSold = state.orders.reduce((soldCount, order) => {
-        order.products.filter((product) => {
-          if (soldCount.hasOwnProperty(product._id)) {
-            soldCount[product._id] += product.quantity;
-          } else {
-            soldCount[product._id] = product.quantity;
-          }
-        });
-        return soldCount;
-      }, {});
+   
     
-      const sortedProducts = Object.keys(countSold).sort((a, b) => countSold[b] - countSold[a]);
-    
-      const bestSellerProducts = sortedProducts.map((productId) => {
-        const product = state.products.find((p) => p._id === productId);
-        return {
-          ...product,
-          quantitySold: countSold[productId],
-        };
-      });
-    
-      return {
-        ...state,
-        products: bestSellerProducts,
-        getAllOrders: bestSellerProducts
-      };
-    }
 
     //--//--//--//--//--//  Review actions  //--//--//--//--//--//
 

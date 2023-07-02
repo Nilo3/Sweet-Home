@@ -26,7 +26,8 @@ import {
     DELETE_REVIEW,
     UPDATE_USER,
     GET_USER_BY_EMAIL,
-    BEST_SELLER
+    BEST_SELLER,
+    SOFT_DELETE
 } from "../../Redux/action-types/action-types"
  const VITE_HOST = "http://localhost:3001"
 //const {VITE_HOST} = import.meta.env
@@ -92,6 +93,19 @@ export function uploadProduct(data, id) {
             return dispatch({
                 type: UPLOAD_PRODUCT,
                 payload: data,
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export function softDeleteProduct(id) {
+    return async function (dispatch) {
+        try {
+            await axios.put(`${VITE_HOST}/api/product/${id}`, {isDelete: true})
+            return dispatch({
+                type: SOFT_DELETE,
+                payload: {isDelete: true}
             })
         } catch (error) {
             console.log(error)

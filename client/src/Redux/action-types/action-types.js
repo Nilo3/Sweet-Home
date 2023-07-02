@@ -11,6 +11,7 @@ export const POST_PRODUCT = "POST_PRODUCT"
 export const UPLOAD_PRODUCT = "UPLOAD_PRODUCT"
 export const DELETE_PRODUCT = "DELETE_PRODUCT"
 export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS'
+export const SOFT_DELETE = "SOFT_DELETE"
 
 //? User Actions
 export const GET_USERS = "GET_USERS"
