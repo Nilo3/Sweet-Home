@@ -2,13 +2,7 @@ import Cards from "../../components/Card/Cards";
 import Pagination from "../../components/Pagination/Pagination";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterByCategory,
-  filterByPrice,
-  filterByName,
-  getCategory,
-  getProducts,
-} from "../../Redux/actions/actions.js";
+import { filterByCategory, filterByPrice, filterByName, getCategory, getProducts } from "../../Redux/actions/actions.js";
 import SearchBar from "./SearchBar";
 import "./Products.css";
 
@@ -58,28 +52,9 @@ const Products = () => {
     window.location.reload();
   }
   return (
-    <div className="">
+    <div className="all">
       {productsToDisplay.length === 0 ? (
-        <section className="flex h-screen bg-gray-50 dark:bg-gray-700">
-          <div className="container flex flex-col items-center justify-center">
-            {" "}
-            {/* Añade 'items-center justify-center' */}
-            <div className="flex flex-col gap-6 max-w-md text-center">
-              <h2 className="font-extrabold text-9xl dark:divide-stone-950">
-                <span className="sr-only">Error</span>404
-              </h2>
-              <p className="text-2xl md:text-3xl dark:divide-stone-950">
-                Sorry, we couldnt find anything.
-              </p>
-              <a
-                href="/products"
-                className="py-2 text-xl font-semibold rounded bg-black text-gray-50 hover:text-gray-200"
-              >
-                Back to homepage
-              </a>
-            </div>
-          </div>
-        </section>
+        <div></div>
       ) : (
         <div className="flex flex-wrap justify-center pt-2">
           <SearchBar />
@@ -96,9 +71,7 @@ const Products = () => {
                 className="ordAndFil1"
                 onChange={(event) => handleOrderName(event)}
               >
-                <option value="default" disabled>
-                  Name
-                </option>
+                <option value="default" disabled>Name</option>
                 <option value="asc">A - Z</option>
                 <option value="desc">Z - A</option>
               </select>
@@ -106,9 +79,7 @@ const Products = () => {
                 className="ordAndFil2"
                 onChange={(event) => handleOrderPrice(event)}
               >
-                <option value="default" disabled>
-                  Price
-                </option>
+                <option value="default" disabled>Price</option>
                 <option value="high">Low to high</option>
                 <option value="low">High to low</option>
               </select>
@@ -148,7 +119,14 @@ const Products = () => {
               ))}
           </div>
         ) : (
-          <div></div>
+          <div
+            className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+            role="status"
+          >
+            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+              Loading...
+            </span>
+          </div>
         )}
       </div>
       <br />
