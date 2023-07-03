@@ -4,8 +4,6 @@ export default async (req, res) => {
   try {
     const { id } = req.params;
     const favorites = await Favorites.findById(id)
-      
-
 
     if (!favorites) {
       return res.status(404).json({ message: "Favorite not found" });

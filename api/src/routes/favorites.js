@@ -3,7 +3,7 @@ import { Router } from "express";
 // ? Controllers 
 import getFavorites from "../controllers/favorites/getFavorites.js"
 import postFavorites from "../controllers/favorites/postFavorites.js";
-import deleteFavorites from "../controllers/favorites/deleteFavorites.js"
+import deleteFavorites from "../controllers/favorites/deleteProductFavoriteById.js";
 import getFavoritesById from "../controllers/favorites/getFavoritesById.js";
 
 
