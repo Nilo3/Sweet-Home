@@ -183,6 +183,9 @@ const Detail = () => {
                 {product?.review?.length || 0} Reviews
               </p>
             </div>
+              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
+                Stock: {product?.stock || 0}
+              </p>
             <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
               <div className="flex items-end">
                 <h1 className="text-3xl font-bold">${product?.price}</h1>
@@ -276,6 +279,7 @@ const Detail = () => {
                   <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
                     {product?.review?.length || 0} Reviews
                   </span>
+                
                 </a>
               </nav>
             </div>
