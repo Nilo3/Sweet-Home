@@ -16,7 +16,7 @@ const Card = ({ _id, name, image, price, category }) => {
 
   useEffect(() => {
     if (user) {
-      const isProductFavorite = favorites.some(
+      const isProductFavorite = favorites?.some(
         (favorite) => favorite._id === _id
       );
       setIsFavorite(isProductFavorite);
