@@ -12,7 +12,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
   const category = useSelector((state) => state.category);
-  const orders = useSelector((state) => state.orders)
+
 
 
   const [productPerPage] = useState(8);
