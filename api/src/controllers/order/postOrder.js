@@ -66,9 +66,9 @@ export default async (req, res) => {
         },
       ],
       back_urls: {
-        success: "https://front-deploy-v4j8.onrender.com/products",
-        failure: "https://front-deploy-v4j8.onrender.com/products",
-        pending: "https://front-deploy-v4j8.onrender.com/products",
+        success: "https://sweet-home-w1rt.onrender.com/#/products",
+        failure: "https://sweet-home-w1rt.onrender.com/#/products",
+        pending: "https://sweet-home-w1rt.onrender.com/#/products",
       },
     };
 
