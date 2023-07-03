@@ -5,6 +5,7 @@ import {
   addtoCart,
   postShoppingCart,
   getUserByUid,
+  cleanDetail
 } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -38,6 +39,7 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getProductDetail(id));
+    return () => dispatch(cleanDetail())
   }, [dispatch, id]);
 
   const handleShoppingCart = () => {

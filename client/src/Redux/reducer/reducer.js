@@ -28,7 +28,8 @@ import {
   DELETE_FROM_FAVORITES,
   POST_FAVORITES,
   GET_FAVORITES,
-  SOFT_DELETE
+  SOFT_DELETE,
+  CLEAN_DETAIL
 } from "../action-types/action-types.js";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -114,7 +115,11 @@ const reducer = (state = initialState, { type, payload }) => {
         products: [...state.products, payload],
       }
 
-
+      case CLEAN_DETAIL:
+        return {
+            ...state,
+            details: []
+        }
     //--//--//--//--//--// Cart actions  //--//--//--//--//--//
 
     case ADD_TO_CART: {

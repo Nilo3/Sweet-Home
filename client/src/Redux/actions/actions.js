@@ -30,7 +30,8 @@ import {
     ADD_TO_FAVORITES,
     POST_FAVORITES,
     DELETE_FROM_FAVORITES,
-    GET_FAVORITES
+    GET_FAVORITES,
+    CLEAN_DETAIL
 } from "../../Redux/action-types/action-types"
 const VITE_HOST = "http://localhost:3001"
 //const VITE_HOST = import.meta.env.VITE_HOST;
@@ -137,6 +138,10 @@ export const searchProducts = (searchTerm) => {
         payload: searchTerm,
     };
 };
+
+export const cleanDetail = () => {
+    return { type: CLEAN_DETAIL }
+}
 
 //--//--//--//--//--//  USER ACTIONS  //--//--//--//--//--//
 
