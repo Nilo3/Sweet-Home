@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContex";
 import { useEffect, useState } from "react";
 import { getUserByUid, postReview } from "../../Redux/actions/actions";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Stars from "../../components/Stars/Stars";
 import { toast } from "react-toastify";
 
@@ -10,7 +10,7 @@ const Purchases = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const userUid = user?.uid;
-
+  const navigate = useNavigate;
   useEffect(() => {
     if (user) {
       dispatch(getUserByUid(userUid));
@@ -44,7 +44,12 @@ const Purchases = () => {
     dispatch(postReview(reviewProduct));
     cancelReviewCreation();
   };
-
+  const handleDetail = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className="pt-8 flex flex-col items-center justify-center bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
       <div className="grid w-3/4 select-none">
@@ -77,14 +82,18 @@ const Purchases = () => {
                   <div className="flex w-full flex-col justify-between px-4 py-4">
                     <div>
                       <p className="text-sm text-green-500">Delivered</p>
-                      <Link to={`/products/${product._id}`}>
-                        <span className="font-semibold text-xl">
-                          {product?.product?.name}
-                        </span>
-                      </Link>
+                      <div onClick={handleDetail}>
+                        <Link to={`/products/${product._id}`}>
+                          <span className="font-semibold text-xl">
+                            {product?.product?.name}
+                          </span>
+                        </Link>
+                      </div>
                       <p className="text-sm">
                         Price: $
-                        {(product?.product?.price * product?.quantity).toFixed(2)}
+                        {(product?.product?.price * product?.quantity).toFixed(
+                          2
+                        )}
                       </p>
                       <p className="text-xs">Quantity: {product?.quantity}</p>
                     </div>
