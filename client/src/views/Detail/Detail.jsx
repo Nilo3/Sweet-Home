@@ -185,7 +185,7 @@ const Detail = () => {
             </div>
             <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
               <div className="flex items-end">
-                <h1 className="text-3xl font-bold">${product.price}</h1>
+                <h1 className="text-3xl font-bold">${product?.price}</h1>
               </div>
               <button
                 onClick={handleClick}
@@ -274,7 +274,7 @@ const Detail = () => {
                 >
                   Reviews
                   <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
-                    {product.review?.length || 0} Reviews
+                    {product?.review?.length || 0} Reviews
                   </span>
                 </a>
               </nav>
@@ -284,7 +284,7 @@ const Detail = () => {
               {selectedSection === "description" ? (
                 <>
                   <h1 className="text-3xl font-bold">Product Description</h1>
-                  <p className="mt-4">{product.description}.</p>
+                  <p className="mt-4">{product?.description}.</p>
                 </>
               ) : (
                 <>
