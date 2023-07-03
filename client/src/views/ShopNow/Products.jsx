@@ -60,26 +60,7 @@ const Products = () => {
   return (
     <div className="">
       {productsToDisplay.length === 0 ? (
-        <section className="flex h-screen bg-gray-50 dark:bg-gray-700">
-          <div className="container flex flex-col items-center justify-center">
-            {" "}
-            {/* Añade 'items-center justify-center' */}
-            <div className="flex flex-col gap-6 max-w-md text-center">
-              <h2 className="font-extrabold text-9xl dark:divide-stone-950">
-                <span className="sr-only">Error</span>404
-              </h2>
-              <p className="text-2xl md:text-3xl dark:divide-stone-950">
-                Sorry, we couldnt find anything.
-              </p>
-              <a
-                href="/products"
-                className="py-2 text-xl font-semibold rounded bg-black text-gray-50 hover:text-gray-200"
-              >
-                Back to homepage
-              </a>
-            </div>
-          </div>
-        </section>
+        <div></div>
       ) : (
         <div className="flex flex-wrap justify-center pt-2">
           <SearchBar />
