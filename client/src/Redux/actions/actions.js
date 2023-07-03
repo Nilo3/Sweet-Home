@@ -26,11 +26,11 @@ import {
     DELETE_REVIEW,
     UPDATE_USER,
     GET_USER_BY_EMAIL,
-    ADD_FAVORITE,
-    REMOVE_FAVORITE,
-    GET_FAVORITE_PRODUCTS
-} from "../../Redux/action-types/action-types"
-
+    ADD_TO_FAVORITES,
+    DELETE_FROM_FAVORITES,
+    POST_FAVORITES,
+    GET_FAVORITES
+  } from "../../Redux/action-types/action-types"
 const VITE_HOST = "http://localhost:3001"
 // const VITE_HOST = import.meta.env.VITE_HOST;
 
@@ -123,36 +123,6 @@ export const searchProducts = (searchTerm) => {
         payload: searchTerm,
     };
 };
-export const addFavorite = (product) => {
-    return async (dispatch) => {
-        try {
-            const response = await axios.post(`${VITE_HOST}/api/product/favorite`, product)
-            if(!response.length) throw Error('No hay favoritos');
-            dispatch({
-                type: ADD_FAVORITE,
-                payload: response.data
-            })
-            return response
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
-
-export const removeFavorite = (id) => {
-    return async function (dispatch) {
-        try {
-            const response = await axios.delete(`${VITE_HOST}/api/product/favorite/${id}`)
-            return dispatch({
-                type: REMOVE_FAVORITE,
-                payload: response.data,
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
-
 
 //--//--//--//--//--//  USER ACTIONS  //--//--//--//--//--//
 
@@ -226,22 +196,6 @@ export function updateUser(data, id) {
         }
     }
 }
-
-export const getFavoriteProducts = (uid) => {
-    return async function (dispatch) {
-      try {
-        const response = await axios.get(`${VITE_HOST}/api/users/favorites/${uid}`);
-        dispatch({
-          type: GET_FAVORITE_PRODUCTS,
-          payload: response.data,
-        });
-      } catch (error) {
-        console.log(error);
-        throw new Error("Failed to fetch favorite products.");
-      }
-    };
-  };
-
 
 //--//--//--//--//--//  CART ACTIONS  //--//--//--//--//--//
 
@@ -427,3 +381,48 @@ export const filterByCategory = (payload) => {
         payload,
     }
 }
+
+//--//--//--//--//--//  FAVORITES  //--//--//--//--//--//
+
+export const addtoFavorites = (product) => {
+    return {
+      type: ADD_TO_FAVORITES,
+      payload: product,
+    };
+  };  
+
+export function postFavorites(payload) {
+    return async function (dispatch) {
+        try {
+            const response = await axios.post(`${VITE_HOST}/api/favorites`, payload)
+            dispatch({
+                type: POST_FAVORITES,
+                payload: response.data,
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const removefromFavorites = (id) => {
+    return {
+        type: DELETE_FROM_FAVORITES,
+        payload: id,
+    }
+}
+
+export const getFavorites = () => {
+    return async (dispatch) => {
+      try {
+        const response = await axios.get(`${VITE_HOST}/api/favorites`);
+        dispatch({
+          type: GET_FAVORITES,
+          payload: response.data,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  };
+

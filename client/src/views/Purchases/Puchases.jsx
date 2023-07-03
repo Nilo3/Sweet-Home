@@ -67,11 +67,11 @@ const Purchases = () => {
               {order.products?.map((product) => (
                 <div
                   className="mt-5 flex mr-5 ml-5 flex-col rounded-lg bg-white sm:flex-row border-b border-gray-200 last:border-b-0"
-                  key={product.product._id}
+                  key={product?.product?._id}
                 >
                   <img
                     className="m-2 h-40 sm:h-40 w-40 sm:w-40 rounded-md border object-cover object-center"
-                    src={product.product.image}
+                    src={product?.product?.image}
                     alt=""
                   />
                   <div className="flex w-full flex-col justify-between px-4 py-4">
@@ -79,21 +79,21 @@ const Purchases = () => {
                       <p className="text-sm text-green-500">Delivered</p>
                       <Link to={`/products/${product._id}`}>
                         <span className="font-semibold text-xl">
-                          {product.product.name}
+                          {product?.product?.name}
                         </span>
                       </Link>
                       <p className="text-sm">
                         Price: $
-                        {(product.product.price * product.quantity).toFixed(2)}
+                        {(product?.product?.price * product?.quantity).toFixed(2)}
                       </p>
-                      <p className="text-xs">Quantity: {product.quantity}</p>
+                      <p className="text-xs">Quantity: {product?.quantity}</p>
                     </div>
                     <div className="mt-3">
-                      {creatingReviewId !== product.product._id ? (
+                      {creatingReviewId !== product?.product?._id ? (
                         <button
                           className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center"
                           onClick={() =>
-                            setCreatingReviewId(product.product._id)
+                            setCreatingReviewId(product?.product?._id)
                           }
                         >
                           Write Review

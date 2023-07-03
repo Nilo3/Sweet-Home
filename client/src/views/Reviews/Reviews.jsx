@@ -15,7 +15,7 @@ import Stars from "../../components/Stars/Stars";
 const Reviews = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
-  const userUid = user.uid;
+  const userUid = user?.uid;
   useEffect(() => {
     dispatch(getUserByUid(userUid));
   }, [dispatch, userUid]);
@@ -74,12 +74,12 @@ const Reviews = () => {
     <div className="pt-8 flex flex-col items-center justify-center bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
       <div className="grid w-3/4">
         <p className="text-3xl font-medium mb-4">My Reviews</p>
-        {userData?.userReviews.length === 0 ? (
+        {userData?.userReviews?.length === 0 ? (
           <p className="text-gray-400 flex items-center justify-center">
             No reviews have been made with this account.
           </p>
         ) : (
-          userData?.userReviews.map((review) => (
+          userData?.userReviews?.map((review) => (
             <div
               key={review._id}
               className="text-left mt-5 mb-5 m-4 bg-white pt-5 pb-5 border border-gray-200 rounded-lg"
@@ -97,14 +97,14 @@ const Reviews = () => {
                 <div className="mt-5 flex mr-5 ml-5 flex-col rounded-lg bg-white sm:flex-row border-b border-gray-200 last:border-b-0">
                   <img
                     className="m-2 h-40 sm:h-40 w-40 sm:w-40 rounded-md border object-cover object-center"
-                    src={review.product.image}
+                    src={review.product?.image}
                     alt=""
                   />
                   <div className="flex w-full flex-col justify-between px-4 py-4">
                     {editingReviewId === review._id ? (
                       <div>
                         <span className="font-semibold text-xl">
-                          {review.product.name}
+                          {review.product?.name}
                         </span>
                         <textarea
                           className="mt-2 p-2 border rounded-md resize-none w-full"
@@ -131,10 +131,10 @@ const Reviews = () => {
                     ) : (
                       <div>
                         <Link
-                          to={`/products/${review.product._id}`}
+                          to={`/products/${review.product?._id}`}
                           className="font-semibold text-xl"
                         >
-                          {review.product.name}
+                          {review.product?.name}
                         </Link>
                         <p className="text-sm">{review.reviewText}</p>
                         <div className="flex mt-2">

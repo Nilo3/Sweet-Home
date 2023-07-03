@@ -1,46 +1,103 @@
-import { useEffect } from "react";
-import { getFavoriteProducts, removeFavorite } from "../../../Redux/actions/actions.js"
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useAuth } from "../../../context/authContex.jsx";
+import { addtoFavorites, removefromFavorites, getFavorites, postFavorites } from "../../../Redux/actions/actions.js";
+import Pagination from "../../../components/Pagination/Pagination.jsx"
 
 function Favorite() {
-    const dispatch = useDispatch();
-    const favoriteProducts = useSelector((state) => state.favorites);
-const {user} = useAuth()
-    useEffect(() => {
-        dispatch(getFavoriteProducts(user.uid))
-          .catch((error) => {
-            console.log(error);
-          });
-      }, [dispatch]);
+  const dispatch = useDispatch();
+  const favoriteProducts = useSelector((state) => state.favorites);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const favoriteProductsPerPage = 8;
+
+  useEffect(() => {
+    dispatch(getFavorites());
+  }, [dispatch]);
 
   const handleRemoveFavorite = (productId) => {
-     dispatch(removeFavorite(productId))
+    dispatch(removefromFavorites(productId)).catch((error) => {
+      console.log(error);
+    });
+  };
+
+  const handleAddFavorite = (product) => {
+    const payload = {
+      user: user.uid,
+      products: [product],
+    };
+
+    dispatch(addtoFavorites(product));
+    dispatch(postFavorites(payload))
+      .then(() => {
+        console.log("Favorito guardado en el servidor");
+      })
       .catch((error) => {
-        console.log(error);
+        console.log("Error al guardar el favorito en el servidor:", error);
       });
+  };
+
+  const indexOfLastProduct = currentPage * favoriteProductsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - favoriteProductsPerPage;
+  const favoriteProductsToDisplay = favoriteProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
     <div>
-      <h1>Favorite Products</h1>
-      {favoriteProducts.length > 0 ? (
-        favoriteProducts.map((product) => (
-          <div key={product.id}>
-            <h3>{product.name}</h3>
-            <img src={product.image} alt={product.name} />
-            <h2>{product.price}</h2>
-            <h3>{product.category.map((el) => el.name)}</h3>
-            <button onClick={() => handleRemoveFavorite(product.id)}>
-              Remove from Favorites
-            </button>
-          </div>
-        ))
-      ) : (
-        <p>No favorite products found.</p>
-      )}
+      <section className="flex flex-col items-center bg-white">
+        <h1 className="mt-10 text-4xl font-bold text-gray-800">My Favorites</h1>
+        <div className="mt-10 grid max-w-md grid-cols-1 gap-6 px-2 sm:max-w-lg sm:px-20 md:max-w-screen-xl md:grid-cols-2 md:px-10 lg:grid-cols-3 lg:gap-8">
+          {favoriteProductsToDisplay.length > 0 ? (
+            favoriteProductsToDisplay.map((product) => (
+              <Link key={product._id} to={`/products/${product._id}`}>
+                <article className="mb-4 overflow-hidden rounded-xl border text-gray-700 shadow-md duration-500 ease-in-out hover:shadow-xl">
+                  <div>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-[300px] object-cover"
+                    />
+                  </div>
+
+                  <div className="p-4 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-center">{product.name}</h3>
+                      <p className="text-sm text-gray-500">{product.category}</p>
+                    </div>
+                    
+                    <button
+                      onClick={() => handleRemoveFavorite(product._id)}
+                      className="mt-2 px-4 py-2 bg-gray-500 text-white rounded-md self-center"
+                    >
+                      Remove from Favorites
+                    </button>
+                  </div>
+                </article>
+              </Link>
+            ))
+          ) : (
+            <p>No favorite products found.</p>
+          )}
+        </div>
+
+        {favoriteProductsToDisplay.length > 0 && (
+          <Pagination
+            productPerPage={favoriteProductsPerPage}
+            currentPage={currentPage}
+            setCurrentPage={handlePageChange}
+            totalProducts={favoriteProducts.length}
+          />
+        )}
+      </section>
     </div>
   );
 }
 
 export default Favorite;
+
