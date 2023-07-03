@@ -26,8 +26,8 @@ const Landing = () => {
             <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-neutral-700 via-transparent"></div>
             <div className="absolute inset-x-0 top-0 py-5 text-center text-white md:block select-none">
               <h1
-                className="text-5xl drop-shadow-2xl capitalize"
-                style={{ textShadow: "2px 2px 4px #000000" }}
+                className="text-5xl drop-shadow-2xl"
+                style={{ textShadow: "1px 1px 1px #000000" }}
               >
                 Welcome to Sweet Home
               </h1>
@@ -48,15 +48,15 @@ const Landing = () => {
             <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-neutral-700 via-transparent"></div>
             <div className="absolute inset-x-0 top-0 py-5 text-center text-white md:block select-none">
               <h5
-                className="text-4xl drop-shadow-2xl capitalize"
-                style={{ textShadow: "2px 2px 4px #000000" }}
+                className="text-4xl drop-shadow-2xl "
+                style={{ textShadow: "1px 1px 1px #000000" }}
               >
                 Explore our shop
               </h5>
               <br />
               <p
-                className="drop-shadow-2xl capitalize"
-                style={{ textShadow: "2px 2px 4px #000000" }}
+                className="drop-shadow-2xl"
+                style={{ textShadow: "1px 1px 1px #000000" }}
               >
                 Take a look at what we have for you
               </p>
@@ -77,15 +77,15 @@ const Landing = () => {
             <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-neutral-700 via-transparent"></div>
             <div className="absolute inset-x-0 top-0 py-5 text-center text-white md:block select-none">
               <h5
-                className="text-5xl drop-shadow-2xl capitalize"
-                style={{ textShadow: "2px 2px 4px #000000" }}
+                className="text-5xl drop-shadow-2xl"
+                style={{ textShadow: "1px 1px 1px #000000" }}
               >
                 Acquire real quality
               </h5>
               <br />
               <p
-                className="drop-shadow-2xl capitalize"
-                style={{ textShadow: "2px 2px 4px #000000" }}
+                className="drop-shadow-2xl"
+                style={{ textShadow: "1px 1px 1px #000000" }}
               >
                 Discover the trending top-quality softy furniture
               </p>

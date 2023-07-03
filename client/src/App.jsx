@@ -8,6 +8,7 @@ import Shopping from "./views/ShoppingCart/ShoppingCart";
 import Home from "./views/Home/Home";
 import Login from "./views/Login/Login";
 import Register from "./views/Register/Register";
+import Favorite from "./views/Profile/Favorite/Favorite";
 import UploadProduct from './views/UploadProduct/UploadProduct'
 import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/authContex";
@@ -27,6 +28,7 @@ import {steps} from "../src/utils/steps"
 import Puchases from "./views/Purchases/Puchases";
 import Reviews from "./views/Reviews/Reviews";
 import Stars from "./components/Stars/Stars";
+import Recommendations from "./views/Recommendations/Recommendations";
 
 const Layout = ({ children }) => {
   return (
@@ -63,6 +65,7 @@ function App() {
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/products" element={<Layout><Products /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
+          <Route path="/recommendations" element={<Layout><Recommendations /></Layout>} />
           <Route path="/checkout" element={<Layout><Shopping /></Layout>} />
           <Route path="/products/:id" element={<Layout><Detail /></Layout>} />
           <Route path="/adminDashboard" element={<Layout><Dashboard /></Layout>} />
@@ -72,6 +75,7 @@ function App() {
           <Route path="/my_puchases" element={<Layout><Puchases/></Layout>} />
           <Route path="/my_reviews" element={<Layout><Reviews/></Layout>} />
           <Route path="/stars" element={<Layout><Stars/></Layout>} />
+          <Route path="/favorite" element={<Layout><Favorite/></Layout>} />
         </Routes>
      
         <ThemeProvider theme={theme}>

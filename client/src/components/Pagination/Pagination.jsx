@@ -43,7 +43,7 @@ const Pagination = ({
 
   return (
     <div>
-      <nav className="mb-4">
+      <nav className="mb-4 select-none">
         <ul className="list-style-none flex flex-wrap justify-center">
           <li>
             <button
@@ -61,9 +61,9 @@ const Pagination = ({
           {pageNumbers.map((noPage) => (
             <li key={noPage}>
               <button
-                className={`relative block rounded bg-transparent px-3 py-1.5 text-base ${
+                className={`relative block rounded px-3 py-1.5 text-base ${
                   currentPage === noPage
-                    ? "bg-neutral-800 text-neutral-600 border-2 border-gray-400"
+                    ? "text-white font-semibold bg-black self-center"
                     : "text-neutral-600 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
                 }`}
                 onClick={() => handlePageClick(noPage)}

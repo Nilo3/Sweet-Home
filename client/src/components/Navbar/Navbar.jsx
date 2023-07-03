@@ -143,6 +143,14 @@ function Navbar() {
     });
   };
 
+  const handleFavorite = () => {
+    navigate("/favorite");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const handleShopNow = () => {
     closeMenu();
     navigate("/products");
@@ -178,7 +186,7 @@ function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 w-full bg-neutral-200 z-50 shadow-sm">
+    <div className="sticky top-0 w-full bg-neutral-200 z-50 shadow-sm select-none">
       <div className="py-1 border-b-[1px]">
         <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
           <div className="flex 2xl:flex-row 2xl:flex-wrap 2xl:items-center justify-between gap-3 2xl:gap-0 2xl:flex">
@@ -264,7 +272,7 @@ function Navbar() {
                         Reviews
                       </button>
                       <button
-                        onClick={handlePuchases}
+                          onClick={handleFavorite}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         Favorites
