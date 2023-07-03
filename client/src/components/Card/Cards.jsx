@@ -54,7 +54,7 @@ const Card = ({ _id, name, image, price, category }) => {
         dispatch(postFavorites(updatedFavorites));
       } else {
         const newFavorites = {
-          user: user.uid,
+          user: userUid, 
           products: [newFavorite],
         };
         dispatch(postFavorites(newFavorites));
@@ -62,7 +62,7 @@ const Card = ({ _id, name, image, price, category }) => {
     }
     setIsFavorite(!isFavorite);
   };
-
+  
   const allShoppingCart = useSelector((state) => state.shoppingCart);
   const isProductInCart = allShoppingCart.some((product) => product.id === _id);
 
