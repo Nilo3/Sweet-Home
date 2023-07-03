@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useAuth } from "../../context/authContex.jsx";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Card = ({ _id, name, image, price, category }) => {
@@ -38,6 +40,11 @@ const Card = ({ _id, name, image, price, category }) => {
   }, [userUid]);
 
   const toggleFavorite = () => {
+    if (!user) {
+      toast.error("Please login to add favorites.", { autoClose: 2000 });
+      return;
+    }
+
     if (isFavorite) {
       dispatch(removefromFavorites(_id));
     } else {
@@ -46,7 +53,7 @@ const Card = ({ _id, name, image, price, category }) => {
         name,
         image,
         price,
-      };
+      };git 
       dispatch(addtoFavorites(newFavorite));
       if (userId) {
         const updatedFavorites = {
