@@ -34,7 +34,7 @@ import {
     CLEAN_DETAIL
 } from "../../Redux/action-types/action-types"
 const VITE_HOST = "http://localhost:3001"
-//const VITE_HOST = import.meta.env.VITE_HOST;
+// const VITE_HOST = import.meta.env.VITE_HOST;
 
 
 //>          |------------------------------------|          <\\
