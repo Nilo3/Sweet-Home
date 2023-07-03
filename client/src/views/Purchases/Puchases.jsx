@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContex";
 import { useEffect, useState } from "react";
 import { getUserByUid, postReview } from "../../Redux/actions/actions";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Stars from "../../components/Stars/Stars";
 import { toast } from "react-toastify";
 
@@ -10,7 +10,6 @@ const Purchases = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const userUid = user?.uid;
-  const navigate = useNavigate;
   useEffect(() => {
     if (user) {
       dispatch(getUserByUid(userUid));
