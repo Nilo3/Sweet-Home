@@ -69,7 +69,7 @@ function Navbar() {
   };
 
   const handleRecommendationsClick = () => {
-    if (window.location.pathname !== "/") {
+    if (window.location.pathname !== "/recommendations") {
       closeMenu();
       navigate("/");
       setTimeout(() => {
@@ -81,7 +81,7 @@ function Navbar() {
   };
 
   const handleInspirationClick = () => {
-    if (window.location.pathname !== "/") {
+    if (window.location.pathname !== "/inspirationSection") {
       closeMenu();
       navigate("/");
       setTimeout(() => {
@@ -93,7 +93,7 @@ function Navbar() {
   };
 
   const handleTopWeekClick = () => {
-    if (window.location.pathname !== "/") {
+    if (window.location.pathname !== "/topWeekSection") {
       closeMenu();
       navigate("/");
       setTimeout(() => {
@@ -105,7 +105,7 @@ function Navbar() {
   };
 
   const handleMostValuedClick = () => {
-    if (window.location.pathname !== "/") {
+    if (window.location.pathname !== "/mostValuedSection") {
       closeMenu();
       navigate("/");
       setTimeout(() => {
