@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../context/authContex";
 import { useNavigate } from "react-router-dom";
 import ShopNowNav from "./Buttons/ShopNowNav";
@@ -12,7 +12,6 @@ import LoginNav from "./Buttons/LoginNav";
 import RegisterNav from "./Buttons/RegisterNav";
 import Logo from "./Logo/Logo";
 import userPlaceholder from "../../assets/image/person-placeholder-400x400.png";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUserByUid } from "../../Redux/actions/actions";
 
@@ -22,6 +21,8 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [completeUser, setCompleteUser] = useState({ photoURL: "" });
   const dispatch = useDispatch();
+  const menuRef = useRef(null);
+
   useEffect(() => {
     if (user) {
       dispatch(getUserByUid(user.uid)).then((response) => {
@@ -33,6 +34,20 @@ function Navbar() {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+  useEffect(() => {
+    const handleClickOutsideMenu = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener("click", handleClickOutsideMenu);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutsideMenu);
+    };
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -130,7 +145,12 @@ function Navbar() {
     if (user === null) {
       return;
     }
-    setIsMenuOpen(!isMenuOpen);
+    
+    if (isMenuOpen) {
+      closeMenu();
+    } else {
+      setIsMenuOpen(true);
+    }
   };
 
   const handleAbout = () => {
@@ -185,7 +205,7 @@ function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 w-full bg-neutral-200 z-50 shadow-sm select-none">
+    <div ref={menuRef} className="sticky top-0 w-full bg-neutral-200 z-50 shadow-sm select-none">
       <div className="py-1 border-b-[1px]">
         <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
           <div className="flex flex-col md:flex-row md:flex-wrap md:items-center md:justify-between gap-3 md:gap-0">
@@ -262,7 +282,7 @@ function Navbar() {
                         onClick={handlePuchases}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
-                        Pucharses
+                        Purchases
                       </button>
                       <button
                         onClick={handleReviews}
