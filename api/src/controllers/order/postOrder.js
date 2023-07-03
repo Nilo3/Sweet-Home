@@ -66,9 +66,9 @@ export default async (req, res) => {
         },
       ],
       back_urls: {
-        success: "http://localhost:5173/products#/products",
-        failure: "http://localhost:5173/products#/products",
-        pending: "http://localhost:5173/products#/products",
+        success: "https://sweet-home-w1rt.onrender.com/#/products",
+        failure: "https://sweet-home-w1rt.onrender.com/#/products",
+        pending: "https://sweet-home-w1rt.onrender.com/#/products",
       },
     };
 
