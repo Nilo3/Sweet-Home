@@ -27,7 +27,8 @@ import {
   ADD_TO_FAVORITES,
   DELETE_FROM_FAVORITES,
   POST_FAVORITES,
-  GET_FAVORITES
+  GET_FAVORITES,
+  SOFT_DELETE
 } from "../action-types/action-types.js";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -46,6 +47,7 @@ const initialState = {
   orders: [],
   order: [],
   favorites: localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [],
+  getAllOrders: []
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -91,6 +93,14 @@ const reducer = (state = initialState, { type, payload }) => {
         products: removeProduct
       }
     }
+    case SOFT_DELETE: {
+
+      return {
+        ...state,
+        products: [...state.products, payload],
+        getAllProducts: [...state.getAllProducts, payload],
+      }
+    }
     case UPLOAD_PRODUCT:
       return {
         ...state,
@@ -103,7 +113,7 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         products: [...state.products, payload],
       }
-    
+
 
     //--//--//--//--//--// Cart actions  //--//--//--//--//--//
 
@@ -230,7 +240,6 @@ const reducer = (state = initialState, { type, payload }) => {
         reviews: state.reviews.filter((review) => review._id !== payload),
       };
 
-
     //--//--//--//--//--//  User actions  //--//--//--//--//--//
 
     case GET_USERS:
@@ -258,7 +267,6 @@ const reducer = (state = initialState, { type, payload }) => {
 
       };
 
-
     //--//--//--//--//--//  ORDER actions  //--//--//--//--//--//
 
     case POST_ORDER:
@@ -275,7 +283,8 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         order: payload,
       };
- //--//--//--//--//--// Favorites  //--//--//--//--//--//
+
+    //--//--//--//--//--// Favorites  //--//--//--//--//--//
 
     case ADD_TO_FAVORITES: {
       const updatedFavorites = [...state.favorites, payload];
@@ -286,29 +295,29 @@ const reducer = (state = initialState, { type, payload }) => {
       }
     }
 
-      case DELETE_FROM_FAVORITES: {
-        const updatedFavorites = state.favorites.filter(
-          (product) => product._id !== payload
-        );
-        localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-        return {
-          ...state,
-          favorites: updatedFavorites,
-        }
+    case DELETE_FROM_FAVORITES: {
+      const updatedFavorites = state.favorites.filter(
+        (product) => product._id !== payload
+      );
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      return {
+        ...state,
+        favorites: updatedFavorites,
       }
+    }
 
-      case POST_FAVORITES:
-        return {
-          ...state,
-        };
+    case POST_FAVORITES:
+      return {
+        ...state,
+      };
 
-        case GET_FAVORITES: {
-          const favoritesFromServer = payload; 
-          return {
-            ...state,
-            favorites: favoritesFromServer,
-          };
-        }
+    case GET_FAVORITES: {
+      const favoritesFromServer = payload;
+      return {
+        ...state,
+        favorites: favoritesFromServer,
+      };
+    }
 
     //--//--//--//--//--//  Other actions  //--//--//--//--//--//
 

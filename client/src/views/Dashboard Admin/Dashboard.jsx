@@ -1,11 +1,17 @@
 import AdminCard from "./AdminCard";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName } from "../../Redux/actions/actions";
+import {
+  getProducts,
+  getCategory,
+  filterByCategory,
+  filterByPrice,
+  filterByName,
+} from "../../Redux/actions/actions";
 import { Link } from "react-router-dom";
-import  SearchBar from '../ShopNow/SearchBar'
+import SearchBar from "../ShopNow/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
-
+import Chart from "./Chart";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -25,7 +31,7 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getCategory());
-    dispatch(filterByCategory);
+    dispatch(filterByCategory());
   }, [dispatch]);
 
   function handleOrderName(event) {
@@ -48,6 +54,7 @@ const Dashboard = () => {
 
   return (
     <div className="pt-16">
+      <Chart />
       {/* <!-- Start block --> */}
       <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased ">
         <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
@@ -56,7 +63,7 @@ const Dashboard = () => {
             <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
               <div className="w-full md:w-1/2">
                 <form className="flex items-center">
-                    <SearchBar/>
+                  <SearchBar />
                   <div className="relative w-full">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <svg
@@ -65,8 +72,7 @@ const Dashboard = () => {
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
-                      >
-                      </svg>
+                      ></svg>
                     </div>
                   </div>
                 </form>
@@ -75,7 +81,6 @@ const Dashboard = () => {
                 <Link to={"/createProduct"}>
                   <button
                     type="button"
-                    
                     className="flex items-center justify-center text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
                   >
                     <svg
@@ -189,7 +194,7 @@ const Dashboard = () => {
                         Category
                       </option>
                       {category?.map((el) => (
-                       <option key={el._id} value={el.name}>
+                        <option key={el._id} value={el.name}>
                           {el.name}
                         </option>
                       ))}
@@ -238,37 +243,27 @@ const Dashboard = () => {
                     </th>
                   </tr>
                 </thead>
-                {
-                  productsToDisplay.map((product) => (
-                    <div key={product._id} className="flex justify-center w-full ">
-                      <AdminCard
-                        id={product._id}
-                        name={product.name}
-                        price={product.price}
-                        description={product.description}
-                        image={product.image}
-                        category={product.category.map((el) => el.name)}
-                      />
-                      
-                    </div>
-                  ))
-                 }
+                {productsToDisplay.map((product) => (
+                  <div
+                    key={product._id}
+                    className="flex justify-center w-full "
+                  >
+                    <AdminCard
+                      id={product._id}
+                      name={product.name}
+                      price={product.price}
+                      description={product.description}
+                      image={product.image}
+                      category={product.category.map((el) => el.name)}
+                    />
+                  </div>
+                ))}
               </table>
             </div>
             <nav
               className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
               aria-label="Table navigation"
             >
-              <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                Showing
-                <span className="font-semibold text-gray-900 dark:text-white">
-                  1-10
-                </span>
-                of
-                <span className="font-semibold text-gray-900 dark:text-white">
-                  1000
-                </span>
-              </span>
               <Pagination
                 productPerPage={productPerPage}
                 currentPage={currentPage}

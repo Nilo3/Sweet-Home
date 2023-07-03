@@ -3,7 +3,7 @@ import { deleteProduct, getCategory, getProducts } from "../../Redux/actions/act
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import UploadProduct from "../UploadProduct/UploadProduct";
+
 
 
 const AdminCard = ({ id, name, price,description, image, category }) => {

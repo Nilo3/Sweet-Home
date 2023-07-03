@@ -26,13 +26,14 @@ import {
     DELETE_REVIEW,
     UPDATE_USER,
     GET_USER_BY_EMAIL,
+    SOFT_DELETE,
     ADD_TO_FAVORITES,
-    DELETE_FROM_FAVORITES,
     POST_FAVORITES,
+    DELETE_FROM_FAVORITES,
     GET_FAVORITES
-  } from "../../Redux/action-types/action-types"
-const VITE_HOST = "http://localhost:3001"
-// const VITE_HOST = import.meta.env.VITE_HOST;
+} from "../../Redux/action-types/action-types"
+//const VITE_HOST = "http://localhost:3001"
+const VITE_HOST = import.meta.env.VITE_HOST;
 
 
 //>          |------------------------------------|          <\\
@@ -96,6 +97,19 @@ export function uploadProduct(data, id) {
             return dispatch({
                 type: UPLOAD_PRODUCT,
                 payload: data,
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export function softDeleteProduct(id) {
+    return async function (dispatch) {
+        try {
+            await axios.put(`${VITE_HOST}/api/product/${id}`, {isDelete: true})
+            return dispatch({
+                type: SOFT_DELETE,
+                payload: {isDelete: true}
             })
         } catch (error) {
             console.log(error)
@@ -382,7 +396,9 @@ export const filterByCategory = (payload) => {
     }
 }
 
+
 //--//--//--//--//--//  FAVORITES  //--//--//--//--//--//
+
 
 export const addtoFavorites = (product) => {
     return {
@@ -425,4 +441,3 @@ export const getFavorites = () => {
       }
     };
   };
-

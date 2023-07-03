@@ -91,7 +91,7 @@ const MostValueCards = ({ _id, name, image, price, rating }) => {
   };
   return (
     <div>
-      <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="select-none max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="aspect-w-3 aspect-h-4 mb-4">
           <Link to={`/products/${_id}`} onClick={scrollToTop}>
             <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">

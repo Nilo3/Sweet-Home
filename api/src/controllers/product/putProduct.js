@@ -15,7 +15,7 @@ export default async (req, res) => {
                     inCart,
                     category,
                     review,
-                    isDelete
+                    isDelete,
                 }
             }, { new: true });
         res.status(200).json(product)
