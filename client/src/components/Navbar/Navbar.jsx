@@ -115,7 +115,7 @@ function Navbar() {
       scrollToSection("mostValuedSection");
     }
   };
-  console.log("este es completeUser", completeUser)
+
 
   const handlePuchases = () => {
     closeMenu();

@@ -48,6 +48,7 @@ export function Register() {
         photoURL: response.user.photoURL || messi,
       };
       dispatch(postUser(reUser));
+  
 
       if (user.password !== user.confirmPassword) {
         setError("The passwords are different");
