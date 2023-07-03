@@ -56,14 +56,15 @@ function Favorite() {
         <div className="mt-10 grid max-w-md grid-cols-1 gap-6 px-2 sm:max-w-lg sm:px-20 md:max-w-screen-xl md:grid-cols-2 md:px-10 lg:grid-cols-3 lg:gap-8">
           {favoriteProductsToDisplay?.length > 0 ? (
             favoriteProductsToDisplay?.map((product) => (
-              <Link key={product?._id} to={`/products/${product?._id}`}>
-                <article className="mb-4 overflow-hidden rounded-xl border text-gray-700 shadow-md duration-500 ease-in-out hover:shadow-xl">
+              <article className="mb-4 overflow-hidden rounded-xl border text-gray-700 shadow-md duration-500 ease-in-out hover:shadow-xl">
                   <div>
+                  <Link key={product?._id} to={`/products/${product?._id}`}>
                     <img
                       src={product?.image}
                       alt={product?.name}
                       className="w-full h-[300px] object-cover"
                     />
+                    </Link>
                   </div>
 
                   <div className="p-4 flex flex-col justify-between">
@@ -84,7 +85,6 @@ function Favorite() {
                     </button>
                   </div>
                 </article>
-              </Link>
             ))
           ) : (
             <p>No favorite products found.</p>
