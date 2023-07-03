@@ -1,53 +1,62 @@
 [
   {
-    "name": "Juan Perez",
-    "email": "juan@example.com",
-    "password": "$2a$10$T3./Mm6WAUFk2wta5KUMjewhgiw.uz.gYFfMiu1o2gMEf3l1go.ba"
-  },
-  {
-    "name": "María López",
-    "email": "maria@example.com",
-    "password": "$2a$10$uK41PBOGU.puuiSDnnVpWOa8njQzCFBnelLvm0yR//jx0KdWxIrVu"
-  },
-  {
-    "name": "Carlos Ramirez",
-    "email": "carlos@example.com",
-    "password": "$2a$10$SRxGsda8OtXVQKpOAq3JcOSdi8PQBJerIRQ1PDRQSuhpchACiZ9lG"
-  },
-  {
-    "name": "Laura García",
-    "email": "laura@example.com",
-    "password": "$2a$10$eJdkcKyhX44oO.wc2g/RB.qWbVxqmX.lzSkwacqCNd1021qO9ETpK"
-  },
-  {
+    "_id": "64a26de86aae9aaa43aebd1c",
     "name": "Pedro Martinez",
     "email": "pedro@example.com",
-    "password": "$2a$10$9H9FEDCT1EVqzKjULdBf.eZA4SXtayhW4pJZeBP1H68dhUonxv6Kq"
+    "password": "12345678"
+  },
+  {
+    "_id": "64a26de86aae9aaa43aebd19",
+    "name": "María López",
+    "email": "maria@example.com",
+    "password": "12345678"
   },
   {
     "_id": "6495056489ffbc4f16655d80",
     "name": "Ana Herrera",
     "email": "ana@example.com",
-    "password": "$2a$10$GJBw4AqEXHuj2o0LzATPNOyvOJPxOJ7nQl7qGe9fLYiG2W74D6ckK"
+    "password": "12345678"
   },
   {
+    "_id": "64a26de86aae9aaa43aebd1e",
     "name": "Luis Torres",
     "email": "luis@example.com",
-    "password": "$2a$10$ilI.MvWMax7ZaBuzetzDsO7ORgE1p8In2GlqIsblbu8Ap0GsxLruO"
+    "password": "12345678"
   },
   {
-    "name": "Isabel Rodriguez",
-    "email": "isabel@example.com",
-    "password": "$2a$10$tyvg5P8rgnsehOsLiCR3v.hRAZMao.dy5mgVmyUFH3x74yCVY/I.K"
+    "_id": "64a26de86aae9aaa43aebd1b",
+    "name": "Laura García",
+    "email": "laura@example.com",
+    "password": "12345678"
   },
   {
+    "_id": "64a26de86aae9aaa43aebd20",
     "name": "Daniel Navarro",
     "email": "daniel@example.com",
-    "password": "$2a$10$aLpo0uHjhPICcsJLYAr6eeH8OiCE.3IJLuZJyGfen2Jd2jnqv6Ofe"
+    "password": "12345678"
   },
   {
+    "_id": "64a26de86aae9aaa43aebd1f",
+    "name": "Isabel Rodriguez",
+    "email": "isabel@example.com",
+    "password": "12345678"
+  },
+  {
+    "_id": "64a26de86aae9aaa43aebd1a",
+    "name": "Carlos Ramirez",
+    "email": "carlos@example.com",
+    "password": "12345678"
+  },
+  {
+    "_id": "64a26de86aae9aaa43aebd18",
+    "name": "Juan Perez",
+    "email": "juan@example.com",
+    "password": "12345678"
+  },
+  {
+    "_id": "64a26de86aae9aaa43aebd21",
     "name": "Sofía Castro",
     "email": "sofia@example.com",
-    "password": "$2a$10$.dxMwbY69rGWYPSh7Jo74uBdwWbz1Kr9zEU4eDPigM2S.w.cflh8q"
+    "password": "12345678"
   }
 ]
