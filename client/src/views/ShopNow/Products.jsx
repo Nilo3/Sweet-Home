@@ -26,12 +26,9 @@ const Products = () => {
     dispatch(filterByCategory());
   }, [dispatch]);
 
-  const indexOfLastProduct = currentPage * productPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productPerPage;
-  const productsToDisplay = allProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const productsToDisplay = allProducts
+    .filter((product) => !product.isDelete)
+    .slice((currentPage - 1) * productPerPage, currentPage * productPerPage);
 
   function handleOrderName(event) {
     event.preventDefault();
@@ -57,6 +54,7 @@ const Products = () => {
     dispatch(getProducts());
     window.location.reload();
   }
+  
   return (
     <div className="">
       {productsToDisplay.length === 0 ? (
@@ -115,18 +113,16 @@ const Products = () => {
       <div className="cards pt-2 select-none">
         {productsToDisplay.length > 0 ? (
           <div className="grid grid-cols-3 gap-4">
-            {productsToDisplay
-              .filter((product) => !product.isDelete)
-              .map((product) => (
-                <Cards
-                  key={product._id}
-                  _id={product._id}
-                  name={product.name}
-                  price={product.price}
-                  image={product.image}
-                  category={product.category.map((el) => el.name)}
-                />
-              ))}
+            {productsToDisplay.map((product) => (
+              <Cards
+                key={product._id}
+                _id={product._id}
+                name={product.name}
+                price={product.price}
+                image={product.image}
+                category={product.category.map((el) => el.name)}
+              />
+            ))}
           </div>
         ) : (
           <div></div>
