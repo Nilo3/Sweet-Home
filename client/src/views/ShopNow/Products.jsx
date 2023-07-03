@@ -71,7 +71,7 @@ const Products = () => {
                 className="ordAndFil1"
                 onChange={(event) => handleOrderName(event)}
               >
-                <option>Name</option>
+                <option value="default" disabled>Name</option>
                 <option value="asc">A - Z</option>
                 <option value="desc">Z - A</option>
               </select>
@@ -79,7 +79,7 @@ const Products = () => {
                 className="ordAndFil2"
                 onChange={(event) => handleOrderPrice(event)}
               >
-                <option>Price</option>
+                <option value="default" disabled>Price</option>
                 <option value="high">Low to high</option>
                 <option value="low">High to low</option>
               </select>
@@ -133,7 +133,7 @@ const Products = () => {
       {productsToDisplay.length === 0 ? (
         <div></div>
       ) : (
-        <div className="flex justify-center">
+        <div className="flex justify-center select-none">
           <Pagination
             productPerPage={productPerPage}
             currentPage={currentPage}
