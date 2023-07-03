@@ -53,7 +53,7 @@ const Card = ({ _id, name, image, price, category }) => {
         name,
         image,
         price,
-      };git 
+      };
       dispatch(addtoFavorites(newFavorite));
       if (userId) {
         const updatedFavorites = {
