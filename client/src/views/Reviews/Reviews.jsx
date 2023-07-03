@@ -71,7 +71,7 @@ const Reviews = () => {
   };
 
   return (
-    <div className="pt-8 flex flex-col items-center justify-center bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+    <div className="pt-8 flex flex-col items-center justify-center bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32 mb-60 pb-80">
       <div className="grid w-3/4">
         <p className="text-3xl font-medium mb-4">My Reviews</p>
         {userData?.userReviews?.length === 0 ? (
