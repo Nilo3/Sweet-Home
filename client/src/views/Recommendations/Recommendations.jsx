@@ -46,7 +46,7 @@ const Recommendations = () => {
                   <img
                     src={product.image}
                     alt=""
-                    className="rounded object-cover w-full transition duration-500 aspect-square group-hover:opacity-90"
+                    className="rounded object-cover w-full transition duration-500 aspect-square group-hover:opacity-80"
                   />
 
                   <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
