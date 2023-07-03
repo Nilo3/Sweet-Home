@@ -31,14 +31,15 @@ const Recommendations = () => {
             </h2>
 
             <p className="max-w-md mx-auto mt-4 text-gray-500">
-              Discover our hand-picked selection of products that we think you will love.
+              Discover our hand-picked selection of products that we think you
+              will love.
             </p>
           </header>
 
           <ul className="grid grid-cols-1 gap-4 mt-8 lg:grid-cols-3">
             {recommendedProducts.map((product) => (
               <li key={product._id}>
-                <a href="#" className="relative block group">
+                <a className="relative block group">
                   <img
                     src={product.image}
                     alt=""
@@ -46,9 +47,13 @@ const Recommendations = () => {
                   />
 
                   <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
-                    <h3 className="text-xl font-medium text-white">
+                    <h3
+                      className="text-xl font-medium text-white"
+                      style={{ textShadow: "1px 1px 2px #000000" }}
+                    >
                       {product.name}
                     </h3>
+
                     <Link to={`/products/${product._id}`}>
                       <span className="rounded mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
                         View Detail

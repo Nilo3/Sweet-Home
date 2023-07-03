@@ -13,7 +13,7 @@ function Chart() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (orders.length > 0) {
+    if (orders?.length > 0) {
       const chart = echarts.init(chartRef.current);
       const orderData = orders[0].map((order) => order.totalPrice);
       console.log("data", orderData, orders);
