@@ -108,10 +108,10 @@ export function uploadProduct(data, id) {
 export function softDeleteProduct(id) {
     return async function (dispatch) {
         try {
-            await axios.put(`${VITE_HOST}/api/product/${id}`, {isDelete: true})
+            await axios.put(`${VITE_HOST}/api/product/${id}`, { isDelete: true })
             return dispatch({
                 type: SOFT_DELETE,
-                payload: {isDelete: true}
+                payload: { isDelete: true }
             })
         } catch (error) {
             console.log(error)
@@ -175,7 +175,7 @@ export function getUserByUid(uid) {
     }
 }
 
-export function getUserByEmail(email){
+export function getUserByEmail(email) {
     return async function (dispatch) {
         try {
             let response = await axios.get(`${VITE_HOST}/api/users/${email}`)
@@ -222,10 +222,10 @@ export function updateUser(data, id) {
 
 export const addtoCart = (product) => {
     return {
-      type: ADD_TO_CART,
-      payload: product,
+        type: ADD_TO_CART,
+        payload: product,
     };
-  };  
+};
 
 export function postShoppingCart(payload) {
     return async function (dispatch) {
@@ -319,7 +319,7 @@ export function getReviews() {
     }
 }
 
-export function postReview  (payload)  {
+export function postReview(payload) {
     return async (dispatch) => {
         try {
             const response = await axios.post(`${VITE_HOST}/api/review`, payload)
@@ -327,7 +327,7 @@ export function postReview  (payload)  {
                 type: POST_REVIEW,
                 payload: response.data
             })
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -408,10 +408,10 @@ export const filterByCategory = (payload) => {
 
 export const addtoFavorites = (product) => {
     return {
-      type: ADD_TO_FAVORITES,
-      payload: product,
+        type: ADD_TO_FAVORITES,
+        payload: product,
     };
-  };  
+};
 
 export function postFavorites(payload) {
     return async function (dispatch) {
@@ -435,15 +435,11 @@ export const removefromFavorites = (id) => {
 }
 
 export const getFavorites = () => {
-    return async (dispatch) => {
-      try {
-        const response = await axios.get(`${VITE_HOST}/api/favorites`);
-        dispatch({
-          type: GET_FAVORITES,
-          payload: response.data,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  };
+    return async function (dispatch) {
+        let response = await axios.get(`${VITE_HOST}/api/favorites`)
+        return dispatch({
+            type: GET_FAVORITES,
+            payload: response.data,
+        })
+    }
+}
