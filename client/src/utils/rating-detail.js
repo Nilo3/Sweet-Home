@@ -1,5 +1,5 @@
 export const detailAVG = (product) => {
-  const reviews = product.review;
+  const reviews = product?.review;
   if (!reviews || reviews.length === 0) {
     return 0; 
   }

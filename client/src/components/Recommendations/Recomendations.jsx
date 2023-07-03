@@ -1,19 +1,27 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import recommendation1 from "../../assets/image/recommendations1.webp";
 
 const Recommendations = () => {
+  const navigate = useNavigate();
+  const handleRecommendations = () => {
+    navigate("/recommendations");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       <br />
       <div className="w-screen px-12">
-          <Link to="/recommendations">
-        <div className="flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mx-auto">
-          <img
-            className="object-cover w-full md:w-1/2 h-80 md:h-auto md:max-h-100 rounded-lg md:rounded-l-lg"
-            src={recommendation1}
-            alt=""
-          />
-          <div className="flex flex-col justify-between p-4 leading-normal w-full md:w-1/2">
+        <button onClick={handleRecommendations}>
+          <div className="flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mx-auto">
+            <img
+              className="object-cover w-full md:w-1/2 h-80 md:h-auto md:max-h-100 rounded-lg md:rounded-l-lg"
+              src={recommendation1}
+              alt=""
+            />
+            <div className="flex flex-col justify-between p-4 leading-normal w-full md:w-1/2">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Our recommendations
               </h5>
@@ -24,9 +32,9 @@ const Recommendations = () => {
                 Create the perfect living space with our expertly selected
                 recommendations.
               </p>
+            </div>
           </div>
-        </div>
-            </Link>
+        </button>
       </div>
     </>
   );

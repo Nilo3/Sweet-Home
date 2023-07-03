@@ -1,11 +1,7 @@
 import "./MostValue.css";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import {
-  addtoCart,
-  postShoppingCart,
-  getUserByUid,
-} from "../../Redux/actions/actions.js";
+import { addtoCart, postShoppingCart, getUserByUid } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContex";
