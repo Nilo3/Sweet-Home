@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,10 +7,14 @@ import {
   getFavorites,
   postFavorites,
 } from "../../../Redux/actions/actions.js";
+import Pagination from "../../../components/Pagination/Pagination.jsx"
 
 function Favorite() {
   const dispatch = useDispatch();
   const favoriteProducts = useSelector((state) => state.favorites);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const favoriteProductsPerPage = 8;
 
   useEffect(() => {
     dispatch(getFavorites());
@@ -38,13 +42,24 @@ function Favorite() {
       });
   };
 
+  const indexOfLastProduct = currentPage * favoriteProductsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - favoriteProductsPerPage;
+  const favoriteProductsToDisplay = favoriteProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div>
       <section className="flex flex-col items-center bg-white">
         <h1 className="mt-10 text-4xl font-bold text-gray-800">My Favorites</h1>
         <div className="mt-10 grid max-w-md grid-cols-1 gap-6 px-2 sm:max-w-lg sm:px-20 md:max-w-screen-xl md:grid-cols-2 md:px-10 lg:grid-cols-3 lg:gap-8">
-          {favoriteProducts.length > 0 ? (
-            favoriteProducts.map((product) => (
+          {favoriteProductsToDisplay.length > 0 ? (
+            favoriteProductsToDisplay.map((product) => (
               <Link key={product._id} to={`/products/${product._id}`}>
                 <article className="mb-4 overflow-hidden rounded-xl border text-gray-700 shadow-md duration-500 ease-in-out hover:shadow-xl">
                   <div>
@@ -75,9 +90,19 @@ function Favorite() {
             <p>No favorite products found.</p>
           )}
         </div>
+
+        {favoriteProductsToDisplay.length > 0 && (
+          <Pagination
+            productPerPage={favoriteProductsPerPage}
+            currentPage={currentPage}
+            setCurrentPage={handlePageChange}
+            totalProducts={favoriteProducts.length}
+          />
+        )}
       </section>
     </div>
   );
 }
 
 export default Favorite;
+
