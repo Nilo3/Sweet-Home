@@ -262,7 +262,7 @@ function Navbar() {
                         onClick={handlePuchases}
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
-                        Pucharses
+                        Purchases
                       </button>
                       <button
                         onClick={handleReviews}
