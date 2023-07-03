@@ -94,13 +94,14 @@ const Profile = () => {
                   <p className="text-sm text-gray-600">Edit your profile</p>
                 </div>
                 <button
+                  className="text-black bg-gray-200 hover:bg-gray-300 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center mr-2"
                   onClick={handleCancel}
-                  className="mr-2 hidden rounded-lg border-2 px-4 py-2 font-medium text-gray-500 sm:inline focus:outline-none focus:ring hover:bg-gray-200"
                 >
                   Cancel
                 </button>
                 <button
-                  className="rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-blue-700"
+                  type="submit"
+                  className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center"
                   onClick={handleSave}
                 >
                   Save
@@ -114,9 +115,8 @@ const Profile = () => {
                   onChange={(e) => setFirstName(e.target.value)}
                   className="mb-2 w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1"
                 />
-                
               </div>
-              
+
               <div className="flex flex-col gap-4 py-4 lg:flex-row">
                 <div className="shrink-0 w-32 sm:py-4">
                   <p className="mb-auto font-medium">Avatar</p>

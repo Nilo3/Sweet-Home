@@ -82,7 +82,7 @@ const Purchases = () => {
                     <div>
                       <p className="text-sm text-green-500">Delivered</p>
                       <div onClick={handleDetail}>
-                        <Link to={`/products/${product._id}`}>
+                        <Link to={`/products/${product.product?._id}`}>
                           <span className="font-semibold text-xl">
                             {product?.product?.name}
                           </span>

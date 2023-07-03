@@ -10,12 +10,15 @@ const Recommendations = () => {
   }, [dispatch]);
   const products = useSelector((state) => state.products);
   const recommendedProductIds = [
-    "6499dceb8cd03e5c7f52faae",
-    "6499dceb8cd03e5c7f52fab4",
-    "6499dceb8cd03e5c7f52fad3",
-    "6499dceb8cd03e5c7f52fabd",
-    "6499dceb8cd03e5c7f52faa7",
-    "6499dceb8cd03e5c7f52fab8",
+    "64a269277e82207ed2400e0a",
+    "64a269277e82207ed2400e0e",
+    "64a269277e82207ed2400e01",
+    "64a269277e82207ed2400dfd",
+    "64a269277e82207ed2400dfc",
+    "64a269277e82207ed2400de1",
+    "64a269277e82207ed2400e18",
+    "64a269277e82207ed2400e1d",
+    "64a269277e82207ed2400dd6",
   ];
   const recommendedProducts = products.filter((product) =>
     recommendedProductIds.includes(product._id)
@@ -43,7 +46,7 @@ const Recommendations = () => {
                   <img
                     src={product.image}
                     alt=""
-                    className="rounded object-cover w-full transition duration-500 aspect-square group-hover:opacity-90"
+                    className="rounded object-cover w-full transition duration-500 aspect-square group-hover:opacity-80"
                   />
 
                   <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
