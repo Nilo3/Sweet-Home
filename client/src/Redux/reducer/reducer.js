@@ -314,7 +314,8 @@ const reducer = (state = initialState, { type, payload }) => {
     case POST_FAVORITES:
       return {
         ...state,
-      };
+        favorites: [...state.favorites, payload],
+      }
 
     case GET_FAVORITES: {
       const favoritesFromServer = payload;
