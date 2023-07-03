@@ -6,7 +6,7 @@ import niloeche from "./niloeche.jpg";
 import stellcomi from "./stellcomi.jpg";
 import valenzal from "./valenzal.png";
 import stefbrav from "./stefbrav.png";
-import titoxd from "./titoxd.webp";
+import titoxd from "./titoxd.png";
 
 
 export const teamMembers = [

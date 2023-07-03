@@ -1,23 +1,36 @@
-import { addtoCart, getUserByUid, postShoppingCart } from "../../Redux/actions/actions.js";
+import {
+  addtoCart,
+  getUserByUid,
+  postShoppingCart,
+  addtoFavorites,
+  postFavorites,
+  removefromFavorites,
+} from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useAuth } from "../../context/authContex.jsx";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Cards = ({ _id, name, image, price, category }) => {
+const Card = ({ _id, name, image, price, category }) => {
   const dispatch = useDispatch();
   const [, setInCart] = useState(false);
-
-  const allShoppingCart = useSelector((state) => state.shoppingCart);
-  const isProductInCart = allShoppingCart.some((product) => product.id === _id);
-
-  useEffect(() => {
-    setInCart(isProductInCart);
-  }, [isProductInCart]);
-
+  const [isFavorite, setIsFavorite] = useState(false);
+  const favorites = useSelector((state) => state.favorites);
   const { user } = useAuth();
   const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      const isProductFavorite = favorites?.some(
+        (favorite) => favorite._id === _id
+      );
+      setIsFavorite(isProductFavorite);
+    }
+  }, [user, favorites, _id]);
+
   useEffect(() => {
     if (user) {
       dispatch(getUserByUid(user.uid));
@@ -32,7 +45,60 @@ const Cards = ({ _id, name, image, price, category }) => {
     }
   }, [userUid]);
 
-const handleSubmit = () => {
+  const toggleFavorite = () => {
+    if (!user) {
+      toast.error("Please login to add favorites.", { autoClose: 2000 });
+      return;
+    }
+
+    if (isFavorite) {
+      dispatch(removefromFavorites(_id));
+    } else {
+      const newFavorite = {
+        _id,
+        name,
+        image,
+        price,
+      };
+      dispatch(addtoFavorites(newFavorite));
+      if (userId) {
+        const updatedFavorites = {
+          user: userId,
+          products: [
+            {
+              product: _id,
+              quantity: 1,
+            },
+          ],
+        };
+
+        dispatch(postFavorites(updatedFavorites));
+      } else {
+        const newFavorites = {
+          user: userUid,
+          products: [
+            {
+              product: _id,
+              quantity: 1,
+            },
+          ],
+        };
+        dispatch(postFavorites(newFavorites));
+      }
+    }
+    setIsFavorite(!isFavorite);
+  };
+
+  const allShoppingCart = useSelector((state) => state.shoppingCart);
+  const isProductInCart = allShoppingCart?.some(
+    (product) => product.id === _id
+  );
+
+  useEffect(() => {
+    setInCart(isProductInCart);
+  }, [isProductInCart]);
+
+  const handleSubmit = () => {
     setInCart(true);
     dispatch(addtoCart({ _id, name, image, price }));
     if (userId) {
@@ -58,12 +124,12 @@ const handleSubmit = () => {
       };
       dispatch(postShoppingCart(newCart));
     }
-  }
+  };
 
   return (
     <div>
       <div className="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div className="aspect-w-3 aspect-h-4 mb-4">
+        <div className="aspect-w-3 aspect-h-4 mb-4 relative">
           <Link to={`/products/${_id}`}>
             <div className="bg-gray-200 rounded-lg overflow-hidden">
               <img
@@ -74,6 +140,18 @@ const handleSubmit = () => {
               />
             </div>
           </Link>
+          <span
+            className={`heart-icon ${isFavorite ? "favorite" : ""}`}
+            onClick={toggleFavorite}
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              fontSize: "24px",
+            }}
+          >
+            {isFavorite ? "❤️" : "🤍"}
+          </span>
         </div>
         <div className="flex flex-col justify-between h-full">
           <div>
@@ -102,7 +180,7 @@ const handleSubmit = () => {
   );
 };
 
-Cards.propTypes = {
+Card.propTypes = {
   _id: PropTypes.any.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
@@ -110,4 +188,4 @@ Cards.propTypes = {
   category: PropTypes.array.isRequired,
 };
 
-export default Cards;
+export default Card;

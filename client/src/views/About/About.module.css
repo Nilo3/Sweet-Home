@@ -32,7 +32,6 @@
   background-size: cover;
   background-position: center;
   border-radius: 10px 10px 10px 0;
-  
 }
 
 .info {
@@ -95,16 +94,19 @@
 }
 
 .aboutContainer {
-  min-height: 68.7vh; /* Establece la altura mínima del contenedor para abarcar el 100% de la ventana de visualización */
+  min-height: 68.7vh; 
   display: flex;
   flex-direction: column;
 }
 
-
-
 .aboutContainer footer {
-  position: fixed; /* Fija el footer en la parte inferior de la pantalla */
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
+}
+.row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }

@@ -6,7 +6,7 @@ import Landing from "../../components/Landing/Landing";
 
 function Home() {
   return (
-    <div className="flex flex-col min-h-screen overflow-x-hidden">
+    <div className="flex flex-col min-h-screen overflow-x-hidden select-none">
       <Landing />
       <section id="recommendationsSection">
         <Recommendations />

@@ -1,22 +1,32 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BsCart4 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 const ShoppingCart = () => {
   const allShoppingCart = useSelector((state) => state.shoppingCart);
-  const [cartCount, setCartCount] = useState(allShoppingCart.length);
+  const [cartCount, setCartCount] = useState(
+    allShoppingCart ? allShoppingCart.length : 0
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setCartCount(allShoppingCart.length);
-    window.localStorage.setItem("shoppingCart", JSON.stringify(allShoppingCart));
+    if (allShoppingCart) {
+      setCartCount(allShoppingCart.length);
+      window.localStorage.setItem(
+        "shoppingCart",
+        JSON.stringify(allShoppingCart)
+      );
+    }
   }, [allShoppingCart]);
 
   useEffect(() => {
     const storedShoppingCart = window.localStorage.getItem("shoppingCart");
     if (storedShoppingCart) {
-      dispatch({ type: "SET_SHOPPING_CART", payload: JSON.parse(storedShoppingCart) });
+      dispatch({
+        type: "SET_SHOPPING_CART",
+        payload: JSON.parse(storedShoppingCart),
+      });
     }
   }, [dispatch]);
 

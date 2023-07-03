@@ -10,7 +10,7 @@ const MostValue = () => {
   const allReviews = useSelector((state) => state.reviews);
   const mostValuedFirst = 0;
   const mostValuedLast = 4;
-  const currentReviews = allReviews.slice(mostValuedFirst, mostValuedLast);
+  const currentReviews = allReviews?.slice(mostValuedFirst, mostValuedLast);
 
   useEffect(() => {
     if (!allReviews) {
@@ -27,7 +27,7 @@ const MostValue = () => {
       <h1 className="text-4xl font-bold text-center">Most Valued Products</h1>
       <br />
       <div className="grid-container ml-4 flex justify-center pb-8">
-        {currentReviews.map((product) => (
+        {currentReviews?.map((product) => (
           <MostValueCards
             key={product._id}
             _id={product._id}

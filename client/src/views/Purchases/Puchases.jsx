@@ -1,16 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContex";
 import { useEffect, useState } from "react";
-import { getUserByUid } from "../../Redux/actions/actions";
-import { useNavigate } from "react-router-dom";
+import { getUserByUid, postReview } from "../../Redux/actions/actions";
+import { Link } from "react-router-dom";
 import Stars from "../../components/Stars/Stars";
-import { postReview } from "../../Redux/actions/actions";
+import { toast } from "react-toastify";
 
-const Puchases = () => {
+const Purchases = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const userUid = user?.uid;
-
   useEffect(() => {
     if (user) {
       dispatch(getUserByUid(userUid));
@@ -21,27 +20,38 @@ const Puchases = () => {
   const userOrders = userData?.userOrders || [];
   const [reviewNumber, setReviewNumber] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const [productId, setProductId] = useState("");
-  const navigate = useNavigate();
+  const [creatingReviewId, setCreatingReviewId] = useState(null);
 
   const handleText = (e) => {
     setReviewText(e.target.value);
   };
 
-  const handleSave = () => {
+  const cancelReviewCreation = () => {
+    setCreatingReviewId(null);
+    setReviewNumber(0);
+    setReviewText("");
+  };
+
+  const saveReview = (productId) => {
     let reviewProduct = {
       rating: reviewNumber,
       reviewText: reviewText,
       createdBy: userData._id,
       product: productId,
     };
+    toast.success("Review saved correctly");
     dispatch(postReview(reviewProduct));
-    navigate("/");
+    cancelReviewCreation();
   };
-
+  const handleDetail = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
-    <div className="pt-8 flex flex-col items-center justify-center  bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-      <div className="grid w-3/4">
+    <div className="pt-8 flex flex-col items-center justify-center bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+      <div className="grid w-3/4 select-none">
         <p className="text-3xl font-medium mb-4">My purchases</p>
         {userOrders.map((order) => (
           <div
@@ -61,43 +71,68 @@ const Puchases = () => {
               {order.products?.map((product) => (
                 <div
                   className="mt-5 flex mr-5 ml-5 flex-col rounded-lg bg-white sm:flex-row border-b border-gray-200 last:border-b-0"
-                  key={product.product._id}
+                  key={product?.product?._id}
                 >
                   <img
                     className="m-2 h-40 sm:h-40 w-40 sm:w-40 rounded-md border object-cover object-center"
-                    src={product.product.image}
+                    src={product?.product?.image}
                     alt=""
                   />
                   <div className="flex w-full flex-col justify-between px-4 py-4">
                     <div>
                       <p className="text-sm text-green-500">Delivered</p>
-                      <span className="font-semibold text-xl">
-                        {product.product.name}
-                      </span>
+                      <div onClick={handleDetail}>
+                        <Link to={`/products/${product.product?._id}`}>
+                          <span className="font-semibold text-xl">
+                            {product?.product?.name}
+                          </span>
+                        </Link>
+                      </div>
                       <p className="text-sm">
                         Price: $
-                        {(product.product.price * product.quantity).toFixed(2)}
+                        {(product?.product?.price * product?.quantity).toFixed(
+                          2
+                        )}
                       </p>
-                      <p className="text-xs">Quantity: {product.quantity}</p>
+                      <p className="text-xs">Quantity: {product?.quantity}</p>
                     </div>
                     <div className="mt-3">
-                      <form onSubmit={handleSave}>
-                        <Stars handleRating={setReviewNumber} />
-                        <input
-                          type="text"
-                          name="reviewtext"
-                          className="w-full ml-3 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Insert your review"
-                          onChange={handleText}
-                        />
+                      {creatingReviewId !== product?.product?._id ? (
                         <button
-                          type="submit"
-                          className="rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-blue-700"
-                          onClick={() => setProductId(product.product._id)}
+                          className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center"
+                          onClick={() =>
+                            setCreatingReviewId(product?.product?._id)
+                          }
                         >
-                          Save
+                          Write Review
                         </button>
-                      </form>
+                      ) : (
+                        <div>
+                          <Stars handleRating={setReviewNumber} />
+                          <textarea
+                            className="w-full ml-3 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500 mt-2"
+                            name="reviewtext"
+                            placeholder="Insert your review"
+                            onChange={handleText}
+                            value={reviewText}
+                          ></textarea>
+                          <div className="flex justify-end mt-2">
+                            <button
+                              className="text-black bg-gray-200 hover:bg-gray-300 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center mr-2"
+                              onClick={cancelReviewCreation}
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              type="submit"
+                              className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center"
+                              onClick={() => saveReview(product.product._id)}
+                            >
+                              Save
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -113,4 +148,4 @@ const Puchases = () => {
   );
 };
 
-export default Puchases;
+export default Purchases;

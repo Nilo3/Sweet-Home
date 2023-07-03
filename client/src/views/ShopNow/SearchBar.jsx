@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchProducts } from "../../Redux/actions/actions";
 import { toast } from "react-toastify";
 
@@ -7,13 +7,22 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef(null);
+  const products = useSelector((state) => state.products); // Asegúrate de obtener el estado de los productos desde tu Redux store
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (searchTerm.trim() === "") {
       toast.warning("Please enter a valid search term");
     } else {
-      dispatch(searchProducts(searchTerm));
+      const matchingProducts = products.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      if (matchingProducts.length === 0) {
+        toast.error("No products found for the entered search term");
+      } else {
+        dispatch(searchProducts(searchTerm));
+      }
     }
   };
 

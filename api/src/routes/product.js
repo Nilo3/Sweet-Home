@@ -9,6 +9,7 @@ import getProductById from "../controllers/product/getProductById.js";
 import deleteProduct from "../controllers/product/deleteProduct.js";
 import putProduct from "../controllers/product/putProduct.js";
 
+
 const router = Router();
 
 //? Rutas .get
@@ -17,6 +18,7 @@ router.get("/product/:productId", getProductById);
 
 //? Ruta .post
 router.post("/product", postProduct);
+
 
 //? Ruta .delete
 router.delete("/product/:productId", deleteProduct);

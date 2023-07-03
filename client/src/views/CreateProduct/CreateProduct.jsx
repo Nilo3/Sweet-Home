@@ -66,14 +66,14 @@ const CreateProduct = () => {
       <br />
       <br />
       <div className="max-w-md mx-auto">
-        <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-8">
+        <h2 className="text-4xl font-normal text-gray-900 dark:text-white mb-8 mx-28">
           Create a new product
         </h2>
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 mb-1 mx-4"
             >
               Product Name
             </label>
@@ -82,7 +82,7 @@ const CreateProduct = () => {
               name="name"
               type="text"
               required
-              className="input-field"
+              className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Enter product name"
               value={input.name}
               onChange={handleChange}
@@ -92,7 +92,7 @@ const CreateProduct = () => {
           <div>
             <label
               htmlFor="category"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 mb-1 mx-4"
             >
               Category
             </label>
@@ -100,12 +100,12 @@ const CreateProduct = () => {
               id="category"
               name="category"
               required
-              className="input-field"
+              className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               value={input.category}
               onChange={handleChange}
             >
               <option value="">Select category</option>
-              {category.map((cat) => (
+              {category?.map((cat) => (
                 <option key={cat._id} value={cat._id}>
                   {" "}
                   {cat.name}
@@ -119,7 +119,7 @@ const CreateProduct = () => {
           <div>
             <label
               htmlFor="price"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 mb-1 mx-4"
             >
               Price ($)
             </label>
@@ -129,7 +129,7 @@ const CreateProduct = () => {
               type="number"
               step="10"
               required
-              className="input-field"
+              className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Enter product price"
               value={input.price}
               onChange={handleChange}
@@ -139,7 +139,7 @@ const CreateProduct = () => {
           <div>
             <label
               htmlFor="price"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 mb-1 mx-4"
             >
               Stock
             </label>
@@ -149,7 +149,7 @@ const CreateProduct = () => {
               type="number"
               step="10"
               required
-              className="input-field"
+              className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Enter a stock"
               value={input.stock}
               onChange={handleChange}
@@ -159,7 +159,7 @@ const CreateProduct = () => {
           <div>
             <label
               htmlFor="description"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 mb-1 mx-4"
             >
               Description
             </label>
@@ -168,7 +168,7 @@ const CreateProduct = () => {
               name="description"
               rows="3"
               required
-              className="input-field"
+              className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Enter product description"
               value={input.description}
               onChange={handleChange}
@@ -180,7 +180,7 @@ const CreateProduct = () => {
           <div>
             <label
               htmlFor="image"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 mb-1 mx-4"
             >
               Image URL
             </label>
@@ -188,19 +188,25 @@ const CreateProduct = () => {
               id="image"
               name="image"
               type="text"
-              className="input-field"
+              className="input-field mx-4"
               placeholder="Enter image URL"
               value={input.image}
               onChange={handleChange}
             />
             {errors.image && <p className="text-red-500">{errors.image}</p>}
           </div>
-          <div>
+          <div className="flex flex-row">
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+              className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-12 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mx-4"
             >
               Create Product
+            </button>
+            <button
+              type="submit"
+              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  mx-24"
+            >
+              Discard
             </button>
           </div>
         </form>

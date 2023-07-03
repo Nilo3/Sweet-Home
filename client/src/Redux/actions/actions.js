@@ -25,10 +25,19 @@ import {
     PUT_REVIEW,
     DELETE_REVIEW,
     UPDATE_USER,
-    GET_USER_BY_EMAIL
+    GET_USER_BY_EMAIL,
+    SOFT_DELETE,
+    ADD_TO_FAVORITES,
+    POST_FAVORITES,
+    DELETE_FROM_FAVORITES,
+    GET_FAVORITES,
+    CLEAN_DETAIL,
+    DELETE_ALL_FROM_CART
 } from "../../Redux/action-types/action-types"
-//const VITE_HOST = "http://localhost:3001"
-const {VITE_HOST} = import.meta.env
+const VITE_HOST = "http://localhost:3001"
+//const VITE_HOST = import.meta.env.VITE_HOST;
+
+
 
 //>          |------------------------------------|          <\\
 //>          |          (CTRL  +    G)            |          <\\
@@ -97,6 +106,19 @@ export function uploadProduct(data, id) {
         }
     }
 }
+export function softDeleteProduct(id) {
+    return async function (dispatch) {
+        try {
+            await axios.put(`${VITE_HOST}/api/product/${id}`, { isDelete: true })
+            return dispatch({
+                type: SOFT_DELETE,
+                payload: { isDelete: true }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 
 export function deleteProduct(id) {
     return async function (dispatch) {
@@ -119,6 +141,9 @@ export const searchProducts = (searchTerm) => {
     };
 };
 
+export const cleanDetail = () => {
+    return { type: CLEAN_DETAIL }
+}
 
 //--//--//--//--//--//  USER ACTIONS  //--//--//--//--//--//
 
@@ -151,7 +176,7 @@ export function getUserByUid(uid) {
     }
 }
 
-export function getUserByEmail(email){
+export function getUserByEmail(email) {
     return async function (dispatch) {
         try {
             let response = await axios.get(`${VITE_HOST}/api/users/${email}`)
@@ -193,15 +218,15 @@ export function updateUser(data, id) {
     }
 }
 
-
 //--//--//--//--//--//  CART ACTIONS  //--//--//--//--//--//
+
 
 export const addtoCart = (product) => {
     return {
-      type: ADD_TO_CART,
-      payload: product,
+        type: ADD_TO_CART,
+        payload: product,
     };
-  };  
+};
 
 export function postShoppingCart(payload) {
     return async function (dispatch) {
@@ -230,6 +255,14 @@ export const removeOneFromCart = (id) => {
         payload: id,
     }
 }
+
+export const removeAllFromCart = () => {
+    localStorage.removeItem('cart'); // Eliminar el item 'cart' del Local Storage
+  
+    return {
+      type: DELETE_ALL_FROM_CART,
+    };
+  }
 
 
 //--//--//--//--//--//  ORDER ACTIONS  //--//--//--//--//--//
@@ -295,7 +328,7 @@ export function getReviews() {
     }
 }
 
-export function postReview  (payload)  {
+export function postReview(payload) {
     return async (dispatch) => {
         try {
             const response = await axios.post(`${VITE_HOST}/api/review`, payload)
@@ -303,7 +336,7 @@ export function postReview  (payload)  {
                 type: POST_REVIEW,
                 payload: response.data
             })
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -375,5 +408,47 @@ export const filterByCategory = (payload) => {
     return {
         type: FILTER_BY_CATEGORY,
         payload,
+    }
+}
+
+
+//--//--//--//--//--//  FAVORITES  //--//--//--//--//--//
+
+
+export const addtoFavorites = (product) => {
+    return {
+        type: ADD_TO_FAVORITES,
+        payload: product,
+    };
+};
+
+export function postFavorites(payload) {
+    return async function (dispatch) {
+        try {
+            const response = await axios.post(`${VITE_HOST}/api/favorites`, payload)
+            dispatch({
+                type: POST_FAVORITES,
+                payload: response.data,
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const removefromFavorites = (id) => {
+    return {
+        type: DELETE_FROM_FAVORITES,
+        payload: id,
+    }
+}
+
+export const getFavorites = () => {
+    return async function (dispatch) {
+        let response = await axios.get(`${VITE_HOST}/api/favorites`)
+        return dispatch({
+            type: GET_FAVORITES,
+            payload: response.data,
+        })
     }
 }

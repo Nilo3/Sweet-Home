@@ -3,6 +3,7 @@ export const ADD_TO_CART = "ADD_TO_CART"
 export const POST_SHOPPING_CART = "POST_SHOPPING_CART"
 export const DELETE_FROM_CART = "DELETE_FROM_CART"
 export const DELETE_ONE_FROM_CART = "DELETE_ONE_FROM_CART"
+export const DELETE_ALL_FROM_CART = "DELETE_ALL_FROM_CART"
 
 //? Product Actions
 export const GET_PRODUCTS = "GET_PRODUCTS"
@@ -11,6 +12,8 @@ export const POST_PRODUCT = "POST_PRODUCT"
 export const UPLOAD_PRODUCT = "UPLOAD_PRODUCT"
 export const DELETE_PRODUCT = "DELETE_PRODUCT"
 export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS'
+export const SOFT_DELETE = "SOFT_DELETE"
+export const CLEAN_DETAIL = "CLEAN_DETAIL"
 
 //? User Actions
 export const GET_USERS = "GET_USERS"
@@ -34,6 +37,12 @@ export const FILTER_BY_PRICE = "FILTER_BY_PRICE"
 export const POST_REVIEW = "POST_REVIEW"
 export const PUT_REVIEW = "PUT_REVIEW"
 export const DELETE_REVIEW = "DELETE_REVIEW"
+
+//? Favorites
+export const ADD_TO_FAVORITES = "ADD_TO_FAVORITES"
+export const POST_FAVORITES = "POST_FAVORITES"
+export const DELETE_FROM_FAVORITES = "DELETE_FROM_FAVORITES"
+export const GET_FAVORITES = "GET_FAVORITES"
 
 //? Other Actions
 export const GET_CATEGORY = "GET_CATEGORY"
