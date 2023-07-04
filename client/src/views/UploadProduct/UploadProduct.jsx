@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { uploadProduct, getCategory, getProducts, updateUser } from "../../Redux/actions/actions";
+import { uploadProduct, getCategory, getProducts } from "../../Redux/actions/actions";
 import { validate } from "../../utils/validate";
-import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
+import { CloudinaryContext, Image } from "cloudinary-react";
 
 
 const UploadProduct = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [, setSelectedImage] = useState(null);
   const products = useSelector((state) => state.products)
   const [imageURL, setImageURL] = useState("");
   const { id } = useParams();
@@ -251,17 +251,8 @@ const UploadProduct = () => {
               htmlFor="image"
               className="block text-sm font-medium text-gray-700 mb-1 mx-4"
             >
-              Image URL
+              Image
             </label>
-            <input
-              id="image"
-              name="image"
-              type="text"
-              className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Enter image URL"
-              value={input.image}
-              onChange={handleChange}
-            />
             {errors.image && <p className="text-red-500">{errors.image}</p>}
           </div>
           <div>
