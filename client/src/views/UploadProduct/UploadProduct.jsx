@@ -8,31 +8,52 @@ import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 
 const UploadProduct = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const product = useSelector((state) => state.products)
+  const products = useSelector((state) => state.products)
   const [imageURL, setImageURL] = useState("");
+  const { id } = useParams();
+  const product = products?.find((product) => product._id === id)
 
-  const [input, setInput] = useState({
-    name: "",
-    price: 0,
-    stock: 0,
-    description: "",
-    image: "",
-    category: [],
-    isDelete: false,
+
+  const [input, setInput] = useState(() => {
+    const savedInput = product ? JSON.stringify(product) : null;
+    return savedInput ? JSON.parse(savedInput) : {
+      name: "",
+      price: 0,
+      stock: 0,
+      description: "",
+      image: "",
+      category: [],
+      isDelete: false,
+    };
   });
 
   const category = useSelector((state) => state.category);
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
-  const { id } = useParams();
+
 
   useEffect(() => {
     dispatch(getCategory());
     dispatch(getProducts()); 
+    localStorage.setItem("uploadProductInput", JSON.stringify(input));
     if(!category){
       window.location.reload()
     }
   }, [dispatch]);
+
+  
+  useEffect(() => {
+    setInput((prevInput) => ({
+      ...prevInput,
+      name: (product?.name) || "",
+      price: (product?.price) || 0,
+      stock: (product?.stock) || 0,
+      description: (product?.description) || "",
+      image: product?.image || "",
+      category: [],
+      isDelete: false,
+    }));
+  }, [product]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -70,13 +91,13 @@ const UploadProduct = () => {
 
         setImageURL(result.secure_url); const hardcodeJson = {
           photoURL: result.secure_url,
-          name: "",
-          price: 0,
-          stock: 0,
-          description: "",
-          image: result.secure_url, // Usamos la URL de Cloudinary
-          category: [],
-          isDelete: false,
+          name: (product?.name) || "",
+        price: (product?.price) || 0,
+        stock: (product?.stock) || 0,
+        description: (product?.description) || "",
+        image: product?.image || "",
+        category: [],
+        isDelete: false,
         };
         dispatch(uploadProduct(completeUser._id, hardcodeJson));
       })
@@ -97,11 +118,11 @@ const UploadProduct = () => {
         uploadProduct({ ...input, category, price, stock, image: imageURL }, id)
       );
       setInput({
-        name: "",
-        price: 0,
-        stock: 0,
-        description: "",
-        image: imageURL,
+        name: (product?.name) || "",
+        price: (product?.price) || 0,
+        stock: (product?.stock) || 0,
+        description: (product?.description) || "",
+        image: product?.image || "",
         category: [],
         isDelete: false,
       });
@@ -225,7 +246,7 @@ const UploadProduct = () => {
               <p className="text-red-500">{errors.description}</p>
             )}
           </div>
-          {/* <div>
+          <div>
             <label
               htmlFor="image"
               className="block text-sm font-medium text-gray-700 mb-1 mx-4"
@@ -242,7 +263,7 @@ const UploadProduct = () => {
               onChange={handleChange}
             />
             {errors.image && <p className="text-red-500">{errors.image}</p>}
-          </div> */}
+          </div>
           <div>
             <input
               type="file"
