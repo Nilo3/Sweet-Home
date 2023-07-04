@@ -33,7 +33,7 @@ import {
   DELETE_ALL_FROM_CART,
 } from "../action-types/action-types.js";
 import { productAVG } from "../../utils/logic-ratings";
-
+import { toast } from "react-toastify";
 const initialState = {
   products: [],
   getAllProducts: [],
@@ -79,17 +79,24 @@ const reducer = (state = initialState, { type, payload }) => {
         details: payload,
       };
 
-      case SEARCH_PRODUCTS: {
-        const searchTerm = payload.toLowerCase();
-        const filteredProducts = state.getAllProducts.filter((product) =>
-          product.name.toLowerCase().includes(searchTerm)
-        );
+    case SEARCH_PRODUCTS: {
+      const searchTerm = payload.toLowerCase();
+      const filteredProducts = state.getAllProducts.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm)
+      );
+      const hasMatchingProducts = filteredProducts.length > 0;
+
+      if (hasMatchingProducts) {
         return {
           ...state,
-          products: filteredProducts
+          products: filteredProducts,
         };
+      } else {
+        toast.error("No products found for the entered search term");
+        return state;
       }
-      
+    }
+
     case DELETE_PRODUCT: {
       const updateProduct = state.getAllProducts.filter(
         (product) => product._id !== payload

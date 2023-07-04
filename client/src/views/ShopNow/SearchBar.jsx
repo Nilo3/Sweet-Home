@@ -11,19 +11,16 @@ const SearchBar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (searchTerm.trim() === "") {
-      toast.warning("Please enter a valid search term");
-    } else {
-      const matchingProducts = products.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
 
-      if (matchingProducts.length === 0) {
-        toast.error("No products found for the entered search term");
-      } else {
-        dispatch(searchProducts(searchTerm));
-      }
-    }
+    // Realizar el dispatch siempre
+    dispatch(searchProducts(searchTerm));
+
+    // Filtrar los productos después del dispatch
+    const matchingProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+
   };
 
   const handleKeyDown = (event) => {
