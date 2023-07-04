@@ -64,10 +64,11 @@ const Products = () => {
           </button>
 
           <div className="flex flex-wrap cursor-pointer select-none justify-center h-16 items-center">
-            <div className="grid text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-1 py-0 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 grid-cols-3">
+            <div className="grid text-gray-900 cursor-pointer select-none bg-white border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-1 py-0 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 grid-cols-3 md:grid-cols-3">
               <select
                 className="ordAndFil1"
                 onChange={(event) => handleOrderName(event)}
+                defaultValue="default"
               >
                 <option value="default" disabled>Name</option>
                 <option value="asc">A - Z</option>
@@ -76,6 +77,7 @@ const Products = () => {
               <select
                 className="ordAndFil2"
                 onChange={(event) => handleOrderPrice(event)}
+                defaultValue="default"
               >
                 <option value="default" disabled>Price</option>
                 <option value="high">Low to high</option>
@@ -84,7 +86,7 @@ const Products = () => {
               <select
                 className="ordAndFil3"
                 onChange={(event) => handleFilterCategory(event)}
-                defaultValue={"default"}
+                defaultValue="default"
               >
                 <option value="default" disabled>
                   Category
@@ -102,7 +104,7 @@ const Products = () => {
       )}
       <div className="cards pt-2 select-none">
         {productsToDisplay.length > 0 ? (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {productsToDisplay.map((product) => (
               <Cards
                 key={product._id}
