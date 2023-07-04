@@ -6,10 +6,9 @@ export default async (req, res) => {
   try {
     const { user, products } = req.body;
     const { product } = products[0];
-    console.log("Product ID:", product);
+
     const productObj = await Product.findById(product);
     const userObj = await User.findOne({ uid: user });
-    const favorites = await Favorites.findOne({ user: userObj });
 
     if (!productObj) {
       return res.status(400).json({ message: "Product not found" });
@@ -19,13 +18,15 @@ export default async (req, res) => {
       return res.status(400).json({ message: "User not found" });
     }
 
+    const favorites = await Favorites.findOne({ user: userObj._id });
+
     if (!favorites) {
       const newFavorites = new Favorites({
         user: userObj._id,
-        products: [productObj._id], // Modificar aquí
+        products: [productObj._id],
       });
 
-      userObj.favorites.push(newFavorites);
+      userObj.favorites.push(newFavorites._id);
       await userObj.save();
 
       productObj.inFavorites = true;
@@ -37,14 +38,13 @@ export default async (req, res) => {
     }
 
     const productInFavoritesIndex = favorites.products.findIndex(
-      (item) => item.toString() === productObj._id.toString() // Modificar aquí
+      (item) => item.toString() === productObj._id.toString()
     );
 
     if (productInFavoritesIndex === -1) {
-      favorites.products.push(productObj._id); // Modificar aquí
+      favorites.products.push(productObj._id);
+      await favorites.save();
     }
-
-    await favorites.save();
 
     productObj.inFavorites = true;
     await productObj.save();

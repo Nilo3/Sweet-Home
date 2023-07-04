@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addtoFavorites, removefromFavorites, getFavorites, postFavorites } from "../../../Redux/actions/actions.js";
+import { addtoFavorites, removeFromFavorites, getFavorites, postFavorites } from "../../../Redux/actions/actions.js";
 import Pagination from "../../../components/Pagination/Pagination.jsx";
 import { useAuth } from "../../../context/authContex.jsx";
 
@@ -17,7 +17,7 @@ function Favorite() {
   }, [dispatch]);
 
   const handleRemoveFavorite = (productId) => {
-    dispatch(removefromFavorites(productId)).catch((error) => {
+    dispatch(removeFromFavorites(productId)).catch((error) => {
       console.log(error);
     });
   };

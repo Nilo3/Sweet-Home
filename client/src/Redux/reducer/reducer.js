@@ -30,7 +30,7 @@ import {
   GET_FAVORITES,
   SOFT_DELETE,
   CLEAN_DETAIL,
-  DELETE_ALL_FROM_CART
+  DELETE_ALL_FROM_CART,
 } from "../action-types/action-types.js";
 import { productAVG } from "../../utils/logic-ratings";
 
@@ -42,19 +42,22 @@ const initialState = {
   category: [],
   users: [],
   user: [],
-  shoppingCart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
+  shoppingCart: localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [],
   loading: false,
   error: null,
   newCart: [],
   orders: [],
   order: [],
-  favorites: localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [],
-  getAllOrders: []
+  favorites: localStorage.getItem("favorites")
+    ? JSON.parse(localStorage.getItem("favorites"))
+    : [],
+  getAllOrders: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-
     //--//--//--//--//--//  Product actions  //--//--//--//--//--//
 
     case GET_PRODUCTS:
@@ -87,21 +90,24 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     }
     case DELETE_PRODUCT: {
-      const updateProduct = state.getAllProducts.filter((product) => product._id !== payload)
-      const removeProduct = state.products.filter((product) => product._id !== payload)
+      const updateProduct = state.getAllProducts.filter(
+        (product) => product._id !== payload
+      );
+      const removeProduct = state.products.filter(
+        (product) => product._id !== payload
+      );
       return {
         ...state,
         getAllProducts: updateProduct,
-        products: removeProduct
-      }
+        products: removeProduct,
+      };
     }
     case SOFT_DELETE: {
-
       return {
         ...state,
         products: [...state.products, payload],
         getAllProducts: [...state.getAllProducts, payload],
-      }
+      };
     }
     case UPLOAD_PRODUCT:
       return {
@@ -114,35 +120,34 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         products: [...state.products, payload],
-      }
+      };
 
-      case CLEAN_DETAIL:
-        return {
-            ...state,
-            details: []
-        }
+    case CLEAN_DETAIL:
+      return {
+        ...state,
+        details: [],
+      };
     //--//--//--//--//--// Cart actions  //--//--//--//--//--//
 
     case ADD_TO_CART: {
       const updatedCart = [...state.shoppingCart, payload];
-      window.localStorage.setItem('cart', JSON.stringify(updatedCart));
+      window.localStorage.setItem("cart", JSON.stringify(updatedCart));
       return {
         ...state,
         shoppingCart: updatedCart,
-      }
+      };
     }
 
     case DELETE_FROM_CART: {
       const updatedCarts = state.shoppingCart.filter(
         (product) => product._id !== payload
       );
-      localStorage.setItem('cart', JSON.stringify(updatedCarts));
+      localStorage.setItem("cart", JSON.stringify(updatedCarts));
       return {
         ...state,
         shoppingCart: updatedCarts,
-      }
+      };
     }
-
 
     case DELETE_ONE_FROM_CART: {
       const filterCart = state.shoppingCart.filter(
@@ -154,7 +159,7 @@ const reducer = (state = initialState, { type, payload }) => {
       const filterDeleted = [...toBeDeleted.slice(0, toBeDeleted.length - 1)];
 
       const updatedCart = [...filterCart, ...filterDeleted];
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
 
       return {
         ...state,
@@ -163,14 +168,14 @@ const reducer = (state = initialState, { type, payload }) => {
     }
 
     case DELETE_ALL_FROM_CART: {
-      localStorage.removeItem('cart'); // Vaciar el Local Storage
-    
+      localStorage.removeItem("cart"); // Vaciar el Local Storage
+
       return {
         ...state,
         shoppingCart: [], // Vaciar el carrito
       };
     }
-    
+
     case POST_SHOPPING_CART:
       return {
         ...state,
@@ -225,7 +230,7 @@ const reducer = (state = initialState, { type, payload }) => {
       });
       return {
         ...state,
-        products: filteredCategory
+        products: filteredCategory,
       };
     }
 
@@ -240,8 +245,8 @@ const reducer = (state = initialState, { type, payload }) => {
     case POST_REVIEW:
       return {
         ...state,
-        reviews: [...state.reviews, payload]
-      }
+        reviews: [...state.reviews, payload],
+      };
 
     case PUT_REVIEW:
       return {
@@ -272,27 +277,26 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_USER_BY_EMAIL:
       return {
         ...state,
-        user: payload
-      }
+        user: payload,
+      };
 
     case UPDATE_USER:
       return {
         ...state,
         user: [...state.user, payload],
-
       };
 
     //--//--//--//--//--//  ORDER actions  //--//--//--//--//--//
 
     case POST_ORDER:
       return {
-        ...state
-      }
+        ...state,
+      };
     case GET_ORDERS:
       return {
         ...state,
-        orders: [...state.orders, payload]
-      }
+        orders: [...state.orders, payload],
+      };
     case GET_ORDER_BY_ID:
       return {
         ...state,
@@ -303,29 +307,32 @@ const reducer = (state = initialState, { type, payload }) => {
 
     case ADD_TO_FAVORITES: {
       const updatedFavorites = [...state.favorites, payload];
-      window.localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      window.localStorage.setItem(
+        "favorites",
+        JSON.stringify(updatedFavorites)
+      );
       return {
         ...state,
         favorites: updatedFavorites,
-      }
+      };
     }
 
     case DELETE_FROM_FAVORITES: {
       const updatedFavorites = state.favorites.filter(
         (product) => product._id !== payload
       );
-      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
       return {
         ...state,
         favorites: updatedFavorites,
-      }
+      };
     }
 
     case POST_FAVORITES:
       return {
         ...state,
         favorites: [...state.favorites, payload],
-      }
+      };
 
     case GET_FAVORITES: {
       const favoritesFromServer = payload;
