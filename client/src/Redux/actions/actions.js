@@ -31,7 +31,8 @@ import {
     POST_FAVORITES,
     DELETE_FROM_FAVORITES,
     GET_FAVORITES,
-    CLEAN_DETAIL
+    CLEAN_DETAIL,
+    DELETE_ALL_FROM_CART
 } from "../../Redux/action-types/action-types"
 const VITE_HOST = "http://localhost:3001"
 //const VITE_HOST = import.meta.env.VITE_HOST;
@@ -254,6 +255,14 @@ export const removeOneFromCart = (id) => {
         payload: id,
     }
 }
+
+export const removeAllFromCart = () => {
+    localStorage.removeItem('cart'); // Eliminar el item 'cart' del Local Storage
+  
+    return {
+      type: DELETE_ALL_FROM_CART,
+    };
+  }
 
 
 //--//--//--//--//--//  ORDER ACTIONS  //--//--//--//--//--//
