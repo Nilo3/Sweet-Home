@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { uploadProduct, getCategory, getProducts } from "../../Redux/actions/actions";
-import { validate } from "../../utils/validate"; //? Validation, work in progress...
+import { uploadProduct, getCategory, getProducts, updateUser } from "../../Redux/actions/actions";
+import { validate } from "../../utils/validate";
+import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
+
 
 const UploadProduct = () => {
-
+  const [selectedImage, setSelectedImage] = useState(null);
   const product = useSelector((state) => state.products)
+  const [imageURL, setImageURL] = useState("");
 
-  console.log ("ahora estamos viendo", product)
   const [input, setInput] = useState({
-    name:  product.name,
-    price: null,
-    stock: null,
+    name: "",
+    price: 0,
+    stock: 0,
     description: "",
     image: "",
     category: [],
@@ -26,8 +28,10 @@ const UploadProduct = () => {
 
   useEffect(() => {
     dispatch(getCategory());
-    dispatch(getProducts())
-   
+    dispatch(getProducts()); 
+    if(!category){
+      window.location.reload()
+    }
   }, [dispatch]);
 
   const handleChange = (event) => {
@@ -38,12 +42,47 @@ const UploadProduct = () => {
     setInput((prevInput) => ({
       ...prevInput,
       [name]: updatedValue,
-      isDelete: name === "disable" ? value === "true" : prevInput.isDelete, 
+      isDelete: name === "disable" ? value === "true" : prevInput.isDelete,
     }));
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: error,
     }));
+    if (name === "image") {
+      setSelectedImage(event.target.files[0]);
+    }
+  };
+
+  const handleImageUpload = async (event) => {
+    const file = event.target.files[0];
+    console.log(event, "este es el evet")
+
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "SweetHome");
+
+    fetch("https://api.cloudinary.com/v1_1/dt8snufoj/image/upload", {
+      method: "POST",
+      body: data,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+
+        setImageURL(result.secure_url); const hardcodeJson = {
+          photoURL: result.secure_url,
+          name: "",
+          price: 0,
+          stock: 0,
+          description: "",
+          image: result.secure_url, // Usamos la URL de Cloudinary
+          category: [],
+          isDelete: false,
+        };
+        dispatch(uploadProduct(completeUser._id, hardcodeJson));
+      })
+      .catch((error) => {
+        console.error("Error uploading image:", error);
+      });
   };
 
   const handleSubmit = (event) => {
@@ -54,15 +93,17 @@ const UploadProduct = () => {
     const category =
       typeof input.category === "string" ? [input.category] : input.category;
     if (Object.keys(validationErrors).length === 0) {
-      dispatch(uploadProduct({ ...input, category, price, stock }, id));
+      dispatch(
+        uploadProduct({ ...input, category, price, stock, image: imageURL }, id)
+      );
       setInput({
         name: "",
-        price: null,
-        stock: null,
+        price: 0,
+        stock: 0,
         description: "",
-        image: "",
+        image: imageURL,
         category: [],
-        isDelete: null,
+        isDelete: false,
       });
     }
   };
@@ -109,13 +150,12 @@ const UploadProduct = () => {
               name="category"
               required
               className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              value={input.category}
+              value={input.category.length > 0 ? input.category[0] : ''}
               onChange={handleChange}
             >
               <option value="">Select category</option>
               {category?.map((cat) => (
                 <option key={cat._id} value={cat._id}>
-                  {" "}
                   {cat.name}
                 </option>
               ))}
@@ -185,7 +225,7 @@ const UploadProduct = () => {
               <p className="text-red-500">{errors.description}</p>
             )}
           </div>
-          <div>
+          {/* <div>
             <label
               htmlFor="image"
               className="block text-sm font-medium text-gray-700 mb-1 mx-4"
@@ -202,6 +242,26 @@ const UploadProduct = () => {
               onChange={handleChange}
             />
             {errors.image && <p className="text-red-500">{errors.image}</p>}
+          </div> */}
+          <div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+
+            />
+            {imageURL && (
+              <CloudinaryContext cloudName="dt8snufoj"
+              >
+                <Image
+
+                  publicId={imageURL}
+                  width="200"
+                  height="200"
+                  crop="fill"
+                />
+              </CloudinaryContext>
+            )}
           </div>
           <div>
             <label
@@ -211,19 +271,20 @@ const UploadProduct = () => {
               Disable
             </label>
             <select
-  id="disable"
-  name="disable"
-  className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-  value={input.isDelete ? "true" : "false"}
-  onChange={handleChange}
->
-  <option value="true">Sí</option>
-  <option value="false">No</option>
-</select>
+              id="disable"
+              name="disable"
+              className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value={input.isDelete ? "true" : "false"}
+              onChange={handleChange}
+            >
+              <option value="true">Sí</option>
+              <option value="false">No</option>
+            </select>
           </div>
           <div>
             <button
               type="submit"
+              // onClick={handleImageUpload}
               className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-12 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mx-4"
             >
               Confirm edit
@@ -238,6 +299,7 @@ const UploadProduct = () => {
         </form>
       </div>
     </div>
+
   );
 };
 
