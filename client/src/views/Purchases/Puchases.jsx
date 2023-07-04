@@ -21,6 +21,18 @@ const Purchases = () => {
   const [reviewNumber, setReviewNumber] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [creatingReviewId, setCreatingReviewId] = useState(null);
+  const [disabledReviews, setDisabledReviews] = useState([]);
+
+  useEffect(() => {
+    const disabledReviewsStr = localStorage.getItem("disabledReviews");
+    if (disabledReviewsStr) {
+      setDisabledReviews(JSON.parse(disabledReviewsStr));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("disabledReviews", JSON.stringify(disabledReviews));
+  }, [disabledReviews]);
 
   const handleText = (e) => {
     setReviewText(e.target.value);
@@ -41,14 +53,31 @@ const Purchases = () => {
     };
     toast.success("Review saved correctly");
     dispatch(postReview(reviewProduct));
+    setDisabledReviews([...disabledReviews, productId]);
     cancelReviewCreation();
   };
+
   const handleDetail = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
+
+  const isReviewDisabled = (productId) => {
+    return disabledReviews.includes(productId);
+  };
+
+  const getButtonStyle = (productId) => {
+    if (isReviewDisabled(productId)) {
+      return {
+        backgroundColor: "gray",
+        cursor: "not-allowed",
+      };
+    }
+    return {};
+  };
+
   return (
     <div className="pt-8 flex flex-col items-center justify-center bg-white w-full py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
       <div className="grid w-3/4 select-none">
@@ -103,6 +132,8 @@ const Purchases = () => {
                           onClick={() =>
                             setCreatingReviewId(product?.product?._id)
                           }
+                          disabled={isReviewDisabled(product.product._id)}
+                          style={getButtonStyle(product.product._id)}
                         >
                           Write Review
                         </button>
@@ -126,7 +157,9 @@ const Purchases = () => {
                             <button
                               type="submit"
                               className="text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center"
-                              onClick={() => saveReview(product.product._id)}
+                              onClick={() =>
+                                saveReview(product.product._id)
+                              }
                             >
                               Save
                             </button>
