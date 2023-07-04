@@ -17,8 +17,8 @@ export default async (req, res) => {
       { new: true }
     );
 
-    res.status(200).send({ message: "Favorite deleted successfully", favorites });
+    res.status(200).json({ message: "Favorite deleted successfully", favorites });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-}
+};

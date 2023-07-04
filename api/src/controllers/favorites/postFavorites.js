@@ -5,8 +5,8 @@ import User from "../../models/schemas/user.js";
 export default async (req, res) => {
   try {
     const { user, products } = req.body;
-    const { product, quantity } = products[0];
-
+    const { product } = products[0];
+    console.log("Product ID:", product);
     const productObj = await Product.findById(product);
     const userObj = await User.findOne({ uid: user });
     const favorites = await Favorites.findOne({ user: userObj });
@@ -18,18 +18,11 @@ export default async (req, res) => {
     if (!userObj) {
       return res.status(400).json({ message: "User not found" });
     }
-    const userId = userObj.uid || userObj._id;
 
     if (!favorites) {
-      const quantityToAdd = parseInt(quantity);
-
-      if (isNaN(quantityToAdd) || quantityToAdd < 1) {
-        return res.status(400).json({ message: "Invalid quantity provided" });
-      }
-
       const newFavorites = new Favorites({
         user: userObj._id,
-        products: [{ product: productObj._id, quantity: quantityToAdd }],
+        products: [productObj._id], // Modificar aquí
       });
 
       userObj.favorites.push(newFavorites);
@@ -44,26 +37,11 @@ export default async (req, res) => {
     }
 
     const productInFavoritesIndex = favorites.products.findIndex(
-      (item) => item.product.toString() === product
+      (item) => item.toString() === productObj._id.toString() // Modificar aquí
     );
 
     if (productInFavoritesIndex === -1) {
-      const quantityToAdd = parseInt(quantity);
-
-      if (isNaN(quantityToAdd) || quantityToAdd < 1) {
-        return res.status(400).json({ message: "Invalid quantity provided" });
-      }
-
-      favorites.products.push({ product: productObj._id, quantity: quantityToAdd });
-    } else {
-      const quantityToAdd = parseInt(quantity);
-
-      if (isNaN(quantityToAdd) || quantityToAdd < 1) {
-        return res.status(400).json({ message: "Invalid quantity provided" });
-      }
-
-      const selectedProduct = favorites.products[productInFavoritesIndex];
-      selectedProduct.quantity += quantityToAdd;
+      favorites.products.push(productObj._id); // Modificar aquí
     }
 
     await favorites.save();
