@@ -8,15 +8,17 @@ import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 
 const UploadProduct = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const product = useSelector((state) => state.products)
+  const products = useSelector((state) => state.products)
   const [imageURL, setImageURL] = useState("");
+  const { id } = useParams();
+  const product = products?.find((product) => product._id === id)
 
   const [input, setInput] = useState({
-    name: "",
-    price: 0,
-    stock: 0,
-    description: "",
-    image: "",
+    name: (product?.name) ,
+    price: (product?.price) ,
+    stock: (product?.stock) ,
+    description: (product?.description) ,
+    image:  product?.image ,
     category: [],
     isDelete: false,
   });
@@ -24,7 +26,7 @@ const UploadProduct = () => {
   const category = useSelector((state) => state.category);
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
-  const { id } = useParams();
+
 
   useEffect(() => {
     dispatch(getCategory());
@@ -225,7 +227,7 @@ const UploadProduct = () => {
               <p className="text-red-500">{errors.description}</p>
             )}
           </div>
-          {/* <div>
+          <div>
             <label
               htmlFor="image"
               className="block text-sm font-medium text-gray-700 mb-1 mx-4"
@@ -242,7 +244,7 @@ const UploadProduct = () => {
               onChange={handleChange}
             />
             {errors.image && <p className="text-red-500">{errors.image}</p>}
-          </div> */}
+          </div>
           <div>
             <input
               type="file"
