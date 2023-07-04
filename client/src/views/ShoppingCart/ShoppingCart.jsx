@@ -12,7 +12,7 @@ import { removefromCart, addtoCart, removeOneFromCart, postOrder, getUserByUid, 
 import { getTotalPrice, calculateTotal } from "../../utils/totalprice";
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-Logo.png";
-//import emailjs from "emailjs-com";
+import emailjs from "emailjs-com";
 
 import "./ShoppingCart.css";
 
@@ -227,8 +227,8 @@ const Shopping = () => {
         ),
       };
       dispatch(removeAllFromCart());
-      //emailjs
-      //.sendForm("service_ndc6jsv", "template_hal256s", event.target, "_6alTseIIZ36HGhIC")
+      emailjs
+      .sendForm("service_ndc6jsv", "template_hal256s", event.target, "_6alTseIIZ36HGhIC")
       dispatch(postOrder(order));
     }
   }

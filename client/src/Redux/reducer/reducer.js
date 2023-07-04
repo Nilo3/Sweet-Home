@@ -79,16 +79,17 @@ const reducer = (state = initialState, { type, payload }) => {
         details: payload,
       };
 
-    case SEARCH_PRODUCTS: {
-      const searchTerm = payload.toLowerCase();
-      const filteredProducts = state.getAllProducts.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm)
-      );
-      return {
-        ...state,
-        products: filteredProducts,
-      };
-    }
+      case SEARCH_PRODUCTS: {
+        const searchTerm = payload.toLowerCase();
+        const filteredProducts = state.getAllProducts.filter((product) =>
+          product.name.toLowerCase().includes(searchTerm)
+        );
+        return {
+          ...state,
+          products: filteredProducts
+        };
+      }
+      
     case DELETE_PRODUCT: {
       const updateProduct = state.getAllProducts.filter(
         (product) => product._id !== payload

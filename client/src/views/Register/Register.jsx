@@ -6,7 +6,7 @@ import { useAuth } from "../../context/authContex";
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { Alert } from "../Login/Alert.jsx";
-// import emailjs from "emailjs-com";
+import emailjs from "emailjs-com";
 var messi =
   "https://media.radio10.com.ar/p/1eb8ef09699afe339031aa3c6b6566ba/adjuntos/220/imagenes/040/367/0040367760/730x0/smart/messi-campeon-del-mundojpg.jpg";
 
@@ -34,8 +34,8 @@ export function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    //emailjs
-    //.sendForm("service_ndc6jsv", "template_snuctui", event.target, "_6alTseIIZ36HGhIC")
+    emailjs
+    .sendForm("service_ndc6jsv", "template_snuctui", event.target, "_6alTseIIZ36HGhIC")
 
     try {
       const response = await singup(user.email, user.password);
