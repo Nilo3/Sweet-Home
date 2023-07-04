@@ -7,8 +7,7 @@ import trelloLog from "../../assets/image/trellologo.jpg"
 const About = () => {
   return (
     <div className={style.aboutContainer}>
-      <h1 className={style.title}>About the developers</h1>
-      <p>Lorem Ipsum</p>
+      <h1 className={style.title}>ABOUT THE DEVELOPERS</h1>
 
       <div className={style.container}>
         <div className={style.row}>
@@ -96,11 +95,7 @@ const About = () => {
           ))}
         </div>
       </div>
-
-      <h2 className={style.sectionTitle}>Let's talk about the app</h2>
-      <p>Lorem Ipsum</p>
-
-      <h2 className={style.sectionTitle}>Technologies Applied To The Project</h2>
+      <h2 className={style.title}>TECHNOLOGIES APPLIED TO THE PROJECT</h2>
       <div className={style.row}>
         <div className={style.card}>
           <div className={style.imageContainer}>

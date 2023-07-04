@@ -68,6 +68,7 @@ const Products = () => {
               <select
                 className="ordAndFil1"
                 onChange={(event) => handleOrderName(event)}
+                defaultValue="default"
               >
                 <option value="default" disabled>Name</option>
                 <option value="asc">A - Z</option>
@@ -76,6 +77,7 @@ const Products = () => {
               <select
                 className="ordAndFil2"
                 onChange={(event) => handleOrderPrice(event)}
+                defaultValue="default"
               >
                 <option value="default" disabled>Price</option>
                 <option value="high">Low to high</option>
@@ -84,7 +86,7 @@ const Products = () => {
               <select
                 className="ordAndFil3"
                 onChange={(event) => handleFilterCategory(event)}
-                defaultValue={"default"}
+                defaultValue="default"
               >
                 <option value="default" disabled>
                   Category
