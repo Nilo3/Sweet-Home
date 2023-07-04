@@ -81,13 +81,13 @@ const UploadProduct = () => {
 
         setImageURL(result.secure_url); const hardcodeJson = {
           photoURL: result.secure_url,
-          name: "",
-          price: 0,
-          stock: 0,
-          description: "",
-          image: result.secure_url, // Usamos la URL de Cloudinary
-          category: [],
-          isDelete: false,
+          name: (product?.name) || "",
+        price: (product?.price) || 0,
+        stock: (product?.stock) || 0,
+        description: (product?.description) || "",
+        image: product?.image || "",
+        category: [],
+        isDelete: false,
         };
         dispatch(uploadProduct(completeUser._id, hardcodeJson));
       })
@@ -108,11 +108,11 @@ const UploadProduct = () => {
         uploadProduct({ ...input, category, price, stock, image: imageURL }, id)
       );
       setInput({
-        name: "",
-        price: 0,
-        stock: 0,
-        description: "",
-        image: imageURL,
+        name: (product?.name) || "",
+        price: (product?.price) || 0,
+        stock: (product?.stock) || 0,
+        description: (product?.description) || "",
+        image: product?.image || "",
         category: [],
         isDelete: false,
       });
