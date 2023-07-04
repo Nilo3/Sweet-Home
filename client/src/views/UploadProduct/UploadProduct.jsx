@@ -76,8 +76,6 @@ const UploadProduct = () => {
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
-    console.log(event, "este es el evet")
-
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "SweetHome");

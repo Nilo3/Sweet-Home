@@ -233,11 +233,6 @@ const Shopping = () => {
     }
   }
 
-  const navigate = useNavigate();
-
-  const navigateToRegister = () => {
-    navigate("/register");
-  };
 
   const productCounts = allShoppingCart.reduce((counts, product) => {
     if (counts[product._id]) {
@@ -340,16 +335,6 @@ const Shopping = () => {
         <form onSubmit={handleSendOrder} action="">
           <div className="flex flex-wrap flex-col justify-center mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full">
             <p className="text-xl font-medium">Shipping</p>
-            <p className="text-gray-400 mt-2 text-m text-right">
-              Dont have an account?{" "}
-              <a
-                className="text-blue-600"
-                href="#"
-                onClick={navigateToRegister}
-              >
-                Register
-              </a>
-            </p>
             <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
