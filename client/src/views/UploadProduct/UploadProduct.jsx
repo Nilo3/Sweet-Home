@@ -15,20 +15,16 @@ const UploadProduct = () => {
 
 
   const [input, setInput] = useState(() => {
-    const savedInput = localStorage.getItem("uploadProductInput");
-    if (savedInput) {
-      return JSON.parse(savedInput);
-    } else {
-      return {
-        name: (product?.name) || "",
-        price: (product?.price) || 0,
-        stock: (product?.stock) || 0,
-        description: (product?.description) || "",
-        image: product?.image || "",
-        category: [],
-        isDelete: false,
-      };
-    }
+    const savedInput = product ? JSON.stringify(product) : null;
+    return savedInput ? JSON.parse(savedInput) : {
+      name: "",
+      price: 0,
+      stock: 0,
+      description: "",
+      image: "",
+      category: [],
+      isDelete: false,
+    };
   });
 
   const category = useSelector((state) => state.category);
@@ -43,7 +39,21 @@ const UploadProduct = () => {
     if(!category){
       window.location.reload()
     }
-  }, [dispatch, input]);
+  }, [dispatch]);
+
+  
+  useEffect(() => {
+    setInput((prevInput) => ({
+      ...prevInput,
+      name: (product?.name) || "",
+      price: (product?.price) || 0,
+      stock: (product?.stock) || 0,
+      description: (product?.description) || "",
+      image: product?.image || "",
+      category: [],
+      isDelete: false,
+    }));
+  }, [product]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
