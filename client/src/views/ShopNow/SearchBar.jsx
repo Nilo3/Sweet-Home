@@ -7,20 +7,13 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef(null);
-  const products = useSelector((state) => state.products); // Asegúrate de obtener el estado de los productos desde tu Redux store
-
+  const products = useSelector((state) => state.products); 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Realizar el dispatch siempre
     dispatch(searchProducts(searchTerm));
-
-    // Filtrar los productos después del dispatch
     const matchingProducts = products.filter((product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
-
   };
 
   const handleKeyDown = (event) => {

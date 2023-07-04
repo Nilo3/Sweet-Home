@@ -94,7 +94,7 @@ const Detail = () => {
     setSelectedSection(section);
   };
   return (
-    <section className="py-4 sm:py-4">
+    <section className="py-4 sm:py-4 select-none">
       <div className="container mx-auto px-4">
         <nav className="flex">
           <ol role="list" className="flex items-center">
@@ -115,8 +115,7 @@ const Detail = () => {
                 <span className="mx-2 text-gray-400">/</span>
                 <div className="-m-1">
                   <a
-                    href="/products"
-                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
+                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow"
                   >
                     {" "}
                     Products{" "}
@@ -130,8 +129,7 @@ const Detail = () => {
                 <span className="mx-2 text-gray-400">/</span>
                 <div className="-m-1">
                   <a
-                    href="/products"
-                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
+                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow"
                     aria-current="page"
                   >
                     {product?.category?.map((el) => el.name)}{" "}
