@@ -7,23 +7,13 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef(null);
-  const products = useSelector((state) => state.products); // Asegúrate de obtener el estado de los productos desde tu Redux store
-
+  const products = useSelector((state) => state.products); 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (searchTerm.trim() === "") {
-      toast.warning("Please enter a valid search term");
-    } else {
-      const matchingProducts = products.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-
-      if (matchingProducts.length === 0) {
-        toast.error("No products found for the entered search term");
-      } else {
-        dispatch(searchProducts(searchTerm));
-      }
-    }
+    dispatch(searchProducts(searchTerm));
+    const matchingProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   };
 
   const handleKeyDown = (event) => {

@@ -31,8 +31,6 @@ function Navbar() {
       });
     }
   }, [dispatch, user]);
-  
-
 
   const closeMenu = () => {
     setIsMenuOpen(false);

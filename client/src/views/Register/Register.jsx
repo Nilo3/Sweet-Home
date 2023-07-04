@@ -34,8 +34,8 @@ export function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    //emailjs
-    //.sendForm("service_ndc6jsv", "template_snuctui", event.target, "_6alTseIIZ36HGhIC")
+    emailjs
+    .sendForm("service_ndc6jsv", "template_snuctui", event.target, "_6alTseIIZ36HGhIC")
 
     try {
       const response = await singup(user.email, user.password);
@@ -49,13 +49,14 @@ export function Register() {
       };
       dispatch(postUser(reUser));
   
-
+      
       if (user.password !== user.confirmPassword) {
         setError("The passwords are different");
         return;
       }
       toast.success("Registered successfully");
       navigate("/");
+      window.location.reload();
     } catch (error) {
       if (error.code === "auth/weak-password")
         setError("Invalid password. Too weak");
@@ -103,6 +104,7 @@ export function Register() {
 
       toast.success("Welcome to Sweet Home");
       navigate("/");
+      window.location.reload();
     } catch (error) {
       setError(error.message);
     }

@@ -12,7 +12,6 @@ const Profile = () => {
   const { user } = useAuth();
   const [selectedImage, setSelectedImage] = useState(null);
   const [firstName, setFirstName] = useState("");
-  const [, setLastName] = useState("");
   const [, setEmail] = useState("");
   const [, setImage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -41,7 +40,6 @@ const Profile = () => {
 
   const handleCancel = () => {
     setFirstName("");
-    setLastName("");
     setEmail("");
     setSelectedImage(null);
   };
@@ -67,17 +65,31 @@ const Profile = () => {
   };
 
   const handleName = () => {
-    const name = {
-      name: firstName,
-    };
-    dispatch(updateUser(name, completeUser._id));
+    if (firstName !== "") {
+      const name = {
+        name: firstName,
+      };
+      dispatch(updateUser(name, completeUser._id));
+    }
   };
 
   const handleSave = async () => {
     if (selectedImage) {
       await uploadImage(selectedImage);
     }
-    handleName();
+
+    let name;
+    if (firstName.trim() !== "") {
+      name = {
+        name: firstName,
+      };
+    } else {
+      name = {
+        name: completeUser.name,
+      };
+    }
+
+    dispatch(updateUser(name, completeUser._id));
     navigate("/");
     window.location.reload();
   };

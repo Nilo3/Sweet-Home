@@ -1,11 +1,4 @@
-import {
-  addtoCart,
-  getUserByUid,
-  postShoppingCart,
-  addtoFavorites,
-  postFavorites,
-  removefromFavorites,
-} from "../../Redux/actions/actions.js";
+import { addtoCart, getUserByUid, postShoppingCart, addtoFavorites, postFavorites, removeFromFavorites } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -16,10 +9,19 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Card = ({ _id, name, image, price, category }) => {
   const dispatch = useDispatch();
+  const { user } = useAuth();
+  const [completeUser, setCompleteUser] = useState({ photoURL: "" });
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserByUid(user.uid)).then((response) => {
+        setCompleteUser(response.payload);
+      });
+    }
+  }, [dispatch, user]);
+
   const [, setInCart] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const favorites = useSelector((state) => state.favorites);
-  const { user } = useAuth();
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
@@ -50,9 +52,15 @@ const Card = ({ _id, name, image, price, category }) => {
       toast.error("Please login to add favorites.", { autoClose: 2000 });
       return;
     }
-
-    if (isFavorite) {
-      dispatch(removefromFavorites(_id));
+    if (isFavorite) { // EL PROBLEMA ES EL LOCAL STORAGE O ALGUNA ACTION, NO ME DEJA ELIMINAR PORQUE SE ELIMINA POR EL PARAM DEBERÍA QUITARLO?? estoy cansado
+      try {
+        if (completeUser) {
+          const favoriteId = completeUser?.favorites[0];
+          dispatch(removeFromFavorites(favoriteId, _id));
+        }
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       const newFavorite = {
         _id,

@@ -36,10 +36,9 @@ const Layout = ({ children }) => {
     <Navbar />
     <div className="flex-grow">{children}</div>
     <Footer />
-  </div>
-  );
+  </div>
+  );
 };
-
 
 
 

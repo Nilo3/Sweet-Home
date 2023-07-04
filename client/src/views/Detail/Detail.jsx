@@ -1,12 +1,6 @@
 import { useParams } from "react-router-dom";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
-import {
-  getProductDetail,
-  addtoCart,
-  postShoppingCart,
-  getUserByUid,
-  cleanDetail
-} from "../../Redux/actions/actions";
+import { getProductDetail, addtoCart, postShoppingCart, getUserByUid, cleanDetail } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContex";
@@ -100,7 +94,7 @@ const Detail = () => {
     setSelectedSection(section);
   };
   return (
-    <section className="py-4 sm:py-4">
+    <section className="py-4 sm:py-4 select-none">
       <div className="container mx-auto px-4">
         <nav className="flex">
           <ol role="list" className="flex items-center">
@@ -121,8 +115,7 @@ const Detail = () => {
                 <span className="mx-2 text-gray-400">/</span>
                 <div className="-m-1">
                   <a
-                    href="/products"
-                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
+                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow"
                   >
                     {" "}
                     Products{" "}
@@ -136,8 +129,7 @@ const Detail = () => {
                 <span className="mx-2 text-gray-400">/</span>
                 <div className="-m-1">
                   <a
-                    href="/products"
-                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
+                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow"
                     aria-current="page"
                   >
                     {product?.category?.map((el) => el.name)}{" "}
@@ -321,12 +313,12 @@ const Detail = () => {
                           <figcaption className="flex items-center mt-6 space-x-3">
                             <img
                               className="w-6 h-6 rounded-full"
-                              src={review.createdBy.photoURL || placeHolder}
-                              alt={review.createdBy.name}
+                              src={review.createdBy?.photoURL || placeHolder}
+                              alt={review.createdBy?.name}
                             />
                             <div className="flex items-center divide-x-2 divide-gray-300 dark:divide-gray-700">
                               <cite className="pr-3 font-medium text-gray-900 dark:text-white">
-                                {review.createdBy.name}
+                                {review.createdBy?.name}
                               </cite>
                               <cite className="pl-3 text-sm text-gray-500 dark:text-gray-400">
                                 {new Date(review.createdAt).toLocaleDateString(

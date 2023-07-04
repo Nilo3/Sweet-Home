@@ -12,7 +12,7 @@ import { removefromCart, addtoCart, removeOneFromCart, postOrder, getUserByUid, 
 import { getTotalPrice, calculateTotal } from "../../utils/totalprice";
 import fedexLogo from "../../assets/image/Fedex-logo.jpeg";
 import dhlLogo from "../../assets/image/DHL-Logo.png";
-//import emailjs from "emailjs-com";
+import emailjs from "emailjs-com";
 
 import "./ShoppingCart.css";
 
@@ -227,17 +227,12 @@ const Shopping = () => {
         ),
       };
       dispatch(removeAllFromCart());
-      //emailjs
-      //.sendForm("service_ndc6jsv", "template_hal256s", event.target, "_6alTseIIZ36HGhIC")
+      emailjs
+      .sendForm("service_ndc6jsv", "template_hal256s", event.target, "_6alTseIIZ36HGhIC")
       dispatch(postOrder(order));
     }
   }
 
-  const navigate = useNavigate();
-
-  const navigateToRegister = () => {
-    navigate("/register");
-  };
 
   const productCounts = allShoppingCart.reduce((counts, product) => {
     if (counts[product._id]) {
@@ -340,16 +335,6 @@ const Shopping = () => {
         <form onSubmit={handleSendOrder} action="">
           <div className="flex flex-wrap flex-col justify-center mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full">
             <p className="text-xl font-medium">Shipping</p>
-            <p className="text-gray-400 mt-2 text-m text-right">
-              Dont have an account?{" "}
-              <a
-                className="text-blue-600"
-                href="#"
-                onClick={navigateToRegister}
-              >
-                Register
-              </a>
-            </p>
             <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
