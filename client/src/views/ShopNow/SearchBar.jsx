@@ -37,7 +37,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center select-none self-center">
+    <div className="flex flex-wrap justify-center items-center select-none self-center">
       <input
         type="text"
         placeholder="Search products..."

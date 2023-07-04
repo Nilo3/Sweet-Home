@@ -105,8 +105,22 @@
   bottom: 0;
   width: 100%;
 }
+
 .row {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
