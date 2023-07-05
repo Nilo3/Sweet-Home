@@ -1,4 +1,4 @@
-import { addtoCart, getUserByUid, postShoppingCart, postFavorite, deleteFavorite } from "../../Redux/actions/actions.js";
+import { addtoCart, getUserByUid, postShoppingCart, postFavorite, deleteFavorite, getFavorites } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -64,30 +64,46 @@ const Card = ({ _id, name, image, price, category }) => {
     }
   };
 
-  const [completeUser, setCompleteUser] = useState();
-  const isProductFavorite = completeUser?.favorites?.includes(_id);
-  const [isFavorite, setIsFavorite] = useState(isProductFavorite);
-
   useEffect(() => {
     if (user) {
       dispatch(getUserByUid(user.uid)).then((response) => {
-        setCompleteUser(response.payload);
+        const completeUser = response.payload;
+        dispatch(getFavorites(user.uid));
+        setCompleteUser(completeUser);
       });
     }
   }, [dispatch, user]);
 
+  const [completeUser, setCompleteUser] = useState();
+
   const handleToggleFavorite = () => {
     if (!completeUser) {
-      toast.error("You need to log in to add a product to favorites")
+      toast.error("You need to log in to add a product to favorites");
       return;
     }
-    if (isFavorite) {
-      dispatch(deleteFavorite(completeUser?.uid, _id));
+    const isProductFavorite = completeUser.favorites?.includes(_id);
+    if (isProductFavorite) {
+      dispatch(deleteFavorite(completeUser.uid, _id)).then(() => {
+        dispatch(getFavorites(user.uid)).then(() => {
+          setCompleteUser({
+            ...completeUser,
+            favorites: completeUser.favorites.filter((fav) => fav !== _id),
+          });
+        });
+      });
     } else {
-      dispatch(postFavorite(completeUser?.uid, _id));
+      dispatch(postFavorite(completeUser.uid, _id)).then(() => {
+        dispatch(getFavorites(user.uid)).then(() => {
+          setCompleteUser({
+            ...completeUser,
+            favorites: [...completeUser.favorites, _id],
+          });
+        });
+      });
     }
-    setIsFavorite(!isFavorite);
   };
+
+  const isProductFavorite = completeUser?.favorites?.includes(_id);
 
   return (
     <div>
@@ -105,9 +121,11 @@ const Card = ({ _id, name, image, price, category }) => {
           </Link>
           <button
             onClick={handleToggleFavorite}
-            className="absolute top-2 right-2 text-3xl cursor-pointer"
+            className={`absolute top-2 right-2 text-3xl cursor-pointer ${
+              isProductFavorite ? "text-red-500" : "text-gray-500"
+            }`}
           >
-            {isFavorite ? "❤️" : "🤍"}
+            {isProductFavorite ? "❤️" : "🤍"}
           </button>
         </div>
         <div className="flex flex-col justify-between h-full">

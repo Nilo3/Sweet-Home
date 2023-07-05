@@ -31,15 +31,17 @@ import {
   DELETE_ALL_FROM_CART,
   POST_FAVORITE,
   DELETE_FAVORITE,
-  GET_FAVORITES
+  GET_FAVORITES,
 } from "../../Redux/action-types/action-types";
-const VITE_HOST = "http://localhost:3001"
+import { toast } from "react-toastify";
+
+const VITE_HOST = "http://localhost:3001";
 //  const VITE_HOST = import.meta.env.VITE_HOST;
 
 //--//--//--//--//--//  PRODUCT ACTIONS  //--//--//--//--//--//
 
 export function getProducts() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     let response = await axios.get(`${VITE_HOST}/api/product`);
     return dispatch({
       type: GET_PRODUCTS,
@@ -49,7 +51,7 @@ export function getProducts() {
 }
 
 export function getProductDetail(id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       let response = await axios.get(`${VITE_HOST}/api/product/${id}`);
       return dispatch({
@@ -78,7 +80,7 @@ export const postProduct = (product) => {
 };
 
 export function uploadProduct(data, id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       await axios.put(`${VITE_HOST}/api/product/${id}`, data);
       return dispatch({
@@ -91,7 +93,7 @@ export function uploadProduct(data, id) {
   };
 }
 export function softDeleteProduct(id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       await axios.put(`${VITE_HOST}/api/product/${id}`, { isDelete: true });
       return dispatch({
@@ -105,7 +107,7 @@ export function softDeleteProduct(id) {
 }
 
 export function deleteProduct(id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       await axios.delete(`${VITE_HOST}/api/product/${id}`);
       return dispatch({
@@ -132,7 +134,7 @@ export const cleanDetail = () => {
 //--//--//--//--//--//  USER ACTIONS  //--//--//--//--//--//
 
 export function getAllUsers() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const response = await axios.get(`${VITE_HOST}/api/users`);
       dispatch({
@@ -146,7 +148,7 @@ export function getAllUsers() {
 }
 
 export function getUserByUid(uid) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       let response = await axios.get(`${VITE_HOST}/api/users/v1/${uid}`);
       return dispatch({
@@ -160,7 +162,7 @@ export function getUserByUid(uid) {
 }
 
 export function getUserByEmail(email) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       let response = await axios.get(`${VITE_HOST}/api/users/${email}`);
       return dispatch({
@@ -174,7 +176,7 @@ export function getUserByEmail(email) {
 }
 
 export function postUser(payload) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const response = await axios.post(`${VITE_HOST}/api/users`, payload);
       dispatch({
@@ -188,7 +190,7 @@ export function postUser(payload) {
 }
 
 export function updateUser(data, id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       await axios.put(`${VITE_HOST}/api/users/${id}`, data);
       return dispatch({
@@ -211,7 +213,7 @@ export const addtoCart = (product) => {
 };
 
 export function postShoppingCart(payload) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const response = await axios.post(`${VITE_HOST}/api/cart`, payload);
       dispatch({
@@ -249,7 +251,7 @@ export const removeAllFromCart = () => {
 //--//--//--//--//--//  ORDER ACTIONS  //--//--//--//--//--//
 
 export function getAllOrders() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const response = await axios.get(`${VITE_HOST}/api/order`);
       dispatch({
@@ -263,7 +265,7 @@ export function getAllOrders() {
 }
 
 export function getOrderById(id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       let response = await axios.get(`${VITE_HOST}/api/order/${id}`);
       return dispatch({
@@ -277,7 +279,7 @@ export function getOrderById(id) {
 }
 
 export function postOrder(payload) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const response = await axios.post(`${VITE_HOST}/api/order`, payload);
 
@@ -297,7 +299,7 @@ export function postOrder(payload) {
 //--//--//--//--//--//  REVIEW ACTIONS  //--//--//--//--//--//
 
 export function getReviews() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     let response = await axios.get(`${VITE_HOST}/api/review`);
     return dispatch({
       type: MOST_VALUED_FILTER,
@@ -321,7 +323,7 @@ export function postReview(payload) {
 }
 
 export function editReview(data, id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       await axios.put(`${VITE_HOST}/api/review/${id}`, data);
       return dispatch({
@@ -335,7 +337,7 @@ export function editReview(data, id) {
 }
 
 export function deleteReview(id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       await axios.delete(`${VITE_HOST}/api/review/${id}`);
       return dispatch({
@@ -351,7 +353,7 @@ export function deleteReview(id) {
 //--//--//--//--//--//  OTHER ACTIONS  //--//--//--//--//--//
 
 export const getCategory = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       let response = await axios(`${VITE_HOST}/api/category`);
 
@@ -391,13 +393,28 @@ export const filterByCategory = (payload) => {
 export const postFavorite = (userUid, productId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${VITE_HOST}/api/favorite/${userUid}`, { productId });
+      const response = await axios.post(
+        `${VITE_HOST}/api/favorite/${userUid}`,
+        { productId }
+      );
 
       if (response.status !== 201) {
         throw new Error("Failed to add favorite");
       }
 
-      dispatch({ type: POST_FAVORITE });
+      const newFavorite = response.data;
+
+      dispatch({
+        type: POST_FAVORITE,
+        payload: newFavorite,
+      });
+
+      const favoritesInStorage =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+      const updatedFavorites = [...favoritesInStorage, newFavorite];
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+
+      toast.success("Added to favorites successfully!");
     } catch (error) {
       console.error(error);
     }
@@ -407,19 +424,31 @@ export const postFavorite = (userUid, productId) => {
 export const deleteFavorite = (userUid, productId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(`${VITE_HOST}/api/favorite/${userUid}`, { data: { productId } });
+      const response = await axios.delete(
+        `${VITE_HOST}/api/favorite/${userUid}`,
+        { data: { productId } }
+      );
 
       if (response.status !== 200) {
         throw new Error("Failed to delete favorite");
       }
 
-      dispatch({ type: DELETE_FAVORITE });
+      dispatch({
+        type: DELETE_FAVORITE,
+        payload: productId,
+      });
+
+      const favoritesInStorage =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+      const updatedFavorites = favoritesInStorage.filter(
+        (favorite) => favorite._id !== productId
+      );
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     } catch (error) {
       console.error(error);
     }
   };
 };
-
 
 export const getFavorites = (userUid) => {
   return async (dispatch) => {
@@ -433,6 +462,8 @@ export const getFavorites = (userUid) => {
       const favorites = response.data;
 
       dispatch({ type: GET_FAVORITES, payload: favorites });
+
+      localStorage.setItem("favorites", JSON.stringify(favorites));
     } catch (error) {
       console.error(error);
     }

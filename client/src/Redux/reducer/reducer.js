@@ -323,7 +323,6 @@ const reducer = (state = initialState, { type, payload }) => {
     case POST_FAVORITE: {
       const updatedFavoritesPost = [...state.favorites, payload];
       window.localStorage.setItem("favorites", JSON.stringify(updatedFavoritesPost));
-      toast.success("Added to favorites successfully!");
       return {
         ...state,
         favorites: updatedFavoritesPost,

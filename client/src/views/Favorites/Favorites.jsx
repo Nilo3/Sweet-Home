@@ -16,6 +16,12 @@ function Favorites() {
 
   const favorites = useSelector((state) => state.favorites);
 
+  useEffect(() => {
+    if (favorites) {
+      window.localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+  }, [favorites]);
+
   const handleDetail = () => {
     window.scrollTo({
       top: 0,
@@ -40,7 +46,8 @@ function Favorites() {
           favorites?.map((favorite) => (
             <div
               key={favorite?._id}
-              className="text-left mt-5 mb-5 m-4 bg-white pt-5 pb-5 border border-gray-200 rounded-lg">
+              className="text-left mt-5 mb-5 m-4 bg-white pt-5 pb-5 border border-gray-200 rounded-lg"
+            >
               <div className="border border-gray-200 rounded-lg">
                 <div className="mt-5 flex mr-5 ml-5 flex-col rounded-lg bg-white sm:flex-row border-b border-gray-200 last:border-b-0">
                   <img
@@ -57,9 +64,7 @@ function Favorites() {
                           </span>
                         </Link>
                       </div>
-                      <p className="text-sm">
-                        Price: ${favorite?.price}
-                      </p>
+                      <p className="text-sm">Price: ${favorite?.price}</p>
                     </div>
                     <button
                       className="mt-2 py-2 px-4 bg-black text-white rounded hover:bg-zinc-800"
