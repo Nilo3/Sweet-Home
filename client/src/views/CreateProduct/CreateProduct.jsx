@@ -4,9 +4,10 @@ import { postProduct, getCategory } from "../../Redux/actions/actions";
 import { validate } from "../../utils/validate";
 import { CloudinaryContext, Image } from "cloudinary-react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CreateProduct = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [, setSelectedImage] = useState(null);
   const [imageURL, setImageURL] = useState("");
 
   const [input, setInput] = useState({
@@ -83,6 +84,7 @@ const CreateProduct = () => {
         image: "",
         category: [],
       });
+      toast.success("Created successfully");
     }
   };
   return (
@@ -203,24 +205,6 @@ const CreateProduct = () => {
               <p className="text-red-500">{errors.description}</p>
             )}
           </div>
-          {/* <div>
-            <label
-              htmlFor="image"
-              className="block text-sm font-medium text-gray-700 mb-1 mx-4"
-            >
-              Image URL
-            </label>
-            <input
-              id="image"
-              name="image"
-              type="text"
-              className="input-field mx-4"
-              placeholder="Enter image URL"
-              value={input.image}
-              onChange={handleChange}
-            />
-            {errors.image && <p className="text-red-500">{errors.image}</p>}
-          </div> */}
           <div>
             <input type="file" accept="image/*" onChange={handleImageUpload} />
             {imageURL && (

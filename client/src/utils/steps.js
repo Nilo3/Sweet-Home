@@ -69,9 +69,9 @@
       ],
       validator: (value) => {
         if (value) {
-          return true; // Validation passes if an option is selected
+          return true; 
         } else {
-          return "Please select an option"; // Validation fails if no option is selected
+          return "Please select an option"; 
         }
       }
     },

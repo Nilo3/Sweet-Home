@@ -3,6 +3,7 @@ import { deleteProduct, getCategory, getProducts } from "../../Redux/actions/act
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 const AdminCard = ({ id, name, price, description, image, category }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,13 @@ const AdminCard = ({ id, name, price, description, image, category }) => {
 
   function handleDelete(event) {
     event.preventDefault();
-    dispatch(deleteProduct(event.target.value));
+    dispatch(deleteProduct(event.target.value))
+      .then(() => {
+        toast.success("Deleted successfully");
+      })
+      .catch((error) => {
+        toast.error("Error deleting product");
+      });
   }
 
   return (
@@ -22,7 +29,9 @@ const AdminCard = ({ id, name, price, description, image, category }) => {
         {name}
       </td>
       <td className="px-4 py-3 max-w-[5rem]">{category}</td>
-      <td className="px-4 py-3 max-w-[12rem] truncate items-start">{description}</td>
+      <td className="px-4 py-3 max-w-[12rem] truncate items-start">
+        {description}
+      </td>
       <td className="px-4 py-3 t">{price}</td>
       <td className="px-4 py-3 flex justify-end items-start space-x-2">
         <Link to={`/editProduct/${id}`}>

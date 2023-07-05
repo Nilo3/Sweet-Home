@@ -1,13 +1,7 @@
 import AdminCard from "./AdminCard";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getProducts,
-  getCategory,
-  filterByCategory,
-  filterByPrice,
-  filterByName,
-} from "../../Redux/actions/actions";
+import { getProducts, getCategory, filterByCategory, filterByPrice, filterByName } from "../../Redux/actions/actions";
 import { Link } from "react-router-dom";
 import SearchBar from "../ShopNow/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
@@ -62,10 +56,8 @@ const Dashboard = () => {
       <div>
         <Chart />
       </div>
-      {/* <!-- Start block --> */}
       <section className="bg-gray-50 dark:bg-gray-900 p-3 antialiased ">
         <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
-          {/* <!-- Start coding here --> */}
           <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
             <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
               <div className="w-full md:w-1/2">
@@ -200,7 +192,6 @@ const Dashboard = () => {
                 ))}
               </tbody>
             </table>
-
             <nav
               className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
               aria-label="Table navigation"

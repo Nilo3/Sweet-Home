@@ -30,20 +30,8 @@ import {
   CLEAN_DETAIL,
   DELETE_ALL_FROM_CART,
 } from "../../Redux/action-types/action-types";
-///const VITE_HOST = "http://localhost:3001";
-const VITE_HOST = import.meta.env.VITE_HOST;
 
-//>          |------------------------------------|          <\\
-//>          |          (CTRL  +    G)            |          <\\
-//>          |------------------------------------|          <\\
-//>          |    Codeline     |      Acción      |          <\\
-//>          |------------------------------------|          <\\
-//>          |       35        |     PRODUCT      |          <\\
-//>          |      118        |      USER        |          <\\
-//>          |      164        |      CART        |          <\\
-//>          |      203        |      ORDE        |          <\\
-//>          |      257        |     REVIEW       |          <\\
-//>          |------------------------------------|          <\\
+const VITE_HOST = import.meta.env.VITE_HOST;
 
 //--//--//--//--//--//  PRODUCT ACTIONS  //--//--//--//--//--//
 

@@ -2,7 +2,7 @@ import Usercard from "./Usercard";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../Redux/actions/actions";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ViewUsers = () => {
   const dispatch = useDispatch();

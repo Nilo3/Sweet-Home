@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import {
-  uploadProduct,
-  getCategory,
-  getProducts,
-} from "../../Redux/actions/actions";
+import { useParams, Link } from "react-router-dom";
+import { uploadProduct, getCategory, getProducts } from "../../Redux/actions/actions";
 import { validate } from "../../utils/validate";
 import { CloudinaryContext, Image } from "cloudinary-react";
+import { toast } from "react-toastify";
 
 const UploadProduct = () => {
   const [, setSelectedImage] = useState(null);
@@ -126,6 +123,7 @@ const UploadProduct = () => {
         category: [],
         isDelete: false,
       });
+      toast.success("Edited successfully");
     }
   };
 

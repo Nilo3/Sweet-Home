@@ -1,0 +1,122 @@
+export const tecnologies = [
+    {
+        title: "React",
+        image: "https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg",
+        description: "React is a JavaScript library used to build interactive and dynamic user interfaces. It is based on reusable components that allow for efficient creation of modern web applications. React utilizes a virtual data structure called the 'Virtual DOM' to achieve optimal performance by updating only the necessary elements in the user interface. With React, developers can create fast, scalable, and easy-to-maintain interfaces.",
+        link: "https://reactjs.org/",
+    },
+    {
+        title: "Vite",
+        image: "https://tse4.mm.bing.net/th?id=OIP.sjmTj1vtTlo_PKXhRYqHPgHaHa&pid=Api&P=0&h=180",
+        description: "  Vite is a fast and lightweight development tool for modern web applications. It is particularly known for being used alongside React and Vue.js, although it is also compatible with other frameworks. Vite stands out for its module-based approach, which allows for instant startup time during development. It harnesses the power of the browser to compile and deliver individual modules, resulting in a highly efficient development experience. With Vite, developers can create high-performance and productive web applications.",
+        link: "https://vitejs.dev/",
+    },
+    {
+        title: "Boostrap",
+        image: "https://profilinator.rishav.dev/skills-assets/bootstrap-plain.svg",
+        description: "Bootstrap is a popular open-source framework used for developing websites and web applications. It provides a set of predefined tools and styles that make it easy to create modern and responsive interfaces. With Bootstrap, developers can leverage reusable components such as buttons, navigation bars, cards, and forms to streamline the development process. Additionally, Bootstrap offers a flexible and adaptive grid system that facilitates the creation of structured page layouts that adapt to different devices and screen sizes. In summary, Bootstrap is a powerful tool that helps developers create attractive and professionally-looking websites and web applications.",
+        link: "https://getbootstrap.com/docs/3.4/javascript/",
+    },
+    {
+        title: "CSS3",
+        image: "https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg",
+        description: "CSS (Cascading Style Sheets) is a style sheet language used to define the presentation and visual appearance of an HTML document. With CSS, developers can control the layout, colors, fonts, whitespace, and other visual elements of a website. It allows separating the structure and content of the HTML document from its style, providing flexibility and making it easier to update and maintain the design across multiple pages. In summary, CSS is a fundamental tool for creating visually appealing and well-organized websites.",
+        link: "https://www.w3schools.com/css/",
+    },
+    {
+        title: "HTML5",
+        image: "https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg",
+        description: "HTML (HyperText Markup Language) is the standard markup language used to create web pages and structure their content. It provides a way to organize and label elements and text within a web document, allowing for the definition of logical and hierarchical structure of information. HTML uses tags and elements to mark and describe different types of content such as headings, paragraphs, links, images, lists, and more. Additionally, HTML is the foundational language upon which websites are built, as it enables the integration of other languages and technologies such as CSS and JavaScript to enhance the appearance and functionality of pages. In summary, HTML is essential for creating and organizing the content of a web page in a semantic and structured manner.",
+        link: "https://html.com/html5/",
+    },
+    {
+        title: "JavaScript",
+        image: "https://profilinator.rishav.dev/skills-assets/javascript-original.svg",
+        description: "JavaScript is a programming language primarily used to create interactivity on web pages. It enables developers to control and modify the content of a page, respond to user actions, and create visual effects. JavaScript is widely supported and runs on all modern browsers. It is a versatile and powerful language that powers much of the web functionality we enjoy today.",
+        link: "https://www.javascript.com/",
+    },
+    {
+        title: "Redux",
+        image: "https://profilinator.rishav.dev/skills-assets/redux-original.svg",
+        description: "Redux is a predictable state management library for JavaScript applications. It provides a simple and scalable approach to handling the state of an application, enabling a unidirectional and centralized data flow. Redux is based on the concept of a centralized store, where the application state is stored in a single place called the store. Changes to the state are handled by pure functions called reducers, which update the state in a predictable manner without side effects. With Redux, it becomes easier to maintain and debug the application state, leading to clearer and more maintainable code.",
+        link: "https://redux.js.org/",
+    },
+    {
+        title: "TailwindCss",
+        image: "https://profilinator.rishav.dev/skills-assets/tailwindcss.svg",
+        description: "Tailwind CSS is a utility CSS framework that allows for quickly designing custom and responsive user interfaces. Unlike other CSS frameworks, instead of using predefined classes, Tailwind CSS provides a wide range of utility classes that can be combined to apply specific styles. These utility classes cover everything from margin and padding adjustments to typography, colors, positioning, and more. By using Tailwind CSS, developers have precise control over the layout and style of their application, making it easy to create attractive and consistent interfaces. Additionally, its utility class-based approach helps maintain clean and modular code.",
+        link: "https://www.tailwindcss.com/",
+    },
+    {
+        title: "Git",
+        image: "https://profilinator.rishav.dev/skills-assets/git-scm-icon.svg",
+        description: "Git is a widely used distributed version control system in software development. It enables developers to track changes in the source code, coordinate teamwork, and maintain a complete history of all modifications made to a project. With Git, developers can create branches to work on new features or address issues without affecting the main branch of the project. It also facilitates collaboration by allowing the orderly merging of changes made by different individuals. Git provides a reliable and efficient environment for software development, contributing to effective version management and smoother teamwork.",
+        link: "https://git-scm.com/",
+    },
+    {
+        title: "GitHub",
+        image: "https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU=w240-h480-rw",
+        description: "GitHub is an online platform used to host and share software projects using the Git version control system. It is widely used by developers and development teams to collaborate on projects, review and manage source code, track issues and tasks, and facilitate software development collaboration. GitHub provides additional tools and features such as pull requests, issues and bug tracking, continuous integration and deployment, and a large developer community. It serves as a centralized place to store, share, and collaborate on open-source or private projects, and has become an essential platform for the software development community.",
+        link: "https://github.com/",
+    },
+    {
+        title: "Node.Js",
+        image: "https://profilinator.rishav.dev/skills-assets/nodejs-original-wordmark.svg",
+        description: "Node.js is an open-source runtime environment based on Google's V8 JavaScript engine. It allows developers to run JavaScript on the server-side, enabling them to create web applications and services using JavaScript both in the browser and on the server. Node.js is known for its efficiency and ability to handle large volumes of concurrent requests, making it a popular choice for real-time applications, APIs, and scalable web servers. Additionally, it has a wide range of modules and libraries that facilitate the development of web and mobile applications. With Node.js, developers can leverage their familiarity with JavaScript to create full-stack applications, making web application development faster and more efficient.",
+        link: "https://nodejs.org/",
+    },
+    {
+        title: "Espress",
+        image: "https://profilinator.rishav.dev/skills-assets/express-original-wordmark.svg",
+        description: "Express.js is a fast, minimalist, and flexible web framework for Node.js. It provides a set of features and tools that allow developers to build web applications and APIs easily and efficiently. Express.js simplifies the creation of routes, handling of requests and responses, and managing middleware to add additional functionality to applications. It is widely used in web development due to its simplicity and its focus on creating RESTful APIs and single-page applications (SPAs). Express.js is highly customizable and can be combined with other libraries and plugins to meet specific development needs. With its active community and extensive documentation, Express.js has become a popular choice for web application and API development in Node.js.",
+        link: "https://expressjs.com/",
+    },
+    {
+        title: "MongoDB",
+        image: "https://profilinator.rishav.dev/skills-assets/mongodb-original-wordmark.svg",
+        description: "MongoDB is a document-oriented NoSQL database designed to store and manage data efficiently and at scale. Unlike relational databases, MongoDB does not use tables and rows, but instead stores data in flexible JSON-like documents, making data manipulation and access easy. MongoDB is highly flexible and can easily adapt to changes in data structure, making it ideal for applications with evolving and scalable requirements. Additionally, it offers features such as replication, automatic sharding, and powerful and expressive querying, enabling the handling of large volumes of data and efficient performance. MongoDB is widely used in web and application development, especially in modern and agile environments where flexibility and scalability of the database are valued.",
+        link: "https://www.mongodb.com/",
+    },
+    {
+        title: "Mongoose",
+        image: "https://ih1.redbubble.net/image.438912065.6243/flat,1000x1000,075,f.u3.jpg",
+        description: "Mongoose is an object modeling library for Node.js that provides a simple and flexible solution for interacting with MongoDB. Acting as an abstraction layer over the database, Mongoose allows you to define schemas and models to structure and organize the data stored in MongoDB. It provides a straightforward and consistent interface for performing CRUD operations (Create, Read, Update, Delete) on the database, along with additional functionalities such as data validation, custom methods, hooks, and advanced querying. Mongoose simplifies the process of interacting with MongoDB by providing an intuitive structure and syntax, making it easier to develop Node.js applications that use MongoDB as the database.",
+        link: "https://mongoosejs.com/",
+    },
+    {
+        title: "Firebase",
+        image: "https://profilinator.rishav.dev/skills-assets/firebase.png",
+        description: "Firebase is a cloud development platform that provides a wide range of services and tools to simplify and streamline the development of web and mobile applications. One of Firebase's standout services is user authentication, which allows for secure management of user identity in an application. With Firebase Authentication, you can easily implement a user login and registration system using various authentication methods, such as email and password, authentication with popular identity providers (like Google), phone number authentication, and more. Firebase handles the underlying infrastructure and security, allowing you to focus on developing your application's logic without worrying about the complexity of authentication.",
+        link: "https://firebase.google.com/",
+    },
+    {
+        title: "Figma",
+        image: "https://profilinator.rishav.dev/skills-assets/figma-icon.svg",
+        description: "Figma is a cloud-based collaborative design tool that allows design teams to create, prototype, and share user interfaces efficiently. With Figma, designers can create and edit designs simultaneously, enabling real-time collaboration and eliminating the need to send large files or sync versions. Additionally, Figma offers a wide range of functionalities, such as interactive prototyping, style specification, reusable components, and the ability to comment and review designs. With its focus on collaboration and ease of use, Figma has become a popular tool for design teams worldwide.",
+        link: "https://www.figma.com/",
+    },
+    {
+        title: "Mercado Pago",
+        image: "https://tfc-webapp-assets.s3.us-east-2.amazonaws.com/web/images/logos/logo_mercadopago.svg",
+        description: "Mercado Pago is an online payment platform that facilitates secure and efficient electronic transactions. It provides users with a variety of payment options, including credit cards, debit cards, bank transfers, and cash payments. In addition to processing payments, Mercado Pago also offers collection solutions for businesses, enabling them to easily accept online payments. With its extensive presence in Latin America, Mercado Pago has become a trusted and popular choice for conducting online commercial transactions, providing convenience to both buyers and sellers.",
+        link: "https://www.mercadopago.com/",
+    },
+    {
+        title: "Cloudinary",
+        image: "https://s3.amazonaws.com/awsmp-logos/cloudinary.png",
+        description: "Cloudinary is a cloud platform that offers image and video storage and manipulation services. It enables developers and businesses to efficiently upload, store, and deliver multimedia files in their web and mobile applications. With Cloudinary, it is possible to perform tasks such as resizing, cropping, optimizing, and applying effects to images and videos easily through its powerful API. Additionally, it provides multimedia resource management capabilities such as tagging, searching, and organization. With its focus on scalability, performance, and ease of use, Cloudinary has become a popular choice for handling multimedia asset management in digital applications.",
+        link: "https://cloudinary.com/",
+    },
+    {
+        title: "Render",
+        image: " https://tse1.mm.bing.net/th?id=OIP.ON-z21c5Kq_iKg5CE0OIAgAAAA&pid=Api&P=0&h=180",
+        description: "  Render makes deploying your application as easy as pushing your code    to source control. Once you connect your GitHub or GitLab account to your Render account, Render will automatically build and deploy your services with every push. For more information on connecting your Git accounts to Render, see our docs for GitHub and GitLab.",
+        link: "https://render.com/",
+    },
+    {
+        title: "Trello",
+        image: "https://logosmarcas.net/wp-content/uploads/2021/03/Trello-Logo-650x366.png",
+        description: "Trello is a collaboration tool that organizes your projects into  boards. In one glance, Trello tells you what's being worked on,  who's working on what, and where something is in a process. Imagine a white board, filled with lists of sticky notes, with each note as  a task for you and your team. Now imagine that each of those sticky  notes has photos, attachments from other data sources like Jira or  Salesforce, documents, and a place to comment and collaborate with  your teammates. Now imagine that you can take that whiteboard anywhere you go on your smartphone, and can access it from any computer through the web. That's Trello!",
+        link: "https://trello.com/",
+    }
+]
