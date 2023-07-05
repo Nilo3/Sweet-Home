@@ -28,7 +28,7 @@ const Dashboard = () => {
     dispatch(filterByCategory());
     dispatch(filterByName());
     dispatch(filterByPrice());
-    if (category?.length !== 0) {
+    if (category?.length === 0) {
       window.location.reload();
     }
   }, [dispatch]);
@@ -42,12 +42,6 @@ const Dashboard = () => {
   function handleOrderPrice(event) {
     event.preventDefault();
     dispatch(filterByPrice(event.target.value));
-    setCurrentPage(1);
-  }
-
-  function handleFilterCategory(event) {
-    event.preventDefault();
-    dispatch(filterByCategory(event.target.value));
     setCurrentPage(1);
   }
 
