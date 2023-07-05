@@ -11,7 +11,6 @@ const user = new Schema({
     accessToken: { type: String, default: "" },
     cart: [{ type: Schema.Types.ObjectId, ref: 'Cart' }],
     bought: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
-    favorites: [{ type: Schema.Types.ObjectId, ref: 'Favorites' }],
     userReviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
     userOrders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
     isDelete: { type: Boolean, default: false },
