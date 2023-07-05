@@ -29,9 +29,14 @@ import {
   SOFT_DELETE,
   CLEAN_DETAIL,
   DELETE_ALL_FROM_CART,
+  POST_FAVORITE,
+  DELETE_FAVORITE,
+  GET_FAVORITES,
 } from "../../Redux/action-types/action-types";
-const VITE_HOST = "http://localhost:3001"
-//  const VITE_HOST = import.meta.env.VITE_HOST; 
+import { toast } from "react-toastify";
+
+const VITE_HOST = "http://localhost:3001";
+//  const VITE_HOST = import.meta.env.VITE_HOST;
 
 //--//--//--//--//--//  PRODUCT ACTIONS  //--//--//--//--//--//
 
@@ -380,5 +385,87 @@ export const filterByCategory = (payload) => {
   return {
     type: FILTER_BY_CATEGORY,
     payload,
+  };
+};
+
+//--//--//--//--//--//  FAVORITES  //--//--//--//--//--//
+
+export const postFavorite = (userUid, productId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${VITE_HOST}/api/favorite/${userUid}`,
+        { productId }
+      );
+
+      if (response.status !== 201) {
+        throw new Error("Failed to add favorite");
+      }
+
+      const newFavorite = response.data;
+
+      dispatch({
+        type: POST_FAVORITE,
+        payload: newFavorite,
+      });
+
+      const favoritesInStorage =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+      const updatedFavorites = [...favoritesInStorage, newFavorite];
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+
+      toast.success("Added to favorites successfully!");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const deleteFavorite = (userUid, productId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `${VITE_HOST}/api/favorite/${userUid}`,
+        { data: { productId } }
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Failed to delete favorite");
+      }
+
+      dispatch({
+        type: DELETE_FAVORITE,
+        payload: productId,
+      });
+
+      const favoritesInStorage =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+      const updatedFavorites = favoritesInStorage.filter(
+        (favorite) => favorite._id !== productId
+      );
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const getFavorites = (userUid) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${VITE_HOST}/api/favorite/${userUid}`);
+
+      if (response.status !== 200) {
+        throw new Error("Failed to get favorites");
+      }
+
+      const favorites = response.data;
+
+      dispatch({ type: GET_FAVORITES, payload: favorites });
+
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    } catch (error) {
+      console.error(error);
+    }
   };
 };

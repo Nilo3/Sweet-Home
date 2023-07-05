@@ -113,6 +113,16 @@ function Navbar() {
     }
   };
 
+  const handleFavorite = () => {
+    closeMenu();
+    navigate("/my_favorites");
+    setIsMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const handlePuchases = () => {
     closeMenu();
     navigate("/my_puchases");
@@ -287,6 +297,12 @@ function Navbar() {
                       >
                         Reviews
                       </button>
+                      <button
+                        onClick={handleFavorite}
+                        className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                      >
+                        Favorites
+                      </button>
                       {completeUser.isAdmin && (
                         <button
                           onClick={handleDashboard}
@@ -381,6 +397,12 @@ function Navbar() {
                     className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                   >
                     Reviews
+                  </button>
+                  <button
+                    onClick={handleFavorite}
+                    className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                  >
+                    Favorites
                   </button>
                   {completeUser.isAdmin && (
                     <button

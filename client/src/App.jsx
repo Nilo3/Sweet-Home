@@ -29,6 +29,7 @@ import Reviews from "./views/Reviews/Reviews";
 import Stars from "./components/Stars/Stars";
 import Recommendations from "./views/Recommendations/Recommendations";
 import ViewUsers from "./views/Dashboard Admin/ViewUsers";
+import Favorites from "./views/Favorites/Favorites";
 
 const Layout = ({ children }) => {
   return (
@@ -75,6 +76,7 @@ function App() {
           <Route path="/my_puchases" element={<Layout><Puchases/></Layout>} />
           <Route path="/my_reviews" element={<Layout><Reviews/></Layout>} />
           <Route path="/stars" element={<Layout><Stars/></Layout>} />
+          <Route path="/my_favorites" element={<Layout><Favorites/></Layout>} />
         </Routes>
      
         <ThemeProvider theme={theme}>
