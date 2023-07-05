@@ -2,7 +2,13 @@ import style from "./About.module.css";
 import { FaGithub, FaEnvelope, FaLinkedin } from "react-icons/fa";
 import { teamMembers } from "./profiles/profiles";
 import reactLog from "../../assets/image/reactlogo.png"
-import trelloLog from "../../assets/image/trellologo.jpg"
+import trelloLog from "../../assets/image/trellogo.svg"
+import discordLog from "../../assets/image/discordlogo.png"
+import firebaseLog from "../../assets/image/firebaselogo.svg"
+import githubLog from "../../assets/image/githublogo.svg"
+import pagoLog from "../../assets/image/mercadopagologo.webp"
+import mongoLog from "../../assets/image/mongoDBlogo.svg"
+import tailLog from "../../assets/image/tailwindcsslogo.svg"
 
 const About = () => {
   return (
@@ -130,7 +136,7 @@ const About = () => {
           <div className={style.imageContainer}>
             <div
               className={style.image}
-              style={{ backgroundImage: `url(${reactLog})` }}
+              style={{ backgroundImage: `url(${discordLog})` }}
             />
           </div>
           <div className={style.info}>
@@ -144,7 +150,7 @@ const About = () => {
           <div className={style.imageContainer}>
             <div
               className={style.image}
-              style={{ backgroundImage: `url(${reactLog})` }}
+              style={{ backgroundImage: `url(${firebaseLog})` }}
             />
           </div>
           <div className={style.info}>
@@ -158,7 +164,7 @@ const About = () => {
           <div className={style.imageContainer}>
             <div
               className={style.image}
-              style={{ backgroundImage: `url(${reactLog})` }}
+              style={{ backgroundImage: `url(${githubLog})` }}
             />
           </div>
           <div className={style.info}>
@@ -172,7 +178,7 @@ const About = () => {
           <div className={style.imageContainer}>
             <div
               className={style.image}
-              style={{ backgroundImage: `url(${reactLog})` }}
+              style={{ backgroundImage: `url(${pagoLog})` }}
             />
           </div>
           <div className={style.info}>
@@ -186,7 +192,7 @@ const About = () => {
           <div className={style.imageContainer}>
             <div
               className={style.image}
-              style={{ backgroundImage: `url(${reactLog})` }}
+              style={{ backgroundImage: `url(${mongoLog})` }}
             />
           </div>
           <div className={style.info}>
@@ -200,7 +206,7 @@ const About = () => {
           <div className={style.imageContainer}>
             <div
               className={style.image}
-              style={{ backgroundImage: `url(${reactLog})` }}
+              style={{ backgroundImage: `url(${tailLog})` }}
             />
           </div>
           <div className={style.info}>
