@@ -1,54 +1,53 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { uploadProduct, getCategory, getProducts } from "../../Redux/actions/actions";
 import { validate } from "../../utils/validate";
 import { CloudinaryContext, Image } from "cloudinary-react";
-
+import { toast } from "react-toastify";
 
 const UploadProduct = () => {
   const [, setSelectedImage] = useState(null);
-  const products = useSelector((state) => state.products)
+  const products = useSelector((state) => state.products);
   const [imageURL, setImageURL] = useState("");
   const { id } = useParams();
-  const product = products?.find((product) => product._id === id)
-
+  const product = products?.find((product) => product._id === id);
 
   const [input, setInput] = useState(() => {
     const savedInput = product ? JSON.stringify(product) : null;
-    return savedInput ? JSON.parse(savedInput) : {
-      name: "",
-      price: 0,
-      stock: 0,
-      description: "",
-      image: "",
-      category: [],
-      isDelete: false,
-    };
+    return savedInput
+      ? JSON.parse(savedInput)
+      : {
+          name: "",
+          price: 0,
+          stock: 0,
+          description: "",
+          image: "",
+          category: [],
+          isDelete: false,
+        };
   });
 
   const category = useSelector((state) => state.category);
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(getCategory());
-    dispatch(getProducts()); 
+    dispatch(getProducts());
     localStorage.setItem("uploadProductInput", JSON.stringify(input));
-    if(!category){
-      window.location.reload()
+    if (!category) {
+      window.location.reload();
     }
   }, [dispatch]);
 
-  
   useEffect(() => {
     setInput((prevInput) => ({
       ...prevInput,
-      name: (product?.name) || "",
-      price: (product?.price) || 0,
-      stock: (product?.stock) || 0,
-      description: (product?.description) || "",
+      name: product?.name || "",
+      price: product?.price || 0,
+      stock: product?.stock || 0,
+      description: product?.description || "",
       image: product?.image || "",
       category: [],
       isDelete: false,
@@ -86,16 +85,16 @@ const UploadProduct = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-
-        setImageURL(result.secure_url); const hardcodeJson = {
+        setImageURL(result.secure_url);
+        const hardcodeJson = {
           photoURL: result.secure_url,
-          name: (product?.name) || "",
-        price: (product?.price) || 0,
-        stock: (product?.stock) || 0,
-        description: (product?.description) || "",
-        image: product?.image || "",
-        category: [],
-        isDelete: false,
+          name: product?.name || "",
+          price: product?.price || 0,
+          stock: product?.stock || 0,
+          description: product?.description || "",
+          image: product?.image || "",
+          category: [],
+          isDelete: false,
         };
         dispatch(uploadProduct(completeUser._id, hardcodeJson));
       })
@@ -116,14 +115,15 @@ const UploadProduct = () => {
         uploadProduct({ ...input, category, price, stock, image: imageURL }, id)
       );
       setInput({
-        name: (product?.name) || "",
-        price: (product?.price) || 0,
-        stock: (product?.stock) || 0,
-        description: (product?.description) || "",
+        name: product?.name || "",
+        price: product?.price || 0,
+        stock: product?.stock || 0,
+        description: product?.description || "",
         image: product?.image || "",
         category: [],
         isDelete: false,
       });
+      toast.success("Edited successfully");
     }
   };
 
@@ -169,7 +169,7 @@ const UploadProduct = () => {
               name="category"
               required
               className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              value={input.category.length > 0 ? input.category[0] : ''}
+              value={input.category.length > 0 ? input.category[0] : ""}
               onChange={handleChange}
             >
               <option value="">Select category</option>
@@ -254,17 +254,10 @@ const UploadProduct = () => {
             {errors.image && <p className="text-red-500">{errors.image}</p>}
           </div>
           <div>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-
-            />
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
             {imageURL && (
-              <CloudinaryContext cloudName="dt8snufoj"
-              >
+              <CloudinaryContext cloudName="dt8snufoj">
                 <Image
-
                   publicId={imageURL}
                   width="200"
                   height="200"
@@ -294,22 +287,22 @@ const UploadProduct = () => {
           <div>
             <button
               type="submit"
-              // onClick={handleImageUpload}
               className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-12 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mx-4"
             >
               Confirm edit
             </button>
-            <button
-              type="submit"
-              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  mx-24"
-            >
-              Discard
-            </button>
+            <Link to={"/adminDashboard"}>
+              <button
+                type="submit"
+                className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  mx-24"
+              >
+                Discard/Back
+              </button>
+            </Link>
           </div>
         </form>
       </div>
     </div>
-
   );
 };
 

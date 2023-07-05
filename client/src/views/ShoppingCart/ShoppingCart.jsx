@@ -56,6 +56,7 @@ const Shopping = () => {
     const property = event.target.name;
     const value = event.target.value;
     setInput({ ...input, [property]: value });
+    
 
     if (property === "name") nameValidate({ ...input, [property]: value });
     else if (property === "lastName") {
@@ -208,6 +209,19 @@ const Shopping = () => {
     } else if (allShoppingCart.length === 0) {
       toast.warning("Your shopping cart is empty.");
       return;
+    } else if (!input.name ) {
+      toast.warning("Unable to create order, missing data.");
+    } else if (!input.lastName ) {
+      toast.warning("Unable to create order, missing data.");
+    } else if (!input.email ) {
+      toast.warning("Unable to create order, missing data.");
+    } else if (!input.zip ) {
+      toast.warning("Unable to create order, missing data.");
+    }
+    else if (!input.state ) {
+      toast.warning("Unable to create order, missing data.");
+    } else if (!input.phone ) {
+      toast.warning("Unable to create order, missing data.");
     } else {
       const productCounts = allShoppingCart.reduce((counts, product) => {
         if (counts[product._id]) {

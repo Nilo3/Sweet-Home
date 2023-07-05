@@ -1,37 +1,17 @@
-import { addtoCart, getUserByUid, postShoppingCart, addtoFavorites, postFavorites, removeFromFavorites } from "../../Redux/actions/actions.js";
+import { addtoCart, getUserByUid, postShoppingCart } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useAuth } from "../../context/authContex.jsx";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Card = ({ _id, name, image, price, category }) => {
   const dispatch = useDispatch();
   const { user } = useAuth();
-  const [completeUser, setCompleteUser] = useState({ photoURL: "" });
-  useEffect(() => {
-    if (user) {
-      dispatch(getUserByUid(user.uid)).then((response) => {
-        setCompleteUser(response.payload);
-      });
-    }
-  }, [dispatch, user]);
 
   const [, setInCart] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const favorites = useSelector((state) => state.favorites);
   const [userId, setUserId] = useState(null);
 
-  useEffect(() => {
-    if (user) {
-      const isProductFavorite = favorites?.some(
-        (favorite) => favorite._id === _id
-      );
-      setIsFavorite(isProductFavorite);
-    }
-  }, [user, favorites, _id]);
 
   useEffect(() => {
     if (user) {
@@ -47,55 +27,6 @@ const Card = ({ _id, name, image, price, category }) => {
     }
   }, [userUid]);
 
-  const toggleFavorite = () => {
-    if (!user) {
-      toast.error("Please login to add favorites.", { autoClose: 2000 });
-      return;
-    }
-    if (isFavorite) { // EL PROBLEMA ES EL LOCAL STORAGE O ALGUNA ACTION, NO ME DEJA ELIMINAR PORQUE SE ELIMINA POR EL PARAM DEBERÍA QUITARLO?? estoy cansado
-      try {
-        if (completeUser) {
-          const favoriteId = completeUser?.favorites[0];
-          dispatch(removeFromFavorites(favoriteId, _id));
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      const newFavorite = {
-        _id,
-        name,
-        image,
-        price,
-      };
-      dispatch(addtoFavorites(newFavorite));
-      if (userId) {
-        const updatedFavorites = {
-          user: userId,
-          products: [
-            {
-              product: _id,
-              quantity: 1,
-            },
-          ],
-        };
-
-        dispatch(postFavorites(updatedFavorites));
-      } else {
-        const newFavorites = {
-          user: userUid,
-          products: [
-            {
-              product: _id,
-              quantity: 1,
-            },
-          ],
-        };
-        dispatch(postFavorites(newFavorites));
-      }
-    }
-    setIsFavorite(!isFavorite);
-  };
 
   const allShoppingCart = useSelector((state) => state.shoppingCart);
   const isProductInCart = allShoppingCart?.some(
@@ -148,18 +79,6 @@ const Card = ({ _id, name, image, price, category }) => {
               />
             </div>
           </Link>
-          <span
-            className={`heart-icon ${isFavorite ? "favorite" : ""}`}
-            onClick={toggleFavorite}
-            style={{
-              position: "absolute",
-              top: "10px",
-              right: "10px",
-              fontSize: "24px",
-            }}
-          >
-            {isFavorite ? "❤️" : "🤍"}
-          </span>
         </div>
         <div className="flex flex-col justify-between h-full">
           <div>

@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   const [productPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
   const productsToDisplay = allProducts.slice(
@@ -26,15 +26,13 @@ const Dashboard = () => {
     dispatch(getProducts());
     dispatch(getCategory());
     dispatch(filterByCategory());
-    dispatch(filterByName())
-    dispatch(filterByPrice()) 
+    dispatch(filterByName());
+    dispatch(filterByPrice());
     if (category?.length !== 0) {
       window.location.reload();
     }
   }, [dispatch]);
-  
 
- 
   function handleOrderName(event) {
     event.preventDefault();
     dispatch(filterByName(event.target.value));
@@ -56,12 +54,10 @@ const Dashboard = () => {
   return (
     <div className="">
       <div>
-      <Chart />
+        <Chart />
       </div>
-      {/* <!-- Start block --> */}
       <section className="bg-gray-50 dark:bg-gray-900 p-3 antialiased ">
         <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
-          {/* <!-- Start coding here --> */}
           <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
             <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
               <div className="w-full md:w-1/2">
@@ -84,7 +80,7 @@ const Dashboard = () => {
                 <Link to={"/createProduct"}>
                   <button
                     type="button"
-                    className="flex items-center justify-center text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+                    className="flex items-center justify-center text-white bg-black hover:bg-green-700 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center m-1"
                   >
                     <svg
                       className="h-3.5 w-3.5 mr-2"
@@ -106,7 +102,7 @@ const Dashboard = () => {
                   <button
                     id="filterDropdownButton"
                     data-dropdown-toggle="filterDropdown"
-                    className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    className="w-full md:w-auto flex items-center justify-center text-white bg-black hover:bg-grey-700 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center m-1"
                     type="button"
                   >
                     <svg
@@ -137,26 +133,17 @@ const Dashboard = () => {
                       />
                     </svg>
                   </button>
+                  <Link to="/adminDashboard/users">
+                    <button className="text-white bg-black hover:bg-blue-700 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center m-1">
+                      View Users
+                    </button>
+                  </Link>
                   <div
                     id="filterDropdown"
                     className="z-10 hidden w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700"
                   >
                     <select
-                      className="ordAndFil3"
-                      onChange={(event) => handleFilterCategory(event)}
-                      defaultValue={"default"}
-                    >
-                      <option value="default" disabled>
-                        Category
-                      </option>
-                      {category?.map((el) => (
-                        <option key={el._id} value={el.name}>
-                          {el.name}
-                        </option>
-                      ))}
-                    </select>
-                    <select
-                      className="ordAndFil1"
+                      className="ordAndFil1 w-full text-white bg-black hover:bg-grey-700 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center m-1"
                       onChange={(event) => handleOrderName(event)}
                     >
                       <option>Order by Name</option>
@@ -164,7 +151,7 @@ const Dashboard = () => {
                       <option value="desc">Z - A</option>
                     </select>
                     <select
-                      className="ordAndFil2"
+                      className="ordAndFil2  w-full text-white bg-black hover:bg-grey-700 font-medium rounded-lg text-sm px-3 py-1.5 cursor-pointer select-none text-center m-1"
                       onChange={(event) => handleOrderPrice(event)}
                     >
                       <option>Price</option>
@@ -175,39 +162,36 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-    <div>
-      <a className="mr-20 px-4 py-4 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
-        Product name
-      </a>
-      <a className="mx-28 px-4 py-4 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
-        Category
-      </a>
-      <a className="px-4 py-4 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
-        Description
-      </a>
-      <a className="ml-44 px-4 py-4 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
-        Price
-      </a>
-    </div>
+            <div>
+              <a className="mr-20 px-4 py-4 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+                Product name
+              </a>
+              <a className="mx-28 px-4 py-4 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+                Category
+              </a>
+              <a className="px-4 py-4 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+                Description
+              </a>
+              <a className="ml-44 px-4 py-4 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+                Price
+              </a>
+            </div>
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 table">
-  <thead>
-  </thead>
-  <tbody>
-    {productsToDisplay.map((product) => (
-      <AdminCard
-        key={product._id}
-        id={product._id}
-        name={product.name}
-        price={product.price}
-        description={product.description}
-        image={product.image}
-        category={product.category.map((el) => el.name)}
-      />
-    ))}
-  </tbody>
-</table>
-
-
+              <thead></thead>
+              <tbody>
+                {productsToDisplay.map((product) => (
+                  <AdminCard
+                    key={product._id}
+                    id={product._id}
+                    name={product.name}
+                    price={product.price}
+                    description={product.description}
+                    image={product.image}
+                    category={product.category.map((el) => el.name)}
+                  />
+                ))}
+              </tbody>
+            </table>
             <nav
               className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
               aria-label="Table navigation"

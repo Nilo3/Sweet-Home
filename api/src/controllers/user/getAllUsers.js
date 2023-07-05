@@ -32,7 +32,7 @@ export default async (req, res) => {
         path: "cart",
         select: "_id",
       })
-      .populate("favorites");
+  
 
     return res.status(200).json(users);
   } catch (error) {

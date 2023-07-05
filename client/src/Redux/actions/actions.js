@@ -27,27 +27,11 @@ import {
   UPDATE_USER,
   GET_USER_BY_EMAIL,
   SOFT_DELETE,
-  ADD_TO_FAVORITES,
-  POST_FAVORITES,
-  DELETE_FROM_FAVORITES,
-  GET_FAVORITES,
   CLEAN_DETAIL,
   DELETE_ALL_FROM_CART,
 } from "../../Redux/action-types/action-types";
-const VITE_HOST = "http://localhost:3001";
-//const VITE_HOST = import.meta.env.VITE_HOST;
-
-//>          |------------------------------------|          <\\
-//>          |          (CTRL  +    G)            |          <\\
-//>          |------------------------------------|          <\\
-//>          |    Codeline     |      Acción      |          <\\
-//>          |------------------------------------|          <\\
-//>          |       35        |     PRODUCT      |          <\\
-//>          |      118        |      USER        |          <\\
-//>          |      164        |      CART        |          <\\
-//>          |      203        |      ORDE        |          <\\
-//>          |      257        |     REVIEW       |          <\\
-//>          |------------------------------------|          <\\
+const VITE_HOST = "http://localhost:3001"
+// const VITE_HOST = import.meta.env.VITE_HOST;
 
 //--//--//--//--//--//  PRODUCT ACTIONS  //--//--//--//--//--//
 
@@ -396,55 +380,5 @@ export const filterByCategory = (payload) => {
   return {
     type: FILTER_BY_CATEGORY,
     payload,
-  };
-};
-
-//--//--//--//--//--//  FAVORITES  //--//--//--//--//--//
-
-export const addtoFavorites = (product) => {
-  return {
-    type: ADD_TO_FAVORITES,
-    payload: product,
-  };
-};
-
-export function postFavorites(payload) {
-  return async function(dispatch) {
-    try {
-      const response = await axios.post(`${VITE_HOST}/api/favorites`, payload);
-      dispatch({
-        type: POST_FAVORITES,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
-
-export const removeFromFavorites = (favoriteId, productId) => {
-  return async (dispatch) => {
-    try {
-      await axios.delete(`${VITE_HOST}/api/favorites/${favoriteId}`, {
-        data: { productId },
-      });
-
-      dispatch({
-        type: DELETE_FROM_FAVORITES,
-        payload: productId,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-};
-
-export const getFavorites = () => {
-  return async function(dispatch) {
-    let response = await axios.get(`${VITE_HOST}/api/favorites`);
-    return dispatch({
-      type: GET_FAVORITES,
-      payload: response.data,
-    });
   };
 };
