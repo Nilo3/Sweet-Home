@@ -195,7 +195,6 @@ function Navbar() {
       behavior: "smooth",
     });
   };
-console.log(completeUser, "este es el user normalito:", user);
   return (
     <div
       ref={menuRef}

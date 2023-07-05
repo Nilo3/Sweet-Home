@@ -7,8 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { Alert } from "../Login/Alert.jsx";
 import emailjs from "emailjs-com";
-var messi =
-  "https://media.radio10.com.ar/p/1eb8ef09699afe339031aa3c6b6566ba/adjuntos/220/imagenes/040/367/0040367760/730x0/smart/messi-campeon-del-mundojpg.jpg";
+var messi = "https://media.radio10.com.ar/p/1eb8ef09699afe339031aa3c6b6566ba/adjuntos/220/imagenes/040/367/0040367760/730x0/smart/messi-campeon-del-mundojpg.jpg";
 
 export function Register() {
   const dispatch = useDispatch();
@@ -124,7 +123,7 @@ export function Register() {
           className="bg-white shadow-md rounded px-4 pt-4 pb-2 mb-2"
         >
           <h1 className="font-bold text-lg text-center mb-4">
-            Registration Form
+            Register
           </h1>
           <div className="mb-4">
             <label
@@ -213,14 +212,14 @@ export function Register() {
           <button
             type="submit"
             className={`bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full flex items-center justify-center ${
-              !!error ? "opacity-50 cursor-not-allowed" : ""
+              !error ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={!!error}
           >
             Register
           </button>
           <p className="my-4 text-xs flex justify-between font-bold px-3">
-            Already have an Account?
+            Already have an account?
             <Link className="text-blue-500 text-xs" to="/login">
               Login
             </Link>

@@ -113,7 +113,7 @@ const About = () => {
         </div>
       </div>
 
-      <h1 className="text-4xl font-bold mt-16 mb-4">Tecnologías 🦾</h1>
+      <h1 className="text-4xl font-bold mt-16 mb-4">Technologies 🦾</h1>
       <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
         {tecnologies.map((technology, index) => (
           <div key={index} className="bg-white p-8 shadow rounded">
