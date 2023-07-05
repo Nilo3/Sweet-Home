@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllUsers, updateUser } from "../../Redux/actions/actions";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 const Usercard = ({ id, name, email }) => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const Usercard = ({ id, name, email }) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.prevendivefault();
     dispatch(updateUser({ ...input }, id));
     setInput({
       isAdmin: false,
@@ -45,14 +46,14 @@ const Usercard = ({ id, name, email }) => {
   };
 
   return (
-    <tr className="flex justify-between w-full mr-20">
-      <td className="mr-12 px-4 py-3 font-medium text-gray-900  dark:text-white max-w-[12rem]">
+    <div className="flex justify-between w-full mr-20">
+      <div className="mr-12 px-4 py-3 font-medium text-gray-900  dark:text-white max-w-[12rem]">
         {name}
-      </td>
-      <td className="mr-12 px-4 py-3 font-medium text-gray-900  dark:text-white max-w-[12rem]">
+      </div>
+      <div className="mr-12 px-4 py-3 font-medium text-gray-900  dark:text-white max-w-[12rem]">
         {email}
-      </td>
-      <td className="px-4 py-3 flex justify-end items-start space-x-2">
+      </div>
+      <div className="px-4 py-3 flex justify-end items-start space-x-2">
         <form onSubmit={handleSubmit}>
           <label
             htmlFor={`admin_${id}`}
@@ -90,9 +91,15 @@ const Usercard = ({ id, name, email }) => {
             <option value={false}>No</option>
           </select>
         </form>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
+};
+
+Usercard.propTypes = {
+  id: PropTypes.any.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
 };
 
 export default Usercard;
