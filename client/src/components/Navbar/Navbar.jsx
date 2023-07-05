@@ -143,7 +143,6 @@ function Navbar() {
 
   const handleProfileClick = () => {
     if (user === null) {
-      navigate("/login");
       return;
     }
 

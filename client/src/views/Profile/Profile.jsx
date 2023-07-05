@@ -1,5 +1,4 @@
 import { useState } from "react";
-import style from "./Profile.module.css";
 import { useAuth } from "../../context/authContex";
 import { useNavigate } from "react-router-dom";
 import { Container, FormGroup } from "reactstrap";
@@ -95,12 +94,12 @@ const Profile = () => {
   };
 
   return (
-    <div className={"style.all select-none"}>
+    <div className="flex justify-center select-none">
       <Container>
         <FormGroup>
-          <div className={style.container}>
+          <div>
             <div className="my-4 max-w-screen-md border px-4 shadow-xl sm:mx-4 sm:rounded-xl sm:px-4 sm:py-4 md:mx-auto">
-              <div className="flex flex-col border-b py-5 sm:flex-row sm:items-start">
+              <div className="flex flex-wrap sm:flex-row md:flex-wrap border-b py-5 sm:items-start">
                 <div className="flex-shrink-0 mr-auto sm:py-3">
                   <p className="font-medium">Account Details</p>
                   <p className="text-sm text-gray-600">Edit your profile</p>
@@ -119,8 +118,8 @@ const Profile = () => {
                   Save
                 </button>
               </div>
-              <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
-                <p className="shrink-0 w-32 font-medium">Name</p>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 border-b py-4">
+                <p className="shrink-0 w-full sm:w-32 font-medium">Name</p>
                 <input
                   placeholder="First Name"
                   value={firstName}
@@ -128,13 +127,13 @@ const Profile = () => {
                   className="mb-2 w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1"
                 />
               </div>
-
-              <div className="flex flex-col gap-4 py-4 lg:flex-row">
-                <div className="shrink-0 w-32 sm:py-4">
+  
+              <div className="flex flex-wrap sm:flex-row md:flex-wrap gap-4 py-4 lg:flex-row">
+                <div className="shrink-0 w-full sm:w-32 sm:py-4">
                   <p className="mb-auto font-medium">Avatar</p>
                   <p className="text-sm text-gray-600">Change your avatar</p>
                 </div>
-                <div className="flex h-56 w-full flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-gray-300 p-5 text-center">
+                <div className="flex flex-wrap flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-gray-300 p-5 text-center w-full sm:w-auto mx-auto">
                   {selectedImage ? (
                     <>
                       <img
@@ -161,7 +160,7 @@ const Profile = () => {
                           </Image>
                         </CloudinaryContext>
                       ) : (
-                        <Image className="rounded-full w-20 h-20 max-w-full">
+                        <Image className="rounded-full w-20 h-20 max-full">
                           <Transformation width="300" crop="scale" />
                         </Image>
                       )}
@@ -185,7 +184,7 @@ const Profile = () => {
         </FormGroup>
       </Container>
     </div>
-  );
+  );  
 };
 
 export default Profile;
