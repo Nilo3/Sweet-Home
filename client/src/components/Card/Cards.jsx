@@ -1,9 +1,10 @@
-import { addtoCart, getUserByUid, postShoppingCart } from "../../Redux/actions/actions.js";
+import { addtoCart, getUserByUid, postShoppingCart, postFavorite, deleteFavorite } from "../../Redux/actions/actions.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useAuth } from "../../context/authContex.jsx";
+import { toast } from "react-toastify";
 
 const Card = ({ _id, name, image, price, category }) => {
   const dispatch = useDispatch();
@@ -11,7 +12,6 @@ const Card = ({ _id, name, image, price, category }) => {
 
   const [, setInCart] = useState(false);
   const [userId, setUserId] = useState(null);
-
 
   useEffect(() => {
     if (user) {
@@ -26,7 +26,6 @@ const Card = ({ _id, name, image, price, category }) => {
       setUserId(userUid);
     }
   }, [userUid]);
-
 
   const allShoppingCart = useSelector((state) => state.shoppingCart);
   const isProductInCart = allShoppingCart?.some(
@@ -65,6 +64,31 @@ const Card = ({ _id, name, image, price, category }) => {
     }
   };
 
+  const [completeUser, setCompleteUser] = useState();
+  const isProductFavorite = completeUser?.favorites?.includes(_id);
+  const [isFavorite, setIsFavorite] = useState(isProductFavorite);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserByUid(user.uid)).then((response) => {
+        setCompleteUser(response.payload);
+      });
+    }
+  }, [dispatch, user]);
+
+  const handleToggleFavorite = () => {
+    if (!completeUser) {
+      toast.error("You need to log in to add a product to favorites")
+      return;
+    }
+    if (isFavorite) {
+      dispatch(deleteFavorite(completeUser?.uid, _id));
+    } else {
+      dispatch(postFavorite(completeUser?.uid, _id));
+    }
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <div>
       <div className="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -79,6 +103,12 @@ const Card = ({ _id, name, image, price, category }) => {
               />
             </div>
           </Link>
+          <button
+            onClick={handleToggleFavorite}
+            className="absolute top-2 right-2 text-3xl cursor-pointer"
+          >
+            {isFavorite ? "❤️" : "🤍"}
+          </button>
         </div>
         <div className="flex flex-col justify-between h-full">
           <div>

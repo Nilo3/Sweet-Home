@@ -27,6 +27,9 @@ import {
   SOFT_DELETE,
   CLEAN_DETAIL,
   DELETE_ALL_FROM_CART,
+  POST_FAVORITE,
+  DELETE_FAVORITE,
+  GET_FAVORITES
 } from "../action-types/action-types.js";
 import { productAVG } from "../../utils/logic-ratings";
 import { toast } from "react-toastify";
@@ -47,6 +50,9 @@ const initialState = {
   orders: [],
   order: [],
   getAllOrders: [],
+  favorites: localStorage.getItem("favorites")
+    ? JSON.parse(localStorage.getItem("favorites"))
+    : [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -169,11 +175,11 @@ const reducer = (state = initialState, { type, payload }) => {
     }
 
     case DELETE_ALL_FROM_CART: {
-      localStorage.removeItem("cart"); // Vaciar el Local Storage
+      localStorage.removeItem("cart");
 
       return {
         ...state,
-        shoppingCart: [], // Vaciar el carrito
+        shoppingCart: [],
       };
     }
 
@@ -311,6 +317,37 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         category: payload,
       };
+
+       //--//--//--//--//--// Favorites  //--//--//--//--//--//
+
+    case POST_FAVORITE: {
+      const updatedFavoritesPost = [...state.favorites, payload];
+      window.localStorage.setItem("favorites", JSON.stringify(updatedFavoritesPost));
+      toast.success("Added to favorites successfully!");
+      return {
+        ...state,
+        favorites: updatedFavoritesPost,
+      };
+    }
+
+    case DELETE_FAVORITE: {
+      const filteredFavoritesDelete = state.favorites.filter(
+        (favorite) => favorite._id !== payload
+      );
+      window.localStorage.setItem("favorites", JSON.stringify(filteredFavoritesDelete));
+      toast.success("Removed from favorites successfully!");
+      return {
+        ...state,
+        favorites: filteredFavoritesDelete,
+      };
+    }
+    
+    case GET_FAVORITES: {
+      return {
+        ...state,
+        favorites: payload,
+      };
+    }
 
     default:
       return state;

@@ -113,6 +113,16 @@ function Navbar() {
     }
   };
 
+  const handleFavorite = () => {
+    closeMenu();
+    navigate("/my_favorites");
+    setIsMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const handlePuchases = () => {
     closeMenu();
     navigate("/my_puchases");
@@ -195,7 +205,6 @@ function Navbar() {
       behavior: "smooth",
     });
   };
-console.log(completeUser, "este es el user normalito:", user);
   return (
     <div
       ref={menuRef}
@@ -287,6 +296,12 @@ console.log(completeUser, "este es el user normalito:", user);
                         className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                       >
                         Reviews
+                      </button>
+                      <button
+                        onClick={handleFavorite}
+                        className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                      >
+                        Favorites
                       </button>
                       {completeUser.isAdmin && (
                         <button
@@ -382,6 +397,12 @@ console.log(completeUser, "este es el user normalito:", user);
                     className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
                   >
                     Reviews
+                  </button>
+                  <button
+                    onClick={handleFavorite}
+                    className="block px-4 py-2 hover:bg-gray-100 font-medium text-gray-600"
+                  >
+                    Favorites
                   </button>
                   {completeUser.isAdmin && (
                     <button
