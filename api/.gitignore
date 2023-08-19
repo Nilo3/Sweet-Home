@@ -3,7 +3,7 @@ node_modules/
 dist/
 
 # Environment variables
-# .env
+ .env
 
 # IDE and editor files
 .vscode/
